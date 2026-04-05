@@ -1,23 +1,147 @@
 {
-  "site_name": "Lapu Lapu City Portal",
-  "site_description": "A community-run portal for the Lapu Lapu City",
+  "site_name": "Municipality of Indang",
+  "site_description": "A community-run portal for the Municipality of Indang",
   "hero": {
     "title": "Welcome to BetterGov.ph",
-    "subtitle": "A community-run portal to find information of the Lapu Lapu City Government",
+    "subtitle": "A community-run portal to find information and services of the Municipality of Indang, Cavite.",
+    "welcome": "WELCOME TO",
+    "browseServices": "Browse Services",
+    "contactUs": "Contact Us",
+    "findService": "Search Services",
+    "searchPlaceholder": "Search for a service...",
+    "popular": "Popular Services",
     "nationalId": "National ID",
     "birthCertificate": "Birth Certificate",
     "businessRegistration": "Business Registration"
+  },
+  "hotlines": {
+    "police": "PNP Indang",
+    "hospital": "Municipal Health",
+    "fire": "BFP Indang",
+    "mdrrmo": "MDRRMO",
+    "cho": "CHO",
+    "cswdo": "CSWDO"
   },
   "services": {
     "title": "Services & Information",
     "governmentServices": "Government Services",
     "description": "Access official government services quickly and easily. Find what you need for citizenship, business, education, and more.",
     "viewAll": "View All Services",
-    "viewAllCategory": "View All"
+    "viewAllCategory": "View All",
+    "categories": {
+      "health-services": { "name": "Health Services" },
+      "education": { "name": "Education" },
+      "business": { "name": "Business" },
+      "social-welfare": { "name": "Social Welfare" },
+      "garbage-waste-disposal": { "name": "Waste" },
+      "environment": { "name": "Environment" },
+      "housing-land-use": { "name": "Housing" },
+      "disaster-preparedness": { "name": "Disaster" }
+    }
   },
   "governmentActivity": {
     "title": "Government Activity",
     "description": "Stay updated with the latest government activities and announcements."
+  },
+  "stats": {
+    "title": "Indang at a Glance",
+    "viewProfile": "View Municipality Profile",
+    "population": {
+      "label": "Residents",
+      "desc": "2020 census population"
+    },
+    "barangays": {
+      "label": "Barangays",
+      "desc": "Administrative villages"
+    },
+    "classification": {
+      "label": "4th Class Municipality",
+      "desc": "Income classification"
+    },
+    "area": {
+      "label": "km²",
+      "desc": "Total land area"
+    }
+  },
+  "weatherMap": {
+    "title": "Weather & Location",
+    "location": "Indang, Cavite",
+    "clear": "Clear sky",
+    "partlyCloudy": "Partly cloudy",
+    "foggy": "Foggy",
+    "rainy": "Rainy",
+    "showers": "Showers",
+    "thunderstorm": "Thunderstorm",
+    "defaultCondition": "Loading weather...",
+    "wind": "km/h wind",
+    "climate": "Tropical climate",
+    "elevation": "~60m elevation",
+    "loading": "Fetching live weather data...",
+    "mapTitle": "Map of Indang, Cavite"
+  },
+  "history": {
+    "title": "History of Indang",
+    "charteredYear": "Year of Foundation",
+    "charteredDesc": "Indang was established as a municipality, rooted in a rich history of faith, agriculture, and community.",
+    "elevationLabel": "~60m Elevation",
+    "elevationDesc": "Situated in the highlands of Cavite, Indang enjoys a cool and fertile environment ideal for agriculture.",
+    "events": {
+      "precolonial": {
+        "year": "Pre-colonial Era",
+        "title": "Early Settlements",
+        "text": "The area now known as Indang was home to early Tagalog communities engaged in farming and trade along the fertile lowlands of Cavite."
+      },
+      "spanish": {
+        "year": "Spanish Period",
+        "title": "Spanish Colonization",
+        "text": "Under Spanish rule, Indang was organized as a parish community. The local church, dedicated to Saint Gregory the Great, became the center of community life."
+      },
+      "revolution": {
+        "year": "1896–1898",
+        "title": "Philippine Revolution",
+        "text": "Indang played a role in the Philippine Revolution, with local residents supporting the Katipunan's fight for independence from Spanish colonial rule."
+      },
+      "american": {
+        "year": "American Period",
+        "title": "Municipal Charter",
+        "text": "Under American governance, Indang was formally established as a municipality with its own local government structure and civic institutions."
+      },
+      "cavsu": {
+        "year": "1906",
+        "title": "Agricultural College Founded",
+        "text": "The Cavite State University (CavSU) main campus was established in Indang, anchoring the municipality as a center of agricultural education in the province."
+      },
+      "republic": {
+        "year": "Post-1946",
+        "title": "Republic Era",
+        "text": "After Philippine independence, Indang continued to grow as an agricultural and educational hub within the province of Cavite."
+      },
+      "present": {
+        "year": "Present Day",
+        "title": "Modern Indang",
+        "text": "Today, Indang is known for its thriving agriculture, strong educational institutions, and a close-knit community committed to progress and sustainable development."
+      }
+    }
+  },
+  "leadership": {
+    "title": "Municipal Leadership",
+    "cityMayor": "Municipal Mayor",
+    "cityViceMayor": "Municipal Vice Mayor",
+    "electedMayor": "Elected Mayor",
+    "electedViceMayor": "Elected Vice Mayor",
+    "viewAll": "View All Officials",
+    "viewProfile": "View Profile"
+  },
+  "contact": {
+    "title": "Contact Us",
+    "phone": "Phone",
+    "phoneHours": "Mon–Fri, 8AM–5PM",
+    "email": "Email",
+    "emailResponse": "Response within 2 business days",
+    "address": "Address",
+    "addressLine1": "Municipal Hall, Indang, Cavite",
+    "addressLine2": "Poblacion 1, Indang, Cavite 4122",
+    "viewAll": "View All Departments"
   },
   "weather": {
     "title": "Weather Updates"
