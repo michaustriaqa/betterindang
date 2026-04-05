@@ -23,16 +23,16 @@ function formatDatetime(): string {
 }
 
 const HOTLINES = [
-  { labelKey: 'hotlines.police', number: '(046) 860-1111', tel: '0468601111' },
+  { labelKey: 'hotlines.police', number: '(046) 460-4709', tel: '0464604709' },
   {
     labelKey: 'hotlines.hospital',
     number: '(046) 460-4708',
     tel: '0464604708',
   },
-  { labelKey: 'hotlines.fire', number: '(046) 860-1166', tel: '0468601166' },
-  { labelKey: 'hotlines.mdrrmo', number: '(046) 860-1777', tel: '0468601777' },
-  { labelKey: 'hotlines.cho', number: '(046) 860-1888', tel: '0468601888' },
-  { labelKey: 'hotlines.cswdo', number: '(046) 860-1999', tel: '0468601999' },
+  { labelKey: 'hotlines.fire', number: '(046) 415-1217', tel: '0464151217' },
+  { labelKey: 'hotlines.mdrrmo', number: '(046) 433-9220', tel: '04644339220' },
+  { labelKey: 'hotlines.iwd', number: '(046) 415-0318', tel: '0464150318' },
+  { labelKey: 'hotlines.mao', number: '(046) 460-4713', tel: '0464604713' },
 ];
 
 const Navbar: React.FC = () => {
@@ -131,7 +131,7 @@ const Navbar: React.FC = () => {
       setTemp(cachedTemp);
     } else {
       fetch(
-        'https://api.open-meteo.com/v1/forecast?latitude=14.1986&longitude=120.8717&current_weather=true'
+        'https://api.open-meteo.com/v1/forecast?latitude=14.2&longitude=120.883&current_weather=true'
       )
         .then(r => r.json())
         .then(data => {
@@ -231,20 +231,19 @@ const Navbar: React.FC = () => {
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
             <Link to="/" className="flex items-center shrink-0">
-              {/* <img src="/logo.png" alt="Municipality of Indang" className="h-16 w-auto" /> */}
-              <div className="flex items-center">
-                <div className="bg-primary-600 text-white rounded-full h-12 w-12 flex items-center justify-center font-black text-lg mr-3">
-                  I
+              <img
+                src="/logo.png"
+                alt={import.meta.env.VITE_GOVERNMENT_NAME}
+                className="h-20 w-auto mr-3"
+              />
+              {/* <div>
+                <div className="text-black font-bold text-sm leading-tight">
+                  {import.meta.env.VITE_GOVERNMENT_NAME}
                 </div>
-                <div>
-                  <div className="text-black font-bold text-sm leading-tight">
-                    {import.meta.env.VITE_GOVERNMENT_NAME}
-                  </div>
-                  <div className="text-xs text-gray-500">
-                    {t('site_description')}
-                  </div>
+                <div className="text-xs text-gray-500">
+                  {t('site_description')}
                 </div>
-              </div>
+              </div> */}
             </Link>
 
             {/* Desktop Nav */}

@@ -8,13 +8,13 @@ export default function StatsSection() {
   const STATS = [
     {
       icon: Users,
-      value: '64,000+',
+      value: '68,699',
       label: t('stats.population.label'),
       description: t('stats.population.desc'),
     },
     {
       icon: MapPin,
-      value: '33',
+      value: '36',
       label: t('stats.barangays.label'),
       description: t('stats.barangays.desc'),
     },
@@ -26,7 +26,7 @@ export default function StatsSection() {
     },
     {
       icon: Map,
-      value: '61.53',
+      value: '74.90',
       label: t('stats.area.label'),
       description: t('stats.area.desc'),
     },

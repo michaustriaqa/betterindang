@@ -37,7 +37,7 @@ export default function WeatherMapSection() {
     }
 
     fetch(
-      'https://api.open-meteo.com/v1/forecast?latitude=14.1986&longitude=120.8717&current_weather=true&timezone=Asia%2FManila'
+      'https://api.open-meteo.com/v1/forecast?latitude=14.2&longitude=120.883&current_weather=true&timezone=Asia%2FManila'
     )
       .then(r => r.json())
       .then(data => {
@@ -110,7 +110,7 @@ export default function WeatherMapSection() {
           <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm min-h-[220px]">
             <iframe
               title={t('weatherMap.mapTitle')}
-              src="https://www.openstreetmap.org/export/embed.html?bbox=120.8417%2C14.1686%2C120.9017%2C14.2286&layer=mapnik&marker=14.1986%2C120.8717"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=120.833%2C14.15%2C120.933%2C14.25&layer=mapnik&marker=14.2%2C120.883"
               className="w-full h-full min-h-[220px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
