@@ -7,7 +7,7 @@ const EVENT_KEYS = [
   'spanish',
   'revolution',
   'american',
-  'cavsu',
+  'cvsu',
   'republic',
   'present',
 ] as const;

@@ -12,8 +12,8 @@
     "address": "A. Mojica St. Poblacion 3, Indang, Cavite 4122",
     "telephone": "(046) 460-4708",
     "trunk_line": "",
-    "email": "",
-    "website": "https://www.indang.gov.ph"
+    "email": "m1.indang@yahoo.com",
+    "website": ""
   },
 
   "municipal_offices": [
@@ -60,7 +60,7 @@
     },
     {
       "office": "Municipal Health Office (MHO)",
-      "telephone": "(046) 840-1705",
+      "telephone": "046-840-1705",
       "in_charge": ""
     },
     {
@@ -88,7 +88,12 @@
       "telephone": "0961-992-1998",
       "in_charge": ""
     },
-    { "office": "Tourism Office", "telephone": "", "in_charge": "" },
+    {
+      "office": "Tourism Office",
+      "telephone": "",
+      "email": "tourism.indang01@gmail.com",
+      "in_charge": ""
+    },
     {
       "office": "Philippine National Police (PNP) — Indang",
       "telephone": "0949-184-9145",
@@ -145,12 +150,12 @@
     {
       "organization": "Association of Barangay Captains (ABC)",
       "contact": "",
-      "representative": ""
+      "representative": "Elmer V. Torres"
     },
     {
       "organization": "Sangguniang Kabataan (SK) Federation",
       "contact": "",
-      "representative": ""
+      "representative": "Jonel Keith M. Ayos"
     }
   ]
 }

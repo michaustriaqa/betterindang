@@ -6,6 +6,7 @@ import {
   Mail,
   ExternalLink,
   Box,
+  Heart,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
@@ -201,12 +202,23 @@ const Footer: React.FC = () => {
               <span>&copy; {currentYear} BetterIndang.org</span>
               <span className="hidden sm:inline text-gray-700">·</span>
               <span className="bg-gray-800 text-gray-400 px-2 py-0.5 rounded font-mono">
-                CC0 1.0 Universal
+                <a
+                  href="https://creativecommons.org/publicdomain/zero/1.0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {' '}
+                  CC0 1.0 Universal License{' '}
+                </a>
               </span>
               <span className="hidden sm:inline text-gray-700">·</span>
               <span className="text-gray-600">
                 Not an official government website.
               </span>
+            </div>
+            <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
+              <Heart className="h-3.5 w-3.5" />
+              <span className="font-mono">Built by the community</span>
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />

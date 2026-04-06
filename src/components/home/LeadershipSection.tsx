@@ -9,21 +9,21 @@ export default function LeadershipSection() {
 
   const OFFICIALS = [
     {
-      initials: 'Mayor',
-      name: import.meta.env.VITE_MAYOR || 'Hon. Municipal Mayor',
+      initials: 'VF',
+      name: import.meta.env.VITE_MAYOR || 'Hon. Virgilio Fidel',
       titleKey: 'leadership.cityMayor',
       badgeKey: 'leadership.electedMayor',
-      phone: import.meta.env.VITE_CONTACT_PHONE || '(046) 460-4708',
-      email: import.meta.env.VITE_CONTACT_EMAIL || 'm1.indang@yahoo.com',
+      phone: import.meta.env.VITE_CONTACT_PHONE || '',
+      email: import.meta.env.VITE_CONTACT_EMAIL || '',
       tel: '0464604708',
     },
     {
-      initials: 'VM',
-      name: import.meta.env.VITE_VICE_MAYOR || 'Hon. Municipal Vice Mayor',
+      initials: 'FP',
+      name: import.meta.env.VITE_VICE_MAYOR || 'Hon. Ferdinand Papa',
       titleKey: 'leadership.cityViceMayor',
       badgeKey: 'leadership.electedViceMayor',
       phone: import.meta.env.VITE_CONTACT_PHONE || '(046) 460-4708',
-      email: null,
+      email: import.meta.env.VITE_CONTACT_EMAIL || '',
       tel: '0464604708',
     },
   ];
