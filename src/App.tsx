@@ -12,6 +12,7 @@ import Legislative from './pages/Legislative';
 import Transparency from './pages/Transparency';
 import Tourism from './pages/Tourism';
 import LocalOfficials from './pages/LocalOfficials';
+import ExecutiveDirectory from './pages/ExecutiveDirectory';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -33,6 +34,10 @@ function App() {
               <Route
                 path="/government/departments/officials"
                 element={<LocalOfficials />}
+              />
+              <Route
+                path="/government/departments/executive"
+                element={<ExecutiveDirectory />}
               />
               <Route path="/government/:category" element={<Government />} />
               <Route path="/government" element={<Government />} />
