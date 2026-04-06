@@ -13,6 +13,7 @@ import Transparency from './pages/Transparency';
 import Tourism from './pages/Tourism';
 import LocalOfficials from './pages/LocalOfficials';
 import ExecutiveDirectory from './pages/ExecutiveDirectory';
+import SangguniangBayan from './pages/SangguniangBayan';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -34,6 +35,10 @@ function App() {
               <Route
                 path="/government/departments/officials"
                 element={<LocalOfficials />}
+              />
+              <Route
+                path="/government/legislative"
+                element={<SangguniangBayan />}
               />
               <Route
                 path="/government/departments/executive"

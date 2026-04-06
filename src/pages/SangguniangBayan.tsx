@@ -1,52 +1,10 @@
 import { useState } from 'react';
-import { Users, List, Table2, ExternalLink, MapPin } from 'lucide-react';
+import { Landmark, List, Table2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import data from '../../content/government/departments/legislative/legislative.json';
 
 type ViewMode = 'table' | 'list';
-
-const EXECUTIVE = [
-  { position: 'Municipal Mayor', name: 'Hon. Virgilio "Boying" Fidel' },
-  { position: 'Municipal Vice Mayor', name: 'Hon. Ferdinand Papa' },
-];
-
-const COUNCILORS = [
-  { no: 1, name: 'Hon. Ronald A. Bernarte' },
-  { no: 2, name: 'Hon. Constancio S. Telmo Jr.' },
-  { no: 3, name: 'Hon. John Mark M. Cayao' },
-  { no: 4, name: 'Hon. Exequiel D. Penus' },
-  { no: 5, name: 'Hon. Joel R. Carungcong' },
-  { no: 6, name: 'Hon. Danilo V. Masangcay' },
-  { no: 7, name: 'Hon. Chrissel R. Borja' },
-  { no: 8, name: 'Hon. Jose Joezel T. Pareño' },
-];
-
-const EX_OFFICIO = [
-  {
-    position: 'ABC President\n(Association of Barangay Captains)',
-    name: 'Hon. [ABC President]',
-  },
-  {
-    position: 'SK Federation President\n(Sangguniang Kabataan)',
-    name: 'Hon. [SK Federation President]',
-  },
-];
-
-const DEPARTMENTS = [
-  { office: 'Office of the Mayor', contact: '(046) 460-4708' },
-  { office: 'Sangguniang Bayan', contact: '(046) 460-4708' },
-  {
-    office: 'Office of the Municipal Administrator',
-    contact: '(046) 460-4708',
-  },
-  { office: 'Municipal Health Office (MHO)', contact: '(046) 840-1705' },
-  {
-    office: 'Municipal Disaster Risk Reduction and Management Office (MDRRMO)',
-    contact: '0961-992-1998',
-  },
-  { office: 'Bureau of Fire Protection (BFP)', contact: '(046) 415-1217' },
-  { office: 'Indang Municipal Police Station (PNP)', contact: '0949-184-9145' },
-];
 
 function ViewToggle({
   mode,
@@ -56,7 +14,7 @@ function ViewToggle({
   onChange: (m: ViewMode) => void;
 }) {
   return (
-    <div className="flex items-center border border-gray-200 rounded-md overflow-hidden">
+    <div className="flex items-center border border-gray-200 rounded-md overflow-hidden shrink-0">
       <button
         type="button"
         onClick={() => onChange('table')}
@@ -85,18 +43,17 @@ function ViewToggle({
   );
 }
 
-export default function LocalOfficials() {
-  const [execView, setExecView] = useState<ViewMode>('table');
+export default function SangguniangBayan() {
+  const [officerView, setOfficerView] = useState<ViewMode>('table');
   const [councilView, setCouncilView] = useState<ViewMode>('table');
   const [exofficioView, setExofficioView] = useState<ViewMode>('table');
-  const [deptView, setDeptView] = useState<ViewMode>('table');
 
   return (
     <>
       <SEO
-        title="Local Officials Directory"
-        description="Directory of elected officials and government departments of the Municipality of Indang, Cavite."
-        keywords="Indang officials, mayor, vice mayor, councilors, Sangguniang Bayan, departments"
+        title="Sangguniang Bayan"
+        description={`Members of the Sangguniang Bayan (Municipal Council) of the ${data.GOVERNMENT_NAME} for the ${data.TERM} term.`}
+        keywords="Indang Sangguniang Bayan, municipal council, councilors, legislative, committees"
       />
       <main className="flex-grow">
         {/* Page Header */}
@@ -111,18 +68,18 @@ export default function LocalOfficials() {
         >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 mb-2">
-              <Users className="h-7 w-7 text-blue-200" />
+              <Landmark className="h-7 w-7 text-blue-200" />
               <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
-                Municipality of Indang
+                {data.GOVERNMENT_NAME}
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black mb-3">
-              Local Officials Directory
+              Sangguniang Bayan
             </h1>
             <p className="text-blue-100 text-lg max-w-xl">
-              This page lists all elected officials of the{' '}
-              <strong>Municipal Government of Indang, Cavite</strong> for the{' '}
-              <strong>2022–2025 term</strong>.
+              This page lists all elected members of the{' '}
+              <strong>Municipal Council of {data.GOVERNMENT_NAME}</strong> for
+              the <strong>{data.TERM} term</strong>.
             </p>
           </div>
         </div>
@@ -142,15 +99,8 @@ export default function LocalOfficials() {
                 Government
               </Link>
               <span>/</span>
-              <Link
-                to="/government/departments"
-                className="hover:text-primary-700 transition-colors"
-              >
-                Departments
-              </Link>
-              <span>/</span>
               <span className="text-gray-700 font-medium">
-                Local Officials Directory
+                Sangguniang Bayan
               </span>
             </nav>
           </div>
@@ -163,21 +113,21 @@ export default function LocalOfficials() {
               Elected Officials
             </h2>
 
-            {/* Executive Branch */}
+            {/* Presiding Officer */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-bold text-gray-800">
-                  Executive Branch
+                  Presiding Officer
                 </h3>
-                <ViewToggle mode={execView} onChange={setExecView} />
+                <ViewToggle mode={officerView} onChange={setOfficerView} />
               </div>
 
-              {execView === 'table' ? (
+              {officerView === 'table' ? (
                 <div className="rounded-xl border border-gray-200 overflow-hidden">
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-56">
+                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-64">
                           Position
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
@@ -186,37 +136,25 @@ export default function LocalOfficials() {
                       </tr>
                     </thead>
                     <tbody>
-                      {EXECUTIVE.map((row, i) => (
-                        <tr
-                          key={row.position}
-                          className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
-                        >
-                          <td className="px-4 py-3 font-semibold text-gray-700">
-                            {row.position}
-                          </td>
-                          <td className="px-4 py-3 text-gray-800">
-                            {row.name}
-                          </td>
-                        </tr>
-                      ))}
+                      <tr className="bg-white">
+                        <td className="px-4 py-3 font-semibold text-gray-700">
+                          {data.presiding_officer.position}
+                        </td>
+                        <td className="px-4 py-3 text-gray-800">
+                          {data.presiding_officer.name}
+                        </td>
+                      </tr>
                     </tbody>
                   </table>
                 </div>
               ) : (
-                <div className="space-y-2">
-                  {EXECUTIVE.map(row => (
-                    <div
-                      key={row.position}
-                      className="bg-white rounded-lg border border-gray-200 px-4 py-3"
-                    >
-                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5">
-                        {row.position}
-                      </div>
-                      <div className="text-sm font-bold text-gray-800">
-                        {row.name}
-                      </div>
-                    </div>
-                  ))}
+                <div className="bg-white rounded-lg border border-gray-200 px-4 py-3">
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5">
+                    {data.presiding_officer.position}
+                  </div>
+                  <div className="text-sm font-bold text-gray-800">
+                    {data.presiding_officer.name}
+                  </div>
                 </div>
               )}
             </div>
@@ -231,8 +169,8 @@ export default function LocalOfficials() {
               </div>
               <p className="text-sm text-gray-500 mb-3">
                 The Municipal Council is composed of{' '}
-                <strong>8 elected councilors</strong> and is presided over by
-                the Vice Mayor.
+                <strong>{data.councilors.length} elected councilors</strong> and
+                is presided over by the Vice Mayor.
               </p>
 
               {councilView === 'table' ? (
@@ -240,16 +178,19 @@ export default function LocalOfficials() {
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-16">
+                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-12">
                           #
                         </th>
-                        <th className="text-left px-4 py-3 font-semibold text-gray-600">
+                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-56">
                           Councilor
+                        </th>
+                        <th className="text-left px-4 py-3 font-semibold text-gray-600">
+                          Committee Assignments
                         </th>
                       </tr>
                     </thead>
                     <tbody>
-                      {COUNCILORS.map(row => (
+                      {data.councilors.map(row => (
                         <tr
                           key={row.no}
                           className={
@@ -259,8 +200,11 @@ export default function LocalOfficials() {
                           <td className="px-4 py-3 text-gray-500 font-medium">
                             {row.no}
                           </td>
-                          <td className="px-4 py-3 text-gray-800">
+                          <td className="px-4 py-3 font-semibold text-gray-800">
                             {row.name}
+                          </td>
+                          <td className="px-4 py-3 text-gray-600 text-xs leading-relaxed">
+                            {row.committees}
                           </td>
                         </tr>
                       ))}
@@ -269,17 +213,24 @@ export default function LocalOfficials() {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {COUNCILORS.map(row => (
+                  {data.councilors.map(row => (
                     <div
                       key={row.no}
-                      className="bg-white rounded-lg border border-gray-200 px-4 py-3 flex items-center gap-3"
+                      className="bg-white rounded-lg border border-gray-200 px-4 py-3"
                     >
-                      <span className="text-xs font-bold text-gray-400 w-6 shrink-0">
-                        {row.no}
-                      </span>
-                      <span className="text-sm font-bold text-gray-800">
-                        {row.name}
-                      </span>
+                      <div className="flex items-start gap-3">
+                        <span className="text-xs font-bold text-gray-400 w-5 shrink-0 mt-0.5">
+                          {row.no}
+                        </span>
+                        <div>
+                          <div className="text-sm font-bold text-gray-800">
+                            {row.name}
+                          </div>
+                          <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">
+                            {row.committees}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   ))}
                 </div>
@@ -287,7 +238,7 @@ export default function LocalOfficials() {
             </div>
 
             {/* Ex-Officio Members */}
-            <div className="mb-2">
+            <div>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-bold text-gray-800">
                   Ex-Officio Members
@@ -300,7 +251,7 @@ export default function LocalOfficials() {
                   <table className="w-full text-sm">
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
-                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-56">
+                        <th className="text-left px-4 py-3 font-semibold text-gray-600 w-64">
                           Position
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
@@ -309,7 +260,7 @@ export default function LocalOfficials() {
                       </tr>
                     </thead>
                     <tbody>
-                      {EX_OFFICIO.map((row, i) => (
+                      {data.ex_officio.map((row, i) => (
                         <tr
                           key={i}
                           className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
@@ -318,7 +269,7 @@ export default function LocalOfficials() {
                             {row.position}
                           </td>
                           <td className="px-4 py-3 text-gray-800">
-                            {row.name}
+                            {row.name || '—'}
                           </td>
                         </tr>
                       ))}
@@ -327,7 +278,7 @@ export default function LocalOfficials() {
                 </div>
               ) : (
                 <div className="space-y-2">
-                  {EX_OFFICIO.map((row, i) => (
+                  {data.ex_officio.map((row, i) => (
                     <div
                       key={i}
                       className="bg-white rounded-lg border border-gray-200 px-4 py-3"
@@ -336,7 +287,7 @@ export default function LocalOfficials() {
                         {row.position}
                       </div>
                       <div className="text-sm font-bold text-gray-800">
-                        {row.name}
+                        {row.name || '—'}
                       </div>
                     </div>
                   ))}
@@ -345,72 +296,26 @@ export default function LocalOfficials() {
             </div>
           </section>
 
-          {/* Departments & Offices */}
-          <section>
-            <div className="flex items-center justify-between mb-3">
-              <h2 className="text-xl font-black text-gray-900">
-                Municipal Government Departments and Offices
-              </h2>
-              <ViewToggle mode={deptView} onChange={setDeptView} />
-            </div>
-
-            {deptView === 'table' ? (
-              <div className="rounded-xl border border-gray-200 overflow-hidden">
-                <table className="w-full text-sm">
-                  <thead className="bg-gray-50 border-b border-gray-200">
-                    <tr>
-                      <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                        Office
-                      </th>
-                      <th className="text-left px-4 py-3 font-semibold text-gray-600 w-48">
-                        Contact
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {DEPARTMENTS.map((row, i) => (
-                      <tr
-                        key={row.office}
-                        className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
-                      >
-                        <td className="px-4 py-3 text-gray-800">
-                          {row.office}
-                        </td>
-                        <td className="px-4 py-3 text-gray-600 font-medium">
-                          {row.contact}
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {DEPARTMENTS.map(row => (
-                  <div
-                    key={row.office}
-                    className="bg-white rounded-lg border border-gray-200 px-4 py-3 flex items-start justify-between gap-4"
-                  >
-                    <span className="text-sm text-gray-800">{row.office}</span>
-                    <span className="text-sm font-semibold text-primary-700 shrink-0">
-                      {row.contact}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-          </section>
-
           {/* Contact */}
           <section className="bg-gray-50 rounded-xl border border-gray-200 p-6">
             <h2 className="text-base font-black text-gray-900 mb-2">Contact</h2>
             <p className="text-sm text-gray-700">
-              <strong>Indang Municipal Hall</strong> · A. Mojica St. Poblacion
-              3, Indang, Cavite · Tel: (046) 460-4708
+              <strong>Sangguniang Bayan Hall</strong> · {data.contact.address}
+              {data.contact.telephone && (
+                <span>
+                  {' '}
+                  · Tel:{' '}
+                  <a
+                    href={`tel:${data.contact.telephone.replace(/[^0-9+]/g, '')}`}
+                    className="text-primary-700 font-semibold hover:underline"
+                  >
+                    {data.contact.telephone}
+                  </a>
+                </span>
+              )}
             </p>
             <p className="text-sm text-gray-600 mt-2">
-              For a complete directory of department heads and municipal
-              employees, visit the Municipal Hall or file a request under the{' '}
+              For legislative documents and records, file a request under the{' '}
               <a
                 href="https://www.foi.gov.ph"
                 target="_blank"
@@ -421,10 +326,6 @@ export default function LocalOfficials() {
                 <ExternalLink className="h-3 w-3" />
               </a>{' '}
               policy.
-            </p>
-            <p className="text-sm text-gray-500 mt-3 flex items-center gap-1.5">
-              <MapPin className="h-3.5 w-3.5 shrink-0" />
-              Indang, Cavite · 4122
             </p>
           </section>
         </div>

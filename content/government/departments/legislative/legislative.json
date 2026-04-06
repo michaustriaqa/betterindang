@@ -1,0 +1,69 @@
+{
+  "GOVERNMENT_NAME": "Municipality of Indang",
+  "TERM": "2022–2025",
+
+  "presiding_officer": {
+    "position": "Municipal Vice Mayor (Presiding Officer)",
+    "name": "Hon. Ferdinand Papa"
+  },
+
+  "councilors": [
+    {
+      "no": 1,
+      "name": "Hon. Ronald A. Bernarte",
+      "committees": "Committee on Peace, Order and Public Safety; Committee on Games and Amusement"
+    },
+    {
+      "no": 2,
+      "name": "Hon. Constancio S. Telmo Jr.",
+      "committees": "Committee on Rules, Ordinances, Resolution and Legal Matters; Committee on Health Services, Population and Anti-Drug Abuse"
+    },
+    {
+      "no": 3,
+      "name": "Hon. John Mark M. Cayao",
+      "committees": "Committee on Environmental Protection; Committee on Education"
+    },
+    {
+      "no": 4,
+      "name": "Hon. Exequiel D. Penus",
+      "committees": "Committee on Finance, Budget and Appropriations; Committee on Ways and Means"
+    },
+    {
+      "no": 5,
+      "name": "Hon. Joel R. Carungcong",
+      "committees": "Committee on Human Rights"
+    },
+    {
+      "no": 6,
+      "name": "Hon. Danilo V. Masangcay",
+      "committees": "Committee on Trade, Industry and Labor; Committee on Tourism, Culture and Arts"
+    },
+    {
+      "no": 7,
+      "name": "Hon. Chrissel R. Borja",
+      "committees": "Committee on Women and Family Welfare, Social and Special Services; Committee on Land Use, Housing, Resettlement and Subdivisions"
+    },
+    {
+      "no": 8,
+      "name": "Hon. Jose Joezel T. Pareño",
+      "committees": "Committee on Good Government, Public Ethics and Accountability; Committee on Public Works, Telecommunications, Transportation and Public Utilities and Facilities"
+    }
+  ],
+
+  "ex_officio": [
+    {
+      "position": "ABC President\n(Association of Barangay Captains)",
+      "name": ""
+    },
+    {
+      "position": "SK Federation President\n(Sangguniang Kabataan)",
+      "name": ""
+    }
+  ],
+
+  "contact": {
+    "address": "Sangguniang Bayan Hall, A. Mojica St. Poblacion 3, Indang, Cavite 4122",
+    "telephone": "(046) 460-4708",
+    "email": ""
+  }
+}
