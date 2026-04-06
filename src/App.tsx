@@ -7,6 +7,10 @@ import ScrollToTop from './components/ui/ScrollToTop';
 import Services from './pages/Services';
 import Document from './pages/Document';
 import Government from './pages/Government';
+import Statistics from './pages/Statistics';
+import Legislative from './pages/Legislative';
+import Transparency from './pages/Transparency';
+import Tourism from './pages/Tourism';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -31,6 +35,11 @@ function App() {
                 path="/government/:category/:documentSlug"
                 element={<Document categoryType="government" />}
               />
+              <Route path="/statistics" element={<Statistics />} />
+              <Route path="/legislative" element={<Legislative />} />
+              <Route path="/transparency" element={<Transparency />} />
+              <Route path="/tourism/:category" element={<Tourism />} />
+              <Route path="/tourism" element={<Tourism />} />
               <Route path="/:lang/:documentSlug" element={<Document />} />
               <Route path="/:documentSlug" element={<Document />} />
             </Routes>

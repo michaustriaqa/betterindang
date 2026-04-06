@@ -1,53 +1,47 @@
-# Go to the Local Hospital for Treatment or Confinement — Lapu-Lapu City
+# Go to the Local Hospital for Treatment or Confinement — Indang, Cavite
 
-This guide covers **where to go**, **what to bring**, and **how admission works** at local hospitals in Lapu-Lapu City, including the city-run facility and nearby private hospitals.
+This guide covers **where to go**, **what to bring**, and **how admission works** at the local health facility in Indang and nearby referral hospitals.
 
 ---
 
-## A) Government Hospital (City-Run)
+## A) Primary Government Health Facility (Municipal-Run)
 
-### Sta. Rosa Community Hospital (Lapu-Lapu City)
+### Indang Rural Health Unit (RHU)
+
+The **Indang Rural Health Unit** is the primary government health facility in the municipality, providing outpatient consultations, maternal care, immunization, and primary treatment. For cases requiring confinement or specialist care, the RHU refers patients to higher-level hospitals.
 
 **Services & Hours**
 
-- **Emergency (Medical & Medico-legal):** 24/7
-- **Ward (In-patient confinement):** 24/7
-- **Out-Patient:** Mon–Fri, 8:00 AM–5:00 PM (except holidays)
+- **Outpatient Consultation:** Mon–Fri, 8:00 AM–5:00 PM (except holidays)
+- **Maternal Care / Prenatal:** Mon–Fri, 8:00 AM–5:00 PM; Sat 8:00 AM–12:00 PM
+- **Emergency / Walk-in:** During office hours; for after-hours emergencies, proceed directly to a referral hospital.
 
-**Emergency (Medical cases) – Quick Steps**
-| Step | What you do | Hospital does | Typical time |
-|---|---|---|---|
-| 1 | Seek care at ER | Triage, vitals, initial MD orders | ~10–25 min |
-| 2 | Sign consent (treatment/admission if needed) | Prepare meds/tests; set for transfer to ward if admitted | ~20–25 min |
-| 3 | Transfer to ward (if for confinement) | ER endorses to Ward Nurse on duty | ~10 min |
+**Location:** Municipal Hall compound, Poblacion, Indang, Cavite 4122
+**Phone:** (046) 415-0033 (Municipal Hall trunkline)
 
-**Requirements (bring if available):** Registration data sheet (onsite), **PhilHealth ID/MDR (optional)**, doctor’s referral/admitting orders (if coming from clinic).
-
-**Ward (In-patient) – What to expect**
-
-- Follow doctor’s orders; nurses administer meds/tests; dietary issued as ordered.
-- For discharge: instructions & schedule for follow-ups are given; proceed to Billing for clearance; release at Ward/Nurse station.
-- **Fees:** Posted at Billing.
-- **Note:** If not enrolled in PhilHealth, staff will guide processing if a relative can provide documents.
+**Requirements (bring if available):** Valid ID, PhilHealth ID/MDR (optional but recommended), barangay health record if previously issued.
 
 ---
 
-## B) Private Hospitals Nearby
+## B) Referral Hospitals
 
-| Hospital                                     | Where                 | Beds/Notes                            | Admissions basics                                                                                                                     |
-| -------------------------------------------- | --------------------- | ------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| **Mactan Doctors’ Hospital (CebuDoc Group)** | Basak, Lapu-Lapu City | **151-bed tertiary** private hospital | Bring valid ID; company/HMO authorization if applicable; PhilHealth forms; fill out admission forms and submit to Admissions/Billing. |
-| **ARC Hospitals**                            | Lapu-Lapu City        | **~100-bed** private hospital         | Standard private-hospital admission flow; coordinate with Admissions/HMO/PhilHealth desk.                                             |
+For cases requiring confinement, surgery, specialist care, or emergency treatment beyond the RHU's capacity, residents are referred to:
 
-> Private hospitals typically require **initial deposits** (varies by case/room) unless fully covered by HMO/PhilHealth arrangements. Confirm at the **Billing/Admissions** desk.
+| Hospital                                                         | Where                       | Notes                                                                           | Admissions Basics                                                                                                                      |
+| ---------------------------------------------------------------- | --------------------------- | ------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
+| **Trece Martires City Hospital (TMCH)**                          | Trece Martires City, Cavite | **Government hospital** — nearest public referral hospital for Indang residents | Present PhilHealth ID/MDR, valid ID, and referral from RHU if available; Billing/Admissions desk handles PhilHealth and indigent cases |
+| **De La Salle University Medical Center (DLSUMC)**               | Dasmariñas City, Cavite     | **Private/non-profit tertiary hospital** — major referral center for CALABARZON | Bring valid ID; HMO authorization if applicable; PhilHealth forms; fill out admission forms at Admissions/Billing                      |
+| **Governor Remulla Provincial Hospital (Cavite Medical Center)** | Trece Martires City, Cavite | **Provincial government hospital** — another accessible public option           | Standard government hospital admission; PhilHealth benefits apply; coordinate with Admissions for indigent/sponsored coverage          |
+
+> Private hospitals and those outside Indang typically require **initial deposits** (varies by case/room) unless fully covered by HMO/PhilHealth arrangements. Confirm at the **Billing/Admissions** desk.
 
 ---
 
-## C) What to Bring (All Hospitals)
+## C) What to Bring (All Facilities)
 
 - **Valid ID** (with photo & signature)
 - **PhilHealth** ID and **MDR** (Member Data Record); if a dependent, bring proof of dependency
-- **Doctor’s referral/admitting order** (if elective admission)
+- **Doctor's referral/admitting order** or **RHU referral slip** (if coming from the Rural Health Unit)
 - **HMO/Company**: LOA/guarantee letter, membership/ID cards (if applicable)
 - **Personal necessities** (for confinement)
 
@@ -55,40 +49,47 @@ This guide covers **where to go**, **what to bring**, and **how admission works*
 
 ## D) Costs & PhilHealth Coverage
 
-- **City hospital:** Fees are posted at **Billing**; **PhilHealth** benefits may apply at admission/discharge processing.
+- **RHU consultations:** Free for all Indang residents.
+- **Government referral hospitals (TMCH / Provincial Hospital):** PhilHealth benefits apply; indigent and sponsored PhilHealth members may qualify for No Balance Billing (NBB) packages.
 - **No Balance Billing (NBB):** For **indigent/sponsored**, **senior citizens**, and certain categories in **government hospitals**, no other fees beyond PhilHealth package should be charged during confinement (subject to policy and facility capacity).
 
 ---
 
 ## E) How to Avail — At a Glance
 
-### Emergency (any hospital)
+### Emergency (severe cases)
 
-1. **Go straight to ER** (24/7).
+1. **Call for assistance or go directly** to the nearest hospital ER (Trece Martires City Hospital or DLSUMC Dasmariñas for serious emergencies).
 2. **Triage & initial orders** → stabilization/tests.
 3. **If admitted:** sign consent → transfer to ward → submit IDs/PhilHealth/HMO at Admissions/Billing.
 
+### Non-emergency / Outpatient
+
+1. **Go to the Indang RHU** during clinic hours (Mon–Fri, 8 AM–5 PM).
+2. Receive consultation; if referral is needed, the RHU will issue a referral slip.
+3. Proceed to the designated referral hospital with your referral slip and required documents.
+
 ### Elective Admission (planned confinement/procedure)
 
-1. Obtain **doctor’s admitting order** & **referral**.
+1. Obtain **doctor's admitting order** & **referral** (from RHU or private physician).
 2. Prepare **IDs, PhilHealth, HMO/LOA** (if any).
-3. Proceed to **Admissions** for room assignment, forms, and initial billing arrangements.
+3. Proceed to **Admissions** of the target hospital for room assignment, forms, and initial billing arrangements.
 
 ---
 
 ## F) Useful Contacts
 
-- **Lapu-Lapu City Hospital / District Hospital (Gov’t)**
-  - A. Tumulak St., Gun-ob, Lapu-Lapu City
-  - **Tel:** (032) 340-0249 / 340-0248
-  - **Email:** lapulapucityhospital@yahoo.com
+- **Indang Rural Health Unit (RHU)**
+  Municipal Hall compound, Poblacion, Indang, Cavite 4122
+  **Tel:** (046) 415-0033
 
-- **Mactan Doctors’ Hospital (Private, CebuDoc Group)**
-  - Basak, Lapu-Lapu City
-  - **Trunkline:** +63 (32) 239-7002 to 7016
+- **Trece Martires City Hospital**
+  Trece Martires City, Cavite
+  (Contact via Cavite provincial health directory)
 
-- **ARC Hospitals (Private)**
-  - Lapu-Lapu City (100-bed facility)
+- **De La Salle University Medical Center (DLSUMC)**
+  Dasmariñas City, Cavite
+  **Tel:** (046) 481-8000 (main trunkline)
 
 ---
 
@@ -96,3 +97,4 @@ This guide covers **where to go**, **what to bring**, and **how admission works*
 
 - Bring your **PhilHealth** documents even for emergencies; if unavailable, the hospital can guide you on follow-up submission.
 - Schedules and processes can change; confirm by calling the hospital **Admissions/Billing** desk before a planned confinement.
+- For indigent residents, the **Municipal Social Welfare and Development Office (MSWDO)** can assist with medical assistance referrals and DSWD-4A linkages.

@@ -15,12 +15,29 @@
     "businessRegistration": "Business Registration"
   },
   "hotlines": {
-    "police": "PNP Indang",
-    "hospital": "Municipal Health",
-    "fire": "BFP Indang",
-    "mdrrmo": "MDRRMO",
-    "cho": "CHO",
-    "cswdo": "CSWDO"
+    "police": "Municipal Police Station",
+    "hospital": "Municipal Health Office",
+    "fire": "Municipal Fire Station",
+    "mdrrmo": "MDRRMO"
+  },
+  "emergencyHotlines": {
+    "title": "Indang Emergency Hotlines",
+    "mdrrmo": {
+      "name": "MDRRMO",
+      "numbers": ["0961-992-1998", "0952-652-9265", "046-433-9220"]
+    },
+    "fire": {
+      "name": "Municipal Fire Station",
+      "numbers": ["046-415-1217", "0915-603-4245"]
+    },
+    "police": {
+      "name": "Municipal Police Station",
+      "numbers": ["0949-184-9145", "0915-913-7693", "0998-598-5603"]
+    },
+    "health": {
+      "name": "Municipal Health Office",
+      "numbers": ["046-840-1705", "0977-766-6707"]
+    }
   },
   "services": {
     "title": "Services & Information",
@@ -55,7 +72,7 @@
       "desc": "Administrative villages"
     },
     "classification": {
-      "label": "4th Class Municipality",
+      "label": "1st Class Municipality",
       "desc": "Income classification"
     },
     "area": {
@@ -75,51 +92,51 @@
     "defaultCondition": "Loading weather...",
     "wind": "km/h wind",
     "climate": "Tropical climate",
-    "elevation": "~60m elevation",
+    "elevation": "299.5m elevation",
     "loading": "Fetching live weather data...",
     "mapTitle": "Map of Indang, Cavite"
   },
   "history": {
     "title": "History of Indang",
-    "charteredYear": "Year of Foundation",
-    "charteredDesc": "Indang was established as a municipality, rooted in a rich history of faith, agriculture, and community.",
-    "elevationLabel": "~60m Elevation",
-    "elevationDesc": "Situated in the highlands of Cavite, Indang enjoys a cool and fertile environment ideal for agriculture.",
+    "charteredYear": "Year of CvSU Founding",
+    "charteredDesc": "Cavite State University (CvSU), the largest state university in Cavite, has its main campus in Indang — a cornerstone of the municipality's identity as an agricultural and educational hub.",
+    "elevationLabel": "299.5m Elevation",
+    "elevationDesc": "Indang sits at 299.5 meters above sea level at coordinates 14°12'N, 120°53'E, giving it a cooler climate and fertile highlands ideal for diverse agriculture.",
     "events": {
       "precolonial": {
         "year": "Pre-colonial Era",
         "title": "Early Settlements",
-        "text": "The area now known as Indang was home to early Tagalog communities engaged in farming and trade along the fertile lowlands of Cavite."
+        "text": "The area now known as Indang was home to early Tagalog communities engaged in farming and trade. Its fertile highlands made it a natural site for permanent settlement."
       },
       "spanish": {
         "year": "Spanish Period",
-        "title": "Spanish Colonization",
-        "text": "Under Spanish rule, Indang was organized as a parish community. The local church, dedicated to Saint Gregory the Great, became the center of community life."
+        "title": "Parish Establishment",
+        "text": "Under Spanish rule, Indang was organized as a parish. The Church of Saint Gregory the Great became the spiritual and civic center of the community."
       },
       "revolution": {
         "year": "1896–1898",
-        "title": "Philippine Revolution",
-        "text": "Indang played a role in the Philippine Revolution, with local residents supporting the Katipunan's fight for independence from Spanish colonial rule."
+        "title": "Battle of Indang",
+        "text": "Indang was an active theater during the Philippine Revolution. The Battle of Indang in 1897 was a significant engagement between Katipunan forces and Spanish troops in Cavite."
       },
       "american": {
-        "year": "American Period",
-        "title": "Municipal Charter",
-        "text": "Under American governance, Indang was formally established as a municipality with its own local government structure and civic institutions."
+        "year": "1900s",
+        "title": "Municipal Organization",
+        "text": "Under American colonial governance, Indang was formally organized as a municipality within the province of Cavite, establishing its local government structure."
       },
       "cavsu": {
         "year": "1906",
         "title": "Agricultural College Founded",
-        "text": "The Cavite State University (CavSU) main campus was established in Indang, anchoring the municipality as a center of agricultural education in the province."
+        "text": "The Indang Agricultural School was established, which would grow into Cavite State University (CavSU) — now the largest state university in Cavite with its main campus in Indang."
       },
       "republic": {
         "year": "Post-1946",
-        "title": "Republic Era",
-        "text": "After Philippine independence, Indang continued to grow as an agricultural and educational hub within the province of Cavite."
+        "title": "Growth & Development",
+        "text": "After Philippine independence, Indang developed as an agricultural and educational center. Its 36 barangays across 74.90 km² grew steadily alongside the expanding CavSU community."
       },
       "present": {
         "year": "Present Day",
         "title": "Modern Indang",
-        "text": "Today, Indang is known for its thriving agriculture, strong educational institutions, and a close-knit community committed to progress and sustainable development."
+        "text": "Home to 68,699 residents (2020 census), Indang is a 3rd class municipality known for agriculture, education, and a growing tourism sector."
       }
     }
   },
@@ -153,7 +170,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2025 BetterGov. All content is public domain unless otherwise specified."
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0"
   },
   "navbar": {
     "government": "Government",

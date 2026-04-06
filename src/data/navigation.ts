@@ -13,6 +13,7 @@ interface Category {
 }
 
 export const mainNavigation: NavigationItem[] = [
+  { label: 'Home', href: '/' },
   {
     label: 'Services',
     href: '/services',
@@ -23,8 +24,27 @@ export const mainNavigation: NavigationItem[] = [
   },
   {
     label: 'Government',
-    href: '/government/departments',
+    href: '/government',
+    children: [
+      { label: 'Departments & Offices', href: '/government/departments' },
+      { label: 'Executive', href: '/government/departments/executive' },
+      { label: 'Legislative', href: '/legislative' },
+      { label: 'News & Announcements', href: '/government/news' },
+      {
+        label: 'Guides & Regulations',
+        href: '/government/guides-and-regulations',
+      },
+      {
+        label: 'Public Consultations',
+        href: '/government/public-consultations',
+      },
+      { label: 'Tourism', href: '/tourism' },
+    ],
   },
+  { label: 'Statistics', href: '/statistics' },
+  { label: 'Legislative', href: '/legislative' },
+  { label: 'Transparency', href: '/transparency' },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const footerNavigation = {
@@ -71,9 +91,6 @@ export const footerNavigation = {
     },
   ],
   socialLinks: [
-    { label: 'Facebook', href: 'https://facebook.com/govph' },
-    { label: 'Twitter', href: 'https://twitter.com/govph' },
-    { label: 'Instagram', href: 'https://instagram.com/govph' },
-    { label: 'YouTube', href: 'https://youtube.com/govph' },
+    { label: 'Facebook', href: 'https://www.facebook.com/LGUIndangCavite' },
   ],
 };

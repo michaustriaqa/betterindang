@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 const EVENT_KEYS = [
   'precolonial',
@@ -72,9 +73,13 @@ function TimelineItem({
 
 export default function HistorySection() {
   const { t } = useTranslation('common');
+  const ref = useScrollReveal<HTMLElement>();
 
   return (
-    <section className="bg-gray-50 py-12 border-b border-gray-100">
+    <section
+      ref={ref}
+      className="reveal bg-gray-50 py-12 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12">
           <div>

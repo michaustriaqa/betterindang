@@ -14,7 +14,7 @@
 
 ## Step 2: Apply for Business Permit
 
-Go to **Lapu-Lapu City BPLO** (Business Permit and Licensing Office).
+Go to the **Indang Municipal BPLO** (Business Permit and Licensing Office) at the Municipal Hall, Poblacion, Indang, Cavite 4122.
 
 **Requirements:**
 
@@ -23,7 +23,7 @@ Go to **Lapu-Lapu City BPLO** (Business Permit and Licensing Office).
 - Occupancy Permit (if owner) OR Lease Contract (if renting)
 - Community Tax Certificate (CTC)
 
-Apply in person or online via [Lapu-Lapu Online Business Permit Portal](https://businesspermit.lapulapucity.gov.ph/).
+Apply in person at the BPLO window at the Municipal Hall or check the LGU Indang official website (indangcavite.ph) for any available online pre-filing options.
 
 > Note: Inspections may include zoning, sanitary, and fire safety checks.
 
@@ -52,14 +52,14 @@ Enroll with:
 
 1. SEC name check + register via [SEC eSPARC](https://espac.sec.gov.ph/)
 2. Secure Barangay Certification + site/lease documents
-3. Apply for Business Permit at [Lapu-Lapu BPLO](https://businesspermit.lapulapucity.gov.ph/)
+3. Apply for Business Permit at the Indang Municipal BPLO, Municipal Hall, Poblacion, Indang, Cavite
 4. File BIR Form 1903 → apply ATP → register books
 
 ## Document Checklist
 
 - [ ] SEC Articles of Partnership + SEC Certificate
 - [ ] Lease Contract OR Occupancy/Building docs
-- [ ] Lapu-Lapu BPLO Unified Application Form + CTC
+- [ ] Indang Municipal BPLO Unified Application Form + CTC
 - [ ] BIR Form 1903, IDs, ATP/Books
 
-With these steps, your partnership in Lapu-Lapu City will be fully compliant and ready to operate!
+With these steps, your partnership in Indang, Cavite will be fully compliant and ready to operate!

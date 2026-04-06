@@ -1,9 +1,11 @@
 import { Phone, Mail, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export default function LeadershipSection() {
   const { t } = useTranslation('common');
+  const ref = useScrollReveal<HTMLElement>();
 
   const OFFICIALS = [
     {
@@ -27,7 +29,10 @@ export default function LeadershipSection() {
   ];
 
   return (
-    <section className="bg-white py-12 border-b border-gray-100">
+    <section
+      ref={ref}
+      className="reveal bg-white py-12 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-black text-gray-900">

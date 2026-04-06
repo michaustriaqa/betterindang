@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Wind, Droplets, Thermometer, Cloud } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 interface WeatherData {
   temp: number;
@@ -21,6 +22,7 @@ function getWeatherLabel(code: number, t: (k: string) => string): string {
 export default function WeatherMapSection() {
   const { t } = useTranslation('common');
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const ref = useScrollReveal<HTMLElement>();
 
   useEffect(() => {
     const cached = localStorage.getItem('bi_weather_full');
@@ -37,7 +39,7 @@ export default function WeatherMapSection() {
     }
 
     fetch(
-      'https://api.open-meteo.com/v1/forecast?latitude=14.1986&longitude=120.8717&current_weather=true&timezone=Asia%2FManila'
+      'https://api.open-meteo.com/v1/forecast?latitude=14.2&longitude=120.883&current_weather=true&timezone=Asia%2FManila'
     )
       .then(r => r.json())
       .then(data => {
@@ -56,7 +58,10 @@ export default function WeatherMapSection() {
   }, []);
 
   return (
-    <section className="bg-gray-50 py-12 border-b border-gray-100">
+    <section
+      ref={ref}
+      className="reveal bg-gray-50 py-12 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h2 className="text-xl font-black text-gray-900 mb-6">
           {t('weatherMap.title')}
@@ -110,7 +115,7 @@ export default function WeatherMapSection() {
           <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm min-h-[220px]">
             <iframe
               title={t('weatherMap.mapTitle')}
-              src="https://www.openstreetmap.org/export/embed.html?bbox=120.8417%2C14.1686%2C120.9017%2C14.2286&layer=mapnik&marker=14.1986%2C120.8717"
+              src="https://www.openstreetmap.org/export/embed.html?bbox=120.833%2C14.15%2C120.933%2C14.25&layer=mapnik&marker=14.2%2C120.883"
               className="w-full h-full min-h-[220px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"

@@ -1,12 +1,12 @@
-# Renew Permits and Pay Local Business Taxes — Lapu-Lapu City
+# Renew Permits and Pay Local Business Taxes — Indang, Cavite
 
-Use this guide to renew your **Mayor’s/Business Permit** and **Local Business Taxes (LBT)** with the City Government.
+Use this guide to renew your **Mayor's/Business Permit** and **Local Business Taxes (LBT)** with the Municipal Government of Indang.
 
 ---
 
 ## Who Must Renew
 
-- All businesses operating in Lapu-Lapu City: **sole proprietors, partnerships, corporations, NGOs, cooperatives, online sellers with local presence**, and professionals with a business office.
+- All businesses operating in Indang, Cavite: **sole proprietors, partnerships, corporations, NGOs, cooperatives, online sellers with local presence**, and professionals with a business office.
 - Renewal applies to **main office and each branch**.
 
 ---
@@ -21,11 +21,11 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
 
 ---
 
-## What You’ll Need (Typical Requirements)
+## What You'll Need (Typical Requirements)
 
 **Business Information**
 
-- Prior year **Mayor’s/Business Permit** and **Official Receipts**.
+- Prior year **Mayor's/Business Permit** and **Official Receipts**.
 - **DTI/SEC/CDA** registration (whichever applies).
 - **BIR** Certificate of Registration (Form 2303) and **Authority to Print** (if any).
 - **Contract of Lease** / **Tax Declaration** / **Certificate of Occupancy** (as applicable).
@@ -36,7 +36,7 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
 - **Sworn Declaration of Gross Sales/Receipts** for the **preceding year** (or **Audited FS**/**Accountant-certified** FS if applicable).
 - **Inventory list** (selected industries) and **machine/equipment list** (if applicable).
 
-**Regulatory Clearances** (city/BPLO may route you during assessment)
+**Regulatory Clearances** (municipal/BPLO may route you during assessment)
 
 - **Barangay Clearance** (for business).
 - **Sanitary Permit** (Health).
@@ -51,8 +51,8 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
 ## Step-by-Step (Walk-In)
 
 1. **Pre-screening / Queuing**
-   - Go to the **Business One-Stop Shop (BOSS)** during the renewal period.
-   - Get your queue number; submit last year’s permit and basic IDs for pre-check.
+   - Go to the **Business One-Stop Shop (BOSS)** at the Municipal Hall during the renewal period.
+   - Get your queue number; submit last year's permit and basic IDs for pre-check.
 
 2. **Application & Declaration**
    - Fill out the **Business Renewal Form** and the **Sworn Declaration of Gross Sales/Receipts**.
@@ -66,18 +66,18 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
    - Choose **Annual** or **Quarterly** payment.
 
 5. **Payment**
-   - Pay at the **City Treasurer’s** cashier or accredited payment options (if available).
+   - Pay at the **Municipal Treasurer's** cashier or accredited payment options (if available).
    - Receive **Official Receipt(s)**.
 
 6. **Releasing**
-   - Claim your **Mayor’s/Business Permit**, **FSIC/Sanitary**, **Stickers/Plates**, and **Occupational permits** (if issued with the pack).
+   - Claim your **Mayor's/Business Permit**, **FSIC/Sanitary**, **Stickers/Plates**, and **Occupational permits** (if issued with the pack).
    - Post the permit and required notices **conspicuously** at your place of business.
 
 ---
 
 ## (If Available) Online / Hybrid Filing
 
-- Some transactions may be done via the city’s **online business portal** or **pre-assessment** channels (if announced).
+- Some transactions may be done via the municipality's **online business portal** or **pre-assessment** channels (if announced).
 - Prepare **scanned PDFs** of your documents (clear, legible; 1 file per requirement).
 - After online assessment, proceed to **payment** (e-payment or onsite) and **permit releasing** per instructions.
 
@@ -95,7 +95,7 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
 
 ## Penalties for Late Renewal
 
-- **Surcharge** (commonly up to **25%** of the tax due) **plus** **monthly interest** (commonly up to **2% per month**) until fully paid, subject to the city’s ordinance caps.
+- **Surcharge** (commonly up to **25%** of the tax due) **plus** **monthly interest** (commonly up to **2% per month**) until fully paid, subject to the municipality's ordinance caps.
 - Possible **closure/tagging** and **inspection findings** if you continue operations without a valid permit.
 
 ---
@@ -121,7 +121,7 @@ Use this guide to renew your **Mayor’s/Business Permit** and **Local Business 
 
 ## Quick Checklist (Print This)
 
-- [ ] Last year’s **Mayor’s/Business Permit** and **ORs**
+- [ ] Last year's **Mayor's/Business Permit** and **ORs**
 - [ ] **DTI/SEC/CDA** registration & **BIR 2303**
 - [ ] **Lease/Occupancy**/Tax Declaration (as applicable)
 - [ ] **Sworn Gross Sales/Receipts** (prev. year) / **FS**

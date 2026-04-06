@@ -1,9 +1,11 @@
 import { Phone, Mail, MapPin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export default function ContactSection() {
   const { t } = useTranslation('common');
+  const ref = useScrollReveal<HTMLElement>();
 
   const CONTACTS = [
     {
@@ -36,7 +38,7 @@ export default function ContactSection() {
   ];
 
   return (
-    <section id="contact" className="bg-gray-50 py-12">
+    <section ref={ref} id="contact" className="reveal bg-gray-50 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-black text-gray-900">
