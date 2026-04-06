@@ -11,7 +11,6 @@ import Statistics from './pages/Statistics';
 import Legislative from './pages/Legislative';
 import Transparency from './pages/Transparency';
 import Tourism from './pages/Tourism';
-import LocalOfficials from './pages/LocalOfficials';
 import ExecutiveDirectory from './pages/ExecutiveDirectory';
 import SangguniangBayan from './pages/SangguniangBayan';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -34,10 +33,6 @@ function App() {
               />
               <Route
                 path="/government/departments/officials"
-                element={<LocalOfficials />}
-              />
-              <Route
-                path="/government/departments/legislative"
                 element={<SangguniangBayan />}
               />
               <Route
