@@ -5,5 +5,152 @@
   "HONORIFIC_TITLE": "Honorable",
   "VICE_MAYOR": "Ferdinand Papa",
   "VICE_MAYOR_HE_SHE": "he",
-  "YEAR_ELECTED": "2022"
+  "YEAR_ELECTED": "2022",
+
+  "header": {
+    "municipality": "Municipality of Indang",
+    "address": "A. Mojica St. Poblacion 3, Indang, Cavite 4122",
+    "telephone": "(046) 460-4708",
+    "trunk_line": "",
+    "email": "",
+    "website": "https://www.indang.gov.ph"
+  },
+
+  "municipal_offices": [
+    {
+      "office": "Office of the Mayor",
+      "telephone": "(046) 460-4708",
+      "in_charge": "Mayor Virgilio Fidel"
+    },
+    {
+      "office": "Sangguniang Bayan",
+      "telephone": "(046) 460-4708",
+      "in_charge": "Vice Mayor Ferdinand Papa"
+    },
+    {
+      "office": "Office of the Municipal Administrator",
+      "telephone": "(046) 460-4708",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Civil Registrar's Office (MCRO)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Assessor's Office",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Treasurer's Office",
+      "telephone": "",
+      "in_charge": ""
+    },
+    { "office": "Municipal Budget Office", "telephone": "", "in_charge": "" },
+    {
+      "office": "Municipal Accounting Office",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Planning & Development Office (MPDO)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Health Office (MHO)",
+      "telephone": "(046) 840-1705",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Social Welfare and Development Office (MSWDO)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Agriculture Office",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Engineering Office",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Environment & Natural Resources Office (MENRO)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "office": "Municipal Disaster Risk Reduction & Management Office (MDRRMO)",
+      "telephone": "0961-992-1998",
+      "in_charge": ""
+    },
+    { "office": "Tourism Office", "telephone": "", "in_charge": "" },
+    {
+      "office": "Philippine National Police (PNP) — Indang",
+      "telephone": "0949-184-9145",
+      "in_charge": ""
+    },
+    {
+      "office": "Bureau of Fire Protection (BFP) — Indang",
+      "telephone": "(046) 415-1217",
+      "in_charge": ""
+    }
+  ],
+
+  "national_agencies": [
+    {
+      "agency": "Bureau of Fire Protection (BFP)",
+      "telephone": "(046) 415-1217",
+      "in_charge": ""
+    },
+    {
+      "agency": "Philippine National Police (PNP)",
+      "telephone": "0949-184-9145",
+      "in_charge": ""
+    },
+    {
+      "agency": "Commission on Elections (COMELEC)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "agency": "Department of Social Welfare & Development (DSWD)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "agency": "Department of Agriculture (DA)",
+      "telephone": "",
+      "in_charge": ""
+    },
+    {
+      "agency": "Philippine Statistics Authority (PSA)",
+      "telephone": "",
+      "in_charge": ""
+    }
+  ],
+
+  "emergency_hotlines": [
+    { "office": "MDRRMO", "number": "0961-992-1998" },
+    { "office": "Bureau of Fire Protection (BFP)", "number": "(046) 415-1217" },
+    { "office": "Philippine National Police (PNP)", "number": "0949-184-9145" },
+    { "office": "Municipal Health Office (MHO)", "number": "(046) 840-1705" }
+  ],
+
+  "ngos": [
+    {
+      "organization": "Association of Barangay Captains (ABC)",
+      "contact": "",
+      "representative": ""
+    },
+    {
+      "organization": "Sangguniang Kabataan (SK) Federation",
+      "contact": "",
+      "representative": ""
+    }
+  ]
 }

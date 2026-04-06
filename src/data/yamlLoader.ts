@@ -30,7 +30,6 @@ export interface CategoryIndexData {
 // Import the YAML file as raw text
 import servicesYamlContent from './services.yaml?raw';
 import governmentActivitiesYamlContent from './government.yaml?raw';
-import executiveDirectoryYamlContent from './executive-directory.yaml?raw';
 
 // Import all category index files statically
 import healthServicesIndex from '../../content/services/health-services/index.yaml?raw';
@@ -70,44 +69,6 @@ export const serviceCategories: CategoryData = yaml.load(
 export const governmentCategories: CategoryData = yaml.load(
   governmentActivitiesYamlContent
 ) as CategoryData;
-
-export interface DirectoryOffice {
-  office: string;
-  telephone: string;
-  in_charge: string;
-}
-export interface DirectoryAgency {
-  agency: string;
-  telephone: string;
-  in_charge: string;
-}
-export interface DirectoryHotline {
-  office: string;
-  number: string;
-}
-export interface DirectoryNGO {
-  organization: string;
-  contact: string;
-  representative: string;
-}
-export interface ExecutiveDirectoryData {
-  header: {
-    municipality: string;
-    address: string;
-    telephone: string;
-    trunk_line: string;
-    email: string;
-    website: string;
-  };
-  municipal_offices: DirectoryOffice[];
-  national_agencies: DirectoryAgency[];
-  emergency_hotlines: DirectoryHotline[];
-  ngos: DirectoryNGO[];
-}
-
-export const executiveDirectory: ExecutiveDirectoryData = yaml.load(
-  executiveDirectoryYamlContent
-) as ExecutiveDirectoryData;
 
 export interface CategoryIndex {
   title?: string;

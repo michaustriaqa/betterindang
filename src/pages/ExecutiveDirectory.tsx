@@ -2,7 +2,9 @@ import { useState } from 'react';
 import { Building2, List, Table2, ExternalLink, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-import { executiveDirectory as dir } from '../data/yamlLoader';
+import dirData from '../../content/government/departments/executive.json';
+
+const dir = dirData as typeof dirData;
 
 type ViewMode = 'table' | 'list';
 
