@@ -14,64 +14,6 @@ interface Category {
   icon: string;
 }
 
-const CATEGORY_COLORS: {
-  card: string;
-  icon: string;
-  iconBg: string;
-  title: string;
-  desc: string;
-}[] = [
-  {
-    card: 'bg-indigo-50 border-indigo-200 hover:bg-indigo-100',
-    icon: 'text-indigo-600',
-    iconBg: 'bg-indigo-100',
-    title: 'text-indigo-800',
-    desc: 'text-indigo-700/80',
-  },
-  {
-    card: 'bg-blue-50 border-blue-200 hover:bg-blue-100',
-    icon: 'text-blue-600',
-    iconBg: 'bg-blue-100',
-    title: 'text-blue-800',
-    desc: 'text-blue-700/80',
-  },
-  {
-    card: 'bg-amber-50 border-amber-200 hover:bg-amber-100',
-    icon: 'text-amber-600',
-    iconBg: 'bg-amber-100',
-    title: 'text-amber-800',
-    desc: 'text-amber-700/80',
-  },
-  {
-    card: 'bg-green-50 border-green-200 hover:bg-green-100',
-    icon: 'text-green-600',
-    iconBg: 'bg-green-100',
-    title: 'text-green-800',
-    desc: 'text-green-700/80',
-  },
-  {
-    card: 'bg-purple-50 border-purple-200 hover:bg-purple-100',
-    icon: 'text-purple-600',
-    iconBg: 'bg-purple-100',
-    title: 'text-purple-800',
-    desc: 'text-purple-700/80',
-  },
-  {
-    card: 'bg-rose-50 border-rose-200 hover:bg-rose-100',
-    icon: 'text-rose-600',
-    iconBg: 'bg-rose-100',
-    title: 'text-rose-800',
-    desc: 'text-rose-700/80',
-  },
-  {
-    card: 'bg-teal-50 border-teal-200 hover:bg-teal-100',
-    icon: 'text-teal-600',
-    iconBg: 'bg-teal-100',
-    title: 'text-teal-800',
-    desc: 'text-teal-700/80',
-  },
-];
-
 interface GovernmentActivitySectionProps {
   title?: string;
   description?: string;
@@ -100,34 +42,32 @@ export default function GovernmentActivitySection({
       </Text>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-        {displayedCategories.map((category, idx) => {
-          const colors = CATEGORY_COLORS[idx % CATEGORY_COLORS.length];
-          return (
-            <Link
-              key={category.slug}
-              to={`/government/${category.slug}`}
-              className={`group block rounded-xl border ${colors.card} shadow-sm hover:shadow-md transition-all duration-200 p-5`}
-            >
-              <div
-                className={`${colors.iconBg} ${colors.icon} w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:scale-110 transition-transform`}
-              >
-                {getIcon(category.icon)}
-              </div>
-              <h3 className={`text-sm font-bold mb-2 ${colors.title}`}>
-                {t(
-                  `governmentActivity.categories.${category.slug}.name`,
-                  category.category
-                )}
-              </h3>
-              <p className={`text-xs leading-relaxed ${colors.desc}`}>
-                {t(
-                  `governmentActivity.categories.${category.slug}.description`,
-                  category.description
-                )}
-              </p>
-            </Link>
-          );
-        })}
+        {displayedCategories.map(category => (
+          <Link
+            key={category.slug}
+            to={`/government/${category.slug}`}
+            className="group block bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-5"
+          >
+            <div className="bg-primary-50 text-primary-700 w-10 h-10 rounded-lg flex items-center justify-center mb-3 group-hover:bg-primary-100 transition-colors">
+              {getIcon(category.icon)}
+            </div>
+            <h3 className="text-sm font-bold mb-2 text-gray-900">
+              {t(
+                `governmentActivity.categories.${category.slug}.name`,
+                category.category
+              )}
+            </h3>
+            <p className="text-xs text-gray-500 leading-relaxed mb-3">
+              {t(
+                `governmentActivity.categories.${category.slug}.description`,
+                category.description
+              )}
+            </p>
+            <span className="inline-block text-xs font-semibold px-2 py-0.5 rounded-full bg-primary-50 text-primary-700">
+              Government
+            </span>
+          </Link>
+        ))}
       </div>
     </Section>
   );

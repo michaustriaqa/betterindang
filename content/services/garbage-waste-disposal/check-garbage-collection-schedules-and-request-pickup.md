@@ -1,6 +1,6 @@
-# Check Garbage Collection Schedules and Request Pickup — Lapu-Lapu City
+# Check Garbage Collection Schedules and Request Pickup — Indang, Cavite
 
-The City Government of Lapu-Lapu manages **regular garbage collection** through the **City Environment and Natural Resources Office (CENRO)** and barangays. Residents and business owners are encouraged to follow the schedule and proper segregation rules.
+The Municipal Government of Indang manages **regular garbage collection** through the **Municipal Environment and Natural Resources Office (MENRO)** and barangays. Residents and business owners are encouraged to follow the schedule and proper segregation rules.
 
 ---
 
@@ -16,7 +16,7 @@ The City Government of Lapu-Lapu manages **regular garbage collection** through 
 
 1. **Barangay Hall** — each barangay posts its official collection schedule.
 2. **Barangay Facebook Pages** — most update residents when trucks are delayed or rescheduled.
-3. **City Information Office (CIO)** or **CENRO** announcements for citywide advisories (e.g., during holidays or typhoon disruptions).
+3. **Municipal Information Office (MIO)** or **MENRO** announcements for municipality-wide advisories (e.g., during holidays or typhoon disruptions).
 
 > Tip: Post the collection calendar on your fridge or gate to remind the household which days to take bins out.
 
@@ -30,7 +30,7 @@ For **bulk waste** (e.g., furniture, appliances, construction debris, yard trimm
 
 1. Visit your **Barangay Hall** or contact the **Barangay Environment Committee**.
 2. Provide details: type of waste, estimated volume, and address.
-3. Barangay coordinates with **CENRO** for scheduling a **special truck pickup**.
+3. Barangay coordinates with **MENRO** for scheduling a **special truck pickup**.
 4. Some barangays may require a **minimal fee** for bulk or special disposal.
 
 **Items usually needing special pickup**
@@ -43,12 +43,12 @@ For **bulk waste** (e.g., furniture, appliances, construction debris, yard trimm
 
 ## 3) Contact Information
 
-- **City Environment and Natural Resources Office (CENRO)**  
-  Lapu-Lapu City Hall, Government Complex, Brgy. Pajo  
-  Phone: (032) 340-0004 (City Hall trunkline, ask for CENRO)  
-  Updates: via **City Information Office** FB page
+- **Municipal Environment and Natural Resources Office (MENRO)**
+  Municipal Hall, Poblacion, Indang, Cavite 4122
+  Phone: (046) 415-0033 (Municipal Hall trunkline, ask for MENRO)
+  Updates: via **LGU Indang Cavite** Facebook page (facebook.com/LGUIndangCavite)
 
-- **Barangay Halls** — each barangay has an Environment/ Solid Waste desk for local schedules and pickup requests.
+- **Barangay Halls** — each barangay has an Environment/Solid Waste desk for local schedules and pickup requests.
 
 ---
 
@@ -57,7 +57,7 @@ For **bulk waste** (e.g., furniture, appliances, construction debris, yard trimm
 - Put garbage out **only on collection day**, early morning or night before.
 - Use durable, closed containers to prevent animal scattering.
 - For recyclables, check if your barangay has a **Materials Recovery Facility (MRF)** or partner junkshop.
-- During **rainy season/typhoons**, expect **schedule adjustments** — follow CIO or barangay announcements.
+- During **rainy season/typhoons**, expect **schedule adjustments** — follow Municipal Information Office or barangay announcements.
 - Avoid burning waste (strictly prohibited under RA 9003 / Clean Air Act).
 
 ---
@@ -65,10 +65,10 @@ For **bulk waste** (e.g., furniture, appliances, construction debris, yard trimm
 ## 5) Businesses & Establishments
 
 - Businesses must comply with **segregation** and may need to contract **accredited private haulers** for bulk/industrial waste.
-- Keep proof of disposal (receipts/hauling contracts) for compliance inspections by CENRO.
+- Keep proof of disposal (receipts/hauling contracts) for compliance inspections by MENRO.
 
 ---
 
 ### Key Reminder
 
-Following your barangay’s **garbage collection schedule** and properly requesting **special pickups** keeps the city clean and prevents flooding, pests, and health risks.
+Following your barangay's **garbage collection schedule** and properly requesting **special pickups** keeps the municipality clean and prevents flooding, pests, and health risks.

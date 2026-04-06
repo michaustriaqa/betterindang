@@ -1,14 +1,16 @@
 import { Users, MapPin, Building2, Map } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export default function StatsSection() {
   const { t } = useTranslation('common');
+  const ref = useScrollReveal<HTMLElement>();
 
   const STATS = [
     {
       icon: Users,
-      value: '68,699',
+      value: '70,092',
       label: t('stats.population.label'),
       description: t('stats.population.desc'),
     },
@@ -33,7 +35,10 @@ export default function StatsSection() {
   ];
 
   return (
-    <section className="bg-white border-b border-gray-100 py-10">
+    <section
+      ref={ref}
+      className="reveal bg-white border-b border-gray-100 py-10"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-black text-gray-900">

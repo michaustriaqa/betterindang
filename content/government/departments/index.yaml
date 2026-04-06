@@ -2,9 +2,9 @@
 # This file contains all the pages/governments available under the Department
 
 pages:
-  - name: 'Executive'
+  - name: 'Executive — Office Directory'
     slug: 'executive'
-    description: "Find out about your Mayor and Vice Mayor, including upcoming events, the Mayor's Community Assistance Program, mayoral history, and information about other historic roles in the local government unit."
-  - name: 'Legislative'
-    slug: 'legislative'
-    description: 'As of the 2025–2028 term, the Sangguniang Panlungsod (City Council) of Lapu-Lapu City has 12 elected councilors, with the Vice Mayor as the presiding officer of the council.'
+    description: 'Office directory for the Municipality of Indang including department contacts, national government agencies, and emergency hotlines.'
+  - name: 'Local Legislation — Sangguniang Bayan'
+    slug: 'officials'
+    description: 'As of the 2025–2028 term, the Sangguniang Bayan (Municipal Council) of the Municipality of Indang has 8 elected councilors, with the Vice Mayor as the presiding officer of the council.'

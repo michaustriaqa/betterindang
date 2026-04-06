@@ -13,6 +13,7 @@ interface Category {
 }
 
 export const mainNavigation: NavigationItem[] = [
+  { label: 'Home', href: '/' },
   {
     label: 'Services',
     href: '/services',
@@ -23,8 +24,50 @@ export const mainNavigation: NavigationItem[] = [
   },
   {
     label: 'Government',
-    href: '/government/departments',
+    href: '/government',
+    children: [
+      { label: 'Departments & Officials', href: '/government/departments' },
+      {
+        label: 'Legislative (Municipal Council)',
+        href: '/government/legislative',
+      },
+      {
+        label: 'Local Officials Directory',
+        href: '/government/departments/officials',
+      },
+    ],
   },
+  {
+    label: 'Transparency',
+    href: '/transparency',
+    children: [
+      { label: 'Full Disclosure Policy', href: '/transparency' },
+      {
+        label: 'Transparency Documents',
+        href: '/government/transparency-documents',
+      },
+      {
+        label: 'Reports & Statistics',
+        href: '/government/reports-and-statistics',
+      },
+      { label: 'Annual Budget', href: '/government/transparency-documents' },
+      { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
+    ],
+  },
+  {
+    label: 'Statistics',
+    href: '/statistics',
+    children: [
+      { label: 'Municipal Profile', href: '/statistics' },
+      {
+        label: 'DTI CMCI Profile',
+        href: 'https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang',
+      },
+      { label: 'Barangay Data', href: '/statistics' },
+      { label: 'Open Data PH', href: 'https://data.gov.ph' },
+    ],
+  },
+  { label: 'Contact', href: '/#contact' },
 ];
 
 export const footerNavigation = {
@@ -57,16 +100,20 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
-        { label: 'Open Data', href: 'https://data.gov.ph' },
+        { label: 'Departments & Officials', href: '/government/departments' },
+        {
+          label: 'Legislative (Municipal Council)',
+          href: '/government/legislative',
+        },
+        {
+          label: 'Local Officials Directory',
+          href: '/government/departments/officials',
+        },
+        {
+          label: 'Transparency Documents',
+          href: '/government/transparency-documents',
+        },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
-        {
-          label: 'Contact Center',
-          href: 'https://contactcenterngbayan.gov.ph',
-        },
-        {
-          label: 'Official Gazette',
-          href: 'https://www.officialgazette.gov.ph',
-        },
       ],
     },
   ],

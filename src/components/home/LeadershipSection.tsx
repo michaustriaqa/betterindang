@@ -1,33 +1,38 @@
 import { Phone, Mail, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export default function LeadershipSection() {
   const { t } = useTranslation('common');
+  const ref = useScrollReveal<HTMLElement>();
 
   const OFFICIALS = [
     {
-      initials: 'Mayor',
-      name: import.meta.env.VITE_MAYOR || 'Hon. Municipal Mayor',
+      initials: 'VF',
+      name: import.meta.env.VITE_MAYOR || 'Hon. Virgilio Fidel',
       titleKey: 'leadership.cityMayor',
       badgeKey: 'leadership.electedMayor',
-      phone: import.meta.env.VITE_CONTACT_PHONE || '(046) 460-4708',
-      email: import.meta.env.VITE_CONTACT_EMAIL || 'm1.indang@yahoo.com',
+      phone: import.meta.env.VITE_CONTACT_PHONE || '',
+      email: import.meta.env.VITE_CONTACT_EMAIL || '',
       tel: '0464604708',
     },
     {
-      initials: 'VM',
-      name: import.meta.env.VITE_VICE_MAYOR || 'Hon. Municipal Vice Mayor',
+      initials: 'FP',
+      name: import.meta.env.VITE_VICE_MAYOR || 'Hon. Ferdinand Papa',
       titleKey: 'leadership.cityViceMayor',
       badgeKey: 'leadership.electedViceMayor',
       phone: import.meta.env.VITE_CONTACT_PHONE || '(046) 460-4708',
-      email: null,
+      email: import.meta.env.VITE_CONTACT_EMAIL || '',
       tel: '0464604708',
     },
   ];
 
   return (
-    <section className="bg-white py-12 border-b border-gray-100">
+    <section
+      ref={ref}
+      className="reveal bg-white py-12 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
           <h2 className="text-xl font-black text-gray-900">

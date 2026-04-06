@@ -15,12 +15,29 @@
     "businessRegistration": "Business Registration"
   },
   "hotlines": {
-    "police": "PNP Indang",
-    "hospital": "Health Center",
-    "fire": "BFP Indang",
-    "mdrrmo": "MDRRMO",
-    "iwd": "IWD",
-    "mao": "MAO"
+    "police": "Municipal Police Station",
+    "hospital": "Municipal Health Office",
+    "fire": "Municipal Fire Station",
+    "mdrrmo": "MDRRMO"
+  },
+  "emergencyHotlines": {
+    "title": "Indang Emergency Hotlines",
+    "mdrrmo": {
+      "name": "MDRRMO",
+      "numbers": ["0961-992-1998", "0952-652-9265", "046-433-9220"]
+    },
+    "fire": {
+      "name": "Municipal Fire Station",
+      "numbers": ["046-415-1217", "0915-603-4245"]
+    },
+    "police": {
+      "name": "Municipal Police Station",
+      "numbers": ["0949-184-9145", "0915-913-7693", "0998-598-5603"]
+    },
+    "health": {
+      "name": "Municipal Health Office",
+      "numbers": ["046-840-1705", "0977-766-6707"]
+    }
   },
   "services": {
     "title": "Services & Information",
@@ -55,7 +72,7 @@
       "desc": "Administrative villages"
     },
     "classification": {
-      "label": "3rd Class Municipality",
+      "label": "1st Class Municipality",
       "desc": "Income classification"
     },
     "area": {
@@ -81,8 +98,8 @@
   },
   "history": {
     "title": "History of Indang",
-    "charteredYear": "Year of CavSU Founding",
-    "charteredDesc": "Cavite State University (CavSU), the largest state university in Cavite, has its main campus in Indang — a cornerstone of the municipality's identity as an agricultural and educational hub.",
+    "charteredYear": "Year of CvSU Founding",
+    "charteredDesc": "Cavite State University (CvSU), the largest state university in Cavite, has its main campus in Indang — a cornerstone of the municipality's identity as an agricultural and educational hub.",
     "elevationLabel": "299.5m Elevation",
     "elevationDesc": "Indang sits at 299.5 meters above sea level at coordinates 14°12'N, 120°53'E, giving it a cooler climate and fertile highlands ideal for diverse agriculture.",
     "events": {
@@ -94,11 +111,11 @@
       "spanish": {
         "year": "Spanish Period",
         "title": "Parish Establishment",
-        "text": "Under Spanish rule, Indang was organized as a parish. The Church of Saint Gregory the Great became the spiritual and civic center of the community, drawing settlers from surrounding areas."
+        "text": "Under Spanish rule, Indang was organized as a parish. The Church of Saint Gregory the Great became the spiritual and civic center of the community."
       },
       "revolution": {
         "year": "1896–1898",
-        "title": "Philippine Revolution",
+        "title": "Battle of Indang",
         "text": "Indang was an active theater during the Philippine Revolution. The Battle of Indang in 1897 was a significant engagement between Katipunan forces and Spanish troops in Cavite."
       },
       "american": {
@@ -106,20 +123,20 @@
         "title": "Municipal Organization",
         "text": "Under American colonial governance, Indang was formally organized as a municipality within the province of Cavite, establishing its local government structure."
       },
-      "cavsu": {
+      "cvsu": {
         "year": "1906",
         "title": "Agricultural College Founded",
-        "text": "The Indang Agricultural School was established, which would grow into Cavite State University (CavSU) — now the largest state university in Cavite with its main campus in Indang."
+        "text": "The Indang Agricultural School was established, which would grow into Cavite State University (CvSU) — now the largest state university in Cavite with its main campus in Indang."
       },
       "republic": {
         "year": "Post-1946",
         "title": "Growth & Development",
-        "text": "After Philippine independence, Indang developed as an agricultural and educational center. Its 36 barangays across 74.90 km² grew steadily alongside the expanding CavSU community."
+        "text": "After Philippine independence, Indang developed as an agricultural and educational center. Its 36 barangays across 74.90 km² grew steadily alongside the expanding CvSU community."
       },
       "present": {
         "year": "Present Day",
         "title": "Modern Indang",
-        "text": "Home to 68,699 residents (2020), Indang is a 3rd class municipality known for agriculture, education, and tourism. Facebook: @LGUIndangCavite | @TourismIndang"
+        "text": "Home to 68,699 residents (2020 census), Indang is a 3rd class municipality known for agriculture, education, and a growing tourism sector."
       }
     }
   },
@@ -153,7 +170,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2025 BetterGov. All content is public domain unless otherwise specified."
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0"
   },
   "navbar": {
     "government": "Government",

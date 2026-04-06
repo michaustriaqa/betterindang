@@ -1,6 +1,6 @@
-# Access Maternal Care & Child Immunization — Lapu-Lapu City
+# Access Maternal Care & Child Immunization — Indang, Cavite
 
-The City Health Office (CHO) and barangay health centers provide **prenatal care**, **family planning**, and **free routine child immunization** for residents.
+The Municipal Health Office (MHO) / Indang Rural Health Unit and barangay health centers provide **prenatal care**, **family planning**, and **free routine child immunization** for residents.
 
 ---
 
@@ -11,7 +11,7 @@ The City Health Office (CHO) and barangay health centers provide **prenatal care
 | Prenatal check-ups (by midwife/nurse; physician referral as needed) | **Barangay Health Centers** | Mon–Fri (typical clinic hours; varies by center)                       | Prenatal record (issued/updated at first visit) | **Free**                                                   |
 | Family Planning counseling & methods                                | **Barangay Health Centers** | Mon–Fri **8:00 AM–4:00 PM**; Sat **8:00 AM–1:00 PM** (except holidays) | Personal appearance for counseling              | **Free** counseling (methods per DOH program availability) |
 
-**Tip:** Bring any previous prenatal card/records and a valid ID. If you’re new, staff will register you and issue the needed record at the health center.
+**Tip:** Bring any previous prenatal card/records and a valid ID. If you're new, staff will register you and issue the needed record at the health center.
 
 ---
 
@@ -38,12 +38,13 @@ Routine childhood vaccines are provided **free** under the Expanded Program on I
 
 ## Notes & Extras
 
-- **Medical consultations** at health centers are **free** (Mon–Fri, 8:00 AM–5:00 PM; center schedules apply). Useful if you need a doctor’s assessment alongside prenatal care.
-- The CHO and health centers also run **mother’s classes** and promote **facility-based delivery**; ask your midwife for schedules.
+- **Medical consultations** at health centers are **free** (Mon–Fri, 8:00 AM–5:00 PM; center schedules apply). Useful if you need a doctor's assessment alongside prenatal care.
+- The MHO and health centers also run **mother's classes** and promote **facility-based delivery**; ask your midwife for schedules.
+- For cases requiring specialist care or confinement beyond what the Rural Health Unit can provide, patients are referred to **Trece Martires City Hospital** or **De La Salle University Medical Center (DLSUMC)** in Dasmariñas, Cavite.
 
 ---
 
 **References**
 
-- [Lapu-Lapu City Government – Services](https://lapulapucity.gov.ph)
+- [Municipality of Indang / LGU Indang Cavite – Services](https://indangcavite.ph)
 - [Department of Health – Expanded Program on Immunization](https://doh.gov.ph)

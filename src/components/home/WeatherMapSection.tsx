@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Wind, Droplets, Thermometer, Cloud } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 interface WeatherData {
   temp: number;
@@ -21,6 +22,7 @@ function getWeatherLabel(code: number, t: (k: string) => string): string {
 export default function WeatherMapSection() {
   const { t } = useTranslation('common');
   const [weather, setWeather] = useState<WeatherData | null>(null);
+  const ref = useScrollReveal<HTMLElement>();
 
   useEffect(() => {
     const cached = localStorage.getItem('bi_weather_full');
@@ -56,7 +58,10 @@ export default function WeatherMapSection() {
   }, []);
 
   return (
-    <section className="bg-gray-50 py-12 border-b border-gray-100">
+    <section
+      ref={ref}
+      className="reveal bg-gray-50 py-12 border-b border-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <h2 className="text-xl font-black text-gray-900 mb-6">
           {t('weatherMap.title')}

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { X, Menu, ChevronDown, Phone, Thermometer, Clock } from 'lucide-react';
 import { mainNavigation } from '../../data/navigation';
 import type { LanguageType } from '../../types/index';
@@ -23,50 +23,25 @@ function formatDatetime(): string {
 }
 
 const HOTLINES = [
-  { labelKey: 'hotlines.police', number: '(046) 460-4709', tel: '0464604709' },
-  {
-    labelKey: 'hotlines.hospital',
-    number: '(046) 460-4708',
-    tel: '0464604708',
-  },
-  { labelKey: 'hotlines.fire', number: '(046) 415-1217', tel: '0464151217' },
-  { labelKey: 'hotlines.mdrrmo', number: '(046) 433-9220', tel: '04644339220' },
-  { labelKey: 'hotlines.iwd', number: '(046) 415-0318', tel: '0464150318' },
-  { labelKey: 'hotlines.mao', number: '(046) 460-4713', tel: '0464604713' },
+  { labelKey: 'hotlines.mdrrmo', number: '0961-992-1998', tel: '09619921998' },
+  { labelKey: 'hotlines.fire', number: '046-415-1217', tel: '0464151217' },
+  { labelKey: 'hotlines.police', number: '0949-184-9145', tel: '09491849145' },
+  { labelKey: 'hotlines.hospital', number: '046-840-1705', tel: '0468401705' },
 ];
 
 const Navbar: React.FC = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const [activeMenu, setActiveMenu] = useState<string | null>(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const { t, i18n } = useTranslation('common');
   const navigate = useNavigate();
   const location = useLocation();
 
-  const handleNavClick = (
-    e: React.MouseEvent,
-    href: string,
-    onClose?: () => void
-  ) => {
-    if (href === '/#contact') {
-      e.preventDefault();
-      onClose?.();
-      if (location.pathname === '/') {
-        document
-          .getElementById('contact')
-          ?.scrollIntoView({ behavior: 'smooth' });
-      } else {
-        navigate('/');
-        setTimeout(() => {
-          document
-            .getElementById('contact')
-            ?.scrollIntoView({ behavior: 'smooth' });
-        }, 300);
-      }
-    } else {
-      onClose?.();
-    }
-  };
+  const navRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const scrollYRef = useRef(0);
+  const isAnimatingRef = useRef(false);
 
+  // ── Info bar state ─────────────────────────────────────────────
   const CURRENCIES = ['USD', 'EUR', 'JPY', 'GBP', 'SGD'] as const;
   const CURRENCY_SYMBOLS: Record<string, string> = {
     USD: '$',
@@ -151,19 +126,95 @@ const Navbar: React.FC = () => {
     };
   }, []);
 
-  const toggleMenu = () => {
-    setIsOpen(prev => !prev);
-    setActiveMenu(null);
-  };
+  // ── Body scroll lock (BetterSolano pattern) ────────────────────
+  const lockBodyScroll = useCallback(() => {
+    scrollYRef.current = window.scrollY;
+    document.body.style.position = 'fixed';
+    document.body.style.top = `-${scrollYRef.current}px`;
+    document.body.style.width = '100%';
+  }, []);
 
-  const closeMenu = () => {
-    setIsOpen(false);
-    setActiveMenu(null);
-  };
+  const unlockBodyScroll = useCallback(() => {
+    document.body.style.position = '';
+    document.body.style.top = '';
+    document.body.style.width = '';
+    window.scrollTo(0, scrollYRef.current);
+  }, []);
 
-  const toggleSubmenu = (label: string) => {
-    setActiveMenu(prev => (prev === label ? null : label));
-  };
+  const closeMenu = useCallback(() => {
+    if (isAnimatingRef.current) return;
+    isAnimatingRef.current = true;
+    setMobileMenuOpen(false);
+    setOpenDropdown(null);
+    unlockBodyScroll();
+    setTimeout(() => {
+      isAnimatingRef.current = false;
+    }, 320);
+  }, [unlockBodyScroll]);
+
+  // Close on route change
+  useEffect(() => {
+    isAnimatingRef.current = false;
+    closeMenu();
+  }, [location.pathname, closeMenu]);
+
+  // Cleanup scroll lock on unmount
+  useEffect(() => {
+    return () => {
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+    };
+  }, []);
+
+  // Click outside to close
+  useEffect(() => {
+    if (!mobileMenuOpen) return;
+    const handler = (e: MouseEvent) => {
+      const target = e.target as Node;
+      if (
+        navRef.current &&
+        !navRef.current.contains(target) &&
+        toggleRef.current &&
+        !toggleRef.current.contains(target)
+      ) {
+        closeMenu();
+      }
+    };
+    document.addEventListener('mousedown', handler);
+    return () => document.removeEventListener('mousedown', handler);
+  }, [mobileMenuOpen, closeMenu]);
+
+  // Escape key to close
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        closeMenu();
+        toggleRef.current?.focus();
+      }
+    };
+    document.addEventListener('keydown', handler);
+    return () => document.removeEventListener('keydown', handler);
+  }, [mobileMenuOpen, closeMenu]);
+
+  // Close on resize to desktop
+  useEffect(() => {
+    let timer: ReturnType<typeof setTimeout>;
+    const handler = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        if (window.innerWidth >= 1024 && mobileMenuOpen) {
+          isAnimatingRef.current = false;
+          closeMenu();
+        }
+      }, 150);
+    };
+    window.addEventListener('resize', handler);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', handler);
+    };
+  }, [mobileMenuOpen, closeMenu]);
 
   const changeLanguage = (lang: LanguageType) => {
     i18n.changeLanguage(lang);
@@ -174,9 +225,29 @@ const Navbar: React.FC = () => {
       ? location.pathname === '/'
       : location.pathname.startsWith(href);
 
+  const handleContactClick = (e: React.MouseEvent, href: string) => {
+    if (href === '/#contact') {
+      e.preventDefault();
+      if (location.pathname === '/') {
+        document
+          .getElementById('contact')
+          ?.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        navigate('/');
+        setTimeout(
+          () =>
+            document
+              .getElementById('contact')
+              ?.scrollIntoView({ behavior: 'smooth' }),
+          300
+        );
+      }
+    }
+  };
+
   return (
     <nav className="sticky top-0 z-50">
-      {/* Emergency Hotlines Bar */}
+      {/* ── Emergency Hotlines Bar ─────────────────────────── */}
       <div className="bg-red-600 text-white overflow-x-auto whitespace-nowrap">
         <div className="flex items-center px-6 py-2.5 min-w-max mx-auto gap-1">
           <Phone className="h-3.5 w-3.5 mr-3 shrink-0 opacity-90" />
@@ -200,7 +271,7 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Info Bar: forex / weather / datetime */}
+      {/* ── Info Bar ──────────────────────────────────────── */}
       <div className="bg-primary-900 text-white text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-end gap-6">
           <span className="flex items-center gap-1.5 opacity-90">
@@ -225,25 +296,17 @@ const Navbar: React.FC = () => {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* ── Main Navbar ───────────────────────────────────── */}
       <div className="bg-white shadow-sm border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="flex items-center shrink-0">
+            <Link to="/" className="shrink-0 flex items-center">
               <img
-                src="/logo.png"
+                src="/logo.svg"
                 alt={import.meta.env.VITE_GOVERNMENT_NAME}
-                className="h-20 w-auto mr-3"
+                className="h-14 w-auto max-w-[200px] object-contain"
               />
-              {/* <div>
-                <div className="text-black font-bold text-sm leading-tight">
-                  {import.meta.env.VITE_GOVERNMENT_NAME}
-                </div>
-                <div className="text-xs text-gray-500">
-                  {t('site_description')}
-                </div>
-              </div> */}
             </Link>
 
             {/* Desktop Nav */}
@@ -252,7 +315,15 @@ const Navbar: React.FC = () => {
                 <div key={item.label} className="relative group">
                   {item.children ? (
                     <>
-                      <button className="flex items-center gap-1 px-3 py-2 text-sm font-medium text-gray-700 hover:text-primary-700 rounded-md hover:bg-primary-50 transition-colors">
+                      <button
+                        className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                          isActive(item.href)
+                            ? 'text-primary-700 bg-primary-50'
+                            : 'text-gray-700 hover:text-primary-700 hover:bg-primary-50'
+                        }`}
+                        aria-haspopup="true"
+                        aria-expanded={false}
+                      >
                         {t(
                           `navbar.${item.label.replace(' ', '').toLowerCase()}`,
                           item.label
@@ -261,22 +332,34 @@ const Navbar: React.FC = () => {
                       </button>
                       <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
                         <div className="py-1">
-                          {item.children.map(child => (
-                            <Link
-                              key={child.label}
-                              to={child.href}
-                              className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                          {item.children.map(child =>
+                            child.href.startsWith('http') ? (
+                              <a
+                                key={child.label}
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                              >
+                                {child.label}
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.label}
+                                to={child.href}
+                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                              >
+                                {child.label}
+                              </Link>
+                            )
+                          )}
                         </div>
                       </div>
                     </>
                   ) : (
                     <Link
                       to={item.href}
-                      onClick={e => handleNavClick(e, item.href)}
+                      onClick={e => handleContactClick(e, item.href)}
                       className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
                         isActive(item.href)
                           ? 'text-primary-700 bg-primary-50'
@@ -293,13 +376,15 @@ const Navbar: React.FC = () => {
               ))}
             </div>
 
-            {/* Language toggle + Mobile hamburger */}
+            {/* Right: Language + hamburger */}
             <div className="flex items-center gap-2">
               <div className="hidden sm:flex items-center border border-gray-200 rounded-md overflow-hidden">
                 {(['en', 'fil'] as LanguageType[]).map((lang, idx) => (
                   <button
                     key={lang}
+                    type="button"
                     onClick={() => changeLanguage(lang)}
+                    aria-label={`Switch to ${lang === 'en' ? 'English' : 'Filipino'}`}
                     className={`px-3 py-1.5 text-xs font-bold uppercase transition-colors ${
                       i18n.language === lang
                         ? 'bg-primary-700 text-white'
@@ -312,11 +397,26 @@ const Navbar: React.FC = () => {
               </div>
 
               <button
-                onClick={toggleMenu}
+                ref={toggleRef}
+                type="button"
+                onClick={() => {
+                  if (isAnimatingRef.current) return;
+                  if (mobileMenuOpen) {
+                    closeMenu();
+                  } else {
+                    isAnimatingRef.current = true;
+                    setMobileMenuOpen(true);
+                    lockBodyScroll();
+                    setTimeout(() => {
+                      isAnimatingRef.current = false;
+                    }, 320);
+                  }
+                }}
                 className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
-                aria-label="Toggle menu"
+                aria-label="Toggle navigation"
+                aria-expanded={mobileMenuOpen}
               >
-                {isOpen ? (
+                {mobileMenuOpen ? (
                   <X className="h-5 w-5" />
                 ) : (
                   <Menu className="h-5 w-5" />
@@ -327,45 +427,70 @@ const Navbar: React.FC = () => {
         </div>
 
         {/* Mobile Menu */}
-        {isOpen && (
-          <div className="lg:hidden border-t border-gray-100 bg-white">
+        {mobileMenuOpen && (
+          <div
+            ref={navRef}
+            className="lg:hidden border-t border-gray-100 bg-white"
+          >
             <div className="px-4 py-3 space-y-1">
               {mainNavigation.map(item => (
                 <div key={item.label}>
                   {item.children ? (
                     <>
                       <button
-                        onClick={() => toggleSubmenu(item.label)}
+                        type="button"
+                        onClick={() =>
+                          setOpenDropdown(prev =>
+                            prev === item.label ? null : item.label
+                          )
+                        }
                         className="w-full flex justify-between items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+                        aria-haspopup="true"
+                        aria-expanded={openDropdown === item.label}
                       >
                         {t(
                           `navbar.${item.label.replace(' ', '').toLowerCase()}`,
                           item.label
                         )}
                         <ChevronDown
-                          className={`h-4 w-4 transition-transform ${activeMenu === item.label ? 'rotate-180' : ''}`}
+                          className={`h-4 w-4 transition-transform ${openDropdown === item.label ? 'rotate-180' : ''}`}
                         />
                       </button>
-                      {activeMenu === item.label && (
+                      {openDropdown === item.label && (
                         <div className="ml-4 mt-1 space-y-1">
-                          {item.children.map(child => (
-                            <Link
-                              key={child.label}
-                              to={child.href}
-                              onClick={closeMenu}
-                              className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
-                            >
-                              {child.label}
-                            </Link>
-                          ))}
+                          {item.children.map(child =>
+                            child.href.startsWith('http') ? (
+                              <a
+                                key={child.label}
+                                href={child.href}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
+                              >
+                                {child.label}
+                              </a>
+                            ) : (
+                              <Link
+                                key={child.label}
+                                to={child.href}
+                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
+                              >
+                                {child.label}
+                              </Link>
+                            )
+                          )}
                         </div>
                       )}
                     </>
                   ) : (
                     <Link
                       to={item.href}
-                      onClick={e => handleNavClick(e, item.href, closeMenu)}
-                      className="block px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+                      onClick={e => handleContactClick(e, item.href)}
+                      className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                        isActive(item.href)
+                          ? 'text-primary-700 bg-primary-50'
+                          : 'text-gray-700 hover:bg-gray-50'
+                      }`}
                     >
                       {t(
                         `navbar.${item.label.replace(' ', '').toLowerCase()}`,
@@ -375,11 +500,15 @@ const Navbar: React.FC = () => {
                   )}
                 </div>
               ))}
+
+              {/* Language toggle in mobile menu */}
               <div className="pt-2 border-t border-gray-100 flex gap-2">
                 {(['en', 'fil'] as LanguageType[]).map(lang => (
                   <button
                     key={lang}
+                    type="button"
                     onClick={() => changeLanguage(lang)}
+                    aria-label={`Switch to ${lang === 'en' ? 'English' : 'Filipino'}`}
                     className={`px-4 py-1.5 text-xs font-bold uppercase rounded border transition-colors ${
                       i18n.language === lang
                         ? 'bg-primary-700 text-white border-primary-700'

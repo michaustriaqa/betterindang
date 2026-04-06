@@ -1,6 +1,6 @@
-# Participate in Local Trade Fairs, Business Expos, and Tourism Promotion Activities — Lapu-Lapu City
+# Participate in Local Trade Fairs, Business Expos, and Tourism Promotion Activities — Indang, Cavite
 
-Showcase your products and services, meet buyers, and boost your brand by joining **city- and region-led trade fairs, business expos, and tourism promotions**.
+Showcase your products and services, meet buyers, and boost your brand by joining **municipal- and region-led trade fairs, business expos, and tourism promotions**.
 
 ---
 
@@ -8,19 +8,19 @@ Showcase your products and services, meet buyers, and boost your brand by joinin
 
 - **MSMEs** (sole proprietors, partnerships, corporations, cooperatives)
 - **Tourism enterprises** (accommodations, tour operators/guides, transport, attractions, events, MICE suppliers)
-- **Cultural creators** (handicrafts, fashion, food, wellness, creative tech)
+- **Cultural creators** (handicrafts, fashion, food, wellness, creative tech, agricultural products)
 - **LGU-accredited community groups** (livelihood associations, women/youth groups)
 
-**Priority is often given** to registered local businesses, OTOP-branded products, startups with export potential, and tourism enterprises aligned with the city’s events calendar.
+**Priority is often given** to registered local businesses, OTOP-branded products, startups with export potential, and tourism enterprises aligned with the municipality's events calendar. Indang is known for its agricultural heritage, vinegar production, and ecotourism potential — products tied to these sectors are especially welcome.
 
 ---
 
-## Event Types You’ll See
+## Event Types You'll See
 
-- **City/Barangay Trade Fairs** – usually tied to festivals, holidays, and civic celebrations
-- **Business Expos & Startup Showcases** – buyers’ meets, B2B networking, product launches
+- **Municipal/Barangay Trade Fairs** – usually tied to festivals, holidays, and civic celebrations
+- **Business Expos & Startup Showcases** – buyers' meets, B2B networking, product launches
 - **Tourism Promotion Activities** – travel marts, familiarization (Fam) tours, festivals, MICE activations
-- **Sector-Specific Bazaars** – food & beverage, fashion & crafts, wellness & health, marine/leisure
+- **Sector-Specific Bazaars** – food & beverage (including local vinegar/fermented products), fashion & crafts, wellness & health, agri-tourism
 
 ---
 
@@ -28,7 +28,7 @@ Showcase your products and services, meet buyers, and boost your brand by joinin
 
 1. **Prepare eligibility documents**
    - DTI/SEC/CDA registration, BIR 2303
-   - Mayor’s/Business Permit (current year)
+   - Mayor's/Business Permit (current year)
    - Tourism accreditation/registration (if applicable)
    - Product compliance (FDA/LTO/CPR for food & cosmetics; IPOPHL for trademarks if any)
 
@@ -59,8 +59,8 @@ Showcase your products and services, meet buyers, and boost your brand by joinin
 ## Typical Requirements Checklist
 
 - [ ] Government IDs of owner/representative
-- [ ] DTI/SEC/CDA, BIR 2303, current **Mayor’s/Business Permit**
-- [ ] Barangay/City clearance (if requested)
+- [ ] DTI/SEC/CDA, BIR 2303, current **Mayor's/Business Permit**
+- [ ] Barangay/Municipal clearance (if requested)
 - [ ] **Product compliance** (FDA for food/cosmetics; HALAL/organic if claimed)
 - [ ] Tourism accreditation/registration (if a tourism enterprise)
 - [ ] Public liability insurance (recommended for large expos)
@@ -110,44 +110,46 @@ Showcase your products and services, meet buyers, and boost your brand by joinin
 
 ---
 
-## Where to Watch for Calls & Schedules (Lapu-Lapu / Cebu)
+## Where to Watch for Calls & Schedules (Indang / Cavite)
 
-- **Lapu-Lapu City**: City Information Office, Business Permits & Licensing Office (BOSS announcements), City Tourism & Cultural Affairs
+- **LGU Indang**: Municipal Information Office, Business Permits & Licensing Office (BOSS announcements), Municipal Tourism Office
 - **Negosyo Center / MSME Office**: product dev, fairs, OTOP activities
-- **Tourism Bodies**: city/regional tourism offices for travel marts, festivals, Fam tours, MICE events
-- **Chambers & Associations**: local chamber of commerce, hotel/resort associations, exporters’ groups
+- **DTI Cavite**: provincial trade fairs, OTOP, and MSME development programs
+- **Tourism Bodies**: municipal/regional tourism offices for travel marts, festivals, Fam tours, MICE events
+- **Chambers & Associations**: local chamber of commerce, agri-tourism groups, exporters' groups
+- **CvSU (Cavite State University — Indang)**: technology transfer fairs, research-based product showcases, startup and livelihood expos
 - **Schools & Malls**: seasonal bazaars, startup fairs, internship & career expos
 
 ---
 
-# Key Local Contacts — Lapu-Lapu City
+# Key Local Contacts — Indang, Cavite
 
 Use these offices when coordinating for **trade fairs, business expos, permits, and tourism promotion activities**.
 
 ---
 
-| Office / Role                                                                 | Address / Location                                    | Contact Number  | Email / Other Contact Info                                                                                                                                   |
-| ----------------------------------------------------------------------------- | ----------------------------------------------------- | --------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| **Business Permit & Licensing Office (BPLO)**                                 | City Hall Main Building, Lapu-Lapu Government Complex | (032) 340-0004  | —                                                                                                                                                            |
-| **PESO Lapu-Lapu City** (Student Employment, Local Promotions)                | Pajo, Lapu-Lapu City, Cebu 6015                       | (032) 340-8264  | Facebook: [PESO Lapu-Lapu City](https://ph.locale.online/peso-lapu-lapu-city-47947610.html)                                                                  |
-| **City Information Office / Treasurer’s Office**                              | Lapu-Lapu City Hall / Hoops Dome during events        | (032) 340-1615  | Updates: [Official Facebook Page](https://www.facebook.com/photo.php?fbid=122128211810564979&id=61566949391179&set=a.122105111324564979)                     |
-| **Lapu-Lapu City Tourism Office**                                             | City Government / Tourism Department                  | +63 32 495-5593 | Email: llctourism.inquiry@gmail.com • [Instagram Location Page](https://www.instagram.com/explore/locations/2149053888682923/lapu-lapu-city-tourism-office/) |
-| **City-Wide Trade Fair / Renewal Venue** (used for permit renewals and expos) | Hoops Dome, Barangay Gun-ob                           | —               | News: [SunStar — Biz Permit Renewals at Hoops Dome](https://www.sunstar.com.ph/cebu/lapu-launches-new-system-for-biz-permit-renewals)                        |
+| Office / Role                                                               | Address / Location                             | Contact Number | Email / Other Contact Info                                                           |
+| --------------------------------------------------------------------------- | ---------------------------------------------- | -------------- | ------------------------------------------------------------------------------------ |
+| **Business Permit & Licensing Office (BPLO)**                               | Municipal Hall, Poblacion, Indang, Cavite 4122 | (046) 415-0033 | —                                                                                    |
+| **PESO Indang** (Student Employment, Local Promotions)                      | Municipal Hall, Poblacion, Indang, Cavite 4122 | (046) 415-0033 | Facebook: LGU Indang Cavite page                                                     |
+| **Municipal Information Office / Treasurer's Office**                       | Municipal Hall, Poblacion, Indang, Cavite      | (046) 415-0033 | Updates: [LGU Indang Cavite Facebook Page](https://www.facebook.com/LGUIndangCavite) |
+| **Municipal Tourism Office**                                                | Municipal Hall, Poblacion, Indang, Cavite      | (046) 415-0033 | Email: indangcavite@indangcavite.ph                                                  |
+| **Indang Municipal Covered Court / Plaza Area** (used for fairs and events) | Poblacion, Indang, Cavite                      | —              | Check LGU Indang announcements for event schedules                                   |
 
 ---
 
-✅ Tip: Save these contacts and follow their **Facebook pages** — most trade fair and expo announcements in Lapu-Lapu are posted there first.
+Tip: Save these contacts and follow the **LGU Indang Cavite Facebook page** — most trade fair and expo announcements in Indang are posted there first.
 
 ---
 
 ## Sample Email to Join an Event
 
-> **Subject:** Participation Inquiry – [Your Brand] for [Event Name/Date]  
-> Hello [Organizer Name],  
-> We’re a Lapu-Lapu–based [business type] offering [brief product/service]. We’d like to apply for a booth at **[Event Name]** on **[Date]**.  
-> **Attachments:** Business registration, product list/prices, photos, compliance (FDA/accreditation).  
-> **Needs:** [table + 1 outlet + 500W], ingress day-before preferred.  
-> Thank you and we look forward to promoting Lapu-Lapu products/tourism at your event.  
+> **Subject:** Participation Inquiry – [Your Brand] for [Event Name/Date]
+> Hello [Organizer Name],
+> We're an Indang-based [business type] offering [brief product/service]. We'd like to apply for a booth at **[Event Name]** on **[Date]**.
+> **Attachments:** Business registration, product list/prices, photos, compliance (FDA/accreditation).
+> **Needs:** [table + 1 outlet + 500W], ingress day-before preferred.
+> Thank you and we look forward to promoting Indang products/tourism at your event.
 > **Contact:** [Name, Mobile, Email, Links]
 
 ---
@@ -156,4 +158,4 @@ Use these offices when coordinating for **trade fairs, business expos, permits, 
 
 - Follow **fire safety**, **ingress/egress**, and **electrical load** limits.
 - For food: secure **permits**, maintain **temperature control**, and practice **safe sampling**.
-- Respect IP: don’t use copyrighted music/images without permission; avoid counterfeit or misbranded goods.
+- Respect IP: don't use copyrighted music/images without permission; avoid counterfeit or misbranded goods.

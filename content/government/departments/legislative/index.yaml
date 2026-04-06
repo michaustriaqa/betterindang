@@ -2,8 +2,7 @@
 # This file contains all the pages/governments/departments/legislative available under the Department
 #
 layout: grid
-title: 'Legislative Department'
-description: 'Page Description'
+title: 'Legislative Documents'
+description: 'Details are coming soon about the legislative documents of the Municipality of Indang, including ordinances, resolutions, and other legislative records.'
 pages:
-  - name: 'Councilor A'
-    description: 'Description'
+  

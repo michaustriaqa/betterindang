@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import {
   Search,
   ArrowRight,
@@ -89,6 +89,16 @@ export default function Hero() {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
   const { t } = useTranslation('common');
+  const [scrollY, setScrollY] = useState(0);
+
+  const handleScroll = useCallback(() => {
+    setScrollY(window.scrollY);
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, [handleScroll]);
 
   useEffect(() => {
     const cats = serviceCategories.categories as {
@@ -165,6 +175,7 @@ export default function Hero() {
         backgroundImage:
           'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
         backgroundSize: '24px 24px',
+        backgroundPositionY: `${scrollY * 0.35}px`,
       }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-24">

@@ -6,6 +6,7 @@ import WeatherMapSection from '../components/home/WeatherMapSection';
 import HistorySection from '../components/home/HistorySection';
 import LeadershipSection from '../components/home/LeadershipSection';
 import ContactSection from '../components/home/ContactSection';
+import TourismSection from '../components/home/TourismSection';
 import SEO from '../components/SEO';
 
 const Home: React.FC = () => {
@@ -22,6 +23,7 @@ const Home: React.FC = () => {
         <StatsSection />
         <WeatherMapSection />
         <GovernmentActivitySection />
+        <TourismSection />
         <HistorySection />
         <LeadershipSection />
         <ContactSection />
