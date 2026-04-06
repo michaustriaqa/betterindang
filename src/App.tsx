@@ -11,6 +11,7 @@ import Statistics from './pages/Statistics';
 import Legislative from './pages/Legislative';
 import Transparency from './pages/Transparency';
 import Tourism from './pages/Tourism';
+import LocalOfficials from './pages/LocalOfficials';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -28,6 +29,10 @@ function App() {
               <Route
                 path="/services/:category/:documentSlug"
                 element={<Document categoryType="service" />}
+              />
+              <Route
+                path="/government/departments/officials"
+                element={<LocalOfficials />}
               />
               <Route path="/government/:category" element={<Government />} />
               <Route path="/government" element={<Government />} />

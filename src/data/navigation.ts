@@ -26,17 +26,14 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Government',
     href: '/government',
     children: [
-      { label: 'Departments & Offices', href: '/government/departments' },
-      { label: 'Sangguniang Bayan', href: '/government/legislative' },
-      { label: 'Local Officials', href: '/government/departments/officials' },
-      { label: 'News & Announcements', href: '/government/news' },
+      { label: 'Departments & Officials', href: '/government/departments' },
       {
-        label: 'Guides & Regulations',
-        href: '/government/guides-and-regulations',
+        label: 'Legislative (Municipal Council)',
+        href: '/government/legislative',
       },
       {
-        label: 'Public Consultations',
-        href: '/government/public-consultations',
+        label: 'Local Officials Directory',
+        href: '/government/departments/officials',
       },
     ],
   },
@@ -103,13 +100,19 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
-        { label: 'Departments & Offices', href: '/government/departments' },
-        { label: 'Sangguniang Bayan', href: '/government/legislative' },
+        { label: 'Departments & Officials', href: '/government/departments' },
+        {
+          label: 'Legislative (Municipal Council)',
+          href: '/government/legislative',
+        },
+        {
+          label: 'Local Officials Directory',
+          href: '/government/departments/officials',
+        },
         {
           label: 'Transparency Documents',
           href: '/government/transparency-documents',
         },
-        { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
       ],
     },
