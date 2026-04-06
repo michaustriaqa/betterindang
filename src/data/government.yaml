@@ -1,60 +1,64 @@
-# Local Government Activity Data
-# This file contains all the local government activity data for the local government portal
-# Non-technical users can easily edit this file to add, remove, or modify local government activity
+# Local Government Data — Municipality of Indang, Cavite
+# Edit categories, slugs, icons, and descriptions below.
+# Icon must be a valid Lucide React icon name.
 
 categories:
-  - category: 'Departments'
+  - category: 'Legislative'
+    slug: 'legislative'
+    description: 'The Sangguniang Bayan (Municipal Council) of Indang — the legislative body responsible for passing ordinances and resolutions for the benefit of the municipality.'
+    icon: 'Landmark'
+
+  - category: 'Departments & Offices'
     slug: 'departments'
     description: 'Explore local government departments, agencies, and offices with their mandates, services, and contact details.'
     icon: 'Building2'
     subcategories:
-      - name: 'Executive Department'
+      - name: 'Executive'
         slug: 'executive'
-      - name: 'Legislative Department'
-        slug: 'legislative'
-      - name: 'Department of Education'
-        slug: 'department-of-education'
-      - name: 'Department of Health'
-        slug: 'department-of-health'
-      - name: 'Department of Transportation'
-        slug: 'department-of-transportation'
-  - category: 'News'
+      - name: 'Local Officials Directory'
+        slug: 'officials'
+
+  - category: 'News & Announcements'
     slug: 'news'
-    description: 'Stay informed with the latest local government news, announcements, and policy updates.'
+    description: 'Stay informed with the latest local government news, announcements, and policy updates from the Municipality of Indang.'
     icon: 'Newspaper'
     subcategories:
       - name: 'News'
         slug: 'news'
       - name: 'Announcements'
         slug: 'announcements'
-  - category: 'Guides and Regulations'
+
+  - category: 'Guides & Regulations'
     slug: 'guides-and-regulations'
-    description: 'Access guidelines, rules, regulations, and step-by-step instructions for local government processes.'
-    icon: 'Book'
+    description: 'Access guidelines, rules, regulations, and step-by-step instructions for local government processes in Indang.'
+    icon: 'BookOpen'
     subcategories:
       - name: 'Guides'
         slug: 'guides'
       - name: 'Regulations'
         slug: 'regulations'
-  - category: 'Reports and Statistics'
+
+  - category: 'Reports & Statistics'
     slug: 'reports-and-statistics'
-    description: 'Access local government reports, statistical data, and performance metrics.'
-    icon: 'ChartBar'
+    description: 'Access local government reports, statistical data, and performance metrics for the Municipality of Indang.'
+    icon: 'BarChart3'
     subcategories:
       - name: 'Reports'
         slug: 'reports'
       - name: 'Statistics'
         slug: 'statistics'
+
   - category: 'Public Consultations'
     slug: 'public-consultations'
-    description: 'Participate in public consultations and provide feedback on local government decisions.'
+    description: 'Participate in public consultations and provide feedback on local government decisions and ordinances.'
     icon: 'MessagesSquare'
     subcategories:
       - name: 'Public Consultations'
         slug: 'public-consultations'
+
   - category: 'Transparency Documents'
     slug: 'transparency-documents'
-    description: 'Access Freedom of Information releases and transparency documents for local government accountability.'
+    description: 'Access Freedom of Information releases and transparency documents for local government accountability in Indang.'
     icon: 'FileText'
     subcategories:
       - name: 'Transparency Documents'

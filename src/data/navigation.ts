@@ -27,8 +27,8 @@ export const mainNavigation: NavigationItem[] = [
     href: '/government',
     children: [
       { label: 'Departments & Offices', href: '/government/departments' },
-      { label: 'Executive', href: '/government/departments/executive' },
-      { label: 'Legislative', href: '/legislative' },
+      { label: 'Sangguniang Bayan', href: '/government/legislative' },
+      { label: 'Local Officials', href: '/government/departments/officials' },
       { label: 'News & Announcements', href: '/government/news' },
       {
         label: 'Guides & Regulations',
@@ -38,12 +38,38 @@ export const mainNavigation: NavigationItem[] = [
         label: 'Public Consultations',
         href: '/government/public-consultations',
       },
-      { label: 'Tourism', href: '/tourism' },
     ],
   },
-  { label: 'Statistics', href: '/statistics' },
-  { label: 'Legislative', href: '/legislative' },
-  { label: 'Transparency', href: '/transparency' },
+  {
+    label: 'Transparency',
+    href: '/transparency',
+    children: [
+      { label: 'Full Disclosure Policy', href: '/transparency' },
+      {
+        label: 'Transparency Documents',
+        href: '/government/transparency-documents',
+      },
+      {
+        label: 'Reports & Statistics',
+        href: '/government/reports-and-statistics',
+      },
+      { label: 'Annual Budget', href: '/government/transparency-documents' },
+      { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
+    ],
+  },
+  {
+    label: 'Statistics',
+    href: '/statistics',
+    children: [
+      { label: 'Municipal Profile', href: '/statistics' },
+      {
+        label: 'DTI CMCI Profile',
+        href: 'https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang',
+      },
+      { label: 'Barangay Data', href: '/statistics' },
+      { label: 'Open Data PH', href: 'https://data.gov.ph' },
+    ],
+  },
   { label: 'Contact', href: '/#contact' },
 ];
 
@@ -77,16 +103,14 @@ export const footerNavigation = {
     {
       title: 'Government',
       links: [
+        { label: 'Departments & Offices', href: '/government/departments' },
+        { label: 'Sangguniang Bayan', href: '/government/legislative' },
+        {
+          label: 'Transparency Documents',
+          href: '/government/transparency-documents',
+        },
         { label: 'Open Data', href: 'https://data.gov.ph' },
         { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
-        {
-          label: 'Contact Center',
-          href: 'https://contactcenterngbayan.gov.ph',
-        },
-        {
-          label: 'Official Gazette',
-          href: 'https://www.officialgazette.gov.ph',
-        },
       ],
     },
   ],

@@ -5,5 +5,29 @@ layout: grid
 title: 'Legislative Department'
 description: 'Page Description'
 pages:
-  - name: 'Councilor A'
-    description: 'Description'
+- name: 'Hon. Ronald A. Bernarte'
+  description: 'Committee on Peace, Order and Public Safety and Committee on Games and Amusement'
+
+- name: 'Hon. Constancio S. Telmo Jr.'
+  description: 'Committee on Rules, Ordinances, Resolution and Legal Matters and Committee on Health Services, Population and Anti-Drug Abuse'
+
+- name: 'Hon. John Mark M. Cayao'
+  description: 'Committee on Environmental Protection and Committee on Education'
+
+- name: 'Hon. Exequiel D. Penus'
+  description: 'Committee on Finance, Budget and Appropriations and Committee on Ways and Means'
+
+- name: 'Hon. Joel R. Carungcong'
+  description: 'Committee on Human Rights and Committee on Agriculture and Slaughterhouse'
+
+- name: 'Hon. Danilo V. Masangcay'
+  description: 'Committee on Trade, Industry and Labor and Committee on Tourism, Culture and Arts'
+
+- name: 'Hon. Chrissel R. Borja'
+  description: 'Committee on Women and Family Welfare, Social and Special Services and Committee on Land Use, Housing, Resettlement and Subdivisions'
+
+- name: 'Hon. Jose Joezel T. Pareño'
+  description: 'Committee on Good Government, Public Ethics and Accountability and Committee on Public Works, Telecommunications, Transportation and Public Utilities and Facilities'
+
+- name: 'Hon. Elmer V. Torres'
+  description: 'Committee on Barangay Affairs and Community Development'

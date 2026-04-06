@@ -13,7 +13,6 @@ import {
   Zap,
   Globe,
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 
 const STATS = [
@@ -421,16 +420,6 @@ export default function Statistics() {
         </section>
 
         {/* Back link */}
-        <div className="bg-white border-t border-gray-100 py-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <Link
-              to="/"
-              className="text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
-            >
-              ← Back to Home
-            </Link>
-          </div>
-        </div>
       </main>
     </>
   );

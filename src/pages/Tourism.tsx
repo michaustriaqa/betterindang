@@ -272,17 +272,6 @@ function TourismIndex() {
           </div>
         </div>
       </section>
-
-      <div className="bg-white border-t border-gray-100 py-6">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <Link
-            to="/"
-            className="text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
-          >
-            ← Back to Home
-          </Link>
-        </div>
-      </div>
     </>
   );
 }
@@ -322,7 +311,7 @@ function TourismCategory() {
             to="/tourism"
             className="text-sm font-semibold text-primary-700 hover:text-primary-800"
           >
-            ← Back to Tourism
+            View all tourism categories
           </Link>
         </div>
       </main>
@@ -422,13 +411,7 @@ function TourismCategory() {
         </section>
 
         <div className="bg-white border-t border-gray-100 py-6">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex items-center justify-between">
-            <Link
-              to="/tourism"
-              className="text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
-            >
-              ← Back to Tourism
-            </Link>
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 flex justify-end">
             <a
               href="https://www.facebook.com/TourismIndang"
               target="_blank"
