@@ -37,13 +37,14 @@ function App() {
                 element={<LocalOfficials />}
               />
               <Route
-                path="/government/legislative"
+                path="/government/departments/legislative"
                 element={<SangguniangBayan />}
               />
               <Route
                 path="/government/departments/executive"
                 element={<ExecutiveDirectory />}
               />
+              <Route path="/government/legislative" element={<Legislative />} />
               <Route path="/government/:category" element={<Government />} />
               <Route path="/government" element={<Government />} />
               <Route

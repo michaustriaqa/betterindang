@@ -99,6 +99,13 @@ export default function SangguniangBayan() {
                 Government
               </Link>
               <span>/</span>
+              <Link
+                to="/government/departments"
+                className="hover:text-primary-700 transition-colors"
+              >
+                Departments
+              </Link>
+              <span>/</span>
               <span className="text-gray-700 font-medium">
                 Sangguniang Bayan
               </span>
