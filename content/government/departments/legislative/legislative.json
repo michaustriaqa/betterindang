@@ -2,10 +2,16 @@
   "GOVERNMENT_NAME": "Municipality of Indang",
   "TERM": "2022–2025",
 
-  "presiding_officer": {
-    "position": "Municipal Vice Mayor (Presiding Officer)",
-    "name": "Hon. Ferdinand Papa"
-  },
+  "presiding_officer": [
+    {
+      "position": "Municipal Mayor",
+      "name": "Hon. Virgilio Fidel"
+    },
+    {
+      "position": "Municipal Vice Mayor (Presiding Officer)",
+      "name": "Hon. Ferdinand Papa"
+    }
+  ],
 
   "councilors": [
     {

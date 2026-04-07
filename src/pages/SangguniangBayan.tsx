@@ -124,7 +124,7 @@ export default function SangguniangBayan() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-bold text-gray-800">
-                  Presiding Officer
+                  Executive Branch
                 </h3>
                 <ViewToggle mode={officerView} onChange={setOfficerView} />
               </div>
@@ -143,25 +143,37 @@ export default function SangguniangBayan() {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr className="bg-white">
-                        <td className="px-4 py-3 font-semibold text-gray-700">
-                          {data.presiding_officer.position}
-                        </td>
-                        <td className="px-4 py-3 text-gray-800">
-                          {data.presiding_officer.name}
-                        </td>
-                      </tr>
+                      {data.presiding_officer.map((officer, i) => (
+                        <tr
+                          key={i}
+                          className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
+                        >
+                          <td className="px-4 py-3 font-semibold text-gray-700">
+                            {officer.position}
+                          </td>
+                          <td className="px-4 py-3 text-gray-800">
+                            {officer.name}
+                          </td>
+                        </tr>
+                      ))}
                     </tbody>
                   </table>
                 </div>
               ) : (
-                <div className="bg-white rounded-lg border border-gray-200 px-4 py-3">
-                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5">
-                    {data.presiding_officer.position}
-                  </div>
-                  <div className="text-sm font-bold text-gray-800">
-                    {data.presiding_officer.name}
-                  </div>
+                <div className="space-y-2">
+                  {data.presiding_officer.map((officer, i) => (
+                    <div
+                      key={i}
+                      className="bg-white rounded-lg border border-gray-200 px-4 py-3"
+                    >
+                      <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5">
+                        {officer.position}
+                      </div>
+                      <div className="text-sm font-bold text-gray-800">
+                        {officer.name}
+                      </div>
+                    </div>
+                  ))}
                 </div>
               )}
             </div>
