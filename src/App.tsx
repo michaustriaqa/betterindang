@@ -13,6 +13,7 @@ import Transparency from './pages/Transparency';
 import Tourism from './pages/Tourism';
 import ExecutiveDirectory from './pages/ExecutiveDirectory';
 import SangguniangBayan from './pages/SangguniangBayan';
+import Sitemap from './pages/Sitemap';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -51,6 +52,7 @@ function App() {
               <Route path="/transparency" element={<Transparency />} />
               <Route path="/tourism/:category" element={<Tourism />} />
               <Route path="/tourism" element={<Tourism />} />
+              <Route path="/sitemap" element={<Sitemap />} />
               <Route path="/:lang/:documentSlug" element={<Document />} />
               <Route path="/:documentSlug" element={<Document />} />
             </Routes>

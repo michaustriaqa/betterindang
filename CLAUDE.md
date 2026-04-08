@@ -85,3 +85,14 @@ Reusable primitives live in `src/components/ui/`: `Section`, `Heading`, `Text`, 
 
 - Single quotes, 2-space indentation, trailing commas (ES5), semicolons, 80-char line width (enforced by Prettier)
 - Arrow functions omit parens for single arguments
+
+## Versioning
+
+The project version is displayed in `src/components/layout/Footer.tsx` (look for the `v0.x.x` string in the bottom bar).
+
+**After every set of changes, you must:**
+
+1. Add a new entry to `SECURITY.md` under the `## Changelog` section describing what was added, changed, or fixed — including the date and the new version number.
+2. Bump the version string in `src/components/layout/Footer.tsx` to match.
+
+Follow [Semantic Versioning](https://semver.org/): PATCH for fixes/content, MINOR for new pages or features, MAJOR for breaking schema or routing changes.

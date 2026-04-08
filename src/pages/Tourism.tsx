@@ -27,6 +27,7 @@ interface Establishment {
   address?: string;
   contact?: string;
   facebook?: string;
+  image?: string;
   description?: string;
   tags?: string[];
 }
@@ -46,14 +47,45 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   MapPin,
 };
 
-const CATEGORY_COLORS: Record<string, { pill: string }> = {
-  heritage: { pill: 'bg-amber-100 text-amber-700' },
-  resorts: { pill: 'bg-blue-100 text-blue-700' },
-  farms: { pill: 'bg-green-100 text-green-700' },
-  events: { pill: 'bg-purple-100 text-purple-700' },
-  restaurants: { pill: 'bg-orange-100 text-orange-700' },
-  adventure: { pill: 'bg-red-100 text-red-700' },
-  others: { pill: 'bg-gray-100 text-gray-600' },
+const CATEGORY_COLORS: Record<
+  string,
+  { pill: string; placeholder: string; icon: string }
+> = {
+  heritage: {
+    pill: 'bg-amber-100 text-amber-700',
+    placeholder: 'bg-amber-50',
+    icon: 'text-amber-300',
+  },
+  resorts: {
+    pill: 'bg-blue-100 text-blue-700',
+    placeholder: 'bg-blue-50',
+    icon: 'text-blue-300',
+  },
+  farms: {
+    pill: 'bg-green-100 text-green-700',
+    placeholder: 'bg-green-50',
+    icon: 'text-green-300',
+  },
+  events: {
+    pill: 'bg-purple-100 text-purple-700',
+    placeholder: 'bg-purple-50',
+    icon: 'text-purple-300',
+  },
+  restaurants: {
+    pill: 'bg-orange-100 text-orange-700',
+    placeholder: 'bg-orange-50',
+    icon: 'text-orange-300',
+  },
+  adventure: {
+    pill: 'bg-red-100 text-red-700',
+    placeholder: 'bg-red-50',
+    icon: 'text-red-300',
+  },
+  others: {
+    pill: 'bg-gray-100 text-gray-600',
+    placeholder: 'bg-gray-50',
+    icon: 'text-gray-300',
+  },
 };
 
 const CULTURE_HIGHLIGHTS = [
@@ -441,14 +473,25 @@ function EstablishmentCard({
 }) {
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary-200 transition-all duration-200 overflow-hidden flex flex-col">
-      {/* Placeholder image */}
-      <div className="w-full h-40 bg-gray-50 flex items-center justify-center border-b border-gray-100">
-        <img
-          src="/vite.svg"
-          alt={item.name}
-          className="h-16 w-16 opacity-20 object-contain"
-        />
-      </div>
+      {/* Thumbnail */}
+      {item.image ? (
+        <div className="w-full h-40 overflow-hidden border-b border-gray-100">
+          <img
+            src={item.image}
+            alt={item.name}
+            className="w-full h-full object-cover"
+          />
+        </div>
+      ) : (
+        <div
+          className={`w-full h-40 flex items-center justify-center border-b border-gray-100 ${colors.placeholder}`}
+        >
+          {(() => {
+            const IconComp = ICON_MAP[cat.icon] ?? MapPin;
+            return <IconComp className={`h-14 w-14 ${colors.icon}`} />;
+          })()}
+        </div>
+      )}
 
       {/* Content */}
       <div className="p-5 flex flex-col gap-3 flex-1">
