@@ -48,12 +48,16 @@
     "categories": {
       "health-services": { "name": "Health Services" },
       "education": { "name": "Education" },
-      "business": { "name": "Business" },
+      "business": { "name": "Business and Livelihood" },
       "social-welfare": { "name": "Social Welfare" },
-      "garbage-waste-disposal": { "name": "Waste" },
+      "agriculture-fisheries": { "name": "Agriculture & Fisheries" },
+      "infrastructure-public-works": {
+        "name": "Infrastructure & Public Works"
+      },
+      "garbage-waste-disposal": { "name": "Garbage and Waste Disposal" },
       "environment": { "name": "Environment" },
-      "housing-land-use": { "name": "Housing" },
-      "disaster-preparedness": { "name": "Disaster" }
+      "housing-land-use": { "name": "Housing & Land Use" },
+      "disaster-preparedness": { "name": "Disaster Preparedness" }
     }
   },
   "governmentActivity": {
@@ -170,13 +174,49 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0"
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0",
+    "about": "About the Portal",
+    "sitemap": "Sitemap",
+    "accessibility": "Accessibility",
+    "discord": "Community Discord",
+    "contactUs": "Contact Us",
+    "openData": "Open Data",
+    "foi": "Freedom of Information",
+    "facebook": "LGU Indang Facebook",
+    "sangguniangBayan": "Sangguniang Bayan",
+    "dilgDisclosure": "DILG Full Disclosure",
+    "dtiCmci": "DTI CMCI",
+    "blgf": "BLGF",
+    "costTitle": "Cost to the People of Indang",
+    "volunteer": "Volunteer with Us",
+    "contribute": "Contribute at GitHub",
+    "notOfficial": "Not an official government website.",
+    "builtByCommunity": "Built by the community",
+    "quickLinks": "Quick Links",
+    "resources": "Resources"
   },
   "navbar": {
     "government": "Government",
     "services": "Services",
     "hotlines": "Hotlines",
-    "holidays": "Holidays"
+    "holidays": "Holidays",
+    "home": "Home",
+    "statistics": "Statistics",
+    "legislative": "Legislative",
+    "transparency": "Transparency",
+    "contact": "Contact",
+    "tourism": "Tourism",
+    "departments": "Departments & Officials",
+    "officials": "Local Officials Directory",
+    "fullDisclosure": "Full Disclosure Policy (FDP)",
+    "transparencyDocs": "Transparency Documents",
+    "reportsStats": "Reports & Statistics",
+    "budget": "Annual Budget",
+    "foi": "Freedom of Information (FOI)",
+    "profile": "Municipal Profile",
+    "dtiProfile": "DTI CMCI Profile",
+    "barangayData": "Barangay Data",
+    "openData": "Open Data PH"
   },
   "joinUs": {
     "stripTitle": "🚀 Join the #CivicTech Revolution",
