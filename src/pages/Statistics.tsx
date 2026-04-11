@@ -1,3 +1,4 @@
+import yaml from 'js-yaml';
 import {
   BarChart3,
   Users,
@@ -12,152 +13,86 @@ import {
   Shield,
   Zap,
   Globe,
+  type LucideIcon,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import municipalityProfileRaw from '../../content/government/reports-and-statistics/municipality-profile.yaml?raw';
+import barangayListRaw from '../../content/government/reports-and-statistics/barangay-list.yaml?raw';
 
-const STATS = [
-  {
-    icon: Users,
-    value: '70,092',
-    label: 'Population',
-    desc: 'DTI CMCI 2024 data',
-  },
-  {
-    icon: MapPin,
-    value: '36',
-    label: 'Barangays',
-    desc: 'Administrative villages',
-  },
-  {
-    icon: Map,
-    value: '74.90 km²',
-    label: 'Total Land Area',
-    desc: '4.91% of Cavite province',
-  },
-  {
-    icon: Building2,
-    value: '1st Class',
-    label: 'Income Classification',
-    desc: 'Municipal income class',
-  },
-  {
-    icon: TrendingUp,
-    value: '0.98%',
-    label: 'Annual Growth Rate',
-    desc: '2015–2020 census period',
-  },
-  {
-    icon: Users,
-    value: '46,884',
-    label: 'Registered Voters',
-    desc: '2019 COMELEC data',
-  },
-  { icon: Map, value: '299.5 m', label: 'Elevation', desc: 'Above sea level' },
-  {
-    icon: Trophy,
-    value: '149th',
-    label: 'CMCI Overall Rank',
-    desc: 'Out of 509 municipalities (2024)',
-  },
-];
+// ── Icon lookup ────────────────────────────────────────────────────────────
+const ICON_MAP: Record<string, LucideIcon> = {
+  Users,
+  MapPin,
+  Building2,
+  Map,
+  TrendingUp,
+  Trophy,
+  Lightbulb,
+  Shield,
+  Zap,
+  Globe,
+};
 
-const CMCI_PILLARS = [
-  {
-    icon: Zap,
-    label: 'Economic Dynamism',
-    rank: '231st',
-    score: '3.3996',
-    color: 'text-yellow-700 bg-yellow-50 border-yellow-200',
-    iconColor: 'text-yellow-600 bg-yellow-100',
-    highlights: [
-      'Cost of Living: 44th',
-      'Local Economy Growth: 64th',
-      'Active Establishments: 61st',
-    ],
-  },
-  {
-    icon: Building2,
-    label: 'Government Efficiency',
-    rank: '428th',
-    score: '7.1508',
-    color: 'text-blue-700 bg-blue-50 border-blue-200',
-    iconColor: 'text-blue-600 bg-blue-100',
-    highlights: [
-      'ARTA Citizens Charter: 1st',
-      'Getting Business Permits: 2nd',
-      'Compliance to National Directives: 3rd',
-    ],
-  },
-  {
-    icon: Globe,
-    label: 'Infrastructure',
-    rank: '156th',
-    score: '2.5910',
-    color: 'text-purple-700 bg-purple-50 border-purple-200',
-    iconColor: 'text-purple-600 bg-purple-100',
-    highlights: [
-      'Road Network: 46th',
-      'IT Capacity: 32nd',
-      'Basic Utilities: 39th',
-    ],
-  },
-  {
-    icon: Shield,
-    label: 'Resiliency',
-    rank: '122nd',
-    score: '11.5077',
-    color: 'text-green-700 bg-green-50 border-green-200',
-    iconColor: 'text-green-600 bg-green-100',
-    highlights: [
-      'Local Risk Assessments: 1st',
-      'Disaster Risk Reduction Plan: 2nd',
-      'Land Use Plan: 3rd',
-    ],
-  },
-  {
-    icon: Lightbulb,
-    label: 'Innovation',
-    rank: '15th',
-    score: '7.9986',
-    color: 'text-orange-700 bg-orange-50 border-orange-200',
-    iconColor: 'text-orange-600 bg-orange-100',
-    highlights: [
-      'ICT Plan: 1st',
-      'E-BPLS Software: 1st',
-      'Online Payment Facilities: 1st',
-    ],
-  },
-];
+// ── Typed YAML shapes ──────────────────────────────────────────────────────
+interface StatEntry {
+  icon: string;
+  value: string;
+  label: string;
+  desc: string;
+}
 
-const RESOURCES = [
-  {
-    label: 'Philippine Statistics Authority',
-    href: 'https://psa.gov.ph',
-    desc: 'Census & population data',
-  },
-  {
-    label: 'PhilAtlas – Indang',
-    href: 'https://www.philatlas.com/luzon/r04a/cavite/indang.html',
-    desc: 'Geographic & demographic data',
-  },
-  {
-    label: 'DTI CMCI Profile – Indang',
-    href: 'https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang',
-    desc: 'City/municipality competitiveness index',
-  },
-  {
-    label: 'Open Data Philippines',
-    href: 'https://data.gov.ph',
-    desc: 'Government open datasets',
-  },
-  {
-    label: 'BLGF – Local Finance',
-    href: 'https://blgf.gov.ph',
-    desc: 'Bureau of Local Government Finance',
-  },
-];
+interface Pillar {
+  icon: string;
+  label: string;
+  rank: string;
+  score: string;
+  color: string;
+  iconColor: string;
+  highlights: string[];
+}
+
+interface Resource {
+  label: string;
+  href: string;
+  desc: string;
+}
+
+interface MunicipalityProfile {
+  overview: {
+    mayor: string;
+    address: string;
+    telephone: string;
+    cmci_url: string;
+  };
+  stats: StatEntry[];
+  cmci: {
+    year: number;
+    overall_rank: string;
+    overall_score: string;
+    total_municipalities: number;
+    innovation_callout: {
+      rank: string;
+      sub_highlights: string[];
+    };
+    pillars: Pillar[];
+  };
+  resources: Resource[];
+}
+
+interface BarangayList {
+  total: number;
+  source: string;
+  barangays: { name: string; population: string; href: string }[];
+}
+
+// ── Parse YAML at module load (build-time static import) ──────────────────
+const profile = yaml.load(municipalityProfileRaw) as MunicipalityProfile;
+const barangayData = yaml.load(barangayListRaw) as BarangayList;
 
 export default function Statistics() {
+  const { overview, stats, cmci, resources } = profile;
+  const { barangays } = barangayData;
+
   return (
     <>
       <SEO
@@ -200,12 +135,12 @@ export default function Statistics() {
                   Municipal Profile
                 </h2>
                 <p className="text-sm text-gray-500 mt-0.5">
-                  Mayor Virgilio Fidel · A. Mojica St. Poblacion 3 · Tel: (213)
-                  460-4708
+                  Mayor {overview.mayor} · {overview.address} · Tel:{' '}
+                  {overview.telephone}
                 </p>
               </div>
               <a
-                href="https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang"
+                href={overview.cmci_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hidden sm:flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
@@ -215,42 +150,46 @@ export default function Statistics() {
               </a>
             </div>
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {STATS.map(({ icon: Icon, value, label, desc }) => (
-                <div
-                  key={label}
-                  className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow"
-                >
-                  <div className="bg-primary-100 text-primary-700 w-9 h-9 rounded-lg flex items-center justify-center mb-3">
-                    <Icon className="h-4 w-4" />
+              {stats.map(({ icon, value, label, desc }) => {
+                const Icon = ICON_MAP[icon] ?? FileText;
+                return (
+                  <div
+                    key={label}
+                    className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow"
+                  >
+                    <div className="bg-primary-100 text-primary-700 w-9 h-9 rounded-lg flex items-center justify-center mb-3">
+                      <Icon className="h-4 w-4" />
+                    </div>
+                    <div className="text-xl font-black text-gray-900 leading-tight mb-1">
+                      {value}
+                    </div>
+                    <div className="text-sm font-semibold text-gray-800 mb-0.5">
+                      {label}
+                    </div>
+                    <div className="text-xs text-gray-500">{desc}</div>
                   </div>
-                  <div className="text-xl font-black text-gray-900 leading-tight mb-1">
-                    {value}
-                  </div>
-                  <div className="text-sm font-semibold text-gray-800 mb-0.5">
-                    {label}
-                  </div>
-                  <div className="text-xs text-gray-500">{desc}</div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           </div>
         </section>
 
-        {/* CMCI 2024 */}
+        {/* CMCI */}
         <section className="bg-gray-50 py-12 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-start justify-between gap-4 mb-2">
               <div>
                 <h2 className="text-xl font-black text-gray-900">
-                  DTI CMCI 2024 — 5 Pillars
+                  DTI CMCI {cmci.year} — 5 Pillars
                 </h2>
                 <p className="text-sm text-gray-500 mt-0.5">
-                  Cities &amp; Municipalities Competitiveness Index · 149th
-                  overall out of 509 municipalities (1st–2nd Class)
+                  Cities &amp; Municipalities Competitiveness Index ·{' '}
+                  {cmci.overall_rank} overall out of {cmci.total_municipalities}{' '}
+                  municipalities (1st–2nd Class)
                 </p>
               </div>
               <a
-                href="https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang"
+                href={overview.cmci_url}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="shrink-0 hidden sm:flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
@@ -265,62 +204,69 @@ export default function Statistics() {
               <Lightbulb className="h-5 w-5 text-orange-500 shrink-0 mt-0.5" />
               <div>
                 <p className="text-sm font-bold text-orange-800">
-                  Indang ranked 15th in Innovation nationwide
+                  Indang ranked {cmci.innovation_callout.rank} in Innovation
+                  nationwide
                 </p>
                 <p className="text-xs text-orange-700 mt-0.5">
-                  Ranked 1st in ICT Plan, E-BPLS Software, and Online Payment
-                  Facilities — top digital governance among Philippine
-                  municipalities.
+                  Ranked 1st in{' '}
+                  {cmci.innovation_callout.sub_highlights.join(', ')} — top
+                  digital governance among Philippine municipalities.
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {CMCI_PILLARS.map(
+              {cmci.pillars.map(
                 ({
-                  icon: Icon,
+                  icon,
                   label,
                   rank,
                   score,
                   color,
                   iconColor,
                   highlights,
-                }) => (
-                  <div key={label} className={`rounded-xl border p-5 ${color}`}>
-                    <div className="flex items-center gap-3 mb-3">
-                      <div
-                        className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${iconColor}`}
-                      >
-                        <Icon className="h-4 w-4" />
-                      </div>
-                      <div>
-                        <div className="font-black text-sm leading-tight">
-                          {label}
-                        </div>
-                        <div className="text-xs opacity-70 font-medium">
-                          Score: {score}
-                        </div>
-                      </div>
-                      <div className="ml-auto text-right">
-                        <div className="text-lg font-black leading-none">
-                          {rank}
-                        </div>
-                        <div className="text-xs opacity-60">rank</div>
-                      </div>
-                    </div>
-                    <ul className="space-y-1">
-                      {highlights.map(h => (
-                        <li
-                          key={h}
-                          className="text-xs opacity-80 flex items-start gap-1.5"
+                }) => {
+                  const Icon = ICON_MAP[icon] ?? FileText;
+                  return (
+                    <div
+                      key={label}
+                      className={`rounded-xl border p-5 ${color}`}
+                    >
+                      <div className="flex items-center gap-3 mb-3">
+                        <div
+                          className={`w-9 h-9 rounded-lg flex items-center justify-center shrink-0 ${iconColor}`}
                         >
-                          <span className="mt-1 w-1 h-1 rounded-full bg-current shrink-0 opacity-60" />
-                          {h}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                )
+                          <Icon className="h-4 w-4" />
+                        </div>
+                        <div>
+                          <div className="font-black text-sm leading-tight">
+                            {label}
+                          </div>
+                          <div className="text-xs opacity-70 font-medium">
+                            Score: {score}
+                          </div>
+                        </div>
+                        <div className="ml-auto text-right">
+                          <div className="text-lg font-black leading-none">
+                            {rank}
+                          </div>
+                          <div className="text-xs opacity-60">rank</div>
+                        </div>
+                      </div>
+                      <ul className="space-y-1">
+                        {highlights.map(h => (
+                          <li
+                            key={h}
+                            className="text-xs opacity-80 flex items-start gap-1.5"
+                          >
+                            <span className="mt-1 w-1 h-1 rounded-full bg-current shrink-0 opacity-60" />
+                            {h}
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  );
+                }
               )}
             </div>
           </div>
@@ -330,61 +276,27 @@ export default function Statistics() {
         <section className="bg-white py-12 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-2">
-              36 Barangays of Indang
+              {barangayData.total} Barangays of Indang
             </h2>
             <p className="text-sm text-gray-500 mb-6">
-              Population figures from 2020 PSA Census
+              Population figures from {barangayData.source}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
-              {[
-                ['Agus-us', '1,468'],
-                ['Alulod', '5,055'],
-                ['Banaba Cerca', '3,356'],
-                ['Banaba Lejos', '1,680'],
-                ['Bancod', '2,630'],
-                ['Barangay 1', '1,342'],
-                ['Barangay 2', '914'],
-                ['Barangay 3', '1,057'],
-                ['Barangay 4', '2,371'],
-                ['Buna Cerca', '4,065'],
-                ['Buna Lejos I', '1,948'],
-                ['Buna Lejos II', '2,314'],
-                ['Calumpang Cerca', '3,035'],
-                ['Calumpang Lejos I', '2,762'],
-                ['Carasuchi', '1,435'],
-                ['Daine I', '1,809'],
-                ['Daine II', '2,326'],
-                ['Guyam Malaki', '2,087'],
-                ['Guyam Munti', '749'],
-                ['Harasan', '1,101'],
-                ['Kayquit I', '1,559'],
-                ['Kayquit II', '1,894'],
-                ['Kayquit III', '2,605'],
-                ['Kaytambog', '1,457'],
-                ['Kaytapos', '1,558'],
-                ['Limbon', '600'],
-                ['Lumampong Balagbag', '1,274'],
-                ['Lumampong Halayhay', '1,433'],
-                ['Mahabangkahoy Cerca', '1,925'],
-                ['Mahabangkahoy Lejos', '1,210'],
-                ['Mataas na Lupa', '3,468'],
-                ['Pulo', '1,053'],
-                ['Tambo Balagbag', '765'],
-                ['Tambo Ilaya', '970'],
-                ['Tambo Kulit', '1,518'],
-                ['Tambo Malaki', '1,906'],
-              ].map(([name, pop]) => (
-                <div
+              {barangays.map(({ name, population, href }) => (
+                <a
                   key={name}
-                  className="bg-gray-50 rounded-lg border border-gray-100 p-3 hover:border-primary-200 transition-colors"
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-gray-50 rounded-lg border border-gray-100 p-3 hover:border-primary-200 hover:shadow-sm transition-all group"
                 >
-                  <div className="text-xs font-semibold text-gray-800 leading-tight">
+                  <div className="text-xs font-semibold text-gray-800 leading-tight group-hover:text-primary-700 transition-colors">
                     {name}
                   </div>
                   <div className="text-xs text-primary-600 font-bold mt-0.5">
-                    {pop}
+                    {population}
                   </div>
-                </div>
+                </a>
               ))}
             </div>
           </div>
@@ -397,7 +309,7 @@ export default function Statistics() {
               Data Sources &amp; Resources
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {RESOURCES.map(r => (
+              {resources.map(r => (
                 <a
                   key={r.label}
                   href={r.href}
@@ -418,8 +330,6 @@ export default function Statistics() {
             </div>
           </div>
         </section>
-
-        {/* Back link */}
       </main>
     </>
   );

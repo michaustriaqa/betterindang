@@ -66,9 +66,10 @@ export async function loadMarkdownContent(
     return { content, title, description, data };
   } catch (error) {
     console.error(
-      `Failed to load markdown content for document: ${documentSlug}`,
+      'Failed to load markdown content for document:',
+      documentSlug,
       error
     );
-    throw new Error(`Document not found: ${documentSlug}`);
+    throw new Error('Document not found: ' + documentSlug);
   }
 }

@@ -18,6 +18,58 @@ The displayed version in the footer (`src/components/layout/Footer.tsx`) must be
 
 ## Changelog
 
+### v0.4.2 — 2026-04-11
+
+**Changed**
+
+- Converted `municipality-profile.md` → `municipality-profile.yaml` as canonical data source for `Statistics.tsx` (overview, stats, CMCI pillars, resources)
+- Converted `barangay-list.md` → `barangay-list.yaml` as canonical data source for the barangay grid in `Statistics.tsx`
+- `Statistics.tsx` now imports both YAML files via `js-yaml` and derives all rendered data from them; no hardcoded arrays remain
+- Removed old MD files; cleared `reports-and-statistics/index.yaml` pages list
+
+---
+
+### v0.4.1 — 2026-04-11
+
+**Changed**
+
+- "View Municipality Profile" link in home StatsSection now navigates to `/statistics` instead of the document viewer
+- Barangay list in `Statistics.tsx` now sourced from `content/government/reports-and-statistics/barangay-list.md` (new file) instead of hardcoded data; all 36 Indang barangays with 2020 PSA population figures
+
+---
+
+### v0.4.0 — 2026-04-11
+
+**Added**
+
+- New 404 Not Found page (`src/pages/NotFound.tsx`) with links to homepage and browser back navigation; registered as catch-all route in `App.tsx`
+
+---
+
+### v0.3.4 — 2026-04-11
+
+**Changed**
+
+- Moved `logo.svg`, `logo-clear.svg`, and `favicon.svg` to `public/icons/`; updated all references in `index.html`, `SEO.tsx`, `Navbar.tsx`, and `Footer.tsx`
+
+---
+
+### v0.3.3 — 2026-04-11
+
+**Changed**
+
+- Added official Indang government website link (`indang.gov.ph`) to the Resources section in the footer
+
+---
+
+### v0.3.2 — 2026-04-09
+
+**Security**
+
+- Fixed CWE-134 (externally-controlled format string) in `src/lib/markdownLoader.ts` and `src/data/yamlLoader.ts`: user-controlled slugs are now passed as separate arguments to `console.error`/`console.warn` instead of being interpolated into the format string
+
+---
+
 ### v0.3.1 — 2026-04-08
 
 **Content**

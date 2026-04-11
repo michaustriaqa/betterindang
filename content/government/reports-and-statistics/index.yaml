@@ -2,6 +2,5 @@
 # Lists all pages available under the Reports & Statistics government section.
 
 pages:
-  - name: 'Municipality Profile — DTI CMCI 2024'
-    slug: 'municipality-profile'
-    description: 'DTI Cities and Municipalities Competitiveness Index (CMCI) 2024 profile for Indang, Cavite — overall rankings, pillar scores, and sub-indicator breakdown.'
+  - title: "Reports & Statistics"
+    description: "Explore comprehensive reports and statistics on various aspects of the city, including crime rates, traffic data, public health, and more. Stay informed with up-to-date information to better understand our community."

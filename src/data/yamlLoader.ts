@@ -99,7 +99,8 @@ export async function loadCategoryIndex(
     };
   } catch (parseError) {
     console.warn(
-      `Failed to parse YAML content for category ${categorySlug}:`,
+      'Failed to parse YAML content for category:',
+      categorySlug,
       parseError
     );
     return { layout: 'list', pages: [] };

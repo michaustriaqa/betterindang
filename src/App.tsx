@@ -14,6 +14,7 @@ import Tourism from './pages/Tourism';
 import ExecutiveDirectory from './pages/ExecutiveDirectory';
 import SangguniangBayan from './pages/SangguniangBayan';
 import Sitemap from './pages/Sitemap';
+import NotFound from './pages/NotFound';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 function App() {
@@ -55,6 +56,7 @@ function App() {
               <Route path="/sitemap" element={<Sitemap />} />
               <Route path="/:lang/:documentSlug" element={<Document />} />
               <Route path="/:documentSlug" element={<Document />} />
+              <Route path="*" element={<NotFound />} />
             </Routes>
             <Footer />
           </div>

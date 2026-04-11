@@ -20,6 +20,11 @@ const QUICK_LINKS = [
 ];
 
 const RESOURCE_LINKS = [
+  {
+    label: 'Official Indang Website',
+    href: 'https://indang.gov.ph',
+    external: true,
+  },
   { label: 'Open Data', href: 'https://data.gov.ph', external: true },
   {
     label: 'Freedom of Information',
@@ -53,7 +58,7 @@ const Footer: React.FC = () => {
           {/* Col 1 — Brand */}
           <div>
             <img
-              src="/logo-clear.svg"
+              src="/icons/logo-clear.svg"
               alt={t('site_name')}
               className="h-12 w-auto max-w-[180px] object-contain mb-4"
             />
@@ -199,9 +204,20 @@ const Footer: React.FC = () => {
         <div className="border-t border-gray-800 mt-10 pt-6">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-gray-500">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+              <a
+                href="https://bettergov.ph"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <img
+                  src="/icons/bettergov-footer.svg"
+                  alt="BetterGov.ph"
+                  className="h-8 w-auto object-contain"
+                />
+              </a>
               <span>&copy; {currentYear} BetterIndang.org</span>
               <span className="hidden sm:inline text-gray-700">·</span>
-              <span className="bg-gray-800 text-gray-400 px-2 py-0.5 rounded font-mono">
+              {/* <span className="bg-gray-800 text-gray-400 px-2 py-0.5 rounded font-mono">
                 <a
                   href="https://creativecommons.org/publicdomain/zero/1.0/"
                   target="_blank"
@@ -211,9 +227,10 @@ const Footer: React.FC = () => {
                   CC0 1.0 Universal License{' '}
                 </a>
               </span>
-              <span className="hidden sm:inline text-gray-700">·</span>
+              <span className="hidden sm:inline text-gray-700">·</span> */}
               <span className="text-gray-600">
-                Not an official government website.
+                Not an official government website. All content is public domain
+                unless otherwise specified.
               </span>
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
@@ -222,7 +239,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.3.1</span>
+              <span className="font-mono">v0.4.2</span>
             </div>
           </div>
         </div>
