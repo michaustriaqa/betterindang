@@ -48,12 +48,16 @@
     "categories": {
       "health-services": { "name": "Mga Serbisyong Pangkalusugan" },
       "education": { "name": "Edukasyon" },
-      "business": { "name": "Negosyo" },
-      "social-welfare": { "name": "Pangkalahatang Kapakanan" },
+      "business": { "name": "Negosyo at Kabuhayan" },
+      "social-welfare": { "name": "Kagalingang Panlipunan" },
+      "agriculture-fisheries": { "name": "Agrikultura at Pangisdaan" },
+      "infrastructure-public-works": {
+        "name": "Imprastraktura at Gawaing Bayan"
+      },
       "garbage-waste-disposal": { "name": "Basura at Pagtatapon" },
       "environment": { "name": "Kalikasan" },
-      "housing-land-use": { "name": "Pabahay" },
-      "disaster-preparedness": { "name": "Sakuna" }
+      "housing-land-use": { "name": "Pabahay at Paggamit ng Lupa" },
+      "disaster-preparedness": { "name": "Kahandaan sa Sakuna" }
     }
   },
   "governmentActivity": {
@@ -170,7 +174,26 @@
     "title": "Pinakabagong Balita at Mga Update"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0"
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.2.0",
+    "about": "Tungkol sa Portal",
+    "sitemap": "Sitemap",
+    "accessibility": "Aksesibilidad",
+    "discord": "Community Discord",
+    "contactUs": "Makipag-ugnayan",
+    "openData": "Open Data",
+    "foi": "Kalayaan sa Impormasyon (FOI)",
+    "facebook": "LGU Indang Facebook",
+    "sangguniangBayan": "Sangguniang Bayan",
+    "dilgDisclosure": "DILG Full Disclosure",
+    "dtiCmci": "DTI CMCI",
+    "blgf": "BLGF",
+    "costTitle": "Gastos sa mga Tao ng Indang",
+    "volunteer": "Magboluntaryo sa Amin",
+    "contribute": "Mag-ambag sa GitHub",
+    "notOfficial": "Hindi opisyal na website ng gobyerno.",
+    "builtByCommunity": "Gawa ng komunidad",
+    "quickLinks": "Mga Quick Link",
+    "resources": "Mga Mapagkukunan"
   },
   "navbar": {
     "government": "Pamahalaan",
@@ -180,8 +203,20 @@
     "home": "Tahanan",
     "statistics": "Estadistika",
     "legislative": "Lehislatura",
-    "transparency": "Transparency",
-    "contact": "Makipag-ugnayan"
+    "transparency": "Transparansya",
+    "contact": "Makipag-ugnayan",
+    "tourism": "Turismo",
+    "departments": "Mga Kagawaran at Opisyal",
+    "officials": "Direktoryo ng Lokal na Opisyal",
+    "fullDisclosure": "Patakaran sa Ganap na Pagbubunyag (FDP)",
+    "transparencyDocs": "Mga Dokumento ng Transparansya",
+    "reportsStats": "Mga Ulat at Estadistika",
+    "budget": "Taunang Badyet",
+    "foi": "Kalayaan sa Impormasyon (FOI)",
+    "profile": "Profile ng Munisipyo",
+    "dtiProfile": "DTI CMCI Profile",
+    "barangayData": "Datos ng Barangay",
+    "openData": "Open Data PH"
   },
   "joinUs": {
     "stripTitle": "🚀 Sumali sa #CivicTech Revolution",
