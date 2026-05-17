@@ -3,6 +3,7 @@ import { Building2, List, Table2, ExternalLink, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import dirData from '../../content/government/departments/executive.json';
+import { useTranslation } from '../hooks/useTranslation';
 
 const dir = dirData as typeof dirData;
 
@@ -11,9 +12,11 @@ type ViewMode = 'table' | 'list';
 function ViewToggle({
   mode,
   onChange,
+  isFil,
 }: {
   mode: ViewMode;
   onChange: (m: ViewMode) => void;
+  isFil: boolean;
 }) {
   return (
     <div className="flex items-center border border-gray-200 rounded-md overflow-hidden shrink-0">
@@ -27,7 +30,7 @@ function ViewToggle({
         }`}
       >
         <Table2 className="h-3.5 w-3.5" />
-        Table
+        {isFil ? 'Talahanayan' : 'Table'}
       </button>
       <button
         type="button"
@@ -39,7 +42,7 @@ function ViewToggle({
         }`}
       >
         <List className="h-3.5 w-3.5" />
-        List
+        {isFil ? 'Listahan' : 'List'}
       </button>
     </div>
   );
@@ -49,20 +52,25 @@ function SectionHeader({
   title,
   mode,
   onChange,
+  isFil,
 }: {
   title: string;
   mode: ViewMode;
   onChange: (m: ViewMode) => void;
+  isFil: boolean;
 }) {
   return (
     <div className="flex items-center justify-between mb-4">
       <h2 className="text-lg font-black text-gray-900">{title}</h2>
-      <ViewToggle mode={mode} onChange={onChange} />
+      <ViewToggle mode={mode} onChange={onChange} isFil={isFil} />
     </div>
   );
 }
 
 export default function ExecutiveDirectory() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
   const [officesView, setOfficesView] = useState<ViewMode>('table');
   const [agenciesView, setAgenciesView] = useState<ViewMode>('table');
   const [hotlinesView, setHotlinesView] = useState<ViewMode>('table');
@@ -70,11 +78,87 @@ export default function ExecutiveDirectory() {
 
   const h = dir.header;
 
+  const translateOffice = (name: string) => {
+    if (!isFil) return name;
+    const mapping: Record<string, string> = {
+      'Office of the Mayor': 'Tanggapan ng Alkalde',
+      'Sangguniang Bayan': 'Sangguniang Bayan',
+      'Office of the Municipal Administrator':
+        'Tanggapan ng Tagapamahala ng Munisipyo',
+      "Municipal Civil Registrar's Office (MCRO)":
+        'Tanggapan ng Rehistro Sibil ng Munisipyo (MCRO)',
+      "Municipal Assessor's Office":
+        'Tanggapan ng Tagatasa ng Munisipyo (Assessor)',
+      "Municipal Treasurer's Office":
+        'Tanggapan ng Ingat-yaman ng Munisipyo (Treasurer)',
+      'Municipal Budget Office': 'Tanggapan ng Badyet ng Munisipyo',
+      'Municipal Accounting Office':
+        'Tanggapan ng Pagtutuos ng Munisipyo (Accounting)',
+      'Municipal Planning & Development Office (MPDO)':
+        'Tanggapan ng Pagpaplano at Pagpapaunlad ng Munisipyo (MPDO)',
+      'Municipal Health Office (MHO)':
+        'Tanggapan ng Kalusugan ng Munisipyo (MHO)',
+      'Municipal Social Welfare and Development Office (MSWDO)':
+        'Tanggapan ng Kalingang Panlipunan at Pagpapaunlad (MSWDO)',
+      'Municipal Agriculture Office': 'Tanggapan ng Pagsasaka ng Munisipyo',
+      'Municipal Engineering Office': 'Tanggapan ng Inhenyeriya ng Munisipyo',
+      'Municipal Environment & Natural Resources Office (MENRO)':
+        'Tanggapan ng Kapaligiran at Likas na Yaman (MENRO)',
+      'Municipal Disaster Risk Reduction & Management Office (MDRRMO)':
+        'Tanggapan ng Bawas-Panganib sa Sakuna at Pamamahala (MDRRMO)',
+      'Tourism Office': 'Tanggapan ng Turismo',
+      'Philippine National Police (PNP) — Indang':
+        'Pambansang Pulisya ng Pilipinas (PNP) — Indang',
+      'Bureau of Fire Protection (BFP) — Indang':
+        'Kagawaran ng Pagtatanggol sa Sunog (BFP) — Indang',
+    };
+    return mapping[name] || name;
+  };
+
+  const translateAgency = (name: string) => {
+    if (!isFil) return name;
+    const mapping: Record<string, string> = {
+      'Bureau of Fire Protection (BFP)':
+        'Kagawaran ng Pagtatanggol sa Sunog (BFP)',
+      'Philippine National Police (PNP)':
+        'Pambansang Pulisya ng Pilipinas (PNP)',
+      'Commission on Elections (COMELEC)': 'Komisyon sa Halalan (COMELEC)',
+      'Department of Social Welfare & Development (DSWD)':
+        'Kagawaran ng Kagalingan at Pagpapaunlad Panlipunan (DSWD)',
+      'Department of Agriculture (DA)': 'Kagawaran ng Pagsasaka (DA)',
+      'Philippine Statistics Authority (PSA)':
+        'Pangasiwaan ng Estadistika ng Pilipinas (PSA)',
+    };
+    return mapping[name] || name;
+  };
+
+  const translateNgo = (name: string) => {
+    if (!isFil) return name;
+    const mapping: Record<string, string> = {
+      'Association of Barangay Captains (ABC)':
+        'Asosasyon ng mga Kapitan ng Barangay (ABC)',
+      'Sangguniang Kabataan (SK) Federation':
+        'Pederasyon ng Sangguniang Kabataan (SK)',
+    };
+    return mapping[name] || name;
+  };
+
+  const translateInCharge = (name: string) => {
+    if (!isFil) return name;
+    return name
+      .replace('Mayor', 'Alkalde')
+      .replace('Vice Mayor', 'Bise Alkalde');
+  };
+
   return (
     <>
       <SEO
-        title="Office Directory — Executive"
-        description={`Office directory for the ${h.municipality} local government, including department contacts and officials.`}
+        title={
+          isFil
+            ? 'Direktoryo ng Tanggapan — Ehekutibo'
+            : 'Office Directory — Executive'
+        }
+        description={`Office directory for the ${isFil ? 'Munisipalidad ng Indang' : h.municipality} local government, including department contacts and officials.`}
         keywords="Indang offices, departments, directory, contacts, local government"
       />
       <main className="flex-grow">
@@ -83,25 +167,25 @@ export default function ExecutiveDirectory() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <nav className="flex items-center gap-1.5 text-xs text-gray-500">
               <Link to="/" className="hover:text-primary-700 transition-colors">
-                Home
+                {isFil ? 'Tahanan' : 'Home'}
               </Link>
               <span>/</span>
               <Link
                 to="/government"
                 className="hover:text-primary-700 transition-colors"
               >
-                Government
+                {isFil ? 'Pamahalaan' : 'Government'}
               </Link>
               <span>/</span>
               <Link
                 to="/government/departments"
                 className="hover:text-primary-700 transition-colors"
               >
-                Departments
+                {isFil ? 'Mga Kagawaran' : 'Departments'}
               </Link>
               <span>/</span>
               <span className="text-gray-700 font-medium">
-                Office Directory
+                {isFil ? 'Direktoryo ng Tanggapan' : 'Office Directory'}
               </span>
             </nav>
           </div>
@@ -111,10 +195,14 @@ export default function ExecutiveDirectory() {
           {/* Page title + header info */}
           <div>
             <h1 className="text-2xl sm:text-3xl font-black text-gray-900 mb-2">
-              {h.municipality} — Office Directory
+              {isFil
+                ? 'Munisipalidad ng Indang — Direktoryo ng Tanggapan'
+                : `${h.municipality} — Office Directory`}
             </h1>
             <p className="text-sm text-gray-600">
-              <strong>{h.municipality}</strong>{' '}
+              <strong>
+                {isFil ? 'Munisipalidad ng Indang' : h.municipality}
+              </strong>{' '}
               {h.address && <span>· {h.address} </span>}
               {h.telephone && (
                 <span>
@@ -158,9 +246,14 @@ export default function ExecutiveDirectory() {
           {/* Municipal Hall Offices */}
           <section>
             <SectionHeader
-              title="Municipal Hall Offices"
+              title={
+                isFil
+                  ? 'Mga Tanggapan ng Pamahalaang Bayan'
+                  : 'Municipal Hall Offices'
+              }
               mode={officesView}
               onChange={setOfficesView}
+              isFil={isFil}
             />
             {officesView === 'table' ? (
               <div className="rounded-xl border border-gray-200 overflow-hidden">
@@ -168,13 +261,13 @@ export default function ExecutiveDirectory() {
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                        Office
+                        {isFil ? 'Tanggapan' : 'Office'}
                       </th>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600 w-44">
-                        Telephone
+                        {isFil ? 'Telepono' : 'Telephone'}
                       </th>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600 w-52">
-                        In-Charge
+                        {isFil ? 'Namumuno' : 'In-Charge'}
                       </th>
                     </tr>
                   </thead>
@@ -185,13 +278,13 @@ export default function ExecutiveDirectory() {
                         className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                       >
                         <td className="px-4 py-3 text-gray-800">
-                          {row.office}
+                          {translateOffice(row.office)}
                         </td>
                         <td className="px-4 py-3 text-gray-600 font-medium">
                           {row.telephone || '—'}
                         </td>
                         <td className="px-4 py-3 text-gray-700">
-                          {row.in_charge || '—'}
+                          {translateInCharge(row.in_charge) || '—'}
                         </td>
                       </tr>
                     ))}
@@ -206,13 +299,13 @@ export default function ExecutiveDirectory() {
                     className="bg-white rounded-lg border border-gray-200 px-4 py-3 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4"
                   >
                     <span className="text-sm font-semibold text-gray-800">
-                      {row.office}
+                      {translateOffice(row.office)}
                     </span>
                     <span className="text-sm text-gray-600">
                       {row.telephone || '—'}
                     </span>
                     <span className="text-sm text-gray-700">
-                      {row.in_charge || '—'}
+                      {translateInCharge(row.in_charge) || '—'}
                     </span>
                   </div>
                 ))}
@@ -223,9 +316,14 @@ export default function ExecutiveDirectory() {
           {/* National Government Agencies */}
           <section>
             <SectionHeader
-              title="National Government Agencies"
+              title={
+                isFil
+                  ? 'Mga Ahensya ng Pambansang Pamahalaan'
+                  : 'National Government Agencies'
+              }
               mode={agenciesView}
               onChange={setAgenciesView}
+              isFil={isFil}
             />
             {agenciesView === 'table' ? (
               <div className="rounded-xl border border-gray-200 overflow-hidden">
@@ -233,13 +331,13 @@ export default function ExecutiveDirectory() {
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                        Agency
+                        {isFil ? 'Ahensya' : 'Agency'}
                       </th>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600 w-44">
-                        Telephone
+                        {isFil ? 'Telepono' : 'Telephone'}
                       </th>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600 w-52">
-                        In-Charge
+                        {isFil ? 'Namumuno' : 'In-Charge'}
                       </th>
                     </tr>
                   </thead>
@@ -250,13 +348,13 @@ export default function ExecutiveDirectory() {
                         className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                       >
                         <td className="px-4 py-3 text-gray-800">
-                          {row.agency}
+                          {translateAgency(row.agency)}
                         </td>
                         <td className="px-4 py-3 text-gray-600 font-medium">
                           {row.telephone || '—'}
                         </td>
                         <td className="px-4 py-3 text-gray-700">
-                          {row.in_charge || '—'}
+                          {translateInCharge(row.in_charge) || '—'}
                         </td>
                       </tr>
                     ))}
@@ -271,13 +369,13 @@ export default function ExecutiveDirectory() {
                     className="bg-white rounded-lg border border-gray-200 px-4 py-3 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4"
                   >
                     <span className="text-sm font-semibold text-gray-800">
-                      {row.agency}
+                      {translateAgency(row.agency)}
                     </span>
                     <span className="text-sm text-gray-600">
                       {row.telephone || '—'}
                     </span>
                     <span className="text-sm text-gray-700">
-                      {row.in_charge || '—'}
+                      {translateInCharge(row.in_charge) || '—'}
                     </span>
                   </div>
                 ))}
@@ -288,9 +386,14 @@ export default function ExecutiveDirectory() {
           {/* Emergency Hotlines */}
           <section>
             <SectionHeader
-              title="Emergency Hotlines"
+              title={
+                isFil
+                  ? 'Mga Hotline sa Oras ng Pangangailangan (Emergency)'
+                  : 'Emergency Hotlines'
+              }
               mode={hotlinesView}
               onChange={setHotlinesView}
+              isFil={isFil}
             />
             {hotlinesView === 'table' ? (
               <div className="rounded-xl border border-gray-200 overflow-hidden">
@@ -298,10 +401,10 @@ export default function ExecutiveDirectory() {
                   <thead className="bg-gray-50 border-b border-gray-200">
                     <tr>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                        Office
+                        {isFil ? 'Tanggapan' : 'Office'}
                       </th>
                       <th className="text-left px-4 py-3 font-semibold text-gray-600 w-52">
-                        Number
+                        {isFil ? 'Numero' : 'Number'}
                       </th>
                     </tr>
                   </thead>
@@ -312,12 +415,12 @@ export default function ExecutiveDirectory() {
                         className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                       >
                         <td className="px-4 py-3 text-gray-800">
-                          {row.office}
+                          {translateOffice(row.office)}
                         </td>
                         <td className="px-4 py-3">
                           <a
                             href={`tel:${row.number.replace(/[^0-9+]/g, '')}`}
-                            className="text-primary-700 font-semibold hover:underline flex items-center gap-1"
+                            className="text-primary-700 font-semibold hover:underline flex items-center gap-1 cursor-pointer"
                           >
                             <Phone className="h-3.5 w-3.5 shrink-0" />
                             {row.number}
@@ -336,11 +439,11 @@ export default function ExecutiveDirectory() {
                     className="bg-white rounded-lg border border-gray-200 px-4 py-3 flex items-center justify-between gap-4"
                   >
                     <span className="text-sm font-semibold text-gray-800">
-                      {row.office}
+                      {translateOffice(row.office)}
                     </span>
                     <a
                       href={`tel:${row.number.replace(/[^0-9+]/g, '')}`}
-                      className="text-sm text-primary-700 font-bold hover:underline flex items-center gap-1 shrink-0"
+                      className="text-sm text-primary-700 font-bold hover:underline flex items-center gap-1 shrink-0 cursor-pointer"
                     >
                       <Phone className="h-3.5 w-3.5 shrink-0" />
                       {row.number}
@@ -355,9 +458,14 @@ export default function ExecutiveDirectory() {
           {dir.ngos && dir.ngos.length > 0 && (
             <section>
               <SectionHeader
-                title="Non-Government Organizations"
+                title={
+                  isFil
+                    ? 'Mga Samahang Di-Pampamahalaan (NGO)'
+                    : 'Non-Government Organizations'
+                }
                 mode={ngosView}
                 onChange={setNgosView}
+                isFil={isFil}
               />
               {ngosView === 'table' ? (
                 <div className="rounded-xl border border-gray-200 overflow-hidden">
@@ -365,13 +473,13 @@ export default function ExecutiveDirectory() {
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                          Organization
+                          {isFil ? 'Organisasyon' : 'Organization'}
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600 w-44">
-                          Contact
+                          {isFil ? 'Kontak' : 'Contact'}
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600 w-52">
-                          Representative
+                          {isFil ? 'Kinatawan' : 'Representative'}
                         </th>
                       </tr>
                     </thead>
@@ -382,7 +490,7 @@ export default function ExecutiveDirectory() {
                           className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                         >
                           <td className="px-4 py-3 text-gray-800">
-                            {row.organization}
+                            {translateNgo(row.organization)}
                           </td>
                           <td className="px-4 py-3 text-gray-600 font-medium">
                             {row.contact || '—'}
@@ -403,7 +511,7 @@ export default function ExecutiveDirectory() {
                       className="bg-white rounded-lg border border-gray-200 px-4 py-3 grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4"
                     >
                       <span className="text-sm font-semibold text-gray-800">
-                        {row.organization}
+                        {translateNgo(row.organization)}
                       </span>
                       <span className="text-sm text-gray-600">
                         {row.contact || '—'}
@@ -421,13 +529,14 @@ export default function ExecutiveDirectory() {
           {/* Footer note */}
           <div className="text-xs text-gray-400 border-t border-gray-100 pt-4">
             <Building2 className="inline h-3.5 w-3.5 mr-1" />
-            Data sourced from the {h.municipality}. For corrections or
-            additions, file a request at{' '}
+            {isFil
+              ? `Datos mula sa Munisipalidad ng Indang. Para sa mga pagwawasto o karagdagan, maghain ng kahilingan sa `
+              : `Data sourced from the ${h.municipality}. For corrections or additions, file a request at `}
             <a
               href="https://www.foi.gov.ph"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-primary-600 hover:underline"
+              className="text-primary-600 hover:underline cursor-pointer"
             >
               foi.gov.ph
             </a>

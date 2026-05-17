@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import { useTranslation } from '../hooks/useTranslation';
 
 const CATEGORIES = [
   {
@@ -101,11 +102,69 @@ const EXTERNAL = [
 ];
 
 export default function Transparency() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
+  const translatedCategories = CATEGORIES.map(c => {
+    let title = c.title;
+    let desc = c.desc;
+    if (isFil) {
+      if (c.title === 'Budget & Finance') {
+        title = 'Badyet at Pananalapi';
+        desc =
+          'Taunang badyet, ulat sa pananalapi, at ulat sa mga gastusin ng Munisipalidad ng Indang.';
+      } else if (c.title === 'Annual Reports') {
+        title = 'Taunang Ulat';
+        desc =
+          'Mga ulat sa natapos na gawain, ulat sa estado ng munisipalidad, at mga pagtatasa sa pagganap.';
+      } else if (c.title === 'Procurement & Bids') {
+        title = 'Pagkuha at Pag-bid';
+        desc =
+          'Mga abiso sa pagkuha, resulta ng bid, at mga anunsyo na may kaugnayan sa PhilGEPS.';
+      } else if (c.title === 'FOI Releases') {
+        title = 'FOI Releases';
+        desc =
+          'Mga dokumentong inilabas sa ilalim ng programang Freedom of Information para sa pampublikong pananagutan.';
+      } else if (c.title === 'DBM / BLGF Reports') {
+        title = 'Mga Ulat ng DBM / BLGF';
+        desc =
+          'Mga isinumiteng ulat sa Department of Budget and Management at Bureau of Local Government Finance.';
+      } else if (c.title === 'DILG Compliance') {
+        title = 'Pagsunod sa DILG';
+        desc =
+          'Mga pagsusumite sa Full Disclosure Policy (FDP) at mga dokumento ng pagsunod sa DILG.';
+      }
+    }
+    return { ...c, title, desc };
+  });
+
+  const translatedExternal = EXTERNAL.map(r => {
+    let desc = r.desc;
+    if (isFil) {
+      if (r.desc === 'File an FOI request')
+        desc = 'Maghain ng kahilingan sa FOI';
+      else if (r.desc === 'Government procurement portal')
+        desc = 'Portal ng pagkuha ng pamahalaan';
+      else if (r.desc === 'Government datasets')
+        desc = 'Mga pampublikong dataset ng pamahalaan';
+      else if (r.desc === 'Bureau of Local Government Finance')
+        desc = 'Tanggapan ng Pananalapi ng Lokal na Pamahalaan';
+      else if (r.desc === 'Commission on Audit') desc = 'Komisyon sa Awdit';
+      else if (r.desc === 'Department of Budget and Management')
+        desc = 'Kagawaran ng Badyet at Pamamahala';
+    }
+    return { ...r, desc };
+  });
+
   return (
     <>
       <SEO
-        title="Transparency"
-        description="Transparency documents, budget reports, and FOI releases for the Municipality of Indang, Cavite."
+        title={isFil ? 'Katapatan at Transparency' : 'Transparency'}
+        description={
+          isFil
+            ? 'Mga transparency document, ulat sa badyet, at FOI release para sa Munisipalidad ng Indang, Cavite.'
+            : 'Transparency documents, budget reports, and FOI releases for the Municipality of Indang, Cavite.'
+        }
         keywords="Indang transparency, budget, FOI, public documents, accountability, Cavite"
       />
       <main className="flex-grow">
@@ -123,15 +182,16 @@ export default function Transparency() {
             <div className="flex items-center gap-3 mb-2">
               <Eye className="h-7 w-7 text-blue-200" />
               <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
-                Open Government
+                {isFil ? 'Bukas na Pamahalaan' : 'Open Government'}
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black mb-3">
-              Transparency
+              {isFil ? 'Katapatan at Transparency' : 'Transparency'}
             </h1>
             <p className="text-blue-100 text-lg max-w-xl">
-              Public documents, budget disclosures, and accountability reports
-              for the Municipality of Indang, Cavite.
+              {isFil
+                ? 'Mga pampublikong dokumento, pagsisiwalat ng badyet, at mga ulat ng pananagutan para sa Munisipalidad ng Indang, Cavite.'
+                : 'Public documents, budget disclosures, and accountability reports for the Municipality of Indang, Cavite.'}
             </p>
           </div>
         </div>
@@ -142,13 +202,14 @@ export default function Transparency() {
             <ShieldCheck className="h-8 w-8 text-primary-600 shrink-0" />
             <div>
               <h2 className="font-black text-gray-900 text-base">
-                Full Disclosure Policy Commitment
+                {isFil
+                  ? 'Komitment sa Patakaran ng Buong Pagsisiwalat (Full Disclosure)'
+                  : 'Full Disclosure Policy Commitment'}
               </h2>
               <p className="text-sm text-gray-600 mt-0.5">
-                The Municipality of Indang is committed to the DILG Full
-                Disclosure Policy, making all financial and performance data
-                available to the public in accordance with Republic Act 7160 and
-                Executive Order 2.
+                {isFil
+                  ? 'Ang Munisipalidad ng Indang ay nakatuon sa DILG Full Disclosure Policy, na ginagawang magagamit ng publiko ang lahat ng datos sa pananalapi at pagganap alinsunod sa Republic Act 7160 at Executive Order 2.'
+                  : 'The Municipality of Indang is committed to the DILG Full Disclosure Policy, making all financial and performance data available to the public in accordance with Republic Act 7160 and Executive Order 2.'}
               </p>
             </div>
           </div>
@@ -158,10 +219,12 @@ export default function Transparency() {
         <section className="bg-white py-12 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              Transparency Documents
+              {isFil
+                ? 'Mga Dokumento ng Transparency'
+                : 'Transparency Documents'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-              {CATEGORIES.map(
+              {translatedCategories.map(
                 ({ title, icon: Icon, color, bg, border, desc, href }) => (
                   <Link
                     key={title}
@@ -179,8 +242,9 @@ export default function Transparency() {
                     <p className="text-sm text-gray-600 leading-relaxed mb-3">
                       {desc}
                     </p>
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary-700 group-hover:gap-2 transition-all">
-                      View Documents <ChevronRight className="h-3.5 w-3.5" />
+                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary-700 group-hover:gap-2 transition-all cursor-pointer">
+                      {isFil ? 'Tingnan ang mga Dokumento' : 'View Documents'}{' '}
+                      <ChevronRight className="h-3.5 w-3.5" />
                     </span>
                   </Link>
                 )
@@ -193,10 +257,12 @@ export default function Transparency() {
         <section className="bg-gray-50 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              External Accountability Resources
+              {isFil
+                ? 'Mga Panlabas na Mapagkukunan ng Pananagutan'
+                : 'External Accountability Resources'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-              {EXTERNAL.map(r => (
+              {translatedExternal.map(r => (
                 <a
                   key={r.label}
                   href={r.href}

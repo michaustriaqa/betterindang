@@ -30,29 +30,58 @@ export interface MarkdownContent {
  * @param documentSlug - The document slug (filename without .md extension)
  * @param categorySlug - The category slug (parent directory)
  * @param categoryType - Whether this is a 'service' or 'government' document
+ * @param lang - The current active language slug ('en' or 'fil')
  */
 export async function loadMarkdownContent(
   documentSlug: string,
   categorySlug: string,
-  categoryType: 'service' | 'government'
+  categoryType: 'service' | 'government',
+  lang?: string
 ): Promise<MarkdownContent> {
   try {
     const dir = categoryType === 'government' ? 'government' : 'services';
 
-    // Try to load companion JSON for template data
+    // Try to load companion JSON for template data (Filipino first if applicable)
     let data: Record<string, unknown> = {};
     try {
-      const jsonModule = await import(
-        `../../content/${dir}/${categorySlug}/${documentSlug}.json`
-      );
+      let jsonModule;
+      if (lang === 'fil') {
+        try {
+          jsonModule = await import(
+            `../../content/${dir}/${categorySlug}/${documentSlug}_fil.json`
+          );
+        } catch {
+          jsonModule = await import(
+            `../../content/${dir}/${categorySlug}/${documentSlug}.json`
+          );
+        }
+      } else {
+        jsonModule = await import(
+          `../../content/${dir}/${categorySlug}/${documentSlug}.json`
+        );
+      }
       data = jsonModule.default;
     } catch {
       // No companion JSON — that's fine
     }
 
-    const module = await import(
-      `../../content/${dir}/${categorySlug}/${documentSlug}.md?raw`
-    );
+    let module;
+    if (lang === 'fil') {
+      try {
+        module = await import(
+          `../../content/${dir}/${categorySlug}/${documentSlug}_fil.md?raw`
+        );
+      } catch {
+        // Fallback to English
+        module = await import(
+          `../../content/${dir}/${categorySlug}/${documentSlug}.md?raw`
+        );
+      }
+    } else {
+      module = await import(
+        `../../content/${dir}/${categorySlug}/${documentSlug}.md?raw`
+      );
+    }
     const content = interpolate(module.default, data);
 
     const titleMatch = content.match(/^#\s+(.+)$/m);
@@ -66,7 +95,7 @@ export async function loadMarkdownContent(
     return { content, title, description, data };
   } catch (error) {
     console.error(
-      `Failed to load markdown content for document: ${documentSlug}`,
+      `Failed to load markdown content for document: ${documentSlug} (${lang || 'en'})`,
       error
     );
     throw new Error(`Document not found: ${documentSlug}`);
