@@ -2,6 +2,7 @@ import Section from '../components/ui/Section';
 import { useParams, Link } from 'react-router-dom';
 import { Heading } from '../components/ui/Heading';
 import { Text } from '../components/ui/Text';
+import { useTranslation } from '../hooks/useTranslation';
 import {
   governmentCategories,
   getCategorySubcategories,
@@ -17,6 +18,8 @@ import { Banner } from '@bettergov/kapwa/banner';
 import { useState, useEffect } from 'react';
 
 const Government: React.FC = () => {
+  const { t, currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
   const { category } = useParams();
   const [categoryIndex, setCategoryIndex] = useState<CategoryIndex>({
     layout: 'list',
@@ -30,9 +33,11 @@ const Government: React.FC = () => {
   };
 
   const categoryData = getCategory();
-  const Icon = LucideIcons[
-    categoryData?.icon as keyof typeof LucideIcons
-  ] as React.ComponentType<{ className?: string }>;
+  const Icon = categoryData
+    ? (LucideIcons[
+        categoryData.icon as keyof typeof LucideIcons
+      ] as React.ComponentType<{ className?: string }>)
+    : null;
 
   useEffect(() => {
     if (category && categoryData) {
@@ -48,13 +53,25 @@ const Government: React.FC = () => {
     return (
       <>
         <SEO
-          title="Services"
-          description={`All services provided by the ${import.meta.env.VITE_GOVERNMENT_NAME} government. Find what you need for citizenship, business, education, and more.`}
+          title={isFil ? 'Pamahalaan' : 'Government'}
+          description={
+            isFil
+              ? `Lahat ng mga serbisyong inihahatid ng pamahalaan ng ${import.meta.env.VITE_GOVERNMENT_NAME}. Hanapin ang kailangan mo para sa pagkamamamayan, negosyo, edukasyon, at iba pa.`
+              : `All services provided by the ${import.meta.env.VITE_GOVERNMENT_NAME} government. Find what you need for citizenship, business, education, and more.`
+          }
           keywords="government services, public services, local government, civic services"
         />
         <GovernmentActivitySection
-          title={`All local government services`}
-          description={`All services provided by the ${import.meta.env.VITE_GOVERNMENT_NAME} government. Find what you need for citizenship, business, education, and more.`}
+          title={
+            isFil
+              ? 'Lahat ng Serbisyong Pambayan'
+              : `All local government services`
+          }
+          description={
+            isFil
+              ? `Lahat ng mga serbisyong inihahatid ng pamahalaan ng ${import.meta.env.VITE_GOVERNMENT_NAME}. Hanapin ang kailangan mo para sa pagkamamamayan, negosyo, edukasyon, at iba pa.`
+              : `All services provided by the ${import.meta.env.VITE_GOVERNMENT_NAME} government. Find what you need for citizenship, business, education, and more.`
+          }
         />
       </>
     );
@@ -65,39 +82,64 @@ const Government: React.FC = () => {
         <Breadcrumbs className="mb-8" />
         <Banner
           type="error"
-          title="Category not found"
-          description="The category you are looking for does not exist."
+          title={isFil ? 'Hindi nahanap ang kategorya' : 'Category not found'}
+          description={
+            isFil
+              ? 'Ang kategoryang hinahanap mo ay hindi umiiral.'
+              : 'The category you are looking for does not exist.'
+          }
           icon
         />
       </Section>
     );
   }
 
+  const translatedCategoryName = t(
+    `government.categories.${categoryData.slug}.name`,
+    categoryData.category
+  );
+  const translatedCategoryDesc = t(
+    `government.categories.${categoryData.slug}.description`,
+    categoryData.description
+  );
+
   return (
     <>
       <SEO
-        title={categoryData.category || category}
-        description={categoryData.description}
+        title={translatedCategoryName}
+        description={translatedCategoryDesc}
         keywords={`${categoryData.category}, government services, public services, local government`}
       />
       <Section className="p-3 mb-12">
         <Breadcrumbs className="mb-8" />
-        <Icon className="h-8 w-8 mb-4 text-primary-600 rounded-md" />
-        <Heading>{categoryData.category || category}</Heading>
-        <Text className="text-gray-600 mb-6">{categoryData.description}</Text>
+        {Icon && <Icon className="h-8 w-8 mb-4 text-primary-600 rounded-md" />}
+        <Heading>{translatedCategoryName}</Heading>
+        <Text className="text-gray-600 mb-6">{translatedCategoryDesc}</Text>
 
         {loading ? (
           <div className="flex justify-center items-center p-8">
-            <Text>Loading services...</Text>
+            <Text>
+              {isFil
+                ? 'Kinukuha ang mga serbisyo ng pamahalaan...'
+                : 'Loading services...'}
+            </Text>
           </div>
         ) : (
           <>
             {categoryIndex.title && (
-              <Heading level={3}>{categoryIndex.title}</Heading>
+              <Heading level={3}>
+                {t(
+                  `government.subcategories.${category}.name`,
+                  categoryIndex.title
+                )}
+              </Heading>
             )}
             {categoryIndex.description && (
               <Text className="text-gray-600 mb-4">
-                {categoryIndex.description}
+                {t(
+                  `government.subcategories.${category}.description`,
+                  categoryIndex.description
+                )}
               </Text>
             )}
             {categoryIndex.layout === 'grid' ? (
@@ -109,19 +151,25 @@ const Government: React.FC = () => {
                   >
                     <Card
                       hoverable
-                      className="h-full border-t-4 border-primary-500"
+                      className="h-full border-t-4 border-primary-500 animate-fade-in"
                     >
                       <CardContent>
                         <h4 className="text-lg font-medium text-gray-900">
-                          {subcategory.name}
+                          {t(
+                            `government.subcategories.${subcategory.slug}.name`,
+                            subcategory.name
+                          )}
                         </h4>
                         {subcategory.description && (
                           <p className="mt-2 text-sm text-gray-600">
-                            {subcategory.description}
+                            {t(
+                              `government.subcategories.${subcategory.slug}.description`,
+                              subcategory.description
+                            )}
                           </p>
                         )}
                         <span className="inline-block px-2 py-1 mt-2 text-xs font-medium rounded-sm bg-gray-100 text-gray-800">
-                          {categoryData.category || category}
+                          {translatedCategoryName}
                         </span>
                       </CardContent>
                     </Card>
@@ -138,15 +186,21 @@ const Government: React.FC = () => {
                     <Card hoverable className="mb-4">
                       <CardContent>
                         <h4 className="text-lg font-medium text-gray-900">
-                          {subcategory.name}
+                          {t(
+                            `government.subcategories.${subcategory.slug}.name`,
+                            subcategory.name
+                          )}
                         </h4>
                         {subcategory.description && (
                           <p className="mt-2 text-sm text-gray-600">
-                            {subcategory.description}
+                            {t(
+                              `government.subcategories.${subcategory.slug}.description`,
+                              subcategory.description
+                            )}
                           </p>
                         )}
                         <span className="inline-block px-2 py-1 mt-2 text-xs font-medium rounded-sm bg-gray-100 text-gray-800">
-                          {categoryData.category || category}
+                          {translatedCategoryName}
                         </span>
                       </CardContent>
                     </Card>
