@@ -880,9 +880,9 @@ export default function YakapInteractive() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
 
-  const [activeTab, setActiveTab] = useState<'checkups' | 'labs' | 'gamot'>(
-    'checkups'
-  );
+  const [activeTab, setActiveTab] = useState<
+    'checkups' | 'labs' | 'gamot' | 'cancer'
+  >('checkups');
   const [medSearch, setMedSearch] = useState('');
   const [selectedMedCategory, setSelectedMedCategory] = useState('All');
   const [enrollmentPath, setEnrollmentPath] = useState<'online' | 'inperson'>(
@@ -1138,8 +1138,8 @@ export default function YakapInteractive() {
               <p className="text-base sm:text-lg text-blue-100 mb-8 leading-relaxed font-medium">
                 {isFil ? (
                   <>
-                    Yaman ng Kalusugan Program — Isang upgraded na programang
-                    pangkalusugan na nagbibigay ng{' '}
+                    Yaman ng Kalusugan Program (YAKAP) — Isang upgraded na
+                    programang pangkalusugan na nagbibigay ng{' '}
                     <strong className="text-emerald-300 font-extrabold underline decoration-emerald-400 underline-offset-4">
                       libreng check-up, 13 laboratory tests, at hanggang ₱20,000
                       halaga ng libreng gamot kada taon
@@ -1148,8 +1148,8 @@ export default function YakapInteractive() {
                   </>
                 ) : (
                   <>
-                    Wealth of Health Program — An upgraded healthcare initiative
-                    providing{' '}
+                    Yaman ng Kalusugan Program (YAKAP) — An upgraded healthcare
+                    initiative providing{' '}
                     <strong className="text-emerald-300 font-extrabold underline decoration-emerald-400 underline-offset-4">
                       free medical check-ups, 13 diagnostic laboratory tests,
                       and up to ₱20,000 worth of free medicines per year
@@ -1276,9 +1276,7 @@ export default function YakapInteractive() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {isFil
-                      ? '🧪 13 Laboratory Tests'
-                      : '🧪 13 Laboratory Tests'}
+                    {isFil ? '🧪 13 Laboratory Tests' : '🧪 13 Diagnostic Labs'}
                   </button>
                   <button
                     onClick={() => setActiveTab('gamot')}
@@ -1291,6 +1289,16 @@ export default function YakapInteractive() {
                     {isFil
                       ? '💊 ₱20k Gamot Package'
                       : '💊 ₱20k Medicine Package'}
+                  </button>
+                  <button
+                    onClick={() => setActiveTab('cancer')}
+                    className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
+                      activeTab === 'cancer'
+                        ? 'bg-blue-600 text-white shadow-md shadow-blue-600/10'
+                        : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
+                  >
+                    {isFil ? '🎗️ Cancer Screening' : '🎗️ Cancer Screening'}
                   </button>
                 </div>
 
@@ -1507,6 +1515,188 @@ export default function YakapInteractive() {
                             </p>
                           </div>
                         </div>
+                      </div>
+                    </div>
+                  )}
+
+                  {activeTab === 'cancer' && (
+                    <div className="space-y-4 animate-fade-in">
+                      <div className="p-4 rounded-2xl bg-rose-50/50 dark:bg-rose-900/10 border border-rose-100 dark:border-rose-900/30 text-rose-900 dark:text-rose-200">
+                        <div className="flex flex-wrap items-center gap-2 mb-2">
+                          <span className="inline-flex px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-700 dark:bg-rose-900/50 dark:text-rose-300 text-[10px] font-extrabold uppercase">
+                            {isFil
+                              ? 'Bagong Benepisyo (Circular 2025-0014)'
+                              : 'New Benefits (Circular 2025-0014)'}
+                          </span>
+                          <span className="inline-flex px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 dark:bg-emerald-900/50 dark:text-emerald-300 text-[10px] font-extrabold uppercase animate-pulse">
+                            {isFil ? 'Walang Bayad' : 'Zero Copay'}
+                          </span>
+                        </div>
+                        <h4 className="font-extrabold text-base mb-2">
+                          {isFil
+                            ? '6 Libreng Cancer Screening Tests (Annex B)'
+                            : '6 Free Cancer Screening Tests (Annex B)'}
+                        </h4>
+                        <p className="text-sm leading-relaxed">
+                          {isFil
+                            ? 'Bilang karagdagan sa 13 laboratory tests, maaari ninyong makuha ang mga sumusunod na cancer screening procedures nang libre sa mga accredited diagnostic facilities o hospital partners sa pamamagitan ng referral ng inyong YAKAP doctor sa Indang RHU.'
+                            : 'In addition to the 13 standard laboratory tests, you can avail of the following highly critical cancer screening procedures completely free of charge at accredited diagnostic facilities or hospital partners upon official referral from your YAKAP doctor at the Indang RHU.'}
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil
+                                  ? 'Mammogram (Mammography)'
+                                  : 'Mammogram (Mammography)'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Pagsusuri para sa Breast Cancer'
+                                  : 'Breast Cancer Screening'}
+                              </p>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                                {isFil
+                                  ? 'Inirerekomenda para sa mga kababaihang edad 50-69 o may mataas na risko (pamilyang may kasaysayan ng breast cancer) upang matukoy ang mga bukol bago pa man ito maramdaman.'
+                                  : 'Recommended for women aged 50-69 or those with elevated risk factors (family history of breast cancer) to detect lumps before they can be felt.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil
+                                  ? 'Breast Ultrasound'
+                                  : 'Breast Ultrasound'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Pagsusuri sa mga Bukol sa Suso'
+                                  : 'Targeted Breast Imaging'}
+                              </p>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                                {isFil
+                                  ? 'Ultrasound scan upang masuri ang nakapang bukol, matukoy kung ito ay likido (cyst) o solidong tissue, at sumuporta sa mga mammogram findings.'
+                                  : 'Ultrasound scan to evaluate felt breast lumps, determine if they are fluid-filled cysts or solid masses, and follow up on mammogram findings.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil
+                                  ? 'Low-dose Chest CT Scan'
+                                  : 'Low-dose Chest CT Scan'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Maagang Screening para sa Lung Cancer'
+                                  : 'Early Lung Cancer Screening'}
+                              </p>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                                {isFil
+                                  ? 'Detalyadong scan ng baga na may mababang dose ng radiation. Lubos na inirerekomenda para sa mga malakas manigarilyo o may mataas na risko ng lung cancer.'
+                                  : 'High-resolution lung scan using low-dose radiation. Strongly recommended for long-term heavy smokers or individuals at high risk for lung cancer.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil
+                                  ? 'Alpha Fetoprotein (AFP)'
+                                  : 'Alpha Fetoprotein (AFP)'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Tumor Marker para sa Kanser sa Atay'
+                                  : 'Liver Tumor Blood Marker'}
+                              </p>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                                {isFil
+                                  ? 'Pagsusuri sa dugo upang masukat ang antas ng AFP. Ginagamit bilang screening marker upang matukoy ang mga posibleng maagang yugto ng kanser sa atay o hepatitis.'
+                                  : 'Blood test that measures AFP levels. Used as an early screening marker to monitor high-risk patients for liver cancer or hepatitis.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil
+                                  ? 'Liver Ultrasound'
+                                  : 'Liver Ultrasound'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Pag-scan sa Kalusugan ng Atay'
+                                  : 'Upper Abdominal Liver Scan'}
+                              </p>
+                              <p className="text-[11px] text-gray-650 dark:text-gray-355 leading-relaxed">
+                                {isFil
+                                  ? 'Ultrasound imaging ng atay upang makita ang mga bukol (tumors), cirrhosis, o fatty liver, lalo na para sa mga may hepatitis B/C o chronic liver disease.'
+                                  : 'Ultrasound imaging of the liver to detect lesions, tumors, cirrhosis, or fatty liver, particularly for chronic hepatitis B/C patients.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+
+                        <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
+                          <div className="flex items-start gap-3">
+                            <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
+                              🎗️
+                            </span>
+                            <div>
+                              <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
+                                {isFil ? 'Colonoscopy' : 'Colonoscopy'}
+                              </h5>
+                              <p className="text-xs font-semibold text-rose-600 dark:text-rose-400 mb-1">
+                                {isFil
+                                  ? 'Screening para sa Colorectal Cancer'
+                                  : 'Colorectal Cancer Screening'}
+                              </p>
+                              <p className="text-[11px] text-gray-600 dark:text-gray-300 leading-relaxed">
+                                {isFil
+                                  ? 'Pagsusuri sa malaking bituka gamit ang camera upang makita ang mga polyps o maagang palatandaan ng colon cancer. Inirerekomenda para sa mga edad 50 pataas.'
+                                  : 'Endoscopic examination of the large intestine to locate polyps, take tissue samples, and prevent colorectal cancer. Recommended for ages 50+.'}
+                              </p>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+
+                      <div className="p-4 rounded-2xl bg-amber-50/40 dark:bg-amber-900/10 border border-amber-200/50 dark:border-amber-950/30 text-amber-900 dark:text-amber-200 mt-2 text-xs leading-relaxed font-semibold">
+                        {isFil
+                          ? 'Paalala: Upang ma-avail ang mga cancer screening tests na ito ng LIBRE (Zero Copay), kinakailangan ang klinikal na rekomendasyon at opisyal na referral letter mula sa inyong doktor sa Indang Rural Health Unit (RHU).'
+                          : 'Please Note: To avail of these specialized cancer screening tests completely free of charge (Zero Copay), a clinical indication and an official referral letter from your doctor at the Indang Rural Health Unit (RHU) are strictly required.'}
                       </div>
                     </div>
                   )}
@@ -2225,19 +2415,23 @@ export default function YakapInteractive() {
                         : 'PhilHealth 24/7 Action Center'}
                     </h4>
 
-                    <div className="space-y-2.5 text-xs">
+                    <div className="space-y-3 text-xs">
+                      {/* Hotline */}
                       <div className="flex items-center justify-between text-gray-600 dark:text-gray-300 group">
                         <div className="flex items-center gap-2">
                           <Phone className="h-4 w-4 text-gray-400 shrink-0" />
-                          <a
-                            href="tel:0286622588"
-                            className="hover:underline font-medium hover:text-blue-600"
-                          >
-                            (02) 8662-2588
-                          </a>
+                          <span>
+                            {isFil ? 'Hotline: ' : 'Hotline: '}
+                            <a
+                              href="tel:0286622588"
+                              className="hover:underline font-bold text-blue-600 dark:text-blue-400"
+                            >
+                              (02) 866-225-88
+                            </a>
+                          </span>
                         </div>
                         <button
-                          onClick={() => handleCopy('(02) 8662-2588', 'telp')}
+                          onClick={() => handleCopy('(02) 866-225-88', 'telp')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
                           {copiedText === 'telp' ? (
@@ -2248,24 +2442,109 @@ export default function YakapInteractive() {
                         </button>
                       </div>
 
-                      <div className="flex items-center justify-between text-gray-600 dark:text-gray-300 group">
-                        <div className="flex items-center gap-2">
-                          <FileText className="h-4 w-4 text-gray-400 shrink-0" />
-                          <span>
-                            SMS Callback:{' '}
-                            <a
-                              href="sms:09988572957"
-                              className="hover:underline font-medium hover:text-blue-600"
-                            >
-                              0998-857-2957
-                            </a>
-                          </span>
+                      {/* Smart SMS */}
+                      <div className="flex items-start justify-between text-gray-600 dark:text-gray-300 group">
+                        <div className="flex items-start gap-2">
+                          <Smartphone className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-bold text-[10px] text-emerald-600 dark:text-emerald-450 uppercase tracking-wide">
+                              Smart/TNT SMS Callback:
+                            </p>
+                            <div className="flex flex-col gap-0.5 mt-0.5 font-medium">
+                              <a
+                                href="sms:09988572957"
+                                className="hover:underline hover:text-blue-600"
+                              >
+                                0998-857-2957
+                              </a>
+                              <a
+                                href="sms:09688654670"
+                                className="hover:underline hover:text-blue-600"
+                              >
+                                0968-865-4670
+                              </a>
+                            </div>
+                          </div>
                         </div>
                         <button
-                          onClick={() => handleCopy('0998-857-2957', 'smsp')}
+                          onClick={() =>
+                            handleCopy(
+                              '0998-857-2957 / 0968-865-4670',
+                              'smssmart'
+                            )
+                          }
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
-                          {copiedText === 'smsp' ? (
+                          {copiedText === 'smssmart' ? (
+                            <Check className="h-3 w-3 text-emerald-500" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Globe SMS */}
+                      <div className="flex items-start justify-between text-gray-600 dark:text-gray-300 group">
+                        <div className="flex items-start gap-2">
+                          <Smartphone className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
+                          <div>
+                            <p className="font-bold text-[10px] text-emerald-600 dark:text-emerald-450 uppercase tracking-wide">
+                              Globe/TM SMS Callback:
+                            </p>
+                            <div className="flex flex-col gap-0.5 mt-0.5 font-medium">
+                              <a
+                                href="sms:09171275987"
+                                className="hover:underline hover:text-blue-600"
+                              >
+                                0917-127-5987
+                              </a>
+                              <a
+                                href="sms:09171109812"
+                                className="hover:underline hover:text-blue-600"
+                              >
+                                0917-110-9812
+                              </a>
+                            </div>
+                          </div>
+                        </div>
+                        <button
+                          onClick={() =>
+                            handleCopy(
+                              '0917-127-5987 / 0917-110-9812',
+                              'smsglobe'
+                            )
+                          }
+                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
+                        >
+                          {copiedText === 'smsglobe' ? (
+                            <Check className="h-3 w-3 text-emerald-500" />
+                          ) : (
+                            <Copy className="h-3 w-3" />
+                          )}
+                        </button>
+                      </div>
+
+                      {/* Email */}
+                      <div className="flex items-center justify-between text-gray-600 dark:text-gray-300 group">
+                        <div className="flex items-center gap-2">
+                          <Mail className="h-4 w-4 text-gray-400 shrink-0" />
+                          <a
+                            href="mailto:actioncenter@philhealth.gov.ph"
+                            className="hover:underline font-medium hover:text-blue-600"
+                          >
+                            actioncenter@philhealth.gov.ph
+                          </a>
+                        </div>
+                        <button
+                          onClick={() =>
+                            handleCopy(
+                              'actioncenter@philhealth.gov.ph',
+                              'mailp'
+                            )
+                          }
+                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
+                        >
+                          {copiedText === 'mailp' ? (
                             <Check className="h-3 w-3 text-emerald-500" />
                           ) : (
                             <Copy className="h-3 w-3" />

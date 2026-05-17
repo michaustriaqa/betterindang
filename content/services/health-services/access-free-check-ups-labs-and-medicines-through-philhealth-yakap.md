@@ -114,6 +114,50 @@ Review the clinical details, lay descriptions, and crucial preparatory guideline
 
 ---
 
+## 3.1. Upgraded Cancer Screening Benefits (Annex B - PhilHealth Circular No. 2025-0014)
+
+Under **PhilHealth Circular No. 2025-0014 (Annex B)**, the YAKAP program has been expanded to cover **six (6) major preventive cancer screening tests completely free of charge (Zero Out-of-Pocket / Zero Copay)**.
+
+To avail of these specialized diagnostic screenings, patients must obtain an official clinical recommendation and referral letter from their registered primary care physician at the Indang Rural Health Unit (RHU) to an accredited diagnostic facility or hospital partner.
+
+### 1. Mammogram (Mammography)
+
+- **Layman Purpose (EN/FIL)**: X-ray of the breasts to screen for breast cancer. / _Pagsusuri ng dibdib sa pamamagitan ng X-ray para sa breast cancer._
+- **Clinical Description**: Low-energy X-ray examination of the human breast, used as a screening tool to detect early breast cancer in asymptomatic women.
+- **Preparatory Instructions**: Schedule the test one week after your period. Do not apply deodorant, talcum powder, or lotion under your arms or on your breasts on the day of the exam.
+
+### 2. Breast Ultrasound
+
+- **Layman Purpose (EN/FIL)**: Scan of the breast tissue using sound waves to check for lumps. / _Pag-scan ng dibdib gamit ang sound waves upang suriin ang mga bukol._
+- **Clinical Description**: Non-invasive ultrasound imaging used to evaluate breast abnormalities found during a physical exam or mammogram, distinguishing fluid-filled cysts from solid masses.
+- **Preparatory Instructions**: No special fasting or preparations required. Wear a two-piece outfit for convenience.
+
+### 3. Low-dose Chest CT Scan
+
+- **Layman Purpose (EN/FIL)**: Low-dose chest scan to screen heavy smokers for lung cancer. / _Mababang radiation na scan sa baga para sa maagang pagtukoy ng lung cancer._
+- **Clinical Description**: Highly sensitive screening test that uses low doses of radiation to make detailed pictures of the lungs, specifically targeted for high-risk smokers.
+- **Preparatory Instructions**: Remove all metallic objects and jewelry. No fasting is necessary.
+
+### 4. Alpha Fetoprotein (AFP) Blood Marker
+
+- **Layman Purpose (EN/FIL)**: Blood test to screen and monitor liver cancer risk. / _Pagsusuri sa dugo upang malaman ang antas ng AFP (marker ng kanser sa atay)._
+- **Clinical Description**: Measurement of AFP levels in the blood, serving as a tumor marker for hepatocellular carcinoma (liver cancer) and germ cell tumors.
+- **Preparatory Instructions**: No fasting is required. Inform medical staff if you have chronic hepatitis or liver disease.
+
+### 5. Liver Ultrasound
+
+- **Layman Purpose (EN/FIL)**: Abdominal scan to check the liver for tumors or damage. / _Ultrasound scan sa atay upang masuri kung may tumor o pinsala._
+- **Clinical Description**: Focused upper-abdominal ultrasound imaging of the liver parenchyma to screen for space-occupying lesions, cirrhosis, or hepatomegaly.
+- **Preparatory Instructions**: Fasting (no food or drink) for **six (6) to eight (8) hours** before the procedure is required to reduce bowel gas and ensure clear imaging.
+
+### 6. Colonoscopy
+
+- **Layman Purpose (EN/FIL)**: Camera inspection of the large intestine to screen for colon cancer. / _Pagpasok ng camera sa malaking bituka upang masuri ang kanser sa colon._
+- **Clinical Description**: Direct endoscopic visualization of the large intestine (colon and rectum) to detect polyps, inflammation, or early colorectal cancer.
+- **Preparatory Instructions**: Follow a strict clear liquid diet and consume the prescribed bowel prep solution (laxative) the day before the procedure as instructed by the physician.
+
+---
+
 ## 4. Covered Medicine Finder (GAMOT Package Catalog)
 
 Under the **YAKAP Outpatient GAMOT Package**, every registered citizen is allotted up to **₱20,000 worth of free prescription medicines per year**.
@@ -319,7 +363,10 @@ For inquiries, registration assistance, or feedback regarding PhilHealth YAKAP i
 - **Local Mobile Hotlines**: 0977-766-6707 / 0928-123-4567
 - **Official LGU Email Address**: health@indang.gov.ph
 - **PhilHealth Cavite Local Health Office (Trece Martires)**: (046) 419-0740 / cavite.lho@philhealth.gov.ph
-- **PhilHealth 24/7 Action Center**: (02) 8662-2588 / Callback SMS: 0998-857-2957
+- **PhilHealth 24/7 Action Hotline**: (02) 866-225-88
+- **SMS Smart Callbacks**: 0998-857-2957, 0968-865-4670
+- **SMS Globe Callbacks**: 0917-127-5987, 0917-110-9812
+- **Official Support Email**: actioncenter@philhealth.gov.ph
 
 ---
 
