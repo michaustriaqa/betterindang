@@ -106,7 +106,14 @@ The project version is displayed in `src/components/layout/Footer.tsx` (look for
 
 **After every set of changes, you must:**
 
-1. Add a new entry to `SECURITY.md` under the `## Changelog` section describing what was added, changed, or fixed — including the date and the new version number.
-2. Bump the version string in `src/components/layout/Footer.tsx` to match.
+1. Add a new entry to `CHANGELOG.md` (top of the file, [Keep a Changelog](https://keepachangelog.com/) format) describing what was added, changed, or fixed — including the date and the new version number. The version displayed in `Footer.tsx` must stay in sync with the latest entry here.
+2. Bump the version string in `src/components/layout/Footer.tsx` to match (and the `version` field in `package.json` plus the `copyright` strings in `public/locales/*/common.json`).
 
 Follow [Semantic Versioning](https://semver.org/): PATCH for fixes/content, MINOR for new pages or features, MAJOR for breaking schema or routing changes.
+
+> `SECURITY.md` holds only the security policy (vulnerability reporting, scope, supported versions) — do not put changelog entries there.
+
+## Git & Commits
+
+- **Do not add any Claude / AI attribution to commits or pull requests.** No `Co-Authored-By: Claude ...` trailer on commit messages, and no "Generated with Claude Code" (or similar) footer in PR descriptions. Keep commit and PR messages free of AI tool attribution.
+- Write commit messages in the project's normal voice (imperative summary + concise body) without mentioning the assistant.

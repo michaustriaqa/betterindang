@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Landmark, List, Table2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import data from '../../content/government/departments/legislative/legislative.json';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -149,7 +150,7 @@ export default function SangguniangBayan() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-10">
           {/* Elected Officials */}
-          <section>
+          <Reveal as="section">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil ? 'Mga Halal na Opisyal' : 'Elected Officials'}
             </h2>
@@ -362,10 +363,13 @@ export default function SangguniangBayan() {
                 </div>
               )}
             </div>
-          </section>
+          </Reveal>
 
           {/* Contact */}
-          <section className="bg-gray-50 rounded-xl border border-gray-200 p-6">
+          <Reveal
+            as="section"
+            className="bg-gray-50 rounded-xl border border-gray-200 p-6"
+          >
             <h2 className="text-base font-black text-gray-900 mb-2">
               {isFil ? 'Makipag-ugnayan' : 'Contact'}
             </h2>
@@ -404,7 +408,7 @@ export default function SangguniangBayan() {
               </a>{' '}
               {isFil ? 'policy.' : 'policy.'}
             </p>
-          </section>
+          </Reveal>
         </div>
       </main>
     </>

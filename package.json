@@ -1,7 +1,7 @@
 {
   "name": "betterlocalgov",
   "private": true,
-  "version": "0.4.3",
+  "version": "0.5.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -26,7 +26,7 @@
     ]
   },
   "dependencies": {
-    "@bettergov/kapwa": "^1.2.4",
+    "@bettergov/kapwa": "^1.4.1",
     "@tailwindcss/typography": "^0.5.18",
     "@types/js-yaml": "^4.0.9",
     "clsx": "^2.1.1",

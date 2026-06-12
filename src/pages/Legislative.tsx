@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import { useTranslation } from '../hooks/useTranslation';
 
 export default function Legislative() {
@@ -114,7 +115,10 @@ export default function Legislative() {
         </div>
 
         {/* About */}
-        <section className="bg-white py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-white py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
               <h2 className="text-xl font-black text-gray-900 mb-3">
@@ -134,10 +138,13 @@ export default function Legislative() {
               </p>
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Document sections */}
-        <section className="bg-gray-50 py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-gray-50 py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil ? 'Mga Pambatasang Dokumento' : 'Legislative Documents'}
@@ -170,10 +177,10 @@ export default function Legislative() {
               )}
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* External resources */}
-        <section className="bg-white py-12">
+        <Reveal as="section" className="bg-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil ? 'Mga Panlabas na Sanggunian' : 'External Resources'}
@@ -198,7 +205,7 @@ export default function Legislative() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
       </main>
     </>
   );

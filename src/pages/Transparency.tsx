@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import { useTranslation } from '../hooks/useTranslation';
 
 const CATEGORIES = [
@@ -197,7 +198,10 @@ export default function Transparency() {
         </div>
 
         {/* Commitment banner */}
-        <section className="bg-primary-50 border-b border-primary-100 py-8">
+        <Reveal
+          as="section"
+          className="bg-primary-50 border-b border-primary-100 py-8"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <ShieldCheck className="h-8 w-8 text-primary-600 shrink-0" />
             <div>
@@ -213,10 +217,13 @@ export default function Transparency() {
               </p>
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Document categories */}
-        <section className="bg-white py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-white py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil
@@ -251,10 +258,10 @@ export default function Transparency() {
               )}
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* External links */}
-        <section className="bg-gray-50 py-12">
+        <Reveal as="section" className="bg-gray-50 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil
@@ -281,7 +288,7 @@ export default function Transparency() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
       </main>
     </>
   );

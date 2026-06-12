@@ -91,8 +91,8 @@ categories:
 
 ## Benefits of YAML Format
 
-- ✅ **Human-readable**: Easy to understand the structure
-- ✅ **No syntax errors**: More forgiving than JSON
-- ✅ **Comments supported**: Can add explanatory notes
-- ✅ **Better hierarchy**: Clear visual structure with indentation
-- ✅ **Easy editing**: No need to worry about commas, brackets, or quotes
+- **Human-readable**: Easy to understand the structure
+- **No syntax errors**: More forgiving than JSON
+- **Comments supported**: Can add explanatory notes
+- **Better hierarchy**: Clear visual structure with indentation
+- **Easy editing**: No need to worry about commas, brackets, or quotes

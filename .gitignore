@@ -11,7 +11,9 @@ node_modules
 dist
 dist-ssr
 *.local
-.claude
+.claude/*
+# Track shared project skills while keeping the rest of .claude local
+!.claude/skills/
 
 # Local-only dev tooling / personal helper scripts (keep on disk, don't commit)
 *.ps1

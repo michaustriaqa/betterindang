@@ -1,5 +1,4 @@
 import { useState, useMemo } from 'react';
-import { Link } from 'react-router-dom';
 import {
   Heart,
   Search,
@@ -18,6 +17,14 @@ import {
   Calendar,
   Smartphone,
   UserCheck,
+  Stethoscope,
+  FlaskConical,
+  Pill,
+  Ribbon,
+  Globe,
+  Scale,
+  AlertTriangle,
+  Sparkles,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
@@ -25,625 +32,29 @@ import Section from '../components/ui/Section';
 import { Heading } from '../components/ui/Heading';
 import { Card, CardContent } from '@bettergov/kapwa/card';
 import { useTranslation } from '../hooks/useTranslation';
+import yaml from 'js-yaml';
+import labTestsRaw from '../data/yakap/lab-tests.yaml?raw';
+import medicinesRaw from '../data/yakap/medicines.yaml?raw';
+import medicineCategoriesRaw from '../data/yakap/medicine-categories.yaml?raw';
 
-// 13 Outpatient Diagnostics list with layman's terms
-const LAB_TESTS = [
-  {
-    id: 'cbc',
-    name: 'Complete Blood Count (CBC) with Platelet Count',
-    layDescription: 'Pagsusuri ng dugo para sa impeksyon, anemia, o dengue.',
-    details:
-      'Helps identify infection, anemia, bleeding disorders, and monitors platelet count for viral illnesses like dengue.',
-  },
-  {
-    id: 'urinalysis',
-    name: 'Urinalysis',
-    layDescription: 'Pagsuri sa ihi para malaman kung may UTI o sakit sa bato.',
-    details:
-      'Screens for urinary tract infections (UTIs), kidney dysfunction, and early metabolic disorders.',
-  },
-  {
-    id: 'fecalysis',
-    name: 'Fecalysis',
-    layDescription: 'Pagsusuri ng dumi para sa bulate o impeksyon sa tiyan.',
-    details:
-      'Detects digestive tract infections, parasites, amoebiasis, and signs of gastrointestinal issues.',
-  },
-  {
-    id: 'fbs',
-    name: 'Fasting Blood Sugar (FBS)',
-    layDescription: 'Pagsuri ng sugar sa dugo para sa screening ng diabetes.',
-    details:
-      'Measures blood glucose levels after an 8-hour fast. Crucial for early detection of diabetes and pre-diabetes.',
-  },
-  {
-    id: 'ogtt',
-    name: 'Oral Glucose Tolerance Test (OGTT)',
-    layDescription:
-      'Advanced na pagsubok sa sugar, lalo na para sa mga buntis.',
-    details:
-      'Evaluates how your body processes sugar over time. Essential for prenatal screenings and advanced diabetes profiling.',
-  },
-  {
-    id: 'hba1c',
-    name: 'HbA1c (Glycated Hemoglobin)',
-    layDescription: 'Average na sugar level sa loob ng nakalipas na 3 buwan.',
-    details:
-      'Provides a three-month average of blood sugar levels. Essential for monitoring long-term glycemic control in diabetic patients.',
-  },
-  {
-    id: 'lipid',
-    name: 'Lipid Profile',
-    layDescription:
-      'Sukat ng cholesterol at triglycerides (risko sa sakit sa puso).',
-    details:
-      'Measures total cholesterol, HDL (good cholesterol), LDL (bad cholesterol), and triglycerides to assess cardiovascular risk.',
-  },
-  {
-    id: 'creatinine',
-    name: 'Creatinine',
-    layDescription: 'Pagsusuri sa kalusugan at function ng mga bato (kidney).',
-    details:
-      'Measures creatinine levels in the blood to screen for, evaluate, and monitor kidney disease or dysfunction.',
-  },
-  {
-    id: 'ecg',
-    name: 'Electrocardiogram (ECG)',
-    layDescription: 'Pagsuri sa ritmo at tibok ng iyong puso.',
-    details:
-      'Records the electrical signals of your heart to check for abnormal heart rhythms, damage, or early cardiovascular disease.',
-  },
-  {
-    id: 'xray',
-    name: 'Chest X-ray',
-    layDescription: 'Larawan ng baga para sa pneumonia o tuberculosis (TB).',
-    details:
-      'Screens for pulmonary infections, tuberculosis (TB), lung tumors, fluid accumulation, and cardiovascular enlargement.',
-  },
-  {
-    id: 'sputum',
-    name: 'Sputum Microscopy / GeneXpert',
-    layDescription: 'Pagsuri ng plema para sa kumpirmasyon ng TB.',
-    details:
-      'Highly precise test analyzing phlegm to diagnose tuberculosis (TB) and determine drug-resistant strains.',
-  },
-  {
-    id: 'pap',
-    name: 'Pap Smear',
-    layDescription: 'Screening ng cervix para sa pag-iwas sa cervical cancer.',
-    details:
-      'Saves lives through early screening and prevention of cervical cancer in women by detecting precancerous cell changes.',
-  },
-  {
-    id: 'fobt',
-    name: 'Fecal Occult Blood Test (FOBT)',
-    layDescription:
-      'Pagsuri kung may nakatagong dugo sa dumi (screen ng colon cancer).',
-    details:
-      'Checks for hidden blood in the stool, an important early screening tool for colon cancer and internal bleeding.',
-  },
-];
+// ── Yakap page data (sourced from YAML in src/data/yakap/) ───────────
+interface LabTest {
+  id: string;
+  name: string;
+  layDescription: string;
+  details: string;
+}
 
-// Robust 75+ generic outpatient medicines database
-const MEDICINE_DATABASE = [
-  // Hypertension / High Blood (1-10)
-  {
-    generic: 'Amlodipine Besilate',
-    strength: '5mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pababa ng altapresyon at pampaluwag ng ugat sa puso.',
-  },
-  {
-    generic: 'Amlodipine Besilate',
-    strength: '10mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pababa ng altapresyon at pampaluwag ng ugat sa puso.',
-  },
-  {
-    generic: 'Losartan Potassium',
-    strength: '50mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pinipigilan ang pag-igting ng mga ugat para bumaba ang presyon.',
-  },
-  {
-    generic: 'Losartan Potassium',
-    strength: '100mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pinipigilan ang pag-igting ng mga ugat para bumaba ang presyon.',
-  },
-  {
-    generic: 'Metoprolol Tartrate',
-    strength: '50mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pampabagal ng mabilis na tibok ng puso at pampababa ng presyon.',
-  },
-  {
-    generic: 'Metoprolol Tartrate',
-    strength: '100mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Pampabagal ng mabilis na tibok ng puso at pampababa ng presyon.',
-  },
-  {
-    generic: 'Enalapril Maleate',
-    strength: '5mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'ACE Inhibitor na pampababa ng presyon at proteksyon sa puso.',
-  },
-  {
-    generic: 'Enalapril Maleate',
-    strength: '20mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'ACE Inhibitor na pampababa ng presyon at proteksyon sa puso.',
-  },
-  {
-    generic: 'Hydrochlorothiazide',
-    strength: '12.5mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Diuretic o pampaihi para bawasan ang labis na likido sa katawan.',
-  },
-  {
-    generic: 'Hydrochlorothiazide',
-    strength: '25mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Diuretic o pampaihi para bawasan ang labis na likido sa katawan.',
-  },
-  {
-    generic: 'Clonidine Hydrochloride',
-    strength: '75mcg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Mabilisang pampababa ng presyon sa oras ng hypertensive crisis.',
-  },
-  {
-    generic: 'Clonidine Hydrochloride',
-    strength: '150mcg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Mabilisang pampababa ng presyon sa oras ng hypertensive crisis.',
-  },
-  {
-    generic: 'Carvedilol',
-    strength: '6.25mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Beta-blocker para sa high blood at mahinang puso (heart failure).',
-  },
-  {
-    generic: 'Carvedilol',
-    strength: '25mg Tablet',
-    category: 'Hypertension / High Blood',
-    use: 'Beta-blocker para sa high blood at mahinang puso (heart failure).',
-  },
+interface Medicine {
+  generic: string;
+  strength: string;
+  category: string;
+  use: string;
+}
 
-  // Diabetes / High Sugar (15-22)
-  {
-    generic: 'Metformin Hydrochloride',
-    strength: '500mg Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pangunahing gamot para sa Type 2 Diabetes; pinapababa ang paggawa ng sugar.',
-  },
-  {
-    generic: 'Metformin Hydrochloride',
-    strength: '850mg Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pangunahing gamot para sa Type 2 Diabetes; pinapababa ang paggawa ng sugar.',
-  },
-  {
-    generic: 'Metformin Hydrochloride',
-    strength: '1000mg Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pangunahing gamot para sa Type 2 Diabetes; pinapababa ang paggawa ng sugar.',
-  },
-  {
-    generic: 'Gliclazide',
-    strength: '30mg Modified Release Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pampasigla ng pancreas para gumawa ng mas maraming insulin.',
-  },
-  {
-    generic: 'Gliclazide',
-    strength: '60mg Modified Release Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pampasigla ng pancreas para gumawa ng mas maraming insulin.',
-  },
-  {
-    generic: 'Gliclazide',
-    strength: '80mg Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Pampasigla ng pancreas para gumawa ng mas maraming insulin.',
-  },
-  {
-    generic: 'Glibenclamide',
-    strength: '5mg Tablet',
-    category: 'Diabetes / High Sugar',
-    use: 'Sulfonylurea na gamot sa diabetes upang kontrolin ang glucose sa dugo.',
-  },
-
-  // High Cholesterol (23-26)
-  {
-    generic: 'Simvastatin',
-    strength: '20mg Tablet',
-    category: 'High Cholesterol',
-    use: 'Pinapababa ang bad cholesterol (LDL) at triglycerides sa dugo.',
-  },
-  {
-    generic: 'Simvastatin',
-    strength: '40mg Tablet',
-    category: 'High Cholesterol',
-    use: 'Pinapababa ang bad cholesterol (LDL) at triglycerides sa dugo.',
-  },
-  {
-    generic: 'Atorvastatin Calcium',
-    strength: '20mg Tablet',
-    category: 'High Cholesterol',
-    use: 'Mabisang statin para maiwasan ang atake sa puso at stroke sa pamamagitan ng pagbaba ng cholesterol.',
-  },
-  {
-    generic: 'Atorvastatin Calcium',
-    strength: '40mg Tablet',
-    category: 'High Cholesterol',
-    use: 'Mabisang statin para maiwasan ang atake sa puso at stroke sa pamamagitan ng pagbaba ng cholesterol.',
-  },
-
-  // Asthma, Cough & Pulmonary (27-36)
-  {
-    generic: 'Salbutamol Sulfate',
-    strength: '100mcg Inhaler',
-    category: 'Asthma & Cough',
-    use: 'Mabilisang pampaluwag ng airways kapag may hika o sumisikip ang dibdib.',
-  },
-  {
-    generic: 'Salbutamol Sulfate',
-    strength: '2.5mg/2.5ml Nebule',
-    category: 'Asthma & Cough',
-    use: 'Solusyon para sa nebulizer upang mabilis na maibsan ang severe asthma attack.',
-  },
-  {
-    generic: 'Salbutamol Sulfate',
-    strength: '2mg Tablet',
-    category: 'Asthma & Cough',
-    use: 'Pangmatagalang suporta sa hika at pampaluwag ng bronchus.',
-  },
-  {
-    generic: 'Salbutamol Sulfate',
-    strength: '2mg/5ml Syrup',
-    category: 'Asthma & Cough',
-    use: 'Pampaluwag ng hika na angkop para sa mga bata.',
-  },
-  {
-    generic: 'Fluticasone Propionate + Salmeterol',
-    strength: '125mcg/25mcg Inhaler',
-    category: 'Asthma & Cough',
-    use: 'Pang-araw-araw na preventive inhaler para maiwasan ang pagsumpong ng hika.',
-  },
-  {
-    generic: 'Fluticasone Propionate + Salmeterol',
-    strength: '250mcg/25mcg Inhaler',
-    category: 'Asthma & Cough',
-    use: 'Pang-araw-araw na preventive inhaler para maiwasan ang pagsumpong ng hika.',
-  },
-  {
-    generic: 'Prednisone',
-    strength: '5mg Tablet',
-    category: 'Asthma & Cough',
-    use: 'Corticosteroid na pambawas ng pamamaga sa malalang hika at allergy.',
-  },
-  {
-    generic: 'Prednisone',
-    strength: '10mg Tablet',
-    category: 'Asthma & Cough',
-    use: 'Corticosteroid na pambawas ng pamamaga sa malalang hika at allergy.',
-  },
-  {
-    generic: 'Prednisone',
-    strength: '20mg Tablet',
-    category: 'Asthma & Cough',
-    use: 'Corticosteroid na pambawas ng pamamaga sa malalang hika at allergy.',
-  },
-  {
-    generic: 'Carbocisteine',
-    strength: '500mg Capsule',
-    category: 'Asthma & Cough',
-    use: 'Mucolytic na pampalabnaw ng makapal at madikit na plema para madaling mailabas.',
-  },
-  {
-    generic: 'Carbocisteine',
-    strength: '250mg/5ml Syrup',
-    category: 'Asthma & Cough',
-    use: 'Pampalabnaw ng plema na angkop para sa mga bata.',
-  },
-  {
-    generic: 'Ambroxol Hydrochloride',
-    strength: '30mg Tablet',
-    category: 'Asthma & Cough',
-    use: 'Pampalabnaw at pampalabas ng plema sa ubo.',
-  },
-  {
-    generic: 'Ambroxol Hydrochloride',
-    strength: '15mg/5ml Syrup',
-    category: 'Asthma & Cough',
-    use: 'Pampalabnaw ng ubo at plema para sa mga bata.',
-  },
-
-  // Antibiotics (37-48)
-  {
-    generic: 'Amoxicillin Trihydrate',
-    strength: '250mg Capsule',
-    category: 'Antibiotics',
-    use: 'Lumalaban sa mga bacterial infection tulad ng sa lalamunan, tenga, at balat.',
-  },
-  {
-    generic: 'Amoxicillin Trihydrate',
-    strength: '500mg Capsule',
-    category: 'Antibiotics',
-    use: 'Lumalaban sa mga bacterial infection tulad ng sa lalamunan, tenga, at balat.',
-  },
-  {
-    generic: 'Amoxicillin Trihydrate',
-    strength: '125mg/5ml Suspension',
-    category: 'Antibiotics',
-    use: 'Bacterial antibiotic na likido para sa impeksyon ng mga bata.',
-  },
-  {
-    generic: 'Co-Amoxiclav (Amoxicillin + Clavulanate)',
-    strength: '625mg Tablet',
-    category: 'Antibiotics',
-    use: 'Mas pinalakas na antibiotic para sa mas matinding impeksyon sa baga, balat, o ihi.',
-  },
-  {
-    generic: 'Co-Amoxiclav (Amoxicillin + Clavulanate)',
-    strength: '312.5mg/5ml Suspension',
-    category: 'Antibiotics',
-    use: 'Pinalakas na antibiotic suspension para sa mga bata.',
-  },
-  {
-    generic: 'Ciprofloxacin Hydrochloride',
-    strength: '500mg Tablet',
-    category: 'Antibiotics',
-    use: 'Mabisang antibiotic para sa impeksyon sa ihi (UTI) at gastrointestinal infections.',
-  },
-  {
-    generic: 'Clarithromycin',
-    strength: '500mg Tablet',
-    category: 'Antibiotics',
-    use: 'Ginagamit sa respiratory tract infections at sa mga taong allergic sa penicillin.',
-  },
-  {
-    generic: 'Nitrofurantoin',
-    strength: '100mg Capsule',
-    category: 'Antibiotics',
-    use: 'Espesyal na antibiotic na nakatutok sa pagsugpo ng urinary tract infection (UTI).',
-  },
-  {
-    generic: 'Cotrimoxazole (Sulfamethoxazole + Trimethoprim)',
-    strength: '800mg/160mg Tablet',
-    category: 'Antibiotics',
-    use: 'Kumbinasyong antibiotic para sa respiratory, urinary, at bowel infections.',
-  },
-  {
-    generic: 'Doxycycline Hyclate',
-    strength: '100mg Capsule',
-    category: 'Antibiotics',
-    use: "Gamot sa iba't ibang bacterial infection kabilang ang leptospirosis at respiratory infections.",
-  },
-  {
-    generic: 'Erythromycin',
-    strength: '500mg Tablet',
-    category: 'Antibiotics',
-    use: 'Macrolide antibiotic para sa mga impeksyon sa balat, baga, at soft tissues.',
-  },
-  {
-    generic: 'Azithromycin Dihydrate',
-    strength: '500mg Tablet',
-    category: 'Antibiotics',
-    use: 'Mabilisang 3-araw o 5-araw na antibiotic para sa pulmonya, sinus, at lalamunan.',
-  },
-
-  // Fever & Pain (49-56)
-  {
-    generic: 'Paracetamol',
-    strength: '500mg Tablet',
-    category: 'Fever & Pain',
-    use: 'Ligtas at karaniwang gamot para sa lagnat, sakit ng ulo, at iba pang pananakit.',
-  },
-  {
-    generic: 'Paracetamol',
-    strength: '125mg/5ml Syrup',
-    category: 'Fever & Pain',
-    use: 'Pababa ng lagnat at pawi ng sakit para sa sanggol at bata.',
-  },
-  {
-    generic: 'Paracetamol',
-    strength: '250mg/5ml Syrup',
-    category: 'Fever & Pain',
-    use: 'Pababa ng lagnat at pawi ng sakit para sa mga mas nakatatandang bata.',
-  },
-  {
-    generic: 'Ibuprofen',
-    strength: '200mg Tablet',
-    category: 'Fever & Pain',
-    use: 'Non-steroidal anti-inflammatory drug (NSAID) para sa sakit at pamamaga.',
-  },
-  {
-    generic: 'Ibuprofen',
-    strength: '400mg Tablet',
-    category: 'Fever & Pain',
-    use: 'NSAID para sa pananakit ng kasu-kasuan, ngipin, at dysmenorrhea.',
-  },
-  {
-    generic: 'Ibuprofen',
-    strength: '100mg/5ml Suspension',
-    category: 'Fever & Pain',
-    use: 'Pampababa ng lagnat at pamamaga para sa mga bata.',
-  },
-  {
-    generic: 'Mefenamic Acid',
-    strength: '250mg Capsule',
-    category: 'Fever & Pain',
-    use: 'Mabilisang pawi ng sakit sa ngipin, arthritis, at pananakit ng puson.',
-  },
-  {
-    generic: 'Mefenamic Acid',
-    strength: '500mg Capsule',
-    category: 'Fever & Pain',
-    use: 'Mabilisang pawi ng sakit sa ngipin, arthritis, at pananakit ng puson.',
-  },
-
-  // Allergies & Antihistamines (57-60)
-  {
-    generic: 'Cetirizine Hydrochloride',
-    strength: '10mg Tablet',
-    category: 'Allergies & Antihistamines',
-    use: 'Non-drowsy na antihistamine para sa sipon, kati-kati, at allergic rhinitis.',
-  },
-  {
-    generic: 'Cetirizine Hydrochloride',
-    strength: '5mg/5ml Syrup',
-    category: 'Allergies & Antihistamines',
-    use: 'Gamot sa allergy na likido para sa mga bata.',
-  },
-  {
-    generic: 'Chlorpheniramine Maleate',
-    strength: '4mg Tablet',
-    category: 'Allergies & Antihistamines',
-    use: 'Klasikong antihistamine para sa mabilisang ginhawa sa pangangati at sipon (nakakaantok).',
-  },
-  {
-    generic: 'Loratadine',
-    strength: '10mg Tablet',
-    category: 'Allergies & Antihistamines',
-    use: 'Pang-24 oras na allergy relief na hindi nakakaantok.',
-  },
-
-  // Heart & Stroke Support (61-64)
-  {
-    generic: 'Aspirin (Low Dose)',
-    strength: '80mg Tablet',
-    category: 'Heart & Stroke Support',
-    use: 'Pampalabnaw ng dugo upang maiwasan ang pamumuo ng dugo at atake sa puso o stroke.',
-  },
-  {
-    generic: 'Aspirin',
-    strength: '100mg Enteric Coated Tablet',
-    category: 'Heart & Stroke Support',
-    use: 'Proteksyon laban sa stroke at atake sa puso na may coating para sa sikmura.',
-  },
-  {
-    generic: 'Clopidogrel Bisulfate',
-    strength: '75mg Tablet',
-    category: 'Heart & Stroke Support',
-    use: 'Antiplatelet na nagpapanatiling maayos ang daloy ng dugo pagkatapos ma-stroke o ma-angioplasty.',
-  },
-  {
-    generic: 'Isosorbide Mononitrate',
-    strength: '30mg Modified Release Tablet',
-    category: 'Heart & Stroke Support',
-    use: 'Preventive na gamot laban sa pananakit ng dibdib (angina).',
-  },
-
-  // Dehydration (65)
-  {
-    generic: 'Oral Rehydration Salts (ORS)',
-    strength: '20.5g Sachet',
-    category: 'Dehydration',
-    use: 'Pampalit ng nawalang tubig at electrolytes kapag nagtatae o nagsusuka.',
-  },
-
-  // Gastrointestinal / Tiyan (66-72)
-  {
-    generic: 'Omeprazole',
-    strength: '20mg Capsule',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Proton pump inhibitor na nagpapababa ng asido sa sikmura para sa hyperacidity at ulcer.',
-  },
-  {
-    generic: 'Omeprazole',
-    strength: '40mg Capsule',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Proton pump inhibitor na nagpapababa ng asido sa sikmura para sa hyperacidity at ulcer.',
-  },
-  {
-    generic: 'Famotidine',
-    strength: '20mg Tablet',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'H2-blocker na nagbabawas ng acid sa sikmura at lunas sa heartburn.',
-  },
-  {
-    generic: 'Dicycloverine Hydrochloride',
-    strength: '10mg Tablet',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Antispasmodic para pawiin ang pananakit at paghilab ng tiyan.',
-  },
-  {
-    generic: 'Dicycloverine Hydrochloride',
-    strength: '5mg/5ml Syrup',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Pampawi ng paghilab ng tiyan na angkop sa bata.',
-  },
-  {
-    generic: 'Domperidone',
-    strength: '10mg Tablet',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Gamot laban sa pagduduwal, pagsusuka, at kabag.',
-  },
-  {
-    generic: 'Metoclopramide Hydrochloride',
-    strength: '10mg Tablet',
-    category: 'Gastrointestinal / Tiyan',
-    use: 'Pampabilis ng pagtunaw ng pagkain para maibsan ang pagduduwal at pagsusuka.',
-  },
-
-  // Vitamins, Minerals & Hormones (73-77)
-  {
-    generic: 'Multivitamins (Adult)',
-    strength: 'Capsule',
-    category: 'Vitamins & Minerals',
-    use: 'Pang-araw-araw na bitamina upang palakasin ang resistensya laban sa sakit.',
-  },
-  {
-    generic: 'Ferrous Sulfate + Folic Acid',
-    strength: 'Tablet',
-    category: 'Vitamins & Minerals',
-    use: 'Suplemento sa dugo para iwasan o gamutin ang anemia, lalo na sa mga buntis.',
-  },
-  {
-    generic: 'Calcium Carbonate',
-    strength: '500mg Tablet',
-    category: 'Vitamins & Minerals',
-    use: 'Suplemento para sa malusog na buto at ngipin.',
-  },
-  {
-    generic: 'Zinc Sulfate',
-    strength: '55mg/5ml Syrup',
-    category: 'Vitamins & Minerals',
-    use: 'Mahalagang mineral para sa paggaling ng bata mula sa diarrhea at pampalakas ng resistensya.',
-  },
-  {
-    generic: 'Levothyroxine Sodium',
-    strength: '50mcg Tablet',
-    category: 'Thyroid Support',
-    use: 'Hormone replacement para sa mga may hypothyroid o kulang ang thyroid hormone.',
-  },
-  {
-    generic: 'Levothyroxine Sodium',
-    strength: '100mcg Tablet',
-    category: 'Thyroid Support',
-    use: 'Hormone replacement para sa mga may hypothyroid o kulang ang thyroid hormone.',
-  },
-];
-
-const MEDICINE_CATEGORIES = [
-  'All',
-  'Hypertension / High Blood',
-  'Diabetes / High Sugar',
-  'High Cholesterol',
-  'Asthma & Cough',
-  'Antibiotics',
-  'Fever & Pain',
-  'Allergies & Antihistamines',
-  'Heart & Stroke Support',
-  'Gastrointestinal / Tiyan',
-  'Vitamins & Minerals',
-  'Thyroid Support',
-  'Dehydration',
-];
+const LAB_TESTS = yaml.load(labTestsRaw) as LabTest[];
+const MEDICINE_DATABASE = yaml.load(medicinesRaw) as Medicine[];
+const MEDICINE_CATEGORIES = yaml.load(medicineCategoriesRaw) as string[];
 
 // Helper to translate categories
 const getCategoryName = (category: string, isFil: boolean) => {
@@ -1266,7 +677,10 @@ export default function YakapInteractive() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {isFil ? '🩺 Libreng Konsulta' : '🩺 Medical Consults'}
+                    <span className="inline-flex items-center gap-1.5">
+                      <Stethoscope className="h-4 w-4" />
+                      {isFil ? 'Libreng Konsulta' : 'Medical Consults'}
+                    </span>
                   </button>
                   <button
                     onClick={() => setActiveTab('labs')}
@@ -1276,7 +690,10 @@ export default function YakapInteractive() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {isFil ? '🧪 13 Laboratory Tests' : '🧪 13 Diagnostic Labs'}
+                    <span className="inline-flex items-center gap-1.5">
+                      <FlaskConical className="h-4 w-4" />
+                      {isFil ? '13 Laboratory Tests' : '13 Diagnostic Labs'}
+                    </span>
                   </button>
                   <button
                     onClick={() => setActiveTab('gamot')}
@@ -1286,9 +703,10 @@ export default function YakapInteractive() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {isFil
-                      ? '💊 ₱20k Gamot Package'
-                      : '💊 ₱20k Medicine Package'}
+                    <span className="inline-flex items-center gap-1.5">
+                      <Pill className="h-4 w-4" />
+                      {isFil ? '₱20k Gamot Package' : '₱20k Medicine Package'}
+                    </span>
                   </button>
                   <button
                     onClick={() => setActiveTab('cancer')}
@@ -1298,7 +716,10 @@ export default function YakapInteractive() {
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
-                    {isFil ? '🎗️ Cancer Screening' : '🎗️ Cancer Screening'}
+                    <span className="inline-flex items-center gap-1.5">
+                      <Ribbon className="h-4 w-4" />
+                      {isFil ? 'Cancer Screening' : 'Cancer Screening'}
+                    </span>
                   </button>
                 </div>
 
@@ -1404,8 +825,8 @@ export default function YakapInteractive() {
                             className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-blue-50/20 dark:hover:bg-blue-900/5 transition-colors"
                           >
                             <div className="flex items-start gap-3">
-                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 font-extrabold text-xs shrink-0 mt-0.5">
-                                ✓
+                              <span className="flex items-center justify-center w-6 h-6 rounded-full bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 shrink-0 mt-0.5">
+                                <Check className="h-3.5 w-3.5" />
                               </span>
                               <div>
                                 <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1547,7 +968,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1572,7 +993,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1597,7 +1018,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1622,7 +1043,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1647,7 +1068,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -1672,7 +1093,7 @@ export default function YakapInteractive() {
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
-                              🎗️
+                              <Ribbon className="h-3.5 w-3.5" />
                             </span>
                             <div>
                               <h5 className="font-bold text-sm text-gray-900 dark:text-white leading-tight mb-1">
@@ -2207,9 +1628,12 @@ export default function YakapInteractive() {
                     inPersonCompletedCount === 3)) && (
                   <div className="mt-6 p-4 rounded-2xl bg-emerald-50 dark:bg-emerald-950/20 border border-emerald-200 text-emerald-900 dark:text-emerald-300 text-center animate-fade-in">
                     <p className="text-xs font-black mb-1">
-                      {isFil
-                        ? '🎉 Mahusay! Handa ka na!'
-                        : '🎉 Congratulations! You are Ready!'}
+                      <span className="inline-flex items-center justify-center gap-1.5">
+                        <Sparkles className="h-3.5 w-3.5" />
+                        {isFil
+                          ? 'Mahusay! Handa ka na!'
+                          : 'Congratulations! You are Ready!'}
+                      </span>
                     </p>
                     <p className="text-[10px]">
                       {isFil
@@ -2637,8 +2061,8 @@ export default function YakapInteractive() {
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 bg-gray-50 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800 transition-all group flex gap-3 pointer-events-auto cursor-pointer"
               >
-                <div className="p-3 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center font-bold">
-                  🌐
+                <div className="p-3 bg-blue-100 dark:bg-blue-900/50 text-blue-600 dark:text-blue-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center">
+                  <Globe className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-gray-950 dark:text-white leading-tight group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors">
@@ -2663,8 +2087,8 @@ export default function YakapInteractive() {
                 rel="noopener noreferrer"
                 className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 hover:border-blue-500 dark:hover:border-blue-500 bg-gray-50 dark:bg-gray-800/40 hover:bg-white dark:hover:bg-gray-800 transition-all group flex gap-3 pointer-events-auto cursor-pointer"
               >
-                <div className="p-3 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center font-bold">
-                  📱
+                <div className="p-3 bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center">
+                  <Smartphone className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-gray-950 dark:text-white leading-tight group-hover:text-emerald-600 dark:group-hover:text-emerald-450 transition-colors">
@@ -2684,8 +2108,8 @@ export default function YakapInteractive() {
               </a>
 
               <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 flex gap-3">
-                <div className="p-3 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center font-bold">
-                  📄
+                <div className="p-3 bg-purple-100 dark:bg-purple-900/50 text-purple-600 dark:text-purple-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center">
+                  <FileText className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-gray-950 dark:text-white leading-tight">
@@ -2703,8 +2127,8 @@ export default function YakapInteractive() {
               </div>
 
               <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 flex gap-3">
-                <div className="p-3 bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center font-bold">
-                  ⚖️
+                <div className="p-3 bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 rounded-xl shrink-0 h-11 w-11 flex items-center justify-center">
+                  <Scale className="h-5 w-5" />
                 </div>
                 <div>
                   <h4 className="font-bold text-sm text-gray-950 dark:text-white leading-tight">
@@ -2726,8 +2150,8 @@ export default function YakapInteractive() {
           {/* LGU Medical Disclaimer Block */}
           <div className="mt-12 max-w-4xl mx-auto p-6 sm:p-8 rounded-3xl bg-amber-50/40 dark:bg-amber-950/10 border border-amber-200/50 dark:border-amber-900/30">
             <div className="flex gap-4">
-              <div className="p-3 bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 rounded-2xl shrink-0 h-12 w-12 flex items-center justify-center font-bold">
-                ⚠️
+              <div className="p-3 bg-amber-100 dark:bg-amber-950/50 text-amber-700 dark:text-amber-400 rounded-2xl shrink-0 h-12 w-12 flex items-center justify-center">
+                <AlertTriangle className="h-6 w-6" />
               </div>
               <div>
                 <h4 className="font-extrabold text-sm sm:text-base text-amber-950 dark:text-amber-300 mb-2 leading-tight uppercase tracking-wider">
@@ -2754,16 +2178,6 @@ export default function YakapInteractive() {
                 </div>
               </div>
             </div>
-          </div>
-
-          {/* Bottom Back Button */}
-          <div className="flex justify-center mt-10">
-            <Link
-              to="/services"
-              className="inline-flex items-center gap-2 px-6 py-2.5 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-350 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-xl text-sm font-bold shadow-sm transition-all pointer-events-auto"
-            >
-              {isFil ? '← Bumalik sa mga Serbisyo' : '← Back to Services'}
-            </Link>
           </div>
         </Section>
       </div>

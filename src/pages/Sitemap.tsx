@@ -11,6 +11,7 @@ import {
   ChevronRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import { serviceCategories as servicesData } from '../data/yamlLoader';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -201,7 +202,10 @@ export default function Sitemap() {
       {/* Sections */}
       <main className="bg-gray-50 py-12 flex-grow">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <Reveal
+            stagger
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+          >
             {SECTIONS.map(section => {
               const Icon = section.icon;
               return (
@@ -257,7 +261,7 @@ export default function Sitemap() {
                 </div>
               );
             })}
-          </div>
+          </Reveal>
         </div>
       </main>
     </>

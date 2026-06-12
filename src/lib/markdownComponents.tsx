@@ -5,6 +5,7 @@
 import { type TypographyTheme } from './typographyThemes';
 import { type ReactNode, type HTMLAttributes } from 'react';
 import { TableWithToggle } from './TableWithToggle';
+import { CheckCircle2 } from 'lucide-react';
 
 // Extended theme type to include dynamic component keys
 type ExtendedTheme = TypographyTheme & {
@@ -151,7 +152,7 @@ export function createMarkdownComponents(theme: TypographyTheme) {
           ? orderedLiClass
           : liClass;
 
-      // For task lists, replace checkbox with emoji
+      // For task lists, replace the raw checkbox with a lucide check icon
       if (isTaskList) {
         const processedChildren = Array.isArray(children)
           ? children.map((child: ReactNode) => {
@@ -162,8 +163,8 @@ export function createMarkdownComponents(theme: TypographyTheme) {
               ) {
                 const childElement = child as { props?: { type?: string } };
                 if (childElement.props?.type === 'checkbox') {
-                  // Replace checkbox with emoji
-                  return '✅';
+                  // Drop the native checkbox; we render our own icon below
+                  return null;
                 }
               }
               return child;
@@ -175,9 +176,9 @@ export function createMarkdownComponents(theme: TypographyTheme) {
             className={`${finalClassName} ${isNested ? 'ml-4' : ''}`}
             {...props}
           >
-            <span className="pr-0">✅</span>
+            <CheckCircle2 className="inline-block h-4 w-4 text-success-600 mr-1.5 shrink-0 align-text-bottom" />
             {Array.isArray(processedChildren)
-              ? processedChildren.filter((child: ReactNode) => child !== '✅')
+              ? processedChildren.filter((child: ReactNode) => child !== null)
               : processedChildren}
           </li>
         );

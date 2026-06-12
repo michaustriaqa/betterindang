@@ -174,7 +174,7 @@
     "title": "Pinakabagong Balita at Mga Update"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.4.3",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.5.0",
     "about": "Tungkol sa Portal",
     "sitemap": "Sitemap",
     "accessibility": "Aksesibilidad",
@@ -220,7 +220,7 @@
     "openData": "Open Data PH"
   },
   "joinUs": {
-    "stripTitle": "🚀 Sumali sa #CivicTech Revolution",
+    "stripTitle": "Sumali sa #CivicTech Revolution",
     "stripSubtitle": "Tulungan kaming buuin ang kinabukasan ng Pilipinas sa pamamagitan ng teknolohiya",
     "joinNow": "Sumali Na",
     "discord": "Discord",
@@ -230,6 +230,6 @@
     "joinMovement": "Sumali sa Kilusan",
     "or": "o",
     "joinDiscord": "Sumali sa Discord",
-    "features": "🚀 Imprastraktura • 💡 Mentorship • 🤝 Komunidad • 🏢 Espasyo sa Opisina"
+    "features": "Imprastraktura • Mentorship • Komunidad • Espasyo sa Opisina"
   }
 }

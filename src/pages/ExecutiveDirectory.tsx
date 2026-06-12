@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Building2, List, Table2, ExternalLink, Phone } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import dirData from '../../content/government/departments/executive.json';
 import { useTranslation } from '../hooks/useTranslation';
 
@@ -244,7 +245,7 @@ export default function ExecutiveDirectory() {
           </div>
 
           {/* Municipal Hall Offices */}
-          <section>
+          <Reveal as="section">
             <SectionHeader
               title={
                 isFil
@@ -311,10 +312,10 @@ export default function ExecutiveDirectory() {
                 ))}
               </div>
             )}
-          </section>
+          </Reveal>
 
           {/* National Government Agencies */}
-          <section>
+          <Reveal as="section">
             <SectionHeader
               title={
                 isFil
@@ -381,10 +382,10 @@ export default function ExecutiveDirectory() {
                 ))}
               </div>
             )}
-          </section>
+          </Reveal>
 
           {/* Emergency Hotlines */}
-          <section>
+          <Reveal as="section">
             <SectionHeader
               title={
                 isFil
@@ -452,11 +453,11 @@ export default function ExecutiveDirectory() {
                 ))}
               </div>
             )}
-          </section>
+          </Reveal>
 
           {/* Non-Government Organizations */}
           {dir.ngos && dir.ngos.length > 0 && (
-            <section>
+            <Reveal as="section">
               <SectionHeader
                 title={
                   isFil
@@ -523,7 +524,7 @@ export default function ExecutiveDirectory() {
                   ))}
                 </div>
               )}
-            </section>
+            </Reveal>
           )}
 
           {/* Footer note */}

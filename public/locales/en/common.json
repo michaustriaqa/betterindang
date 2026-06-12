@@ -174,7 +174,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.4.3",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.5.0",
     "about": "About the Portal",
     "sitemap": "Sitemap",
     "accessibility": "Accessibility",
@@ -220,7 +220,7 @@
     "openData": "Open Data PH"
   },
   "joinUs": {
-    "stripTitle": "🚀 Join the #CivicTech Revolution",
+    "stripTitle": "Join the #CivicTech Revolution",
     "stripSubtitle": "Help build the future of the Philippines and governance through technology",
     "joinNow": "Join Now",
     "discord": "Discord",
@@ -230,6 +230,6 @@
     "joinMovement": "Join Our Movement",
     "or": "or",
     "joinDiscord": "Join Discord",
-    "features": "🚀 Infrastructure • 💡 Mentorship • 🤝 Community • 🏢 Office Space"
+    "features": "Infrastructure • Mentorship • Community • Office Space"
   }
 }

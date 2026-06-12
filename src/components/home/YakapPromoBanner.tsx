@@ -1,5 +1,12 @@
 import { Link } from 'react-router-dom';
-import { ArrowRight, ShieldCheck } from 'lucide-react';
+import {
+  ArrowRight,
+  ShieldCheck,
+  Pill,
+  FlaskConical,
+  Stethoscope,
+  Phone,
+} from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
 
 export default function YakapPromoBanner() {
@@ -57,27 +64,27 @@ export default function YakapPromoBanner() {
             {/* Quick Metrics Summary */}
             <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 sm:gap-6 text-xs sm:text-sm">
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                <Pill className="h-4 w-4 text-emerald-300 shrink-0" />
                 <span className="font-semibold text-blue-100">
                   {isFil
-                    ? '💊 ₱20k na Gamot sa Maintenance'
-                    : '💊 ₱20k Maintenance Medicines'}
+                    ? '₱20k na Gamot sa Maintenance'
+                    : '₱20k Maintenance Medicines'}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                <FlaskConical className="h-4 w-4 text-emerald-300 shrink-0" />
                 <span className="font-semibold text-blue-100">
                   {isFil
-                    ? '🧪 13 na Laboratory Tests (CBC, ECG, atbp.)'
-                    : '🧪 13 Covered Labs (CBC, ECG, etc.)'}
+                    ? '13 na Laboratory Tests (CBC, ECG, atbp.)'
+                    : '13 Covered Labs (CBC, ECG, etc.)'}
                 </span>
               </div>
               <div className="flex items-center gap-2">
-                <span className="w-2 h-2 rounded-full bg-emerald-400 shrink-0" />
+                <Stethoscope className="h-4 w-4 text-emerald-300 shrink-0" />
                 <span className="font-semibold text-blue-100">
                   {isFil
-                    ? '🩺 100% Walang Bayad / Zero Out-of-Pocket'
-                    : '🩺 100% Zero Copay / Zero Out-of-Pocket'}
+                    ? '100% Walang Bayad / Zero Out-of-Pocket'
+                    : '100% Zero Copay / Zero Out-of-Pocket'}
                 </span>
               </div>
             </div>
@@ -99,9 +106,10 @@ export default function YakapPromoBanner() {
               href="tel:0468401705"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 border border-white/20 hover:border-white/40 bg-white/5 hover:bg-white/10 text-white font-bold text-sm rounded-2xl transition-all cursor-pointer"
             >
+              <Phone className="h-4 w-4 shrink-0" />
               {isFil
-                ? '📞 Tawagan ang RHU: (046) 840-1705'
-                : '📞 Call the RHU: (046) 840-1705'}
+                ? 'Tawagan ang RHU: (046) 840-1705'
+                : 'Call the RHU: (046) 840-1705'}
             </a>
           </div>
         </div>

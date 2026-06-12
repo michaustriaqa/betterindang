@@ -16,6 +16,7 @@ import {
   type LucideIcon,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 import municipalityProfileRaw from '../../content/government/reports-and-statistics/municipality-profile.yaml?raw';
 import barangayListRaw from '../../content/government/reports-and-statistics/barangay-list.yaml?raw';
 import { useTranslation } from '../hooks/useTranslation';
@@ -137,7 +138,10 @@ export default function Statistics() {
         </div>
 
         {/* Municipality Profile */}
-        <section className="bg-white py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-white py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center justify-between mb-6">
               <div>
@@ -182,10 +186,13 @@ export default function Statistics() {
               })}
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* CMCI */}
-        <section className="bg-gray-50 py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-gray-50 py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-start justify-between gap-4 mb-2">
               <div>
@@ -285,10 +292,13 @@ export default function Statistics() {
               )}
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Barangay list */}
-        <section className="bg-white py-12 border-b border-gray-100">
+        <Reveal
+          as="section"
+          className="bg-white py-12 border-b border-gray-100"
+        >
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-2">
               {isFil
@@ -319,10 +329,10 @@ export default function Statistics() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
 
         {/* Data Sources */}
-        <section className="bg-gray-50 py-12">
+        <Reveal as="section" className="bg-gray-50 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
               {isFil ? 'Mga Mapagkukunan at Datos' : 'Data Sources & Resources'}
@@ -348,7 +358,7 @@ export default function Statistics() {
               ))}
             </div>
           </div>
-        </section>
+        </Reveal>
       </main>
     </>
   );

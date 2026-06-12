@@ -8,6 +8,7 @@ import {
   BarChart3,
 } from 'lucide-react';
 import SEO from '../components/SEO';
+import Reveal from '../components/ui/Reveal';
 
 const QUICK_LINKS = [
   {
@@ -102,7 +103,7 @@ const NotFound = () => {
         </div>
 
         {/* Quick links */}
-        <div className="container mx-auto px-4 py-14">
+        <Reveal className="container mx-auto px-4 py-14">
           <p className="text-center text-sm font-semibold uppercase tracking-widest text-gray-400 mb-8">
             You might be looking for
           </p>
@@ -131,7 +132,7 @@ const NotFound = () => {
               )
             )}
           </div>
-        </div>
+        </Reveal>
       </main>
     </>
   );

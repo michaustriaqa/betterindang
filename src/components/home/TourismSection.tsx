@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import {
   MapPin,
   Landmark,
+  Church,
   Waves,
   Tractor,
   BedDouble,
@@ -55,7 +56,7 @@ const CATEGORY_NAV = [
 
 const HIGHLIGHTS = [
   {
-    emoji: '⛪',
+    icon: Church,
     title: 'St. Gregory the Great Parish',
     desc: 'Built in 1611 — one of the oldest churches in Cavite with a rose-colored stone facade.',
     tag: 'Heritage',
@@ -63,7 +64,7 @@ const HIGHLIGHTS = [
     href: '/tourism/heritage',
   },
   {
-    emoji: '🗿',
+    icon: Landmark,
     title: 'Bonifacio Shrine',
     desc: 'The exact site where Andres Bonifacio was arrested in April 1897, now a national historical marker.',
     tag: 'History',
@@ -71,7 +72,7 @@ const HIGHLIGHTS = [
     href: '/tourism/heritage',
   },
   {
-    emoji: '💧',
+    icon: Waves,
     title: 'Natural Spring Resorts',
     desc: 'Cold, chemical-free flowing spring water resorts — the signature experience of the Town of Many Springs.',
     tag: 'Resorts',
@@ -79,7 +80,7 @@ const HIGHLIGHTS = [
     href: '/tourism/resorts',
   },
   {
-    emoji: '🌿',
+    icon: Tractor,
     title: 'Agri-Eco Tourism',
     desc: 'Farm stays, orchards, and the CvSU Agri-Eco Tourism Park — unique farm-to-table experiences.',
     tag: 'Farms',
@@ -132,31 +133,34 @@ export default function TourismSection() {
           ref={highlightRef}
           className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"
         >
-          {HIGHLIGHTS.map(h => (
-            <Link
-              key={h.title}
-              to={h.href}
-              className="group bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-5 flex flex-col gap-3"
-            >
-              <div className="text-3xl">{h.emoji}</div>
-              <div>
-                <span
-                  className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${h.tagColor}`}
-                >
-                  {h.tag}
+          {HIGHLIGHTS.map(h => {
+            const Icon = h.icon;
+            return (
+              <Link
+                key={h.title}
+                to={h.href}
+                className="group bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-5 flex flex-col gap-3"
+              >
+                <Icon className="h-7 w-7 text-primary-600" />
+                <div>
+                  <span
+                    className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${h.tagColor}`}
+                  >
+                    {h.tag}
+                  </span>
+                  <h3 className="font-black text-sm text-gray-900 leading-snug">
+                    {h.title}
+                  </h3>
+                </div>
+                <p className="text-xs text-gray-500 leading-relaxed flex-1">
+                  {h.desc}
+                </p>
+                <span className="inline-flex items-center gap-1 text-xs font-bold text-primary-600 group-hover:text-primary-800 transition-colors">
+                  Explore <ChevronRight className="h-3.5 w-3.5" />
                 </span>
-                <h3 className="font-black text-sm text-gray-900 leading-snug">
-                  {h.title}
-                </h3>
-              </div>
-              <p className="text-xs text-gray-500 leading-relaxed flex-1">
-                {h.desc}
-              </p>
-              <span className="inline-flex items-center gap-1 text-xs font-bold text-primary-600 group-hover:text-primary-800 transition-colors">
-                Explore <ChevronRight className="h-3.5 w-3.5" />
-              </span>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
 
         {/* Category navigation row */}
