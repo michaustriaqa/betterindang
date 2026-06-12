@@ -10,6 +10,10 @@ on:
     branches:
       - main
 
+# Minimal GITHUB_TOKEN permissions for all jobs (read-only checkout).
+permissions:
+  contents: read
+
 jobs:
   build-and-verify:
     name: Build Verification Check
@@ -22,7 +26,7 @@ jobs:
       - name: Setup Node.js Environment
         uses: actions/setup-node@v4
         with:
-          node-size: '20'
+          node-version: '20'
           cache: 'npm'
 
       - name: Install Dependencies

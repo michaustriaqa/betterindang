@@ -11,6 +11,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.2] - 2026-06-13
+
+### Security
+
+- Resolved CodeQL "externally-controlled format string" alert in `src/lib/markdownLoader.ts`: the user-controlled document slug is no longer interpolated into the `console.error` format string — it is passed as a separate argument with `%s` placeholders.
+- Added a minimal `permissions: { contents: read }` block to the CI workflow (`.github/workflows/ci.yml`), resolving the CodeQL "workflow does not contain permissions" alert.
+- Ran `npm audit fix` to patch 9 dependency vulnerabilities (5 high, 4 moderate) flagged by Dependabot — across `vite`, `react-router-dom`, `yaml`, `postcss`, `flatted`, `picomatch`, and `i18next-http-backend`. All are semver-compatible patch updates; `npm audit` now reports 0 vulnerabilities and the build still passes.
+
+### Fixed
+
+- Corrected an invalid `setup-node` input in CI (`node-size` → `node-version`) so the workflow actually pins Node 20.
+
 ## [0.5.1] - 2026-06-13
 
 ### Fixed

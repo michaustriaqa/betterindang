@@ -95,7 +95,9 @@ export async function loadMarkdownContent(
     return { content, title, description, data };
   } catch (error) {
     console.error(
-      `Failed to load markdown content for document: ${documentSlug} (${lang || 'en'})`,
+      'Failed to load markdown content for document: %s (%s)',
+      documentSlug,
+      lang || 'en',
       error
     );
     throw new Error('Document not found: ' + documentSlug);

@@ -273,7 +273,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.5.1</span>
+              <span className="font-mono">v0.5.2</span>
             </div>
           </div>
         </div>
