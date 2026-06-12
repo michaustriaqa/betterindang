@@ -115,5 +115,6 @@ Follow [Semantic Versioning](https://semver.org/): PATCH for fixes/content, MINO
 
 ## Git & Commits
 
+- **Always update `CHANGELOG.md` before pushing.** Every push (and every PR) must include a `CHANGELOG.md` entry that describes the changes being pushed — no undocumented or unmonitored changes are allowed to reach the remote. If a change ships without a changelog entry, that is a defect to be fixed, not an exception. Update the changelog as part of the same commit/push, not afterward.
 - **Do not add any Claude / AI attribution to commits or pull requests.** No `Co-Authored-By: Claude ...` trailer on commit messages, and no "Generated with Claude Code" (or similar) footer in PR descriptions. Keep commit and PR messages free of AI tool attribution.
 - Write commit messages in the project's normal voice (imperative summary + concise body) without mentioning the assistant.

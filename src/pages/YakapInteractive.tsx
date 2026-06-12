@@ -1180,6 +1180,11 @@ export default function YakapInteractive() {
                     <select
                       value={selectedMedCategory}
                       onChange={e => setSelectedMedCategory(e.target.value)}
+                      aria-label={
+                        isFil
+                          ? 'Salain ang gamot ayon sa kategorya'
+                          : 'Filter medicines by category'
+                      }
                       className="w-full border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 rounded-xl px-3 py-3 text-sm text-gray-800 dark:text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all cursor-pointer"
                     >
                       {MEDICINE_CATEGORIES.map(cat => (

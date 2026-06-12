@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.1] - 2026-06-13
+
+### Fixed
+
+- Added an accessible name (`aria-label`) to the medicine-category filter `<select>` on the PhilHealth YAKAP page, resolving a "select element must have an accessible name" accessibility error.
+
+### Docs
+
+- Added a project governance rule in `CLAUDE.md`: `CHANGELOG.md` must be updated before every push (and every PR) so no undocumented or unmonitored changes reach the remote.
+
 ## [0.5.0] - 2026-06-12
 
 ### Added
