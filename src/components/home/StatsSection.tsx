@@ -1,6 +1,6 @@
 import { Users, MapPin, Building2, Map } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../hooks/useTranslation';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
 export default function StatsSection() {

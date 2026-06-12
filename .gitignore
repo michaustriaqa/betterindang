@@ -13,6 +13,10 @@ dist-ssr
 *.local
 .claude
 
+# Local-only dev tooling / personal helper scripts (keep on disk, don't commit)
+*.ps1
+verify-and-push.ps1
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

@@ -9,7 +9,7 @@ import {
   Heart,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../hooks/useTranslation';
 
 const QUICK_LINKS = [
   { label: 'About the Portal', labelKey: 'footer.about', href: '/about' },
@@ -30,10 +30,12 @@ const QUICK_LINKS = [
 
 const RESOURCE_LINKS = [
   {
-  label: 'Official Indang Website',
+    label: 'Official Indang Website',
+    labelKey: 'footer.officialWebsite',
     href: 'https://indang.gov.ph',
     external: true,
   },
+  {
     label: 'Open Data',
     labelKey: 'footer.openData',
     href: 'https://data.gov.ph',
@@ -271,7 +273,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.4.2</span>
+              <span className="font-mono">v0.4.3</span>
             </div>
           </div>
         </div>

@@ -71,11 +71,11 @@ A modern, multilingual, and accessible website template designed specifically fo
 
 ## 📚 Documentation
 
-- **[STARTER-KIT-README.md](STARTER-KIT-README.md)** - Complete setup and customization guide
-- **[CONTENT-GUIDE.md](CONTENT-GUIDE.md)** - Content writing and contribution guidelines
-- **[CONTENT-MANAGEMENT.md](CONTENT-MANAGEMENT.md)** - Guide for non-technical users to edit and manage website content
-- **[DEPLOYMENT-GUIDE.md](DEPLOYMENT-GUIDE.md)** - Deployment instructions for Vercel and other platforms
-- **[STARTER-KIT-SUMMARY.md](STARTER-KIT-SUMMARY.md)** - Audit results and implementation summary
+- **[docs/STARTER-KIT-README.md](docs/STARTER-KIT-README.md)** - Complete setup and customization guide
+- **[docs/CONTENT-GUIDE.md](docs/CONTENT-GUIDE.md)** - Content writing and contribution guidelines
+- **[docs/CONTENT-MANAGEMENT.md](docs/CONTENT-MANAGEMENT.md)** - Guide for non-technical users to edit and manage website content
+- **[docs/DEPLOYMENT-GUIDE.md](docs/DEPLOYMENT-GUIDE.md)** - Deployment instructions for Vercel and other platforms
+- **[docs/STARTER-KIT-SUMMARY.md](docs/STARTER-KIT-SUMMARY.md)** - Audit results and implementation summary
 - **[CHANGELOG.md](CHANGELOG.md)** - Version history and release notes
 
 ## 🎯 Perfect For
@@ -192,7 +192,7 @@ We welcome contributions from everyone! Whether you're a developer, government o
 
 1. **Create a GitHub account** (free at github.com)
 2. **Navigate to the repository** in your web browser
-3. **Use our detailed guide**: [CONTENT-MANAGEMENT.md](CONTENT-MANAGEMENT.md) - Complete step-by-step instructions for editing content without any technical knowledge
+3. **Use our detailed guide**: [docs/CONTENT-MANAGEMENT.md](docs/CONTENT-MANAGEMENT.md) - Complete step-by-step instructions for editing content without any technical knowledge
 
 #### What You Can Contribute
 
@@ -297,7 +297,7 @@ git push origin main
 
 ### 🆘 Need Help?
 
-- **For Content Questions**: Check [CONTENT-MANAGEMENT.md](CONTENT-MANAGEMENT.md)
+- **For Content Questions**: Check [docs/CONTENT-MANAGEMENT.md](docs/CONTENT-MANAGEMENT.md)
 - **For Technical Issues**: Open an issue on GitHub
 - **For General Questions**: Contact the project maintainers
 

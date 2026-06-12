@@ -3,7 +3,7 @@ import { X, Menu, ChevronDown, Phone, Thermometer, Clock } from 'lucide-react';
 import { mainNavigation } from '../../data/navigation';
 import type { LanguageType } from '../../types/index';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { useTranslation } from '../../hooks/useTranslation';
 
 function formatDatetime(): string {
   const now = new Date();

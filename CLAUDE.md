@@ -22,12 +22,25 @@ This is a React 19 + TypeScript + Vite app for Philippine Local Government Units
 
 ### Routing
 
-`src/App.tsx` defines six routes:
+`src/App.tsx` defines the following routes:
 
 - `/` — Home page
 - `/services` / `/services/:category` — Services listing
+- `/services/:category/:documentSlug` — Service document viewer
+- `/services/health-services/access-free-check-ups-labs-and-medicines-through-philhealth-yakap` — Yakap interactive page (dedicated route, takes precedence over the generic service document route)
 - `/government` / `/government/:category` — Government section listing
-- `/:documentSlug` / `/:lang/:documentSlug` — Document viewer (markdown content, used by both services and government)
+- `/government/:category/:documentSlug` — Government document viewer
+- `/government/departments/executive` — Executive Directory
+- `/government/departments/officials` — Sangguniang Bayan
+- `/government/legislative` / `/legislative` — Legislative page
+- `/statistics` — Statistics page (YAML-driven municipality profile + barangay data)
+- `/transparency` — Transparency page
+- `/tourism` / `/tourism/:category` — Tourism page
+- `/sitemap` — Sitemap page
+- `/:documentSlug` / `/:lang/:documentSlug` — Generic document viewer (markdown content)
+- `*` — NotFound (404) page
+
+> Note: more specific routes (e.g. the Yakap and `/government/departments/*` routes) are declared before their generic `:category`/`:documentSlug` counterparts so they match first.
 
 ### Content System
 
@@ -67,11 +80,12 @@ Example: `{MAYOR}` in the markdown is replaced with the `MAYOR` value from `exec
 
 ### Internationalization
 
-- i18next with `HttpBackend` loads translation files from `public/locales/{lang}/common.json`
+- i18next is configured in `src/i18n.ts` (initialized once from `main.tsx`). `HttpBackend` loads translation files from `public/locales/{lang}/common.json`.
 - Language detection order: `localStorage` → `navigator` → `htmlTag`
 - Fallback language: `en`
 - Supported languages are defined in `src/types/index.ts` (`LanguageType`)
-- Currently only `public/locales/en/common.json` exists
+- Two locales exist: `public/locales/en/common.json` and `public/locales/fil/common.json`
+- **Always** access translations through the project's `useTranslation` hook in `src/hooks/useTranslation.ts` (which wraps `react-i18next` and also exposes `currentLanguage` / `changeLanguage`). Do not import `useTranslation` directly from `react-i18next`.
 
 ### Environment Variables
 

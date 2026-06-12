@@ -18,6 +18,30 @@ The displayed version in the footer (`src/components/layout/Footer.tsx`) must be
 
 ## Changelog
 
+### v0.4.3 — 2026-06-12
+
+**Fixed**
+
+- Resolved build-breaking merge artifacts: malformed `RESOURCE_LINKS` object in `Footer.tsx`, and interleaved hardcoded/YAML JSX in `Statistics.tsx` that referenced deleted constants (`STATS`, `CMCI_PILLARS`, `RESOURCES`). `Statistics.tsx` rebuilt on the clean YAML-driven backbone with working bilingual (`isFil`) page chrome.
+
+**Changed**
+
+- Consolidated to a single i18n setup. All components now access translations through the project `useTranslation` hook (`src/hooks/useTranslation.ts`) instead of importing `react-i18next` directly; the hook now accepts an optional namespace argument.
+- Synced the app version to `0.4.3` across `package.json`, `Footer.tsx`, and the locale `copyright` strings (previously out of sync: `0.2.0` / `0.4.2`).
+- Moved contributor guide docs into `/docs/` (`CONTENT-GUIDE`, `CONTENT-MANAGEMENT`, `DEPLOYMENT-GUIDE`, `INSPIRATION`, `STARTER-KIT-README`, `STARTER-KIT-SUMMARY`); updated README links.
+- Updated `CLAUDE.md` routing and i18n sections to match the current app.
+- Added `footer.officialWebsite` translation key (`en` + `fil`).
+
+**Removed**
+
+- Dead/duplicate code: the unused `src/i18n/` directory (a second, competing i18n setup), `src/components/I18nTest.tsx`, `src/components/LanguageSwitcher.tsx`, `src/components/ui/ThemeSelector.tsx`, and `src/assets/react.svg`.
+
+**Tooling**
+
+- Untracked `verify-and-push.ps1` (kept local) and added `*.ps1` to `.gitignore` so personal helper scripts are not committed.
+
+---
+
 ### v0.4.2 — 2026-04-11
 
 **Changed**
