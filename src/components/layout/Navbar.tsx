@@ -303,7 +303,7 @@ const Navbar: React.FC = () => {
             {/* Logo */}
             <Link to="/" className="shrink-0 flex items-center">
               <img
-                src="/logo.svg"
+                src="/icons/logo.svg"
                 alt={import.meta.env.VITE_GOVERNMENT_NAME}
                 className="h-14 w-auto max-w-[200px] object-contain"
               />
