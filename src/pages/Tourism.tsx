@@ -20,6 +20,7 @@ import {
 import SEO from '../components/SEO';
 import { useScrollReveal } from '../hooks/useScrollReveal';
 import establishmentsData from '../../content/tourism/establishments.json';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Establishment {
   name: string;
@@ -134,6 +135,8 @@ const CULTURE_HIGHLIGHTS = [
 // ── Index Page ────────────────────────────────────────────────────────────────
 
 function TourismIndex() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
   const heroRef = useScrollReveal<HTMLDivElement>();
   const cultureRef = useScrollReveal<HTMLDivElement>();
   const catsRef = useScrollReveal<HTMLDivElement>();
@@ -142,24 +145,91 @@ function TourismIndex() {
   const categories: Category[] = establishmentsData.categories;
   const establishments: Establishment[] = establishmentsData.establishments;
 
-  const CATEGORY_DESCS: Record<string, string> = {
-    heritage:
-      'Historical shrines, colonial churches, a community museum, and living craft traditions.',
-    resorts:
-      'Spring-fed pools and private resorts using cold, chemical-free natural water.',
-    farms:
-      'Agri-eco parks, farmstays, orchards, and farm-to-table experiences.',
-    events: 'Function halls, glamping cabins, and vacation home rentals.',
-    restaurants:
-      'Cafés, restaurants, and catering services featuring local Cavite cuisine.',
-    adventure: 'Outdoor adventure parks and eco-nature activities.',
+  const CATEGORY_DESCS: Record<string, string> = isFil
+    ? {
+        heritage:
+          'Mga makasaysayang dambana, simbahang kolonyal, museo ng pamayanan, at buhay na tradisyon ng sining.',
+        resorts:
+          'Mga spring-fed na pool at pribadong resort na gumagamit ng malamig at walang kemikal na likas na tubig.',
+        farms:
+          'Mga parkeng agri-ekolohikal, farmstays, at mga karanasan mula sa bukid tungo sa lamesa.',
+        events:
+          'Mga bulwagan para sa okasyon, glamping cabins, at paupahang bahay-bakasyunan.',
+        restaurants:
+          'Mga café, kainan, at serbisyo sa catering na nagtatampok ng lokal na lutuing Cavite.',
+        adventure:
+          'Mga parkeng panlabas na may pakikipagsapalaran at mga gawaing pang-ekolohiya.',
+      }
+    : {
+        heritage:
+          'Historical shrines, colonial churches, a community museum, and living craft traditions.',
+        resorts:
+          'Spring-fed pools and private resorts using cold, chemical-free natural water.',
+        farms:
+          'Agri-eco parks, farmstays, orchards, and farm-to-table experiences.',
+        events: 'Function halls, glamping cabins, and vacation home rentals.',
+        restaurants:
+          'Cafés, restaurants, and catering services featuring local Cavite cuisine.',
+        adventure: 'Outdoor adventure parks and eco-nature activities.',
+      };
+
+  const translatedHighlights = CULTURE_HIGHLIGHTS.map(h => {
+    let title = h.title;
+    let subtitle = h.subtitle;
+    let body = h.body;
+    if (isFil) {
+      if (h.title === 'Historical Identity') {
+        title = 'Makasaysayang Pagkakakilanlan';
+        subtitle = '"Walang Tinag"';
+        body =
+          'Ang Indang ay isang kuta ng Katipunan noong Himagsikang Pilipino. Inaresto si Andres Bonifacio sa Barangay Limbon noong Abril 1897. Itinatag bilang isang malayang bayan noong 1655.';
+      } else if (h.title === 'Heritage & Architecture') {
+        title = 'Pamana at Arkitektura';
+        subtitle = 'Simbahan · Museo · Kapilya';
+        body =
+          'Parokya ng San Gregorio Magno (itinatag noong 1611), Parokya ng San Vicente Ferrer, Kapilya ng Pitong Arkanghel, at ang Indang Community Museum na nagpapanatili ng mga artifact at rebolusyonaryong dokumento.';
+      } else if (h.title === 'Culture & Weaving') {
+        title = 'Kultura at Paghahabi';
+        subtitle = 'Mga Habi ng MKC · Yndan · Irok Festival';
+        body =
+          'Tradisyonal na paghahabi gamit ang habihan na pinapanatili ng MKC Weavers Association at ginawang makabago ng Yndan (@yndanph). Ang Irok Festival (Dis. 1) ay nagdiriwang sa puno ng Kaong sa pamamagitan ng street dancing.';
+      } else if (h.title === 'Local Produce') {
+        title = 'Mga Lokal na Produkto';
+        subtitle = 'Kalamay · Kape · Dragon Fruit · Kaong';
+        body =
+          'Kilala sa Kalamay Indang, kapeng Robusta/Arabica/Barako, dragon fruit (mula sa Brgy. Calumpang at Buna Lejos), at kaong kasama ang organikong sukang sasa.';
+      } else if (h.title === 'Natural Springs & Falls') {
+        title = 'Mga Likas na Batis at Talon';
+        subtitle = 'Ang Bayan ng Maraming Bukal';
+        body =
+          'Mga resort na may malamig at natural na tubig (Villa Colmenar, Rio Villa) na nagmumula sa mga bukal. Ang Talon ng Pantihan (Balayungan) ay isa sa mga huling ligaw na talon sa lalawigan.';
+      }
+    }
+    return { ...h, title, subtitle, body };
+  });
+
+  const translateCategoryLabel = (label: string, id: string) => {
+    if (!isFil) return label;
+    const mapping: Record<string, string> = {
+      heritage: 'Makasaysayang Pamana',
+      resorts: 'Mga Spring Resort',
+      farms: 'Mga Sakahan (Farms)',
+      events: 'Mga Kaganapan at Okasyon',
+      restaurants: 'Mga Restaurant at Café',
+      adventure: 'Pakikipagsapalaran (Adventure)',
+    };
+    return mapping[id] || label;
   };
 
   return (
     <>
       <SEO
-        title="Tourism"
-        description="Discover the Town of Many Springs — heritage, spring resorts, farms, and cultural landmarks in Indang, Cavite."
+        title={isFil ? 'Turismo' : 'Tourism'}
+        description={
+          isFil
+            ? 'Tuklasin ang Bayan ng Maraming Bukal — pamana, spring resorts, bukid, at makasaysayang dambana sa Indang, Cavite.'
+            : 'Discover the Town of Many Springs — heritage, spring resorts, farms, and cultural landmarks in Indang, Cavite.'
+        }
         keywords="Indang tourism, Cavite tourism, spring resorts, Bonifacio Shrine, Irok Festival, CvSU, agri-tourism"
       />
 
@@ -177,19 +247,19 @@ function TourismIndex() {
           <div className="flex items-center gap-3 mb-3">
             <MapPin className="h-6 w-6 text-blue-300" />
             <span className="text-blue-300 text-sm font-semibold uppercase tracking-widest">
-              Indang, Cavite
+              {isFil ? 'Indang, Cavite' : 'Indang, Cavite'}
             </span>
           </div>
           <h1 className="text-5xl sm:text-6xl font-black mb-2 leading-tight">
-            Tourism
+            {isFil ? 'Turismo' : 'Tourism'}
           </h1>
           <p className="text-2xl font-bold text-blue-200 mb-2 italic">
             "Ang Bayan ng Maraming Bukal"
           </p>
           <p className="text-blue-100 text-lg max-w-2xl mb-4">
-            The Town of Many Springs — known for natural spring resorts,
-            revolutionary history, heritage churches, agri-tourism farms, and
-            the Irok Festival.
+            {isFil
+              ? 'Ang Bayan ng Maraming Bukal — kilala sa mga natural spring resort, makasaysayang himagsikan, mga pamanang simbahan, sakahang pang-agrikultura, at ang Irok Festival.'
+              : 'The Town of Many Springs — known for natural spring resorts, revolutionary history, heritage churches, agri-tourism farms, and the Irok Festival.'}
           </p>
           <div className="flex flex-wrap items-center gap-2 mb-6">
             <span className="bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
@@ -199,17 +269,19 @@ function TourismIndex() {
               Est. 1655
             </span>
             <span className="bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
-              {establishments.length} Establishments
+              {isFil
+                ? `${establishments.length} na Establisimyento`
+                : `${establishments.length} Establishments`}
             </span>
           </div>
           <a
             href="https://www.facebook.com/TourismIndang"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary-700 font-bold text-sm rounded-lg hover:bg-blue-50 transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary-700 font-bold text-sm rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
           >
             <Facebook className="h-4 w-4" />
-            Follow @TourismIndang
+            {isFil ? 'Sundan ang @TourismIndang' : 'Follow @TourismIndang'}
           </a>
         </div>
       </div>
@@ -221,18 +293,20 @@ function TourismIndex() {
             <div className="flex items-center gap-2 mb-1">
               <Star className="h-4 w-4 text-amber-500" />
               <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">
-                Culture & Identity
+                {isFil ? 'Kultura at Pagkakakilanlan' : 'Culture & Identity'}
               </span>
             </div>
             <h2 className="text-2xl font-black text-gray-900">
-              What Makes Indang Unique
+              {isFil
+                ? 'Bakit Natatangi ang Indang'
+                : 'What Makes Indang Unique'}
             </h2>
           </div>
           <div
             ref={cultureRef}
             className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
           >
-            {CULTURE_HIGHLIGHTS.map(
+            {translatedHighlights.map(
               ({ icon: Icon, color, iconColor, title, subtitle, body }) => (
                 <div key={title} className={`rounded-xl border p-5 ${color}`}>
                   <div
@@ -257,10 +331,12 @@ function TourismIndex() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div ref={catsRef} className="reveal mb-8">
             <h2 className="text-2xl font-black text-gray-900">
-              Browse by Category
+              {isFil ? 'Tingnan ayon sa Kategorya' : 'Browse by Category'}
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              Source: Indang Tourism Office — 2026 Official List
+              {isFil
+                ? 'Pinagmulan: Tanggapan ng Turismo ng Indang — Opisyal na Listahan ng 2026'
+                : 'Source: Indang Tourism Office — 2026 Official List'}
             </p>
           </div>
           <div
@@ -285,7 +361,7 @@ function TourismIndex() {
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center justify-between gap-2">
                       <h3 className="font-black text-base text-gray-900">
-                        {cat.label}
+                        {translateCategoryLabel(cat.label, cat.id)}
                       </h3>
                       <ChevronRight className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
                     </div>
@@ -295,7 +371,9 @@ function TourismIndex() {
                     <span
                       className={`inline-block mt-3 text-xs font-bold px-2 py-0.5 rounded-full ${colors.pill}`}
                     >
-                      {count} listing{count !== 1 ? 's' : ''}
+                      {isFil
+                        ? `${count} na establisimyento`
+                        : `${count} listing${count !== 1 ? 's' : ''}`}
                     </span>
                   </div>
                 </Link>
@@ -311,6 +389,8 @@ function TourismIndex() {
 // ── Category Page ─────────────────────────────────────────────────────────────
 
 function TourismCategory() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
   const { category } = useParams<{ category: string }>();
   const [search, setSearch] = useState('');
   const gridRef = useScrollReveal<HTMLDivElement>();
@@ -321,6 +401,19 @@ function TourismCategory() {
   const cat = categories.find(c => c.id === category);
   const colors = CATEGORY_COLORS[category ?? ''] ?? CATEGORY_COLORS.others;
   const IconComp = cat ? (ICON_MAP[cat.icon] ?? MapPin) : MapPin;
+
+  const translateCategoryLabel = (label: string, id: string) => {
+    if (!isFil) return label;
+    const mapping: Record<string, string> = {
+      heritage: 'Makasaysayang Pamana',
+      resorts: 'Mga Spring Resort',
+      farms: 'Mga Sakahan (Farms)',
+      events: 'Mga Kaganapan at Okasyon',
+      restaurants: 'Mga Restaurant at Café',
+      adventure: 'Pakikipagsapalaran (Adventure)',
+    };
+    return mapping[id] || label;
+  };
 
   const filtered = establishments.filter(item => {
     if (item.category !== category) return false;
@@ -338,12 +431,16 @@ function TourismCategory() {
     return (
       <main className="flex-grow flex items-center justify-center py-20">
         <div className="text-center">
-          <p className="text-gray-500 mb-4">Category not found.</p>
+          <p className="text-gray-500 mb-4">
+            {isFil ? 'Hindi nahanap ang kategorya.' : 'Category not found.'}
+          </p>
           <Link
             to="/tourism"
             className="text-sm font-semibold text-primary-700 hover:text-primary-800"
           >
-            View all tourism categories
+            {isFil
+              ? 'Tingnan ang lahat ng kategorya ng turismo'
+              : 'View all tourism categories'}
           </Link>
         </div>
       </main>
@@ -353,8 +450,8 @@ function TourismCategory() {
   return (
     <>
       <SEO
-        title={`${cat.label} — Tourism`}
-        description={`${cat.label} listings in Indang, Cavite. Official 2026 tourism establishments.`}
+        title={`${translateCategoryLabel(cat.label, cat.id)} — ${isFil ? 'Turismo' : 'Tourism'}`}
+        description={`${translateCategoryLabel(cat.label, cat.id)} listings in Indang, Cavite. Official 2026 tourism establishments.`}
         keywords={`Indang ${cat.label.toLowerCase()}, Cavite tourism, ${cat.id}`}
       />
       <main className="flex-grow">
@@ -364,18 +461,18 @@ function TourismCategory() {
             {/* Breadcrumb */}
             <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
               <Link to="/" className="hover:text-primary-700 transition-colors">
-                Home
+                {isFil ? 'Tahanan' : 'Home'}
               </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <Link
                 to="/tourism"
                 className="hover:text-primary-700 transition-colors"
               >
-                Tourism
+                {isFil ? 'Turismo' : 'Tourism'}
               </Link>
               <ChevronRight className="h-3.5 w-3.5" />
               <span className="font-semibold text-primary-700">
-                {cat.label}
+                {translateCategoryLabel(cat.label, cat.id)}
               </span>
             </nav>
 
@@ -383,17 +480,18 @@ function TourismCategory() {
               <IconComp className="h-6 w-6" />
             </div>
             <h1 className="text-4xl font-black text-gray-900 mb-2">
-              {cat.label}
+              {translateCategoryLabel(cat.label, cat.id)}
             </h1>
             <div className="flex items-center gap-2 mt-1">
               <span
                 className={`text-xs font-bold px-2 py-0.5 rounded-full ${colors.pill}`}
               >
-                {cat.label}
+                {translateCategoryLabel(cat.label, cat.id)}
               </span>
               <span className="text-gray-400 text-sm">
-                {filtered.length} establishment
-                {filtered.length !== 1 ? 's' : ''} · Indang, Cavite 2026
+                {isFil
+                  ? `${filtered.length} na establisimyento · Indang, Cavite 2026`
+                  : `${filtered.length} establishment${filtered.length !== 1 ? 's' : ''} · Indang, Cavite 2026`}
               </span>
             </div>
           </div>
@@ -408,7 +506,11 @@ function TourismCategory() {
                 type="text"
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                placeholder={`Search ${cat.label.toLowerCase()}...`}
+                placeholder={
+                  isFil
+                    ? `Maghanap sa ${translateCategoryLabel(cat.label, cat.id).toLowerCase()}...`
+                    : `Search ${cat.label.toLowerCase()}...`
+                }
                 className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
               />
             </div>
@@ -421,8 +523,16 @@ function TourismCategory() {
             {filtered.length === 0 ? (
               <div className="text-center py-20 text-gray-400">
                 <MapPin className="h-10 w-10 mx-auto mb-3 opacity-40" />
-                <p className="font-semibold">No results found.</p>
-                <p className="text-sm mt-1">Try a different search term.</p>
+                <p className="font-semibold">
+                  {isFil
+                    ? 'Walang nahanap na mga resulta.'
+                    : 'No results found.'}
+                </p>
+                <p className="text-sm mt-1">
+                  {isFil
+                    ? 'Subukan ang ibang salita ng paghahanap.'
+                    : 'Try a different search term.'}
+                </p>
               </div>
             ) : (
               <div
@@ -448,10 +558,12 @@ function TourismCategory() {
               href="https://www.facebook.com/TourismIndang"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors"
+              className="inline-flex items-center gap-2 text-sm font-semibold text-blue-600 hover:text-blue-800 transition-colors cursor-pointer"
             >
               <Facebook className="h-4 w-4" />
-              Contact Tourism Office
+              {isFil
+                ? 'Makipag-ugnayan sa Tanggapan ng Turismo'
+                : 'Contact Tourism Office'}
             </a>
           </div>
         </div>
@@ -471,6 +583,22 @@ function EstablishmentCard({
   cat: Category;
   colors: (typeof CATEGORY_COLORS)[string];
 }) {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
+  const translateCategoryLabel = (label: string, id: string) => {
+    if (!isFil) return label;
+    const mapping: Record<string, string> = {
+      heritage: 'Makasaysayang Pamana',
+      resorts: 'Mga Spring Resort',
+      farms: 'Mga Sakahan (Farms)',
+      events: 'Mga Kaganapan at Okasyon',
+      restaurants: 'Mga Restaurant at Café',
+      adventure: 'Pakikipagsapalaran (Adventure)',
+    };
+    return mapping[id] || label;
+  };
+
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary-200 transition-all duration-200 overflow-hidden flex flex-col">
       {/* Thumbnail */}
@@ -499,7 +627,7 @@ function EstablishmentCard({
           <span
             className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${colors.pill}`}
           >
-            {cat.label}
+            {translateCategoryLabel(cat.label, cat.id)}
           </span>
           <h3 className="font-black text-sm leading-snug text-gray-900">
             {item.name}
@@ -546,10 +674,10 @@ function EstablishmentCard({
               href={item.facebook}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 text-xs text-blue-600 hover:text-blue-800 font-semibold transition-colors"
+              className="flex items-center gap-2 text-xs text-blue-600 hover:text-blue-800 font-semibold transition-colors cursor-pointer"
             >
               <Facebook className="h-3.5 w-3.5 shrink-0" />
-              Facebook Page
+              {isFil ? 'Pahina sa Facebook' : 'Facebook Page'}
               <ExternalLink className="h-3 w-3 opacity-60" />
             </a>
           )}

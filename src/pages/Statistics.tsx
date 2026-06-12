@@ -18,6 +18,7 @@ import {
 import SEO from '../components/SEO';
 import municipalityProfileRaw from '../../content/government/reports-and-statistics/municipality-profile.yaml?raw';
 import barangayListRaw from '../../content/government/reports-and-statistics/barangay-list.yaml?raw';
+import { useTranslation } from '../hooks/useTranslation';
 
 // ── Icon lookup ────────────────────────────────────────────────────────────
 const ICON_MAP: Record<string, LucideIcon> = {
@@ -92,12 +93,122 @@ const barangayData = yaml.load(barangayListRaw) as BarangayList;
 export default function Statistics() {
   const { overview, stats, cmci, resources } = profile;
   const { barangays } = barangayData;
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
+  const translatedSTATS = STATS.map(s => {
+    let label = s.label;
+    let desc = s.desc;
+    let value = s.value;
+    if (isFil) {
+      if (s.label === 'Population') {
+        label = 'Populasyon';
+        desc = 'Datos ng DTI CMCI 2024';
+      } else if (s.label === 'Barangays') {
+        label = 'Mga Barangay';
+        desc = 'Mga administratibong nayon';
+      } else if (s.label === 'Total Land Area') {
+        label = 'Kabuuang Lawak';
+        desc = '4.91% ng lalawigan ng Cavite';
+      } else if (s.label === 'Income Classification') {
+        label = 'Klasipikasyon ng Kita';
+        desc = 'Uri ng kita ng munisipyo';
+        value = 'Unang Klase';
+      } else if (s.label === 'Annual Growth Rate') {
+        label = 'Taunang Paglago';
+        desc = 'Panahon ng senso 2015–2020';
+      } else if (s.label === 'Registered Voters') {
+        label = 'Mga Rehistradong Botante';
+        desc = 'Datos ng COMELEC 2019';
+      } else if (s.label === 'Elevation') {
+        label = 'Taas';
+        desc = 'Mula sa antas ng dagat';
+      } else if (s.label === 'CMCI Overall Rank') {
+        label = 'Pangkalahatang Ranggo sa CMCI';
+        desc = 'Mula sa 509 munisipalidad (2024)';
+        value = 'Ika-149';
+      }
+    }
+    return { ...s, label, desc, value };
+  });
+
+  const translatedPillars = CMCI_PILLARS.map(p => {
+    let label = p.label;
+    let rank = p.rank;
+    let highlights = p.highlights;
+    if (isFil) {
+      if (p.label === 'Economic Dynamism') {
+        label = 'Dinamismong Pang-ekonomiya';
+        rank = 'Ika-231';
+        highlights = [
+          'Gastos sa Pamumuhay: Ika-44',
+          'Paglago ng Lokal na Ekonomiya: Ika-64',
+          'Mga Aktibong Negosyo: Ika-61',
+        ];
+      } else if (p.label === 'Government Efficiency') {
+        label = 'Kahusayan ng Pamahalaan';
+        rank = 'Ika-428';
+        highlights = [
+          'ARTA Citizens Charter: Ika-1',
+          'Pangunguna sa Permit ng Negosyo: Ika-2',
+          'Pagsunod sa mga Pambansang Kautusan: Ika-3',
+        ];
+      } else if (p.label === 'Infrastructure') {
+        label = 'Imprastraktura';
+        rank = 'Ika-156';
+        highlights = [
+          'Network ng Daan: Ika-46',
+          'Kapasidad ng IT: Ika-32',
+          'Pangunahing Utility: Ika-39',
+        ];
+      } else if (p.label === 'Resiliency') {
+        label = 'Katatagan sa Sakuna (Resiliency)';
+        rank = 'Ika-122';
+        highlights = [
+          'Lokal na Pagtatasa ng Panganib: Ika-1',
+          'Disaster Risk Reduction Plan: Ika-2',
+          'Plano sa Paggamit ng Lupa: Ika-3',
+        ];
+      } else if (p.label === 'Innovation') {
+        label = 'Inobasyon';
+        rank = 'Ika-15';
+        highlights = [
+          'Plano ng ICT: Ika-1',
+          'E-BPLS Software: Ika-1',
+          'Online Payment Facilities: Ika-1',
+        ];
+      }
+    }
+    return { ...p, label, rank, highlights };
+  });
+
+  const translatedResources = RESOURCES.map(r => {
+    let desc = r.desc;
+    if (isFil) {
+      if (r.desc === 'Census & population data')
+        desc = 'Datos ng senso at populasyon';
+      else if (r.desc === 'Geographic & demographic data')
+        desc = 'Datos ng heograpiya at demograpiko';
+      else if (r.desc === 'City/municipality competitiveness index')
+        desc =
+          'Indise ng kakayahang makipagkumpitensya ng mga lungsod at munisipalidad';
+      else if (r.desc === 'Government open datasets')
+        desc = 'Bukas na mga dataset ng pamahalaan';
+      else if (r.desc === 'Bureau of Local Government Finance')
+        desc = 'Tanggapan ng Pananalapi ng Lokal na Pamahalaan';
+    }
+    return { ...r, desc };
+  });
 
   return (
     <>
       <SEO
-        title="Statistics"
-        description="Key statistics and demographic data for the Municipality of Indang, Cavite."
+        title={isFil ? 'Mga Istatistika' : 'Statistics'}
+        description={
+          isFil
+            ? 'Pangunahing istatistika at datos ng populasyon para sa Munisipalidad ng Indang, Cavite.'
+            : 'Key statistics and demographic data for the Municipality of Indang, Cavite.'
+        }
         keywords="Indang statistics, Cavite demographics, population data, municipality profile, CMCI"
       />
       <main className="flex-grow">
@@ -115,13 +226,16 @@ export default function Statistics() {
             <div className="flex items-center gap-3 mb-2">
               <BarChart3 className="h-7 w-7 text-blue-200" />
               <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
-                Municipality of Indang
+                {isFil ? 'Munisipalidad ng Indang' : 'Municipality of Indang'}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black mb-3">Statistics</h1>
+            <h1 className="text-4xl sm:text-5xl font-black mb-3">
+              {isFil ? 'Mga Istatistika' : 'Statistics'}
+            </h1>
             <p className="text-blue-100 text-lg max-w-xl">
-              Key figures and competitiveness data for Indang, Cavite based on
-              official government sources.
+              {isFil
+                ? 'Mga pangunahing numero at datos ng kakayahang makipagkumpitensya para sa Indang, Cavite batay sa mga opisyal na mapagkukunan ng pamahalaan.'
+                : 'Key figures and competitiveness data for Indang, Cavite based on official government sources.'}
             </p>
           </div>
         </div>
@@ -132,7 +246,7 @@ export default function Statistics() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h2 className="text-xl font-black text-gray-900">
-                  Municipal Profile
+                  {isFil ? 'Profile ng Munisipalidad' : 'Municipal Profile'}
                 </h2>
                 <p className="text-sm text-gray-500 mt-0.5">
                   Mayor {overview.mayor} · {overview.address} · Tel:{' '}
@@ -167,6 +281,19 @@ export default function Statistics() {
                       {label}
                     </div>
                     <div className="text-xs text-gray-500">{desc}</div>
+              {translatedSTATS.map(({ icon: Icon, value, label, desc }) => (
+                <div
+                  key={label}
+                  className="bg-gray-50 rounded-xl p-5 border border-gray-100 hover:shadow-md transition-shadow"
+                >
+                  <div className="bg-primary-100 text-primary-700 w-9 h-9 rounded-lg flex items-center justify-center mb-3">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <div className="text-xl font-black text-gray-900 leading-tight mb-1">
+                    {value}
+                  </div>
+                  <div className="text-sm font-semibold text-gray-800 mb-0.5">
+                    {label}
                   </div>
                 );
               })}
@@ -186,6 +313,14 @@ export default function Statistics() {
                   Cities &amp; Municipalities Competitiveness Index ·{' '}
                   {cmci.overall_rank} overall out of {cmci.total_municipalities}{' '}
                   municipalities (1st–2nd Class)
+                  {isFil
+                    ? 'DTI CMCI 2024 — 5 Haligi'
+                    : 'DTI CMCI 2024 — 5 Pillars'}
+                </h2>
+                <p className="text-sm text-gray-500 mt-0.5">
+                  {isFil
+                    ? 'Indise ng Kakayahang Makipagkumpitensya ng mga Lungsod at Munisipalidad · Ika-149 sa pangkalahatan mula sa 509 na munisipalidad (1st–2nd Class)'
+                    : 'Cities & Municipalities Competitiveness Index · 149th overall out of 509 municipalities (1st–2nd Class)'}
                 </p>
               </div>
               <a
@@ -194,7 +329,7 @@ export default function Statistics() {
                 rel="noopener noreferrer"
                 className="shrink-0 hidden sm:flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-800 transition-colors"
               >
-                Full Profile
+                {isFil ? 'Buong Profile' : 'Full Profile'}
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
             </div>
@@ -211,12 +346,21 @@ export default function Statistics() {
                   Ranked 1st in{' '}
                   {cmci.innovation_callout.sub_highlights.join(', ')} — top
                   digital governance among Philippine municipalities.
+                  {isFil
+                    ? 'Pang-15 ang Indang sa Inobasyon sa buong bansa'
+                    : 'Indang ranked 15th in Innovation nationwide'}
+                </p>
+                <p className="text-xs text-orange-700 mt-0.5">
+                  {isFil
+                    ? 'Nanguna sa ICT Plan, E-BPLS Software, at Online Payment Facilities — nangungunang digital na pamamahala sa mga munisipalidad ng Pilipinas.'
+                    : 'Ranked 1st in ICT Plan, E-BPLS Software, and Online Payment Facilities — top digital governance among Philippine municipalities.'}
                 </p>
               </div>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {cmci.pillars.map(
+              {translatedPillars.map(
                 ({
                   icon,
                   label,
@@ -252,6 +396,9 @@ export default function Statistics() {
                           </div>
                           <div className="text-xs opacity-60">rank</div>
                         </div>
+                        <div className="text-xs opacity-60">
+                          {isFil ? 'ranggo' : 'rank'}
+                        </div>
                       </div>
                       <ul className="space-y-1">
                         {highlights.map(h => (
@@ -280,6 +427,12 @@ export default function Statistics() {
             </h2>
             <p className="text-sm text-gray-500 mb-6">
               Population figures from {barangayData.source}
+              {isFil ? '36 na Barangay ng Indang' : '36 Barangays of Indang'}
+            </h2>
+            <p className="text-sm text-gray-500 mb-6">
+              {isFil
+                ? 'Mga numero ng populasyon mula sa 2020 PSA Census'
+                : 'Population figures from 2020 PSA Census'}
             </p>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-2">
               {barangays.map(({ name, population, href }) => (
@@ -306,10 +459,11 @@ export default function Statistics() {
         <section className="bg-gray-50 py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              Data Sources &amp; Resources
+              {isFil ? 'Mga Mapagkukunan at Datos' : 'Data Sources & Resources'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
               {resources.map(r => (
+              {translatedResources.map(r => (
                 <a
                   key={r.label}
                   href={r.href}

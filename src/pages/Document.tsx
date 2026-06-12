@@ -7,6 +7,7 @@ import { useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
+import { useTranslation } from '../hooks/useTranslation';
 import {
   loadMarkdownContent,
   type MarkdownContent,
@@ -39,18 +40,20 @@ export default function Document({
   const [nestedIndex, setNestedIndex] = useState<CategoryIndex | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { currentLanguage, t } = useTranslation();
+  const isFil = currentLanguage === 'fil';
 
   const markdownComponents = createMarkdownComponents(
     getTypographyTheme(initialTheme)
   );
 
   const [breadcrumbs, setBreadcrumbs] = useState([
-    { label: 'Home', href: '/' },
+    { label: isFil ? 'Tahanan' : 'Home', href: '/' },
   ]);
 
   useEffect(() => {
     if (!documentSlug || !category || !categoryType) {
-      setError('No document specified');
+      setError(isFil ? 'Walang tinukoy na dokumento' : 'No document specified');
       setLoading(false);
       return;
     }
@@ -64,23 +67,48 @@ export default function Document({
         const categories = isGovernment
           ? governmentCategories.categories
           : serviceCategories.categories;
-        const sectionLabel = isGovernment ? 'Government' : 'Services';
+        const sectionLabel = isGovernment
+          ? isFil
+            ? 'Pamahalaan'
+            : 'Government'
+          : isFil
+            ? 'Mga Serbisyo'
+            : 'Services';
         const sectionHref = isGovernment ? '/government' : '/services';
         const categoryData = categories.find(c => c.slug === category);
+        const categoryName = categoryData
+          ? isGovernment
+            ? t(
+                `government.categories.${categoryData.slug}.name`,
+                categoryData.category
+              )
+            : t(
+                `services.categories.${categoryData.slug}.name`,
+                categoryData.category
+              )
+          : category;
 
         // If the slug maps to its own index, render it as a nested listing
         if (isNestedCategory(documentSlug)) {
           const index = await getCategorySubcategories(documentSlug);
           setNestedIndex(index);
           setBreadcrumbs([
-            { label: 'Home', href: '/' },
+            { label: isFil ? 'Tahanan' : 'Home', href: '/' },
             { label: sectionLabel, href: sectionHref },
             {
-              label: categoryData?.category ?? category,
+              label: categoryName ?? category,
               href: `${sectionHref}/${category}`,
             },
             {
-              label: documentSlug,
+              label: isGovernment
+                ? t(
+                    `government.subcategories.${documentSlug}.name`,
+                    documentSlug
+                  )
+                : t(
+                    `services.subcategories.${documentSlug}.name`,
+                    documentSlug
+                  ),
               href: `${sectionHref}/${category}/${documentSlug}`,
             },
           ]);
@@ -90,15 +118,16 @@ export default function Document({
         const content = await loadMarkdownContent(
           documentSlug,
           category,
-          categoryType
+          categoryType,
+          currentLanguage
         );
         setMarkdownContent(content);
 
         setBreadcrumbs([
-          { label: 'Home', href: '/' },
+          { label: isFil ? 'Tahanan' : 'Home', href: '/' },
           { label: sectionLabel, href: sectionHref },
           {
-            label: categoryData?.category ?? category,
+            label: categoryName ?? category,
             href: `${sectionHref}/${category}`,
           },
           {
@@ -108,7 +137,11 @@ export default function Document({
         ]);
       } catch (err) {
         setError(
-          err instanceof Error ? err.message : 'Failed to load document'
+          err instanceof Error
+            ? err.message
+            : isFil
+              ? 'Bigo sa pag-load ng dokumento'
+              : 'Failed to load document'
         );
       } finally {
         setLoading(false);
@@ -116,12 +149,17 @@ export default function Document({
     };
 
     loadContent();
-  }, [documentSlug, category, categoryType]);
+  }, [documentSlug, category, categoryType, currentLanguage]);
 
   if (loading) {
     return (
       <Section className="p-3 mb-12">
-        <Banner type="info" description="Loading document..." />
+        <Banner
+          type="info"
+          description={
+            isFil ? 'Kinukuha ang dokumento...' : 'Loading document...'
+          }
+        />
       </Section>
     );
   }
@@ -132,7 +170,7 @@ export default function Document({
         <Breadcrumbs className="mb-8" items={breadcrumbs} />
         <Banner
           type="error"
-          title="Document Not Found"
+          title={isFil ? 'Hindi Nahanap ang Dokumento' : 'Document Not Found'}
           description={error}
           icon
         />
@@ -142,6 +180,7 @@ export default function Document({
 
   if (nestedIndex) {
     const nestedPages: Subcategory[] = nestedIndex.pages;
+    const isGovernment = categoryType === 'government';
     return (
       <>
         <SEO
@@ -151,11 +190,29 @@ export default function Document({
         <Section className="p-3 mb-12">
           <Breadcrumbs className="mb-8" items={breadcrumbs} />
           {nestedIndex.title && (
-            <Heading level={2}>{nestedIndex.title}</Heading>
+            <Heading level={2}>
+              {isGovernment
+                ? t(
+                    `government.subcategories.${documentSlug}.name`,
+                    nestedIndex.title
+                  )
+                : t(
+                    `services.subcategories.${documentSlug}.name`,
+                    nestedIndex.title
+                  )}
+            </Heading>
           )}
           {nestedIndex.description && (
             <Text className="text-gray-600 mb-4">
-              {nestedIndex.description}
+              {isGovernment
+                ? t(
+                    `government.subcategories.${documentSlug}.description`,
+                    nestedIndex.description
+                  )
+                : t(
+                    `services.subcategories.${documentSlug}.description`,
+                    nestedIndex.description
+                  )}
             </Text>
           )}
           {nestedIndex.layout === 'grid' ? (
@@ -164,11 +221,27 @@ export default function Document({
                 <Card hoverable key={page.slug ?? i} className="h-full">
                   <CardContent>
                     <h4 className="text-lg font-medium text-gray-900">
-                      {page.name}
+                      {isGovernment
+                        ? t(
+                            `government.subcategories.${page.slug}.name`,
+                            page.name
+                          )
+                        : t(
+                            `services.subcategories.${page.slug}.name`,
+                            page.name
+                          )}
                     </h4>
                     {page.description && (
                       <p className="mt-2 text-sm text-gray-600">
-                        {page.description}
+                        {isGovernment
+                          ? t(
+                              `government.subcategories.${page.slug}.description`,
+                              page.description
+                            )
+                          : t(
+                              `services.subcategories.${page.slug}.description`,
+                              page.description
+                            )}
                       </p>
                     )}
                   </CardContent>
@@ -181,11 +254,27 @@ export default function Document({
                 <Card key={page.slug ?? i} className="mb-4">
                   <CardContent>
                     <h4 className="text-lg font-medium text-gray-900">
-                      {page.name}
+                      {isGovernment
+                        ? t(
+                            `government.subcategories.${page.slug}.name`,
+                            page.name
+                          )
+                        : t(
+                            `services.subcategories.${page.slug}.name`,
+                            page.name
+                          )}
                     </h4>
                     {page.description && (
                       <p className="mt-2 text-sm text-gray-600">
-                        {page.description}
+                        {isGovernment
+                          ? t(
+                              `government.subcategories.${page.slug}.description`,
+                              page.description
+                            )
+                          : t(
+                              `services.subcategories.${page.slug}.description`,
+                              page.description
+                            )}
                       </p>
                     )}
                   </CardContent>

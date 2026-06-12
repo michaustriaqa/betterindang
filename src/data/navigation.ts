@@ -13,64 +13,102 @@ interface Category {
 }
 
 export const mainNavigation: NavigationItem[] = [
-  { label: 'Home', href: '/' },
+  { label: 'Home', labelKey: 'navbar.home', href: '/' },
   {
     label: 'Services',
+    labelKey: 'navbar.services',
     href: '/services',
     children: [
       ...(servicesData.categories as Category[]).map(category => ({
         label: category.category,
+        labelKey: `services.categories.${category.slug}.name`,
         href: `/services/${category.slug}`,
       })),
-      { label: 'Tourism', href: '/tourism' },
+      { label: 'Tourism', labelKey: 'navbar.tourism', href: '/tourism' },
     ],
   },
   {
     label: 'Government',
+    labelKey: 'navbar.government',
     href: '/government',
     children: [
-      { label: 'Departments & Officials', href: '/government/departments' },
+      {
+        label: 'Departments & Officials',
+        labelKey: 'navbar.departments',
+        href: '/government/departments',
+      },
       {
         label: 'Legislative (Municipal Council)',
+        labelKey: 'navbar.legislative',
         href: '/government/legislative',
       },
       {
         label: 'Local Officials Directory',
+        labelKey: 'navbar.officials',
         href: '/government/departments/officials',
       },
     ],
   },
   {
     label: 'Transparency',
+    labelKey: 'navbar.transparency',
     href: '/transparency',
     children: [
-      { label: 'Full Disclosure Policy', href: '/transparency' },
+      {
+        label: 'Full Disclosure Policy',
+        labelKey: 'navbar.fullDisclosure',
+        href: '/transparency',
+      },
       {
         label: 'Transparency Documents',
+        labelKey: 'navbar.transparencyDocs',
         href: '/government/transparency-documents',
       },
       {
         label: 'Reports & Statistics',
+        labelKey: 'navbar.reportsStats',
         href: '/government/reports-and-statistics',
       },
-      { label: 'Annual Budget', href: '/government/transparency-documents' },
-      { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
+      {
+        label: 'Annual Budget',
+        labelKey: 'navbar.budget',
+        href: '/government/transparency-documents',
+      },
+      {
+        label: 'Freedom of Information',
+        labelKey: 'navbar.foi',
+        href: 'https://www.foi.gov.ph',
+      },
     ],
   },
   {
     label: 'Statistics',
+    labelKey: 'navbar.statistics',
     href: '/statistics',
     children: [
-      { label: 'Municipal Profile', href: '/statistics' },
+      {
+        label: 'Municipal Profile',
+        labelKey: 'navbar.profile',
+        href: '/statistics',
+      },
       {
         label: 'DTI CMCI Profile',
+        labelKey: 'navbar.dtiProfile',
         href: 'https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang',
       },
-      { label: 'Barangay Data', href: '/statistics' },
-      { label: 'Open Data PH', href: 'https://data.gov.ph' },
+      {
+        label: 'Barangay Data',
+        labelKey: 'navbar.barangayData',
+        href: '/statistics',
+      },
+      {
+        label: 'Open Data PH',
+        labelKey: 'navbar.openData',
+        href: 'https://data.gov.ph',
+      },
     ],
   },
-  { label: 'Contact', href: '/#contact' },
+  { label: 'Contact', labelKey: 'navbar.contact', href: '/#contact' },
 ];
 
 export const footerNavigation = {
@@ -89,34 +127,58 @@ export const footerNavigation = {
     {
       title: 'Services',
       links: [
-        { label: 'All Services', href: '/services' },
+        {
+          label: 'All Services',
+          labelKey: 'services.viewAll',
+          href: '/services',
+        },
         ...(servicesData.categories as Category[])
           .slice(0, 6)
           .map(category => ({
             label: category.category,
+            labelKey: `services.categories.${category.slug}.name`,
             href: `/services/${category.slug}`,
           })),
-        { label: 'Hotlines', href: '/philippines/hotlines' },
-        { label: 'Holidays', href: '/philippines/holidays' },
+        {
+          label: 'Hotlines',
+          labelKey: 'navbar.hotlines',
+          href: '/philippines/hotlines',
+        },
+        {
+          label: 'Holidays',
+          labelKey: 'navbar.holidays',
+          href: '/philippines/holidays',
+        },
       ],
     },
     {
       title: 'Government',
       links: [
-        { label: 'Departments & Officials', href: '/government/departments' },
+        {
+          label: 'Departments & Officials',
+          labelKey: 'navbar.departments',
+          href: '/government/departments',
+        },
         {
           label: 'Legislative (Municipal Council)',
+          labelKey: 'navbar.legislative',
           href: '/government/legislative',
         },
         {
           label: 'Local Officials Directory',
+          labelKey: 'navbar.officials',
           href: '/government/departments/officials',
         },
         {
           label: 'Transparency Documents',
+          labelKey: 'navbar.transparencyDocs',
           href: '/government/transparency-documents',
         },
-        { label: 'Freedom of Information', href: 'https://www.foi.gov.ph' },
+        {
+          label: 'Freedom of Information',
+          labelKey: 'navbar.foi',
+          href: 'https://www.foi.gov.ph',
+        },
       ],
     },
   ],

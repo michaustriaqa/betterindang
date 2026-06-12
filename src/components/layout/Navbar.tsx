@@ -252,7 +252,7 @@ const Navbar: React.FC = () => {
         <div className="flex items-center px-6 py-2.5 min-w-max mx-auto gap-1">
           <Phone className="h-3.5 w-3.5 mr-3 shrink-0 opacity-90" />
           <span className="text-xs font-bold uppercase tracking-wide opacity-80 mr-3">
-            Emergency Hotlines
+            {t('navbar.emergencyHotlines', 'Emergency Hotlines')}
           </span>
           {HOTLINES.map((h, i) => (
             <React.Fragment key={h.labelKey}>
@@ -325,7 +325,7 @@ const Navbar: React.FC = () => {
                         aria-expanded={false}
                       >
                         {t(
-                          `navbar.${item.label.replace(' ', '').toLowerCase()}`,
+                          item.labelKey || `navbar.${item.label.toLowerCase()}`,
                           item.label
                         )}
                         <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:rotate-180 transition-transform duration-200" />
@@ -341,7 +341,11 @@ const Navbar: React.FC = () => {
                                 rel="noopener noreferrer"
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
                               >
-                                {child.label}
+                                {t(
+                                  child.labelKey ||
+                                    `navbar.${child.label.toLowerCase()}`,
+                                  child.label
+                                )}
                               </a>
                             ) : (
                               <Link
@@ -349,7 +353,11 @@ const Navbar: React.FC = () => {
                                 to={child.href}
                                 className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
                               >
-                                {child.label}
+                                {t(
+                                  child.labelKey ||
+                                    `navbar.${child.label.toLowerCase()}`,
+                                  child.label
+                                )}
                               </Link>
                             )
                           )}
@@ -367,7 +375,7 @@ const Navbar: React.FC = () => {
                       }`}
                     >
                       {t(
-                        `navbar.${item.label.replace(' ', '').toLowerCase()}`,
+                        item.labelKey || `navbar.${item.label.toLowerCase()}`,
                         item.label
                       )}
                     </Link>
@@ -449,7 +457,7 @@ const Navbar: React.FC = () => {
                         aria-expanded={openDropdown === item.label}
                       >
                         {t(
-                          `navbar.${item.label.replace(' ', '').toLowerCase()}`,
+                          item.labelKey || `navbar.${item.label.toLowerCase()}`,
                           item.label
                         )}
                         <ChevronDown
@@ -467,7 +475,11 @@ const Navbar: React.FC = () => {
                                 rel="noopener noreferrer"
                                 className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
                               >
-                                {child.label}
+                                {t(
+                                  child.labelKey ||
+                                    `navbar.${child.label.toLowerCase()}`,
+                                  child.label
+                                )}
                               </a>
                             ) : (
                               <Link
@@ -475,7 +487,11 @@ const Navbar: React.FC = () => {
                                 to={child.href}
                                 className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
                               >
-                                {child.label}
+                                {t(
+                                  child.labelKey ||
+                                    `navbar.${child.label.toLowerCase()}`,
+                                  child.label
+                                )}
                               </Link>
                             )
                           )}
@@ -493,7 +509,7 @@ const Navbar: React.FC = () => {
                       }`}
                     >
                       {t(
-                        `navbar.${item.label.replace(' ', '').toLowerCase()}`,
+                        item.labelKey || `navbar.${item.label.toLowerCase()}`,
                         item.label
                       )}
                     </Link>

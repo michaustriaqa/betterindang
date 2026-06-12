@@ -12,38 +12,68 @@ import { Link } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 const QUICK_LINKS = [
-  { label: 'About the Portal', href: '/about' },
-  { label: 'Sitemap', href: '/sitemap' },
-  { label: 'Accessibility', href: '/accessibility' },
-  { label: 'Community Discord', href: 'https://discord.gg/', external: true },
-  { label: 'Contact Us', href: '/about' },
+  { label: 'About the Portal', labelKey: 'footer.about', href: '/about' },
+  { label: 'Sitemap', labelKey: 'footer.sitemap', href: '/sitemap' },
+  {
+    label: 'Accessibility',
+    labelKey: 'footer.accessibility',
+    href: '/accessibility',
+  },
+  {
+    label: 'Community Discord',
+    labelKey: 'footer.discord',
+    href: 'https://discord.gg/',
+    external: true,
+  },
+  { label: 'Contact Us', labelKey: 'footer.contactUs', href: '/about' },
 ];
 
 const RESOURCE_LINKS = [
   {
-    label: 'Official Indang Website',
+  label: 'Official Indang Website',
     href: 'https://indang.gov.ph',
     external: true,
   },
-  { label: 'Open Data', href: 'https://data.gov.ph', external: true },
+    label: 'Open Data',
+    labelKey: 'footer.openData',
+    href: 'https://data.gov.ph',
+    external: true,
+  },
   {
     label: 'Freedom of Information',
+    labelKey: 'footer.foi',
     href: 'https://www.foi.gov.ph',
     external: true,
   },
   {
     label: 'LGU Indang Facebook',
+    labelKey: 'footer.facebook',
     href: 'https://www.facebook.com/LGUIndangCavite',
     external: true,
   },
-  { label: 'Sangguniang Bayan', href: '/legislative' },
+  {
+    label: 'Sangguniang Bayan',
+    labelKey: 'footer.sangguniangBayan',
+    href: '/legislative',
+  },
   {
     label: 'DILG Full Disclosure',
+    labelKey: 'footer.dilgDisclosure',
     href: 'https://fdp.dilg.gov.ph',
     external: true,
   },
-  { label: 'DTI CMCI', href: 'https://cmci.dti.gov.ph', external: true },
-  { label: 'BLGF', href: 'https://blgf.gov.ph', external: true },
+  {
+    label: 'DTI CMCI',
+    labelKey: 'footer.dtiCmci',
+    href: 'https://cmci.dti.gov.ph',
+    external: true,
+  },
+  {
+    label: 'BLGF',
+    labelKey: 'footer.blgf',
+    href: 'https://blgf.gov.ph',
+    external: true,
+  },
 ];
 
 const Footer: React.FC = () => {
@@ -63,9 +93,10 @@ const Footer: React.FC = () => {
               className="h-12 w-auto max-w-[180px] object-contain mb-4"
             />
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
-              A free, open-source community portal for residents of Indang,
-              Cavite. Access government services, officials, and public
-              information.
+              {t(
+                'hero.subtitle',
+                'A community-run portal to find information and services of the Municipality of Indang, Cavite.'
+              )}
             </p>
             <div className="flex items-center gap-3">
               <a
@@ -101,7 +132,7 @@ const Footer: React.FC = () => {
           {/* Col 2 — Quick Links */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">
-              Quick Links
+              {t('footer.quickLinks', 'Quick Links')}
             </h4>
             <ul className="space-y-2.5">
               {QUICK_LINKS.map(link =>
@@ -113,7 +144,7 @@ const Footer: React.FC = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 text-gray-400 hover:text-white text-sm transition-colors"
                     >
-                      {link.label}
+                      {t(link.labelKey, link.label)}
                       <ExternalLink className="h-3 w-3 opacity-50" />
                     </a>
                   </li>
@@ -123,7 +154,7 @@ const Footer: React.FC = () => {
                       to={link.href}
                       className="text-gray-400 hover:text-white text-sm transition-colors"
                     >
-                      {link.label}
+                      {t(link.labelKey, link.label)}
                     </Link>
                   </li>
                 )
@@ -134,7 +165,7 @@ const Footer: React.FC = () => {
           {/* Col 3 — Resources */}
           <div>
             <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">
-              Resources
+              {t('footer.resources', 'Resources')}
             </h4>
             <ul className="space-y-2.5">
               {RESOURCE_LINKS.map(link =>
@@ -146,7 +177,7 @@ const Footer: React.FC = () => {
                       rel="noopener noreferrer"
                       className="flex items-center gap-1.5 text-gray-400 hover:text-white text-sm transition-colors"
                     >
-                      {link.label}
+                      {t(link.labelKey, link.label)}
                       <ExternalLink className="h-3 w-3 opacity-50" />
                     </a>
                   </li>
@@ -156,7 +187,7 @@ const Footer: React.FC = () => {
                       to={link.href}
                       className="text-gray-400 hover:text-white text-sm transition-colors"
                     >
-                      {link.label}
+                      {t(link.labelKey, link.label)}
                     </Link>
                   </li>
                 )
@@ -169,10 +200,10 @@ const Footer: React.FC = () => {
             <div
               className="inline-flex items-baseline gap-2 bg-green-900/40 border border-green-700/50 rounded-xl px-4 py-3 mb-5"
               role="status"
-              aria-label="Cost to the People of Indang: Zero Pesos"
+              aria-label={t('footer.costTitle', 'Cost to the People of Indang')}
             >
               <span className="text-sm text-green-300 font-medium">
-                Cost to the People of Indang
+                {t('footer.costTitle', 'Cost to the People of Indang')}
               </span>
               <span className="text-2xl font-black text-green-400">₱0</span>
             </div>
@@ -185,7 +216,7 @@ const Footer: React.FC = () => {
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gray-800 text-gray-300 hover:bg-primary-700 hover:text-white text-sm font-semibold transition-colors"
               >
                 <Mail className="h-4 w-4 shrink-0" />
-                Volunteer with Us
+                {t('footer.volunteer', 'Volunteer with Us')}
               </a>
               <a
                 href="https://github.com/michaustriaqa/betterindang"
@@ -194,7 +225,7 @@ const Footer: React.FC = () => {
                 className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white text-sm font-semibold transition-colors"
               >
                 <Github className="h-4 w-4 shrink-0" />
-                Contribute at GitHub
+                {t('footer.contribute', 'Contribute at GitHub')}
               </a>
             </div>
           </div>
@@ -229,13 +260,14 @@ const Footer: React.FC = () => {
               </span>
               <span className="hidden sm:inline text-gray-700">·</span> */}
               <span className="text-gray-600">
-                Not an official government website. All content is public domain
-                unless otherwise specified.
+                {t('footer.notOfficial', 'Not an official government website.')}
               </span>
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Heart className="h-3.5 w-3.5" />
-              <span className="font-mono">Built by the community</span>
+              <span className="font-mono">
+                {t('footer.builtByCommunity', 'Built by the community')}
+              </span>
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />

@@ -3,15 +3,18 @@ import { Landmark, List, Table2, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
 import data from '../../content/government/departments/legislative/legislative.json';
+import { useTranslation } from '../hooks/useTranslation';
 
 type ViewMode = 'table' | 'list';
 
 function ViewToggle({
   mode,
   onChange,
+  isFil,
 }: {
   mode: ViewMode;
   onChange: (m: ViewMode) => void;
+  isFil: boolean;
 }) {
   return (
     <div className="flex items-center border border-gray-200 rounded-md overflow-hidden shrink-0">
@@ -25,7 +28,7 @@ function ViewToggle({
         }`}
       >
         <Table2 className="h-3.5 w-3.5" />
-        Table
+        {isFil ? 'Talahanayan' : 'Table'}
       </button>
       <button
         type="button"
@@ -37,16 +40,47 @@ function ViewToggle({
         }`}
       >
         <List className="h-3.5 w-3.5" />
-        List
+        {isFil ? 'Listahan' : 'List'}
       </button>
     </div>
   );
 }
 
 export default function SangguniangBayan() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
   const [officerView, setOfficerView] = useState<ViewMode>('table');
   const [councilView, setCouncilView] = useState<ViewMode>('table');
   const [exofficioView, setExofficioView] = useState<ViewMode>('table');
+
+  const translatePosition = (pos: string) => {
+    if (!isFil) return pos;
+    return pos
+      .replace(
+        'President, Association of Barangay Captains',
+        'Pangulo, Asosasyon ng mga Kapitan ng Barangay (ABC)'
+      )
+      .replace(
+        'President, Sangguniang Kabataan Federation',
+        'Pangulo, Pederasyon ng Sangguniang Kabataan (SK)'
+      )
+      .replace(
+        'Vice Mayor / Presiding Officer',
+        'Bise Alkalde / Tagapangulo ng Pulong'
+      )
+      .replace('Vice Mayor', 'Bise Alkalde')
+      .replace('Mayor / Presiding Officer', 'Alkalde / Tagapangulo ng Pulong')
+      .replace('Mayor', 'Alkalde');
+  };
+
+  const translateCommittees = (comm: string) => {
+    if (!isFil) return comm;
+    return comm
+      .replace(/Chairman, Committee on/g, 'Tagapangulo, Komite sa')
+      .replace(/Vice Chairman, Committee on/g, 'Bise-Tagapangulo, Komite sa')
+      .replace(/Member, Committee on/g, 'Kasapi, Komite sa');
+  };
 
   return (
     <>
@@ -70,16 +104,16 @@ export default function SangguniangBayan() {
             <div className="flex items-center gap-3 mb-2">
               <Landmark className="h-7 w-7 text-blue-200" />
               <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
-                {data.GOVERNMENT_NAME}
+                {isFil ? 'Munisipalidad ng Indang' : data.GOVERNMENT_NAME}
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black mb-3">
               Sangguniang Bayan
             </h1>
             <p className="text-blue-100 text-lg max-w-xl">
-              This page lists all elected members of the{' '}
-              <strong>Municipal Council of {data.GOVERNMENT_NAME}</strong> for
-              the <strong>{data.TERM} term</strong>.
+              {isFil
+                ? `Ipinapakita sa pahinang ito ang lahat ng halal na miyembro ng Konseho ng Munisipyo ng Indang para sa terminong ${data.TERM}.`
+                : `This page lists all elected members of the Municipal Council of ${data.GOVERNMENT_NAME} for the ${data.TERM} term.`}
             </p>
           </div>
         </div>
@@ -89,21 +123,21 @@ export default function SangguniangBayan() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <nav className="flex items-center gap-1.5 text-xs text-gray-500">
               <Link to="/" className="hover:text-primary-700 transition-colors">
-                Home
+                {isFil ? 'Tahanan' : 'Home'}
               </Link>
               <span>/</span>
               <Link
                 to="/government"
                 className="hover:text-primary-700 transition-colors"
               >
-                Government
+                {isFil ? 'Pamahalaan' : 'Government'}
               </Link>
               <span>/</span>
               <Link
                 to="/government/departments"
                 className="hover:text-primary-700 transition-colors"
               >
-                Departments
+                {isFil ? 'Mga Kagawaran' : 'Departments'}
               </Link>
               <span>/</span>
               <span className="text-gray-700 font-medium">
@@ -117,16 +151,20 @@ export default function SangguniangBayan() {
           {/* Elected Officials */}
           <section>
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              Elected Officials
+              {isFil ? 'Mga Halal na Opisyal' : 'Elected Officials'}
             </h2>
 
             {/* Presiding Officer */}
             <div className="mb-8">
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-bold text-gray-800">
-                  Executive Branch
+                  {isFil ? 'Sangay ng Ehekutibo' : 'Executive Branch'}
                 </h3>
-                <ViewToggle mode={officerView} onChange={setOfficerView} />
+                <ViewToggle
+                  mode={officerView}
+                  onChange={setOfficerView}
+                  isFil={isFil}
+                />
               </div>
 
               {officerView === 'table' ? (
@@ -135,10 +173,10 @@ export default function SangguniangBayan() {
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600 w-64">
-                          Position
+                          {isFil ? 'Katungkulan' : 'Position'}
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                          Name
+                          {isFil ? 'Pangalan' : 'Name'}
                         </th>
                       </tr>
                     </thead>
@@ -149,7 +187,7 @@ export default function SangguniangBayan() {
                           className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                         >
                           <td className="px-4 py-3 font-semibold text-gray-700">
-                            {officer.position}
+                            {translatePosition(officer.position)}
                           </td>
                           <td className="px-4 py-3 text-gray-800">
                             {officer.name}
@@ -167,7 +205,7 @@ export default function SangguniangBayan() {
                       className="bg-white rounded-lg border border-gray-200 px-4 py-3"
                     >
                       <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5">
-                        {officer.position}
+                        {translatePosition(officer.position)}
                       </div>
                       <div className="text-sm font-bold text-gray-800">
                         {officer.name}
@@ -182,14 +220,19 @@ export default function SangguniangBayan() {
             <div className="mb-8">
               <div className="flex items-center justify-between mb-1">
                 <h3 className="text-base font-bold text-gray-800">
-                  Sangguniang Bayan (Municipal Council)
+                  Sangguniang Bayan (
+                  {isFil ? 'Konseho ng Munisipyo' : 'Municipal Council'})
                 </h3>
-                <ViewToggle mode={councilView} onChange={setCouncilView} />
+                <ViewToggle
+                  mode={councilView}
+                  onChange={setCouncilView}
+                  isFil={isFil}
+                />
               </div>
               <p className="text-sm text-gray-500 mb-3">
-                The Municipal Council is composed of{' '}
-                <strong>{data.councilors.length} elected councilors</strong> and
-                is presided over by the Vice Mayor.
+                {isFil
+                  ? `Ang Konseho ng Munisipyo ay binubuo ng ${data.councilors.length} na halal na konsehal at pinamumunuan ng Bise Alkalde.`
+                  : `The Municipal Council is composed of ${data.councilors.length} elected councilors and is presided over by the Vice Mayor.`}
               </p>
 
               {councilView === 'table' ? (
@@ -201,10 +244,12 @@ export default function SangguniangBayan() {
                           #
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600 w-56">
-                          Councilor
+                          {isFil ? 'Konsehal' : 'Councilor'}
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                          Committee Assignments
+                          {isFil
+                            ? 'Mga Gawaing Komite'
+                            : 'Committee Assignments'}
                         </th>
                       </tr>
                     </thead>
@@ -223,7 +268,7 @@ export default function SangguniangBayan() {
                             {row.name}
                           </td>
                           <td className="px-4 py-3 text-gray-600 text-xs leading-relaxed">
-                            {row.committees}
+                            {translateCommittees(row.committees)}
                           </td>
                         </tr>
                       ))}
@@ -246,7 +291,7 @@ export default function SangguniangBayan() {
                             {row.name}
                           </div>
                           <div className="text-xs text-gray-500 mt-0.5 leading-relaxed">
-                            {row.committees}
+                            {translateCommittees(row.committees)}
                           </div>
                         </div>
                       </div>
@@ -260,9 +305,13 @@ export default function SangguniangBayan() {
             <div>
               <div className="flex items-center justify-between mb-3">
                 <h3 className="text-base font-bold text-gray-800">
-                  Ex-Officio Members
+                  {isFil ? 'Mga Kasaping Ex-Officio' : 'Ex-Officio Members'}
                 </h3>
-                <ViewToggle mode={exofficioView} onChange={setExofficioView} />
+                <ViewToggle
+                  mode={exofficioView}
+                  onChange={setExofficioView}
+                  isFil={isFil}
+                />
               </div>
 
               {exofficioView === 'table' ? (
@@ -271,10 +320,10 @@ export default function SangguniangBayan() {
                     <thead className="bg-gray-50 border-b border-gray-200">
                       <tr>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600 w-64">
-                          Position
+                          {isFil ? 'Katungkulan' : 'Position'}
                         </th>
                         <th className="text-left px-4 py-3 font-semibold text-gray-600">
-                          Name
+                          {isFil ? 'Pangalan' : 'Name'}
                         </th>
                       </tr>
                     </thead>
@@ -285,7 +334,7 @@ export default function SangguniangBayan() {
                           className={i % 2 === 0 ? 'bg-white' : 'bg-gray-50/50'}
                         >
                           <td className="px-4 py-3 font-semibold text-gray-700 whitespace-pre-line leading-snug">
-                            {row.position}
+                            {translatePosition(row.position)}
                           </td>
                           <td className="px-4 py-3 text-gray-800">
                             {row.name || '—'}
@@ -303,7 +352,7 @@ export default function SangguniangBayan() {
                       className="bg-white rounded-lg border border-gray-200 px-4 py-3"
                     >
                       <div className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-0.5 whitespace-pre-line leading-snug">
-                        {row.position}
+                        {translatePosition(row.position)}
                       </div>
                       <div className="text-sm font-bold text-gray-800">
                         {row.name || '—'}
@@ -317,9 +366,16 @@ export default function SangguniangBayan() {
 
           {/* Contact */}
           <section className="bg-gray-50 rounded-xl border border-gray-200 p-6">
-            <h2 className="text-base font-black text-gray-900 mb-2">Contact</h2>
+            <h2 className="text-base font-black text-gray-900 mb-2">
+              {isFil ? 'Makipag-ugnayan' : 'Contact'}
+            </h2>
             <p className="text-sm text-gray-700">
-              <strong>Sangguniang Bayan Hall</strong> · {data.contact.address}
+              <strong>
+                {isFil
+                  ? 'Bulwagan ng Sangguniang Bayan'
+                  : 'Sangguniang Bayan Hall'}
+              </strong>{' '}
+              · {data.contact.address}
               {data.contact.telephone && (
                 <span>
                   {' '}
@@ -334,17 +390,19 @@ export default function SangguniangBayan() {
               )}
             </p>
             <p className="text-sm text-gray-600 mt-2">
-              For legislative documents and records, file a request under the{' '}
+              {isFil
+                ? 'Para sa mga pambatasang dokumento at talaan, maghain ng kahilingan sa ilalim ng patakaran ng '
+                : 'For legislative documents and records, file a request under the '}
               <a
                 href="https://www.foi.gov.ph"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-primary-700 font-semibold hover:underline inline-flex items-center gap-0.5"
+                className="text-primary-700 font-semibold hover:underline inline-flex items-center gap-0.5 cursor-pointer"
               >
-                Freedom of Information
+                {isFil ? 'Freedom of Information' : 'Freedom of Information'}
                 <ExternalLink className="h-3 w-3" />
               </a>{' '}
-              policy.
+              {isFil ? 'policy.' : 'policy.'}
             </p>
           </section>
         </div>

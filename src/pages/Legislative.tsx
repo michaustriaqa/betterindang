@@ -7,60 +7,80 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import SEO from '../components/SEO';
-
-const SECTIONS = [
-  {
-    title: 'Ordinances',
-    icon: Scale,
-    color: 'text-indigo-600',
-    bg: 'bg-indigo-50',
-    border: 'border-indigo-200',
-    desc: 'Municipal ordinances enacted by the Sangguniang Bayan of Indang, Cavite.',
-    href: '/government/departments/legislative',
-  },
-  {
-    title: 'Resolutions',
-    icon: FileText,
-    color: 'text-blue-600',
-    bg: 'bg-blue-50',
-    border: 'border-blue-200',
-    desc: 'Resolutions passed by the Sangguniang Bayan expressing the sense of the council.',
-    href: '/government/departments/legislative',
-  },
-  {
-    title: 'Committee Reports',
-    icon: BookOpen,
-    color: 'text-teal-600',
-    bg: 'bg-teal-50',
-    border: 'border-teal-200',
-    desc: 'Reports submitted by standing committees of the Sangguniang Bayan.',
-    href: '/government/departments/legislative',
-  },
-];
-
-const EXTERNAL = [
-  {
-    label: 'DILG – Sangguniang Bayan Guidelines',
-    href: 'https://dilg.gov.ph',
-    desc: 'Department of the Interior and Local Government',
-  },
-  {
-    label: 'Official Gazette – Local Legislation',
-    href: 'https://www.officialgazette.gov.ph',
-    desc: 'Philippine Official Gazette',
-  },
-  {
-    label: 'Freedom of Information',
-    href: 'https://www.foi.gov.ph',
-    desc: 'Request legislative documents via FOI',
-  },
-];
+import { useTranslation } from '../hooks/useTranslation';
 
 export default function Legislative() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
+  const SECTIONS = [
+    {
+      title: isFil ? 'Mga Ordinansa' : 'Ordinances',
+      icon: Scale,
+      color: 'text-indigo-600',
+      bg: 'bg-indigo-50',
+      border: 'border-indigo-200',
+      desc: isFil
+        ? 'Mga ordinansa ng munisipyo na ipinasa ng Sangguniang Bayan ng Indang, Cavite.'
+        : 'Municipal ordinances enacted by the Sangguniang Bayan of Indang, Cavite.',
+      href: '/government/departments/legislative',
+    },
+    {
+      title: isFil ? 'Mga Resolusyon' : 'Resolutions',
+      icon: FileText,
+      color: 'text-blue-600',
+      bg: 'bg-blue-50',
+      border: 'border-blue-200',
+      desc: isFil
+        ? 'Mga resolusyong ipinasa ng Sangguniang Bayan upang ipahayag ang kaisipan at pasya ng konseho.'
+        : 'Resolutions passed by the Sangguniang Bayan expressing the sense of the council.',
+      href: '/government/departments/legislative',
+    },
+    {
+      title: isFil ? 'Mga Ulat ng Komite' : 'Committee Reports',
+      icon: BookOpen,
+      color: 'text-teal-600',
+      bg: 'bg-teal-50',
+      border: 'border-teal-200',
+      desc: isFil
+        ? 'Mga ulat na isinumite ng mga nakatayong komite (standing committees) ng Sangguniang Bayan.'
+        : 'Reports submitted by standing committees of the Sangguniang Bayan.',
+      href: '/government/departments/legislative',
+    },
+  ];
+
+  const EXTERNAL = [
+    {
+      label: isFil
+        ? 'DILG – Mga Alituntunin para sa Sangguniang Bayan'
+        : 'DILG – Sangguniang Bayan Guidelines',
+      href: 'https://dilg.gov.ph',
+      desc: isFil
+        ? 'Kagawaran ng Interyor at Pamahalaang Lokal'
+        : 'Department of the Interior and Local Government',
+    },
+    {
+      label: isFil
+        ? 'Opisyal na Pahayagan – Lokal na Pagbabatas'
+        : 'Official Gazette – Local Legislation',
+      href: 'https://www.officialgazette.gov.ph',
+      desc: isFil
+        ? 'Opisyal na Pahayagan ng Pilipinas (Official Gazette)'
+        : 'Philippine Official Gazette',
+    },
+    {
+      label: isFil ? 'Kalayaan sa Impormasyon (FOI)' : 'Freedom of Information',
+      href: 'https://www.foi.gov.ph',
+      desc: isFil
+        ? 'Humingi ng mga pambatasang dokumento sa pamamagitan ng FOI'
+        : 'Request legislative documents via FOI',
+    },
+  ];
+
   return (
     <>
       <SEO
-        title="Legislative"
+        title={isFil ? 'Pambatas — Sangguniang Bayan' : 'Legislative'}
         description="Sangguniang Bayan ordinances, resolutions, and legislative documents for the Municipality of Indang, Cavite."
         keywords="Indang Sangguniang Bayan, ordinances, resolutions, legislative, municipal council"
       />
@@ -83,11 +103,12 @@ export default function Legislative() {
               </span>
             </div>
             <h1 className="text-4xl sm:text-5xl font-black mb-3">
-              Legislative
+              {isFil ? 'Pambatas' : 'Legislative'}
             </h1>
             <p className="text-blue-100 text-lg max-w-xl">
-              Ordinances, resolutions, and legislative documents from the
-              Municipal Council of Indang, Cavite.
+              {isFil
+                ? 'Mga ordinansa, resolusyon, at pambatasang dokumento mula sa Konseho ng Munisipyo ng Indang, Cavite.'
+                : 'Ordinances, resolutions, and legislative documents from the Municipal Council of Indang, Cavite.'}
             </p>
           </div>
         </div>
@@ -97,18 +118,19 @@ export default function Legislative() {
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="max-w-3xl">
               <h2 className="text-xl font-black text-gray-900 mb-3">
-                About the Sangguniang Bayan
+                {isFil
+                  ? 'Tungkol sa Sangguniang Bayan'
+                  : 'About the Sangguniang Bayan'}
               </h2>
               <p className="text-gray-600 leading-relaxed mb-3">
-                The Sangguniang Bayan is the legislative body of the
-                Municipality of Indang. It enacts ordinances, approves
-                resolutions, and exercises other legislative powers as provided
-                under the Local Government Code of 1991 (RA 7160).
+                {isFil
+                  ? 'Ang Sangguniang Bayan ang pambatasang lupon ng Munisipalidad ng Indang. Ito ay nagpapatupad ng mga ordinansa, nagpapasya ng mga resolusyon, at nagsasagawa ng iba pang pambatasang kapangyarihan gaya ng itinatakda sa ilalim ng Local Government Code of 1991 (RA 7160).'
+                  : 'The Sangguniang Bayan is the legislative body of the Municipality of Indang. It enacts ordinances, approves resolutions, and exercises other legislative powers as provided under the Local Government Code of 1991 (RA 7160).'}
               </p>
               <p className="text-gray-600 leading-relaxed">
-                The council is composed of elected municipal councilors who
-                represent the interests of Indang's 36 barangays and over 68,000
-                residents.
+                {isFil
+                  ? 'Ang konseho ay binubuo ng mga inihalal na konsehal ng munisipyo na kumakatawan sa interes ng 36 na barangay ng Indang at sa mahigit 68,000 na residenteng naninirahan dito.'
+                  : "The council is composed of elected municipal councilors who represent the interests of Indang's 36 barangays and over 68,000 residents."}
               </p>
             </div>
           </div>
@@ -118,7 +140,7 @@ export default function Legislative() {
         <section className="bg-gray-50 py-12 border-b border-gray-100">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              Legislative Documents
+              {isFil ? 'Mga Pambatasang Dokumento' : 'Legislative Documents'}
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
               {SECTIONS.map(
@@ -140,7 +162,8 @@ export default function Legislative() {
                       {desc}
                     </p>
                     <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary-700 group-hover:gap-2 transition-all">
-                      View Documents <ChevronRight className="h-3.5 w-3.5" />
+                      {isFil ? 'Tingnan ang mga Dokumento' : 'View Documents'}{' '}
+                      <ChevronRight className="h-3.5 w-3.5" />
                     </span>
                   </Link>
                 )
@@ -153,7 +176,7 @@ export default function Legislative() {
         <section className="bg-white py-12">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <h2 className="text-xl font-black text-gray-900 mb-6">
-              External Resources
+              {isFil ? 'Mga Panlabas na Sanggunian' : 'External Resources'}
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {EXTERNAL.map(r => (

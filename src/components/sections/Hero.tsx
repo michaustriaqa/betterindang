@@ -14,11 +14,13 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { serviceCategories, loadCategoryIndex } from '../../data/yamlLoader';
 
-interface ServicePage {
+interface SearchItem {
+  id: string;
   name: string;
   slug: string;
   categorySlug: string;
   categoryName: string;
+  type: 'service' | 'government' | 'tourism';
 }
 
 const POPULAR_CATEGORIES = [
@@ -84,7 +86,7 @@ function highlight(text: string, query: string) {
 export default function Hero() {
   const [query, setQuery] = useState('');
   const [showDropdown, setShowDropdown] = useState(false);
-  const [allServices, setAllServices] = useState<ServicePage[]>([]);
+  const [allSearchItems, setAllSearchItems] = useState<SearchItem[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
   const navigate = useNavigate();
@@ -101,31 +103,88 @@ export default function Hero() {
   }, [handleScroll]);
 
   useEffect(() => {
-    const cats = serviceCategories.categories as {
-      category: string;
-      slug: string;
-    }[];
-    Promise.all(
-      cats.map(cat =>
-        loadCategoryIndex(cat.slug).then(idx => ({
-          cat,
-          pages: idx.pages,
-        }))
-      )
-    ).then(results => {
-      const pages: ServicePage[] = [];
-      for (const { cat, pages: catPages } of results) {
-        for (const page of catPages) {
-          pages.push({
+    const fetchAllData = async () => {
+      const items: SearchItem[] = [];
+
+      // 1. Fetch Services
+      const serviceCats = serviceCategories.categories as {
+        category: string;
+        slug: string;
+      }[];
+      const serviceResults = await Promise.all(
+        serviceCats.map(cat =>
+          loadCategoryIndex(cat.slug).then(idx => ({
+            cat,
+            pages: idx.pages,
+          }))
+        )
+      );
+
+      for (const { cat, pages } of serviceResults) {
+        for (const page of pages) {
+          items.push({
+            id: `service-${cat.slug}-${page.slug}`,
             name: page.name,
             slug: page.slug,
             categorySlug: cat.slug,
             categoryName: cat.category,
+            type: 'service',
           });
         }
       }
-      setAllServices(pages);
-    });
+
+      // 2. Fetch Government
+      const govtCats = [
+        { slug: 'departments', name: 'Departments' },
+        { slug: 'legislative', name: 'Legislative' },
+        { slug: 'reports-and-statistics', name: 'Reports & Stats' },
+      ];
+      const govtResults = await Promise.all(
+        govtCats.map(cat =>
+          loadCategoryIndex(cat.slug).then(idx => ({
+            cat,
+            pages: idx.pages,
+          }))
+        )
+      );
+
+      for (const { cat, pages } of govtResults) {
+        for (const page of pages) {
+          items.push({
+            id: `govt-${cat.slug}-${page.slug}`,
+            name: page.name,
+            slug: page.slug,
+            categorySlug: cat.slug,
+            categoryName: cat.name,
+            type: 'government',
+          });
+        }
+      }
+
+      // 3. Fetch Tourism (Static JSON)
+      try {
+        const tourismData =
+          await import('../../../content/tourism/establishments.json');
+        if (tourismData?.establishments) {
+          for (const est of tourismData.establishments) {
+            items.push({
+              id: `tourism-${est.category}-${est.name.toLowerCase().replace(/\s+/g, '-')}`,
+              name: est.name,
+              slug: est.name.toLowerCase().replace(/\s+/g, '-'),
+              categorySlug: est.category,
+              categoryName: 'Tourism',
+              type: 'tourism',
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Failed to load tourism data for search', e);
+      }
+
+      setAllSearchItems(items);
+    };
+
+    fetchAllData();
   }, []);
 
   useEffect(() => {
@@ -144,7 +203,7 @@ export default function Hero() {
   }, []);
 
   const results = query.trim()
-    ? allServices
+    ? allSearchItems
         .filter(
           s =>
             s.name.toLowerCase().includes(query.toLowerCase()) ||
@@ -161,10 +220,16 @@ export default function Hero() {
     }
   };
 
-  const handleSelect = (page: ServicePage) => {
+  const handleSelect = (item: SearchItem) => {
     setShowDropdown(false);
     setQuery('');
-    navigate(`/services/${page.categorySlug}/${page.slug}`);
+    if (item.type === 'service') {
+      navigate(`/services/${item.categorySlug}/${item.slug}`);
+    } else if (item.type === 'government') {
+      navigate(`/government/${item.categorySlug}/${item.slug}`);
+    } else {
+      navigate(`/tourism`);
+    }
   };
 
   return (
@@ -243,21 +308,34 @@ export default function Hero() {
                     ref={dropdownRef}
                     className="absolute top-full left-0 right-0 mt-1 bg-white border border-gray-100 rounded-lg shadow-lg z-50 overflow-hidden"
                   >
-                    {results.map(page => (
+                    {results.map(item => (
                       <button
-                        key={`${page.categorySlug}/${page.slug}`}
+                        key={item.id}
                         onMouseDown={e => {
                           e.preventDefault();
-                          handleSelect(page);
+                          handleSelect(item);
                         }}
                         className="w-full text-left px-4 py-2.5 text-sm hover:bg-primary-50 transition-colors flex items-center gap-2"
                       >
                         <Search className="h-3.5 w-3.5 text-primary-400 shrink-0" />
-                        <span className="text-gray-800 flex-1">
-                          {highlight(page.name, query)}
-                        </span>
-                        <span className="text-xs text-gray-400 shrink-0">
-                          {page.categoryName}
+                        <div className="flex flex-col flex-1 leading-tight">
+                          <span className="text-gray-800 font-medium">
+                            {highlight(item.name, query)}
+                          </span>
+                          <span className="text-[10px] text-gray-400 uppercase tracking-wider">
+                            {item.categoryName}
+                          </span>
+                        </div>
+                        <span
+                          className={`text-[10px] px-1.5 py-0.5 rounded-full font-bold uppercase ${
+                            item.type === 'service'
+                              ? 'bg-blue-100 text-blue-700'
+                              : item.type === 'government'
+                                ? 'bg-purple-100 text-purple-700'
+                                : 'bg-green-100 text-green-700'
+                          }`}
+                        >
+                          {item.type}
                         </span>
                       </button>
                     ))}
