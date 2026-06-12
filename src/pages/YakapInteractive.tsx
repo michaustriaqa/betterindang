@@ -728,7 +728,7 @@ export default function YakapInteractive() {
                 </div>
 
                 {/* Tab content area */}
-                <div className="min-h-[250px] transition-all duration-300">
+                <div className="min-h-62.5 transition-all duration-300">
                   {activeTab === 'checkups' && (
                     <div className="space-y-4 animate-fade-in">
                       <div className="p-4 rounded-2xl bg-blue-50/50 dark:bg-blue-900/10 border border-blue-100 dark:border-blue-900/30 text-blue-900 dark:text-blue-200">
@@ -822,7 +822,7 @@ export default function YakapInteractive() {
                             : 'If prescribed by your YAKAP physician, you can undergo the following 13 laboratory procedures completely free of charge at the Indang RHU.'}
                         </p>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-100 overflow-y-auto pr-2 custom-scrollbar">
                         {translatedLabTests.map(test => (
                           <div
                             key={test.id}
@@ -968,7 +968,7 @@ export default function YakapInteractive() {
                             : 'In addition to the 13 standard laboratory tests, you can avail of the following highly critical cancer screening procedures completely free of charge at accredited diagnostic facilities or hospital partners upon official referral from your YAKAP doctor at the Indang RHU.'}
                         </p>
                       </div>
-                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-[400px] overflow-y-auto pr-2 custom-scrollbar">
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-h-100 overflow-y-auto pr-2 custom-scrollbar">
                         <div className="p-4 rounded-2xl border border-gray-100 dark:border-gray-700 bg-gray-50 dark:bg-gray-800/40 hover:bg-rose-50/20 dark:hover:bg-rose-900/5 transition-colors">
                           <div className="flex items-start gap-3">
                             <span className="flex items-center justify-center w-6 h-6 rounded-full bg-rose-100 dark:bg-rose-900/50 text-rose-600 dark:text-rose-400 font-extrabold text-xs shrink-0 mt-0.5">
@@ -1205,7 +1205,7 @@ export default function YakapInteractive() {
                 </div>
 
                 {/* Medicine Grid */}
-                <div className="max-h-[480px] overflow-y-auto pr-2 custom-scrollbar border border-gray-100 dark:border-gray-700/60 rounded-2xl bg-gray-50/50 dark:bg-gray-855/10">
+                <div className="max-h-120 overflow-y-auto pr-2 custom-scrollbar border border-gray-100 dark:border-gray-700/60 rounded-2xl bg-gray-50/50 dark:bg-gray-855/10">
                   {filteredMedicines.length === 0 ? (
                     <div className="flex flex-col items-center justify-center py-16 px-4 text-center">
                       <AlertCircle className="h-10 w-10 text-amber-500 mb-3" />
@@ -1282,7 +1282,7 @@ export default function YakapInteractive() {
                   <div className="min-w-0 flex-1">
                     <Heading
                       level={2}
-                      className="text-lg font-extrabold mb-0 text-gray-900 dark:text-white leading-tight break-words"
+                      className="text-lg font-extrabold mb-0 text-gray-900 dark:text-white leading-tight wrap-break-word"
                     >
                       {isFil ? 'Gabay sa Pagpaparehistro' : 'Enrollment Wizard'}
                     </Heading>
@@ -1342,7 +1342,7 @@ export default function YakapInteractive() {
                   </div>
                   <div className="w-full h-2 bg-gray-100 dark:bg-gray-700 rounded-full overflow-hidden">
                     <div
-                      className="h-full bg-gradient-to-r from-blue-500 to-emerald-500 transition-all duration-300"
+                      className="h-full bg-linear-to-r from-blue-500 to-emerald-500 transition-all duration-300"
                       style={{
                         width:
                           enrollmentPath === 'online'
@@ -1363,7 +1363,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleOnlineToggle('step1')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step1
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1413,7 +1413,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleOnlineToggle('step2')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step2
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1460,7 +1460,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleOnlineToggle('step3')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step3
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1508,7 +1508,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleInPersonToggle('step1')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step1
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1555,7 +1555,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleInPersonToggle('step2')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step2
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1602,7 +1602,7 @@ export default function YakapInteractive() {
                       <button
                         type="button"
                         onClick={() => handleInPersonToggle('step3')}
-                        className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
+                        className={`absolute -left-3.25 top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step3
                             ? 'bg-emerald-500 border-emerald-500 text-white'
                             : 'bg-white dark:bg-gray-800 border-gray-300 dark:border-gray-600 text-gray-400 hover:border-blue-500'
@@ -1670,7 +1670,7 @@ export default function YakapInteractive() {
                   <div className="min-w-0 flex-1">
                     <Heading
                       level={2}
-                      className="text-lg font-extrabold mb-0 text-gray-900 dark:text-white leading-tight break-words"
+                      className="text-lg font-extrabold mb-0 text-gray-900 dark:text-white leading-tight wrap-break-word"
                     >
                       {isFil ? 'Makipag-ugnayan' : 'Contact Information'}
                     </Heading>

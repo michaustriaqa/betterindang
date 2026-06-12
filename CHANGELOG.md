@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.4] - 2026-06-13
+
+### Changed
+
+- Modernized Tailwind utility classes on the Yakap page to their canonical v4 forms (`max-h-[480px]` → `max-h-120`, `max-h-[400px]` → `max-h-100`, `min-h-[250px]` → `min-h-62.5`, `-left-[13px]` → `-left-3.25`, `bg-gradient-to-r` → `bg-linear-to-r`, `break-words` → `wrap-break-word`). Output is identical; clears the remaining canonical-class lint suggestions.
+
 ## [0.5.3] - 2026-06-13
 
 ### Fixed
