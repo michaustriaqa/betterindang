@@ -5,6 +5,7 @@ import Footer from './components/layout/Footer';
 import Home from './pages/Home';
 import ScrollToTop from './components/ui/ScrollToTop';
 import Services from './pages/Services';
+import YakapInteractive from './pages/YakapInteractive';
 import Document from './pages/Document';
 import Government from './pages/Government';
 import Statistics from './pages/Statistics';
@@ -26,6 +27,10 @@ function App() {
             <ScrollToTop />
             <Routes>
               <Route path="/" element={<Home />} />
+              <Route
+                path="/services/health-services/access-free-check-ups-labs-and-medicines-through-philhealth-yakap"
+                element={<YakapInteractive />}
+              />
               <Route path="/services/:category" element={<Services />} />
               <Route path="/services" element={<Services />} />
               <Route

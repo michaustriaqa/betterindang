@@ -12,112 +12,171 @@ import {
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { serviceCategories as servicesData } from '../data/yamlLoader';
+import { useTranslation } from '../hooks/useTranslation';
 
 interface Category {
   category: string;
   slug: string;
 }
 
-const SECTIONS = [
-  {
-    icon: Home,
-    label: 'Home',
-    href: '/',
-    children: [],
-  },
-  {
-    icon: Briefcase,
-    label: 'Services',
-    href: '/services',
-    children: (servicesData.categories as Category[]).map(c => ({
-      label: c.category,
-      href: `/services/${c.slug}`,
-    })),
-  },
-  {
-    icon: Building2,
-    label: 'Government',
-    href: '/government',
-    children: [
-      { label: 'Departments & Officials', href: '/government/departments' },
-      {
-        label: 'Legislative (Municipal Council)',
-        href: '/government/legislative',
-      },
-      {
-        label: 'Local Officials Directory',
-        href: '/government/departments/officials',
-      },
-    ],
-  },
-  {
-    icon: Shield,
-    label: 'Transparency',
-    href: '/transparency',
-    children: [
-      { label: 'Full Disclosure Policy', href: '/transparency' },
-      {
-        label: 'Transparency Documents',
-        href: '/government/transparency-documents',
-      },
-      {
-        label: 'Reports & Statistics',
-        href: '/government/reports-and-statistics',
-      },
-    ],
-  },
-  {
-    icon: BarChart3,
-    label: 'Statistics',
-    href: '/statistics',
-    children: [
-      { label: 'Municipal Profile', href: '/statistics' },
-      { label: 'Barangay Data', href: '/statistics' },
-    ],
-  },
-  {
-    icon: MapPin,
-    label: 'Tourism',
-    href: '/tourism',
-    children: [
-      { label: 'Heritage Sites', href: '/tourism/heritage' },
-      { label: 'Resorts', href: '/tourism/resorts' },
-      { label: 'Farms & Agri-Eco', href: '/tourism/farms' },
-      { label: 'Events & Accommodations', href: '/tourism/events' },
-      { label: 'Restaurants & Cafés', href: '/tourism/restaurants' },
-      { label: 'Adventure & Eco', href: '/tourism/adventure' },
-    ],
-  },
-  {
-    icon: Phone,
-    label: 'Contact',
-    href: '/#contact',
-    children: [],
-  },
-  {
-    icon: Map,
-    label: 'Quick Links',
-    href: '#',
-    children: [
-      { label: 'About the Portal', href: '/about' },
-      { label: 'Accessibility', href: '/accessibility' },
-      {
-        label: 'Freedom of Information',
-        href: 'https://www.foi.gov.ph',
-      },
-      {
-        label: 'Open Data PH',
-        href: 'https://data.gov.ph',
-      },
-    ],
-  },
-];
-
 export default function Sitemap() {
+  const { currentLanguage } = useTranslation();
+  const isFil = currentLanguage === 'fil';
+
+  const translateServiceCategory = (name: string) => {
+    if (!isFil) return name;
+    const mapping: Record<string, string> = {
+      'Social & Health': 'Panlipunan at Kalusugan',
+      'Certificates & Clearances': 'Mga Sertipiko at Clearance',
+      'Business & Taxes': 'Negosyo at Buwis',
+      'Youth & Sports': 'Kabataan at Palakasan',
+      Agriculture: 'Pagsasaka at Agrikultura',
+    };
+    return mapping[name] || name;
+  };
+
+  const SECTIONS = [
+    {
+      icon: Home,
+      label: isFil ? 'Tahanan' : 'Home',
+      href: '/',
+      children: [],
+    },
+    {
+      icon: Briefcase,
+      label: isFil ? 'Mga Serbisyo' : 'Services',
+      href: '/services',
+      children: (servicesData.categories as Category[]).map(c => ({
+        label: translateServiceCategory(c.category),
+        href: `/services/${c.slug}`,
+      })),
+    },
+    {
+      icon: Building2,
+      label: isFil ? 'Pamahalaan' : 'Government',
+      href: '/government',
+      children: [
+        {
+          label: isFil ? 'Mga Kagawaran at Opisyal' : 'Departments & Officials',
+          href: '/government/departments',
+        },
+        {
+          label: isFil
+            ? 'Pambatas (Sangguniang Bayan)'
+            : 'Legislative (Municipal Council)',
+          href: '/government/legislative',
+        },
+        {
+          label: isFil
+            ? 'Direktoryo ng Lokal na Opisyal'
+            : 'Local Officials Directory',
+          href: '/government/departments/officials',
+        },
+      ],
+    },
+    {
+      icon: Shield,
+      label: isFil ? 'Katapatan at Transparency' : 'Transparency',
+      href: '/transparency',
+      children: [
+        {
+          label: isFil ? 'Katapatan sa Pagbubunyag' : 'Full Disclosure Policy',
+          href: '/transparency',
+        },
+        {
+          label: isFil
+            ? 'Mga Dokumento ng Transparency'
+            : 'Transparency Documents',
+          href: '/government/transparency-documents',
+        },
+        {
+          label: isFil ? 'Mga Ulat at Estadistika' : 'Reports & Statistics',
+          href: '/government/reports-and-statistics',
+        },
+      ],
+    },
+    {
+      icon: BarChart3,
+      label: isFil ? 'Estadistika' : 'Statistics',
+      href: '/statistics',
+      children: [
+        {
+          label: isFil ? 'Katangian ng Munisipyo' : 'Municipal Profile',
+          href: '/statistics',
+        },
+        {
+          label: isFil ? 'Datos ng Barangay' : 'Barangay Data',
+          href: '/statistics',
+        },
+      ],
+    },
+    {
+      icon: MapPin,
+      label: isFil ? 'Turismo' : 'Tourism',
+      href: '/tourism',
+      children: [
+        {
+          label: isFil ? 'Mga Makasaysayang Lugar' : 'Heritage Sites',
+          href: '/tourism/heritage',
+        },
+        { label: isFil ? 'Mga Resort' : 'Resorts', href: '/tourism/resorts' },
+        {
+          label: isFil ? 'Mga Sakahan at Agri-Eco' : 'Farms & Agri-Eco',
+          href: '/tourism/farms',
+        },
+        {
+          label: isFil
+            ? 'Mga Kaganapan at Akomodasyon'
+            : 'Events & Accommodations',
+          href: '/tourism/events',
+        },
+        {
+          label: isFil ? 'Mga Restaurant at Café' : 'Restaurants & Cafés',
+          href: '/tourism/restaurants',
+        },
+        {
+          label: isFil
+            ? 'Pakikipagsapalaran (Adventure & Eco)'
+            : 'Adventure & Eco',
+          href: '/tourism/adventure',
+        },
+      ],
+    },
+    {
+      icon: Phone,
+      label: isFil ? 'Makipag-ugnayan' : 'Contact',
+      href: '/#contact',
+      children: [],
+    },
+    {
+      icon: Map,
+      label: isFil ? 'Mabilisang Aksyon' : 'Quick Links',
+      href: '#',
+      children: [
+        {
+          label: isFil ? 'Tungkol sa Portal' : 'About the Portal',
+          href: '/about',
+        },
+        {
+          label: isFil ? 'Kakayahang Ma-access' : 'Accessibility',
+          href: '/accessibility',
+        },
+        {
+          label: 'Freedom of Information',
+          href: 'https://www.foi.gov.ph',
+        },
+        {
+          label: 'Open Data PH',
+          href: 'https://data.gov.ph',
+        },
+      ],
+    },
+  ];
+
   return (
     <>
       <SEO
-        title="Sitemap"
+        title={isFil ? 'Mapa ng Site' : 'Sitemap'}
         description="Full sitemap of the BetterIndang community portal — browse all pages and sections."
         keywords="sitemap, Indang, portal, navigation"
       />
@@ -128,9 +187,13 @@ export default function Sitemap() {
           <p className="text-primary-300 text-xs font-bold uppercase tracking-widest mb-2">
             BetterIndang
           </p>
-          <h1 className="text-4xl font-black mb-2">Sitemap</h1>
+          <h1 className="text-4xl font-black mb-2">
+            {isFil ? 'Mapa ng Site' : 'Sitemap'}
+          </h1>
           <p className="text-primary-200 text-sm max-w-xl">
-            A complete list of all pages and sections available on this portal.
+            {isFil
+              ? 'Isang kumpletong listahan ng lahat ng mga pahina at seksyon na magagamit sa portal na ito.'
+              : 'A complete list of all pages and sections available on this portal.'}
           </p>
         </div>
       </div>
@@ -173,7 +236,7 @@ export default function Sitemap() {
                               href={child.href}
                               target="_blank"
                               rel="noopener noreferrer"
-                              className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary-700 transition-colors"
+                              className="flex items-center gap-1.5 text-sm text-gray-600 hover:text-primary-700 transition-colors cursor-pointer"
                             >
                               <ChevronRight className="h-3.5 w-3.5 shrink-0 text-gray-400" />
                               {child.label}
