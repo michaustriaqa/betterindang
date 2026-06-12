@@ -670,6 +670,7 @@ export default function YakapInteractive() {
                 {/* Explorer Tabs */}
                 <div className="flex flex-wrap gap-2 mb-6 border-b border-gray-100 dark:border-gray-700 pb-4">
                   <button
+                    type="button"
                     onClick={() => setActiveTab('checkups')}
                     className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
                       activeTab === 'checkups'
@@ -683,6 +684,7 @@ export default function YakapInteractive() {
                     </span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => setActiveTab('labs')}
                     className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
                       activeTab === 'labs'
@@ -696,6 +698,7 @@ export default function YakapInteractive() {
                     </span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => setActiveTab('gamot')}
                     className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
                       activeTab === 'gamot'
@@ -709,6 +712,7 @@ export default function YakapInteractive() {
                     </span>
                   </button>
                   <button
+                    type="button"
                     onClick={() => setActiveTab('cancer')}
                     className={`px-4 py-2.5 rounded-xl text-sm font-bold transition-all duration-200 cursor-pointer ${
                       activeTab === 'cancer'
@@ -909,7 +913,7 @@ export default function YakapInteractive() {
                             <span className="inline-block px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700 text-[10px] font-extrabold uppercase mb-2">
                               {isFil ? 'Hakbang 2' : 'Step 2'}
                             </span>
-                            <h5 className="font-bold text-xs text-gray-800 dark:text-white mb-1 font-bold">
+                            <h5 className="font-bold text-xs text-gray-800 dark:text-white mb-1">
                               {isFil
                                 ? 'Kumuha ng Reseta'
                                 : 'Receive e-Prescription'}
@@ -1293,6 +1297,7 @@ export default function YakapInteractive() {
                 {/* Pathway Toggle */}
                 <div className="grid grid-cols-2 gap-2 bg-gray-100 dark:bg-gray-700/60 p-1.5 rounded-2xl mb-6">
                   <button
+                    type="button"
                     onClick={() => setEnrollmentPath('online')}
                     className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
                       enrollmentPath === 'online'
@@ -1304,6 +1309,7 @@ export default function YakapInteractive() {
                     {isFil ? 'Online (App)' : 'Online (App)'}
                   </button>
                   <button
+                    type="button"
                     onClick={() => setEnrollmentPath('inperson')}
                     className={`py-2 rounded-xl text-xs font-bold transition-all duration-200 cursor-pointer flex items-center justify-center gap-1.5 ${
                       enrollmentPath === 'inperson'
@@ -1355,6 +1361,7 @@ export default function YakapInteractive() {
                       className={`relative pl-8 pb-1 border-l-2 transition-all duration-300 ${onlineChecklist.step1 ? 'border-emerald-500' : 'border-gray-200 dark:border-gray-700'}`}
                     >
                       <button
+                        type="button"
                         onClick={() => handleOnlineToggle('step1')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step1
@@ -1404,6 +1411,7 @@ export default function YakapInteractive() {
                       className={`relative pl-8 pb-1 border-l-2 transition-all duration-300 ${onlineChecklist.step2 ? 'border-emerald-500' : 'border-gray-200 dark:border-gray-700'}`}
                     >
                       <button
+                        type="button"
                         onClick={() => handleOnlineToggle('step2')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step2
@@ -1450,6 +1458,7 @@ export default function YakapInteractive() {
                     {/* Step 3 */}
                     <div className="relative pl-8">
                       <button
+                        type="button"
                         onClick={() => handleOnlineToggle('step3')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           onlineChecklist.step3
@@ -1497,6 +1506,7 @@ export default function YakapInteractive() {
                       className={`relative pl-8 pb-1 border-l-2 transition-all duration-300 ${inPersonChecklist.step1 ? 'border-emerald-500' : 'border-gray-200 dark:border-gray-700'}`}
                     >
                       <button
+                        type="button"
                         onClick={() => handleInPersonToggle('step1')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step1
@@ -1543,6 +1553,7 @@ export default function YakapInteractive() {
                       className={`relative pl-8 pb-1 border-l-2 transition-all duration-300 ${inPersonChecklist.step2 ? 'border-emerald-500' : 'border-gray-200 dark:border-gray-700'}`}
                     >
                       <button
+                        type="button"
                         onClick={() => handleInPersonToggle('step2')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step2
@@ -1589,6 +1600,7 @@ export default function YakapInteractive() {
                     {/* Step 3 */}
                     <div className="relative pl-8">
                       <button
+                        type="button"
                         onClick={() => handleInPersonToggle('step3')}
                         className={`absolute -left-[13px] top-0 flex items-center justify-center w-6 h-6 rounded-full border-2 transition-colors cursor-pointer ${
                           inPersonChecklist.step3
@@ -1673,7 +1685,7 @@ export default function YakapInteractive() {
                 <div className="space-y-4">
                   {/* RHU Info */}
                   <div className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-700">
-                    <h4 className="font-extrabold text-xs text-gray-900 dark:text-white mb-2 uppercase tracking-wider text-blue-700 dark:text-blue-400">
+                    <h4 className="font-extrabold text-xs mb-2 uppercase tracking-wider text-blue-700 dark:text-blue-400">
                       Indang Rural Health Unit (RHU)
                     </h4>
 
@@ -1698,6 +1710,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy('(046) 840-1705', 'tel1')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
@@ -1720,6 +1733,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy('0977-766-6707', 'mob1')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
@@ -1742,6 +1756,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy('0928-123-4567', 'mob2')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
@@ -1764,6 +1779,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() =>
                             handleCopy('health@indang.gov.ph', 'mail1')
                           }
@@ -1781,7 +1797,7 @@ export default function YakapInteractive() {
 
                   {/* Philhealth Cavite Office */}
                   <div className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-700">
-                    <h4 className="font-extrabold text-xs text-gray-900 dark:text-white mb-2 uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
+                    <h4 className="font-extrabold text-xs mb-2 uppercase tracking-wider text-emerald-700 dark:text-emerald-400">
                       {isFil
                         ? 'PhilHealth Cavite Opisina'
                         : 'PhilHealth Cavite Local Office'}
@@ -1799,6 +1815,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy('(046) 419-0740', 'telc')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
@@ -1821,6 +1838,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() =>
                             handleCopy('cavite.lho@philhealth.gov.ph', 'mailc')
                           }
@@ -1838,7 +1856,7 @@ export default function YakapInteractive() {
 
                   {/* 24/7 Hotline */}
                   <div className="p-4 rounded-2xl bg-gray-50 dark:bg-gray-800/40 border border-gray-100 dark:border-gray-700">
-                    <h4 className="font-extrabold text-xs text-gray-900 dark:text-white mb-2 uppercase tracking-wider text-gray-700 dark:text-gray-400">
+                    <h4 className="font-extrabold text-xs mb-2 uppercase tracking-wider text-gray-700 dark:text-gray-400">
                       {isFil
                         ? 'PhilHealth 24/7 Sentro ng Aksyon'
                         : 'PhilHealth 24/7 Action Center'}
@@ -1860,6 +1878,7 @@ export default function YakapInteractive() {
                           </span>
                         </div>
                         <button
+                          type="button"
                           onClick={() => handleCopy('(02) 866-225-88', 'telp')}
                           className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
                         >
@@ -1896,6 +1915,7 @@ export default function YakapInteractive() {
                           </div>
                         </div>
                         <button
+                          type="button"
                           onClick={() =>
                             handleCopy(
                               '0998-857-2957 / 0968-865-4670',
@@ -1937,6 +1957,7 @@ export default function YakapInteractive() {
                           </div>
                         </div>
                         <button
+                          type="button"
                           onClick={() =>
                             handleCopy(
                               '0917-127-5987 / 0917-110-9812',
@@ -1965,6 +1986,7 @@ export default function YakapInteractive() {
                           </a>
                         </div>
                         <button
+                          type="button"
                           onClick={() =>
                             handleCopy(
                               'actioncenter@philhealth.gov.ph',
@@ -2012,6 +2034,7 @@ export default function YakapInteractive() {
                   className="border-b border-gray-100 dark:border-gray-700 pb-4 last:border-b-0"
                 >
                   <button
+                    type="button"
                     onClick={() => toggleFaq(index)}
                     className="w-full flex items-center justify-between text-left py-3 cursor-pointer text-gray-800 dark:text-white hover:text-blue-600 dark:hover:text-blue-400 transition-colors pointer-events-auto"
                   >

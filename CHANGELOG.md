@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.3] - 2026-06-13
+
+### Fixed
+
+- Added explicit `type="button"` to all 23 interactive buttons on the PhilHealth YAKAP page so they cannot accidentally submit a form (clears the corresponding code-scanning hints).
+
+### Changed
+
+- Removed duplicate and dead Tailwind classes on the Yakap page: a doubled `font-bold`, and three section headings that carried both `text-gray-900`/`dark:text-white` and an accent color (the accent color now applies cleanly).
+
 ## [0.5.2] - 2026-06-13
 
 ### Security
