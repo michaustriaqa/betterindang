@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.7] - 2026-06-17
+
+### Changed
+
+- **`/tourism` Browse by Category** — removed the Tiles/Cards toggle; settled on Cards view only (sorted by count desc, sparse categories dimmed). Removed unused `CAT_TILES` constant and `LayoutGrid`/`List` icon imports.
+
 ## [0.6.6] - 2026-06-17
 
 ### Changed
