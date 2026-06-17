@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.4] - 2026-06-17
+
+### Changed
+
+- **Category hero** — description text and count badge are now pure white across all categories, replacing the per-category accent tint colors.
+
 ## [0.7.3] - 2026-06-17
 
 ### Changed

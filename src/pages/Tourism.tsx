@@ -819,16 +819,12 @@ function TourismCategory() {
             <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-2">
               {catLabel}
             </h1>
-            <p
-              className={`text-sm sm:text-base mb-4 max-w-xl leading-relaxed ${heroStyle.accent}`}
-            >
+            <p className="text-sm sm:text-base mb-4 max-w-xl leading-relaxed text-white">
               {isFil
                 ? (CATEGORY_DESCS_FIL[category ?? ''] ?? '')
                 : (CATEGORY_DESCS_EN[category ?? ''] ?? '')}
             </p>
-            <span
-              className={`inline-block text-xs font-bold px-3 py-1 rounded-full ${heroStyle.badge}`}
-            >
+            <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-white/15 border border-white/30 text-white">
               {isFil
                 ? `${catEstablishments.length} na establisimyento · Indang, Cavite`
                 : `${catEstablishments.length} establishment${catEstablishments.length !== 1 ? 's' : ''} · Indang, Cavite`}
