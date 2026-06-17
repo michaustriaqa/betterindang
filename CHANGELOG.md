@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.1] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown** — tag list is now scrollable (`max-h-[360px] overflow-y-auto`) for categories with many tags. Added a pinned footer with **Clear** (resets selection) and **Apply** (confirms and closes the dropdown) CTAs.
+
 ## [0.7.0] - 2026-06-17
 
 ### Changed
