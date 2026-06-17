@@ -240,6 +240,7 @@ const Footer: React.FC = () => {
                 {t('footer.contribute', 'Contribute at GitHub')}
               </a>
             </div>
+            <div id="wcb" className="carbonbadge wcb-d mt-1" />
           </div>
         </div>
 
@@ -281,10 +282,9 @@ const Footer: React.FC = () => {
                 {t('footer.builtByCommunity', 'Built by the community')}
               </span>
             </div>
-            <div id="wcb" className="carbonbadge wcb-d" />
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.5.7</span>
+              <span className="font-mono">v0.5.8</span>
             </div>
           </div>
         </div>
