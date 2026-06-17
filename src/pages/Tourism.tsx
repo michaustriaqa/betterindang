@@ -920,7 +920,10 @@ function TourismCategory() {
                       <div className="border-t border-gray-100 px-3 py-2.5 flex items-center gap-2 shrink-0 bg-white">
                         <button
                           type="button"
-                          onClick={() => setPendingTags([])}
+                          onClick={() => {
+                            setPendingTags([]);
+                            setSelectedTags([]);
+                          }}
                           className="flex-1 text-sm font-semibold text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-50 border border-gray-300 hover:border-gray-400 rounded-lg py-1.5 transition-colors"
                         >
                           {isFil ? 'I-clear' : 'Clear'}

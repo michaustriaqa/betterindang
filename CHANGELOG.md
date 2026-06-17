@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.3] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown — Clear behavior** — tapping Clear now immediately removes all applied filters from the listing (sets both draft and committed selection to empty) without requiring an Apply click. Dropdown stays open so new tags can be selected.
+
 ## [0.7.2] - 2026-06-17
 
 ### Changed
