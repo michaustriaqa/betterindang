@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useLocation } from 'react-router-dom';
 import {
   MapPin,
   Phone,
@@ -137,6 +137,7 @@ const CULTURE_HIGHLIGHTS = [
 function TourismIndex() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
+  const location = useLocation();
   const heroRef = useScrollReveal<HTMLDivElement>();
   const cultureRef = useScrollReveal<HTMLDivElement>();
   const catsRef = useScrollReveal<HTMLDivElement>();
@@ -144,6 +145,9 @@ function TourismIndex() {
 
   const categories: Category[] = establishmentsData.categories;
   const establishments: Establishment[] = establishmentsData.establishments;
+
+  const siteBase = (import.meta.env.VITE_WEBSITE_URL ?? '').replace(/\/$/, '');
+  const pageUrl = `${siteBase}${location.pathname}`;
 
   const CATEGORY_DESCS: Record<string, string> = isFil
     ? {
@@ -221,8 +225,47 @@ function TourismIndex() {
     return mapping[id] || label;
   };
 
+  const indexStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'WebPage',
+      name: isFil ? 'Turismo — Indang, Cavite' : 'Tourism — Indang, Cavite',
+      url: pageUrl,
+      description: isFil
+        ? 'Tuklasin ang Bayan ng Maraming Bukal — pamana, spring resorts, bukid, at makasaysayang dambana sa Indang, Cavite.'
+        : 'Discover the Town of Many Springs — heritage, spring resorts, farms, and cultural landmarks in Indang, Cavite.',
+      about: {
+        '@type': 'TouristDestination',
+        name: 'Indang',
+        description: 'The Town of Many Springs, Cavite, Philippines',
+        containedInPlace: {
+          '@type': 'AdministrativeArea',
+          name: 'Cavite, Philippines',
+        },
+      },
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isFil ? 'Tahanan' : 'Home',
+          item: siteBase || '/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: isFil ? 'Turismo' : 'Tourism',
+          item: pageUrl,
+        },
+      ],
+    },
+  ];
+
   return (
-    <>
+    <main className="flex-grow">
       <SEO
         title={isFil ? 'Turismo' : 'Tourism'}
         description={
@@ -231,6 +274,9 @@ function TourismIndex() {
             : 'Discover the Town of Many Springs — heritage, spring resorts, farms, and cultural landmarks in Indang, Cavite.'
         }
         keywords="Indang tourism, Cavite tourism, spring resorts, Bonifacio Shrine, Irok Festival, CvSU, agri-tourism"
+        url={pageUrl}
+        lang={currentLanguage}
+        structuredData={indexStructuredData}
       />
 
       {/* Hero */}
@@ -382,21 +428,34 @@ function TourismIndex() {
           </div>
         </div>
       </section>
-    </>
+    </main>
   );
 }
 
 // ── Category Page ─────────────────────────────────────────────────────────────
 
+const SCHEMA_TYPE: Record<string, string> = {
+  heritage: 'TouristAttraction',
+  resorts: 'Resort',
+  farms: 'TouristAttraction',
+  events: 'EventVenue',
+  restaurants: 'FoodEstablishment',
+  adventure: 'TouristAttraction',
+};
+
 function TourismCategory() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
   const { category } = useParams<{ category: string }>();
+  const location = useLocation();
   const [search, setSearch] = useState('');
   const gridRef = useScrollReveal<HTMLDivElement>();
 
   const categories: Category[] = establishmentsData.categories;
   const establishments: Establishment[] = establishmentsData.establishments;
+
+  const siteBase = (import.meta.env.VITE_WEBSITE_URL ?? '').replace(/\/$/, '');
+  const pageUrl = `${siteBase}${location.pathname}`;
 
   const cat = categories.find(c => c.id === category);
   const colors = CATEGORY_COLORS[category ?? ''] ?? CATEGORY_COLORS.others;
@@ -447,12 +506,69 @@ function TourismCategory() {
     );
   }
 
+  const catLabel = translateCategoryLabel(cat.label, cat.id);
+  const catEstablishments = establishments.filter(e => e.category === category);
+  const catStructuredData = [
+    {
+      '@context': 'https://schema.org',
+      '@type': 'ItemList',
+      name: isFil
+        ? `${catLabel} sa Indang, Cavite`
+        : `${catLabel} in Indang, Cavite`,
+      url: pageUrl,
+      itemListElement: catEstablishments.map((item, i) => ({
+        '@type': 'ListItem',
+        position: i + 1,
+        item: {
+          '@type': SCHEMA_TYPE[category ?? ''] ?? 'LocalBusiness',
+          name: item.name,
+          ...(item.description ? { description: item.description } : {}),
+          ...(item.contact ? { telephone: item.contact } : {}),
+          ...(item.facebook ? { sameAs: item.facebook } : {}),
+          address: {
+            '@type': 'PostalAddress',
+            ...(item.address ? { streetAddress: item.address } : {}),
+            addressLocality: 'Indang',
+            addressRegion: 'Cavite',
+            addressCountry: 'PH',
+          },
+        },
+      })),
+    },
+    {
+      '@context': 'https://schema.org',
+      '@type': 'BreadcrumbList',
+      itemListElement: [
+        {
+          '@type': 'ListItem',
+          position: 1,
+          name: isFil ? 'Tahanan' : 'Home',
+          item: siteBase || '/',
+        },
+        {
+          '@type': 'ListItem',
+          position: 2,
+          name: isFil ? 'Turismo' : 'Tourism',
+          item: `${siteBase}/tourism`,
+        },
+        { '@type': 'ListItem', position: 3, name: catLabel, item: pageUrl },
+      ],
+    },
+  ];
+
   return (
     <>
       <SEO
-        title={`${translateCategoryLabel(cat.label, cat.id)} — ${isFil ? 'Turismo' : 'Tourism'}`}
-        description={`${translateCategoryLabel(cat.label, cat.id)} listings in Indang, Cavite. Official 2026 tourism establishments.`}
+        title={`${catLabel} — ${isFil ? 'Turismo' : 'Tourism'}`}
+        description={
+          isFil
+            ? `Mga ${catLabel} sa Indang, Cavite. Opisyal na listahan ng 2026.`
+            : `${catLabel} listings in Indang, Cavite. Official 2026 tourism establishments.`
+        }
         keywords={`Indang ${cat.label.toLowerCase()}, Cavite tourism, ${cat.id}`}
+        url={pageUrl}
+        lang={currentLanguage}
+        structuredData={catStructuredData}
       />
       <main className="flex-grow">
         {/* Breadcrumb + Header */}

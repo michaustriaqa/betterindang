@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.5] - 2026-06-17
+
+### Fixed
+
+- Tourism page canonical URLs and `og:url` now point to the correct page path instead of always resolving to the site root — both the index (`/tourism`) and category views (`/tourism/:category`) pass their own URL to the `<SEO>` component.
+- Category page SEO description is now bilingual: Filipino users get a Tagalog description instead of the previous hardcoded English string.
+- `<meta name="language">` and `og:locale` in the shared `SEO` component are now driven by the active language rather than being hardcoded to `"English"` / `"en_US"`.
+- Tourism index view is now wrapped in `<main>` to match the category view (accessibility + crawlability consistency).
+
+### Added
+
+- `SEO` component now accepts `lang` (drives `language` meta and `og:locale`) and `structuredData` (renders a `<script type="application/ld+json">` block) props.
+- Tourism index emits `WebPage` + `BreadcrumbList` JSON-LD schema.
+- Tourism category pages emit an `ItemList` of `LocalBusiness`/`TouristAttraction`/`Resort`/`FoodEstablishment`/`EventVenue` entries plus a `BreadcrumbList` — enabling Google rich results for individual establishments.
+
 ## [0.5.4] - 2026-06-13
 
 ### Changed

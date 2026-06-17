@@ -8,6 +8,8 @@ interface SEOProps {
   url?: string;
   type?: string;
   siteName?: string;
+  lang?: string;
+  structuredData?: object | object[];
 }
 
 export default function SEO({
@@ -18,6 +20,8 @@ export default function SEO({
   url,
   type = 'website',
   siteName = import.meta.env.VITE_GOVERNMENT_NAME || 'Local Government Website',
+  lang,
+  structuredData,
 }: SEOProps) {
   const defaultTitle = `${siteName} - Official Government Website`;
   const defaultDescription =
@@ -43,7 +47,7 @@ export default function SEO({
       <meta name="keywords" content={fullKeywords} />
       <meta name="author" content={siteName} />
       <meta name="robots" content="index, follow" />
-      <meta name="language" content="English" />
+      <meta name="language" content={lang === 'fil' ? 'Filipino' : 'English'} />
       <meta name="revisit-after" content="7 days" />
 
       {/* Open Graph / Facebook */}
@@ -53,7 +57,10 @@ export default function SEO({
       <meta property="og:description" content={fullDescription} />
       <meta property="og:image" content={fullImage} />
       <meta property="og:site_name" content={siteName} />
-      <meta property="og:locale" content="en_US" />
+      <meta
+        property="og:locale"
+        content={lang === 'fil' ? 'fil_PH' : 'en_US'}
+      />
 
       {/* Twitter */}
       <meta property="twitter:card" content="summary_large_image" />
@@ -101,6 +108,15 @@ export default function SEO({
         href="https://fonts.gstatic.com"
         crossOrigin="anonymous"
       />
+
+      {/* Structured data */}
+      {structuredData && (
+        <script type="application/ld+json">
+          {JSON.stringify(
+            Array.isArray(structuredData) ? structuredData : [structuredData]
+          )}
+        </script>
+      )}
     </Helmet>
   );
 }
