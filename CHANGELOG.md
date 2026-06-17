@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.4] - 2026-06-17
+
+### Changed
+
+- **`/tourism`** — removed the redundant "What Makes Indang Unique" / Culture & Identity summary cards section. All five points (Historical Identity, Heritage & Architecture, Culture & Weaving, Local Produce, Natural Springs) are now covered in full detail by the four dedicated sections below the category grid (Heritage Landmarks, Culture & Traditions, Signature Products, Rivers & Springs). Also removed unused `CULTURE_HIGHLIGHTS` constant, `translatedHighlights` derivation, two scroll-reveal refs, and the `Star`/`Tent` icon imports.
+
 ## [0.6.3] - 2026-06-17
 
 ### Changed

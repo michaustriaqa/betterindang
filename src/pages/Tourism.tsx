@@ -11,10 +11,8 @@ import {
   BedDouble,
   Search,
   ExternalLink,
-  Tent,
   Wheat,
   Droplets,
-  Star,
   ChevronRight,
   Church,
   BookOpen,
@@ -95,57 +93,12 @@ const CATEGORY_COLORS: Record<
   },
 };
 
-const CULTURE_HIGHLIGHTS = [
-  {
-    icon: Landmark,
-    color: 'bg-amber-50 border-amber-200 text-amber-800',
-    iconColor: 'bg-amber-100 text-amber-700',
-    title: 'Historical Identity',
-    subtitle: '"Walang Tinag" — Immovable',
-    body: 'Indang was a Katipunan stronghold during the Philippine Revolution. Andres Bonifacio was arrested in Barangay Limbon in April 1897. Established as an independent municipality in 1655.',
-  },
-  {
-    icon: Landmark,
-    color: 'bg-stone-50 border-stone-200 text-stone-800',
-    iconColor: 'bg-stone-100 text-stone-700',
-    title: 'Heritage & Architecture',
-    subtitle: 'Churches · Museum · Chapels',
-    body: 'St. Gregory the Great Parish (est. 1611), St. Vincent Ferrer Parish, Seven Archangels Chapel, and the Indang Community Museum preserving artifacts and revolutionary documents.',
-  },
-  {
-    icon: Tent,
-    color: 'bg-green-50 border-green-200 text-green-800',
-    iconColor: 'bg-green-100 text-green-700',
-    title: 'Culture & Weaving',
-    subtitle: 'MKC Weavers · Yndan · Irok Festival',
-    body: 'Traditional loom weaving preserved by MKC Weavers Association and modernized by Yndan (@yndanph). The Irok Festival (Dec. 1) celebrates the Sugar Palm tree with street dancing.',
-  },
-  {
-    icon: Wheat,
-    color: 'bg-orange-50 border-orange-200 text-orange-800',
-    iconColor: 'bg-orange-100 text-orange-700',
-    title: 'Local Produce',
-    subtitle: 'Kalamay · Coffee · Dragon Fruit · Kaong',
-    body: 'Famous for Kalamay Indang, Robusta/Arabica/Barako coffee, dragon fruit (Brgy. Calumpang & Buna Lejos), and kaong with organic sasa vinegar.',
-  },
-  {
-    icon: Droplets,
-    color: 'bg-blue-50 border-blue-200 text-blue-800',
-    iconColor: 'bg-blue-100 text-blue-700',
-    title: 'Natural Springs & Falls',
-    subtitle: 'The Town of Many Springs',
-    body: 'Cold, chemical-free spring resorts (Villa Colmenar, Rio Villa) fed by natural ground springs. Pantihan (Balayungan) Falls is one of the last wild waterfalls in the province.',
-  },
-];
-
 // ── Index Page ────────────────────────────────────────────────────────────────
 
 function TourismIndex() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
   const location = useLocation();
-  const heroRef = useScrollReveal<HTMLDivElement>();
-  const cultureRef = useScrollReveal<HTMLDivElement>();
   const catsRef = useScrollReveal<HTMLDivElement>();
   const catsGridRef = useScrollReveal<HTMLDivElement>();
 
@@ -182,41 +135,6 @@ function TourismIndex() {
           'Cafés, restaurants, and catering services featuring local Cavite cuisine.',
         adventure: 'Outdoor adventure parks and eco-nature activities.',
       };
-
-  const translatedHighlights = CULTURE_HIGHLIGHTS.map(h => {
-    let title = h.title;
-    let subtitle = h.subtitle;
-    let body = h.body;
-    if (isFil) {
-      if (h.title === 'Historical Identity') {
-        title = 'Makasaysayang Pagkakakilanlan';
-        subtitle = '"Walang Tinag"';
-        body =
-          'Ang Indang ay isang kuta ng Katipunan noong Himagsikang Pilipino. Inaresto si Andres Bonifacio sa Barangay Limbon noong Abril 1897. Itinatag bilang isang malayang bayan noong 1655.';
-      } else if (h.title === 'Heritage & Architecture') {
-        title = 'Pamana at Arkitektura';
-        subtitle = 'Simbahan · Museo · Kapilya';
-        body =
-          'Parokya ng San Gregorio Magno (itinatag noong 1611), Parokya ng San Vicente Ferrer, Kapilya ng Pitong Arkanghel, at ang Indang Community Museum na nagpapanatili ng mga artifact at rebolusyonaryong dokumento.';
-      } else if (h.title === 'Culture & Weaving') {
-        title = 'Kultura at Paghahabi';
-        subtitle = 'Mga Habi ng MKC · Yndan · Irok Festival';
-        body =
-          'Tradisyonal na paghahabi gamit ang habihan na pinapanatili ng MKC Weavers Association at ginawang makabago ng Yndan (@yndanph). Ang Irok Festival (Dis. 1) ay nagdiriwang sa puno ng Kaong sa pamamagitan ng street dancing.';
-      } else if (h.title === 'Local Produce') {
-        title = 'Mga Lokal na Produkto';
-        subtitle = 'Kalamay · Kape · Dragon Fruit · Kaong';
-        body =
-          'Kilala sa Kalamay Indang, kapeng Robusta/Arabica/Barako, dragon fruit (mula sa Brgy. Calumpang at Buna Lejos), at kaong kasama ang organikong sukang sasa.';
-      } else if (h.title === 'Natural Springs & Falls') {
-        title = 'Mga Likas na Batis at Talon';
-        subtitle = 'Ang Bayan ng Maraming Bukal';
-        body =
-          'Mga resort na may malamig at natural na tubig (Villa Colmenar, Rio Villa) na nagmumula sa mga bukal. Ang Talon ng Pantihan (Balayungan) ay isa sa mga huling ligaw na talon sa lalawigan.';
-      }
-    }
-    return { ...h, title, subtitle, body };
-  });
 
   const translateCategoryLabel = (label: string, id: string) => {
     if (!isFil) return label;
@@ -337,46 +255,6 @@ function TourismIndex() {
           </a>
         </div>
       </div>
-
-      {/* Culture Highlights */}
-      <section className="bg-white py-12 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div ref={heroRef} className="reveal mb-8">
-            <div className="flex items-center gap-2 mb-1">
-              <Star className="h-4 w-4 text-amber-500" />
-              <span className="text-xs font-bold text-amber-600 uppercase tracking-widest">
-                {isFil ? 'Kultura at Pagkakakilanlan' : 'Culture & Identity'}
-              </span>
-            </div>
-            <h2 className="text-2xl font-black text-gray-900">
-              {isFil
-                ? 'Bakit Natatangi ang Indang'
-                : 'What Makes Indang Unique'}
-            </h2>
-          </div>
-          <div
-            ref={cultureRef}
-            className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-4"
-          >
-            {translatedHighlights.map(
-              ({ icon: Icon, color, iconColor, title, subtitle, body }) => (
-                <div key={title} className={`rounded-xl border p-5 ${color}`}>
-                  <div
-                    className={`w-9 h-9 rounded-lg flex items-center justify-center mb-3 ${iconColor}`}
-                  >
-                    <Icon className="h-4 w-4" />
-                  </div>
-                  <h3 className="font-black text-sm mb-0.5">{title}</h3>
-                  <p className="text-xs font-semibold opacity-70 mb-2">
-                    {subtitle}
-                  </p>
-                  <p className="text-xs leading-relaxed opacity-80">{body}</p>
-                </div>
-              )
-            )}
-          </div>
-        </div>
-      </section>
 
       {/* Category Cards */}
       <section className="bg-gray-50 py-12 border-b border-gray-100">
