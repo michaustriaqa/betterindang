@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.5] - 2026-06-17
+
+### Changed
+
+- **`/tourism`** — removed the Heritage Landmarks section (4 landmark cards). Those sites are already reachable via the Heritage category tile (`/tourism/heritage`) and the History & Culture tile (`/tourism/history`), making the inline section redundant. Also dropped `Church`, `BookOpen`, and `ArrowRight` icon imports that were only used by that section.
+
 ## [0.6.4] - 2026-06-17
 
 ### Changed

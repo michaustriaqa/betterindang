@@ -14,12 +14,9 @@ import {
   Wheat,
   Droplets,
   ChevronRight,
-  Church,
-  BookOpen,
   Scissors,
   Leaf,
   Calendar,
-  ArrowRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -338,107 +335,6 @@ function TourismIndex() {
           </div>
         </div>
       </section>
-      {/* Heritage Landmarks */}
-      <section className="bg-white py-12 border-b border-gray-100">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div className="flex items-center gap-2 mb-2">
-            <Landmark className="h-4 w-4 text-primary-600" />
-            <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">
-              {isFil ? 'Mga Heritage Site' : 'Heritage Sites'}
-            </span>
-          </div>
-          <div className="flex items-end justify-between gap-4 mb-6">
-            <h2 className="text-2xl font-black text-gray-900">
-              {isFil ? 'Mga Makasaysayang Lugar' : 'Historical Landmarks'}
-            </h2>
-            <Link
-              to="/tourism/history"
-              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors"
-            >
-              {isFil ? 'Buong kasaysayan' : 'Full history'}
-              <ArrowRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            {[
-              {
-                icon: MapPin,
-                name: 'Bonifacio Shrine',
-                location: 'Barangay Limbon',
-                tag: 'National Landmark',
-                tagColor: 'bg-amber-100 text-amber-700',
-                desc: isFil
-                  ? 'Ang eksaktong lugar kung saan inaresto si Andres Bonifacio noong Abril 1897. Isang pambansang pangkasaysayang marker ang nakatayo dito ngayon.'
-                  : 'The exact site where Andres Bonifacio was arrested in April 1897. A national historical marker stands here today.',
-              },
-              {
-                icon: Church,
-                name: 'Saint Gregory the Great Parish',
-                location: 'Poblacion III',
-                tag: 'Est. 1611',
-                tagColor: 'bg-amber-100 text-amber-700',
-                desc: isFil
-                  ? 'Itinatag noong 1611, isa sa pinakamatandang simbahan sa Cavite. Kilala sa distinctibong rose-colored na bato at papel nito bilang kanlungan noong rebolusyon.'
-                  : 'Established in 1611, one of the oldest churches in Cavite. Known for its rose-colored stone facade and sanctuary role during the revolution.',
-              },
-              {
-                icon: Church,
-                name: 'Saint Vincent Ferrer Parish',
-                location: 'Lumampong Halayhay',
-                tag: 'Heritage Church',
-                tagColor: 'bg-stone-100 text-stone-700',
-                desc: isFil
-                  ? 'Isang pangunahing espirituwal na monumento na nagsisilbi sa mga komunidad ng bundok ng Indang.'
-                  : 'A key spiritual landmark serving the upland barangay communities of Indang.',
-              },
-              {
-                icon: BookOpen,
-                name: 'Indang Community Museum',
-                location: 'Poblacion',
-                tag: 'Museum',
-                tagColor: 'bg-blue-100 text-blue-700',
-                desc: isFil
-                  ? 'Nagpapanatili ng mga artifact, dokumento, at kuwento ng rebolusyonaryong at agrikultural na nakaraan ng Indang. Bukas Lun–Biy 8AM–5PM, Sab 8AM–4PM.'
-                  : "Preserves artifacts, documents, and stories of Indang's revolutionary and agricultural past. Open Mon–Fri 8AM–5PM, Sat 8AM–4PM.",
-              },
-            ].map(site => {
-              const Icon = site.icon;
-              return (
-                <div
-                  key={site.name}
-                  className="bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="shrink-0 w-10 h-10 bg-primary-50 text-primary-700 rounded-lg flex items-center justify-center">
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <div className="flex-1 min-w-0">
-                      <div className="flex items-center gap-2 flex-wrap mb-1">
-                        <h3 className="font-bold text-gray-900 text-sm">
-                          {site.name}
-                        </h3>
-                        <span
-                          className={`text-xs font-semibold px-2 py-0.5 rounded-full ${site.tagColor}`}
-                        >
-                          {site.tag}
-                        </span>
-                      </div>
-                      <p className="text-xs text-primary-600 font-semibold mb-2 flex items-center gap-1">
-                        <MapPin className="h-3 w-3" />
-                        {site.location}
-                      </p>
-                      <p className="text-sm text-gray-500 leading-relaxed">
-                        {site.desc}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </section>
-
       {/* Culture & Traditions */}
       <section className="bg-gray-50 py-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
