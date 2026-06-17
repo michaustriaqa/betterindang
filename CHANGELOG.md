@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.9] - 2026-06-17
+
+### Changed
+
+- **`/tourism/:category` header** — replaced flat white header with a full-width blue hero band (matching site pattern). Each category shows its own color accent, a one-line description, and the establishment count.
+- **Establishment card pill** — removed redundant category label pill; each card now shows its most specific tag (first tag from the `tags` array) instead.
+- **Tag filter chips** — added a horizontal scrollable row of clickable tag chips below the search bar. Chips are derived from the actual `tags` data per category. Multiple tags can be selected simultaneously (AND logic); a "Clear" button appears when tags are active.
+- **Sort control** — added a sort dropdown next to the search input with three options: A → Z (default), Z → A, Photos first (establishments with images surface before placeholders, then A–Z within each group).
+
 ## [0.6.8] - 2026-06-17
 
 ### Fixed

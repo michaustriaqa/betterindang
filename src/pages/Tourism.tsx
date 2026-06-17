@@ -541,6 +541,60 @@ function TourismIndex() {
   );
 }
 
+const CAT_HERO: Record<string, { accent: string; badge: string }> = {
+  heritage: {
+    accent: 'text-amber-200',
+    badge: 'bg-amber-500/20 border border-amber-400/30 text-amber-100',
+  },
+  resorts: {
+    accent: 'text-blue-200',
+    badge: 'bg-blue-400/20 border border-blue-300/30 text-blue-100',
+  },
+  farms: {
+    accent: 'text-green-200',
+    badge: 'bg-green-500/20 border border-green-400/30 text-green-100',
+  },
+  events: {
+    accent: 'text-purple-200',
+    badge: 'bg-purple-400/20 border border-purple-300/30 text-purple-100',
+  },
+  restaurants: {
+    accent: 'text-orange-200',
+    badge: 'bg-orange-400/20 border border-orange-300/30 text-orange-100',
+  },
+  adventure: {
+    accent: 'text-red-200',
+    badge: 'bg-red-400/20 border border-red-300/30 text-red-100',
+  },
+};
+
+const CATEGORY_DESCS_EN: Record<string, string> = {
+  heritage:
+    'Historical shrines, colonial churches, a community museum, and living craft traditions.',
+  resorts:
+    'Spring-fed pools and private resorts using cold, chemical-free natural water.',
+  farms: 'Agri-eco parks, farmstays, orchards, and farm-to-table experiences.',
+  events: 'Function halls, glamping cabins, and vacation home rentals.',
+  restaurants:
+    'Cafés, restaurants, and catering services featuring local Cavite cuisine.',
+  adventure: 'Outdoor adventure parks and eco-nature activities.',
+};
+
+const CATEGORY_DESCS_FIL: Record<string, string> = {
+  heritage:
+    'Mga makasaysayang dambana, simbahang kolonyal, museo ng pamayanan, at buhay na tradisyon ng sining.',
+  resorts:
+    'Mga spring-fed na pool at pribadong resort na gumagamit ng malamig at walang kemikal na likas na tubig.',
+  farms:
+    'Mga parkeng agri-ekolohikal, farmstays, at mga karanasan mula sa bukid tungo sa lamesa.',
+  events:
+    'Mga bulwagan para sa okasyon, glamping cabins, at paupahang bahay-bakasyunan.',
+  restaurants:
+    'Mga café, kainan, at serbisyo sa catering na nagtatampok ng lokal na lutuing Cavite.',
+  adventure:
+    'Mga parkeng panlabas na may pakikipagsapalaran at mga gawaing pang-ekolohiya.',
+};
+
 // ── Category Page ─────────────────────────────────────────────────────────────
 
 const SCHEMA_TYPE: Record<string, string> = {
@@ -558,6 +612,8 @@ function TourismCategory() {
   const { category } = useParams<{ category: string }>();
   const location = useLocation();
   const [search, setSearch] = useState('');
+  const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [sortBy, setSortBy] = useState<'az' | 'za' | 'photos'>('az');
   const gridRef = useScrollReveal<HTMLDivElement>();
 
   const categories: Category[] = establishmentsData.categories;
@@ -568,7 +624,24 @@ function TourismCategory() {
 
   const cat = categories.find(c => c.id === category);
   const colors = CATEGORY_COLORS[category ?? ''] ?? CATEGORY_COLORS.others;
+  const heroStyle = CAT_HERO[category ?? ''] ?? {
+    accent: 'text-blue-200',
+    badge: 'bg-white/10 border border-white/20 text-white',
+  };
   const IconComp = cat ? (ICON_MAP[cat.icon] ?? MapPin) : MapPin;
+
+  const allTags = Array.from(
+    new Set(
+      establishments
+        .filter(e => e.category === category)
+        .flatMap(e => e.tags ?? [])
+    )
+  ).sort();
+
+  const toggleTag = (tag: string) =>
+    setSelectedTags(prev =>
+      prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
+    );
 
   const translateCategoryLabel = (label: string, id: string) => {
     if (!isFil) return label;
@@ -583,17 +656,29 @@ function TourismCategory() {
     return mapping[id] || label;
   };
 
-  const filtered = establishments.filter(item => {
-    if (item.category !== category) return false;
-    const q = search.toLowerCase();
-    return (
-      !q ||
-      item.name.toLowerCase().includes(q) ||
-      (item.description ?? '').toLowerCase().includes(q) ||
-      (item.address ?? '').toLowerCase().includes(q) ||
-      (item.tags ?? []).some(t => t.toLowerCase().includes(q))
-    );
-  });
+  const filtered = establishments
+    .filter(item => {
+      if (item.category !== category) return false;
+      const q = search.toLowerCase();
+      const matchesSearch =
+        !q ||
+        item.name.toLowerCase().includes(q) ||
+        (item.description ?? '').toLowerCase().includes(q) ||
+        (item.address ?? '').toLowerCase().includes(q) ||
+        (item.tags ?? []).some(t => t.toLowerCase().includes(q));
+      const matchesTags =
+        selectedTags.length === 0 ||
+        selectedTags.every(tag => (item.tags ?? []).includes(tag));
+      return matchesSearch && matchesTags;
+    })
+    .sort((a, b) => {
+      if (sortBy === 'za') return b.name.localeCompare(a.name);
+      if (sortBy === 'photos') {
+        if (a.image && !b.image) return -1;
+        if (!a.image && b.image) return 1;
+      }
+      return a.name.localeCompare(b.name);
+    });
 
   if (!cat) {
     return (
@@ -680,65 +765,121 @@ function TourismCategory() {
         structuredData={catStructuredData}
       />
       <main className="flex-grow">
-        {/* Breadcrumb + Header */}
-        <div className="bg-white border-b border-gray-100 py-8">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            {/* Breadcrumb */}
-            <nav className="flex items-center gap-2 text-sm text-gray-500 mb-6">
-              <Link to="/" className="hover:text-primary-700 transition-colors">
+        {/* Hero header */}
+        <div
+          className="relative text-white overflow-hidden"
+          style={{
+            backgroundColor: '#003087',
+            backgroundImage:
+              'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)',
+            backgroundSize: '24px 24px',
+          }}
+        >
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
+            <nav className="flex items-center gap-1.5 text-xs text-blue-200 mb-6">
+              <Link to="/" className="hover:text-white transition-colors">
                 {isFil ? 'Tahanan' : 'Home'}
               </Link>
-              <ChevronRight className="h-3.5 w-3.5" />
+              <ChevronRight className="h-3 w-3 opacity-50" />
               <Link
                 to="/tourism"
-                className="hover:text-primary-700 transition-colors"
+                className="hover:text-white transition-colors"
               >
                 {isFil ? 'Turismo' : 'Tourism'}
               </Link>
-              <ChevronRight className="h-3.5 w-3.5" />
-              <span className="font-semibold text-primary-700">
-                {translateCategoryLabel(cat.label, cat.id)}
-              </span>
+              <ChevronRight className="h-3 w-3 opacity-50" />
+              <span className="text-white">{catLabel}</span>
             </nav>
-
-            <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-primary-50 text-primary-700 mb-4">
+            <div
+              className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${heroStyle.badge}`}
+            >
               <IconComp className="h-6 w-6" />
             </div>
-            <h1 className="text-4xl font-black text-gray-900 mb-2">
-              {translateCategoryLabel(cat.label, cat.id)}
+            <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-2">
+              {catLabel}
             </h1>
-            <div className="flex items-center gap-2 mt-1">
-              <span
-                className={`text-xs font-bold px-2 py-0.5 rounded-full ${colors.pill}`}
-              >
-                {translateCategoryLabel(cat.label, cat.id)}
-              </span>
-              <span className="text-gray-400 text-sm">
-                {isFil
-                  ? `${filtered.length} na establisimyento · Indang, Cavite 2026`
-                  : `${filtered.length} establishment${filtered.length !== 1 ? 's' : ''} · Indang, Cavite 2026`}
-              </span>
-            </div>
+            <p
+              className={`text-sm sm:text-base mb-4 max-w-xl leading-relaxed ${heroStyle.accent}`}
+            >
+              {isFil
+                ? (CATEGORY_DESCS_FIL[category ?? ''] ?? '')
+                : (CATEGORY_DESCS_EN[category ?? ''] ?? '')}
+            </p>
+            <span
+              className={`inline-block text-xs font-bold px-3 py-1 rounded-full ${heroStyle.badge}`}
+            >
+              {isFil
+                ? `${catEstablishments.length} na establisimyento · Indang, Cavite`
+                : `${catEstablishments.length} establishment${catEstablishments.length !== 1 ? 's' : ''} · Indang, Cavite`}
+            </span>
           </div>
         </div>
 
-        {/* Search */}
+        {/* Search + Sort + Tag filters */}
         <div className="bg-white border-b border-gray-100 sticky top-0 z-10 shadow-sm">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3">
-            <div className="relative w-full sm:w-80">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
-              <input
-                type="text"
-                value={search}
-                onChange={e => setSearch(e.target.value)}
-                placeholder={
-                  isFil
-                    ? `Maghanap sa ${translateCategoryLabel(cat.label, cat.id).toLowerCase()}...`
-                    : `Search ${cat.label.toLowerCase()}...`
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 py-3 space-y-2.5">
+            {/* Search + Sort row */}
+            <div className="flex items-center gap-3">
+              <div className="relative flex-1 sm:max-w-xs">
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-gray-400 pointer-events-none" />
+                <input
+                  type="text"
+                  value={search}
+                  onChange={e => setSearch(e.target.value)}
+                  placeholder={
+                    isFil
+                      ? `Maghanap sa ${catLabel.toLowerCase()}...`
+                      : `Search ${cat.label.toLowerCase()}...`
+                  }
+                  className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
+                />
+              </div>
+              <select
+                value={sortBy}
+                onChange={e =>
+                  setSortBy(e.target.value as 'az' | 'za' | 'photos')
                 }
-                className="w-full border border-gray-200 rounded-lg pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent"
-              />
+                className="ml-auto shrink-0 border border-gray-200 rounded-lg px-3 py-2 text-sm text-gray-700 bg-white focus:outline-none focus:ring-2 focus:ring-primary-500 cursor-pointer"
+              >
+                <option value="az">{isFil ? 'A → Z' : 'A → Z'}</option>
+                <option value="za">{isFil ? 'Z → A' : 'Z → A'}</option>
+                <option value="photos">
+                  {isFil ? 'May larawan muna' : 'Photos first'}
+                </option>
+              </select>
             </div>
+
+            {/* Tag chips */}
+            {allTags.length > 0 && (
+              <div className="flex items-center gap-2 overflow-x-auto pb-0.5">
+                <span className="text-xs font-bold text-gray-400 shrink-0 uppercase tracking-wide">
+                  {isFil ? 'Filter:' : 'Filter:'}
+                </span>
+                {allTags.map(tag => (
+                  <button
+                    key={tag}
+                    type="button"
+                    onClick={() => toggleTag(tag)}
+                    className={`shrink-0 text-xs font-semibold px-2.5 py-1 rounded-full border transition-all ${
+                      selectedTags.includes(tag)
+                        ? 'bg-primary-700 text-white border-primary-700'
+                        : 'bg-white text-gray-600 border-gray-200 hover:border-primary-400 hover:text-primary-700'
+                    }`}
+                  >
+                    {tag}
+                  </button>
+                ))}
+                {selectedTags.length > 0 && (
+                  <button
+                    type="button"
+                    onClick={() => setSelectedTags([])}
+                    className="shrink-0 text-xs font-semibold text-gray-400 hover:text-gray-700 px-1 transition-colors"
+                  >
+                    {isFil ? 'I-clear' : 'Clear'}
+                  </button>
+                )}
+              </div>
+            )}
           </div>
         </div>
 
@@ -811,19 +952,6 @@ function EstablishmentCard({
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
 
-  const translateCategoryLabel = (label: string, id: string) => {
-    if (!isFil) return label;
-    const mapping: Record<string, string> = {
-      heritage: 'Makasaysayang Pamana',
-      resorts: 'Mga Spring Resort',
-      farms: 'Mga Sakahan (Farms)',
-      events: 'Mga Kaganapan at Okasyon',
-      restaurants: 'Mga Restaurant at Café',
-      adventure: 'Pakikipagsapalaran (Adventure)',
-    };
-    return mapping[id] || label;
-  };
-
   return (
     <div className="bg-white rounded-xl border border-gray-100 shadow-sm hover:shadow-md hover:border-primary-200 transition-all duration-200 overflow-hidden flex flex-col">
       {/* Thumbnail */}
@@ -849,11 +977,13 @@ function EstablishmentCard({
       {/* Content */}
       <div className="p-5 flex flex-col gap-3 flex-1">
         <div>
-          <span
-            className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${colors.pill}`}
-          >
-            {translateCategoryLabel(cat.label, cat.id)}
-          </span>
+          {item.tags && item.tags.length > 0 && (
+            <span
+              className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${colors.pill}`}
+            >
+              {item.tags[0]}
+            </span>
+          )}
           <h3 className="font-black text-sm leading-snug text-gray-900">
             {item.name}
           </h3>
