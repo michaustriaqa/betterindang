@@ -616,6 +616,7 @@ function TourismCategory() {
   const location = useLocation();
   const [search, setSearch] = useState('');
   const [selectedTags, setSelectedTags] = useState<string[]>([]);
+  const [pendingTags, setPendingTags] = useState<string[]>([]);
   const [sortBy, setSortBy] = useState<'az' | 'za'>('az');
   const [filterOpen, setFilterOpen] = useState(false);
   const [sortOpen, setSortOpen] = useState(false);
@@ -633,6 +634,11 @@ function TourismCategory() {
     document.addEventListener('mousedown', close);
     return () => document.removeEventListener('mousedown', close);
   }, []);
+
+  // Sync draft to committed selection each time the dropdown opens
+  useEffect(() => {
+    if (filterOpen) setPendingTags(selectedTags);
+  }, [filterOpen]); // eslint-disable-line react-hooks/exhaustive-deps
 
   const categories: Category[] = establishmentsData.categories;
   const establishments: Establishment[] = establishmentsData.establishments;
@@ -656,8 +662,8 @@ function TourismCategory() {
     )
   ).sort();
 
-  const toggleTag = (tag: string) =>
-    setSelectedTags(prev =>
+  const togglePendingTag = (tag: string) =>
+    setPendingTags(prev =>
       prev.includes(tag) ? prev.filter(t => t !== tag) : [...prev, tag]
     );
 
@@ -883,23 +889,23 @@ function TourismCategory() {
                           <button
                             key={tag}
                             type="button"
-                            onClick={() => toggleTag(tag)}
+                            onClick={() => togglePendingTag(tag)}
                             className="w-full flex items-center gap-3 px-4 py-2.5 text-sm text-left hover:bg-gray-50 transition-colors"
                           >
                             <span
                               className={`w-4 h-4 shrink-0 flex items-center justify-center rounded border transition-colors ${
-                                selectedTags.includes(tag)
+                                pendingTags.includes(tag)
                                   ? 'bg-primary-700 border-primary-700'
                                   : 'border-gray-300'
                               }`}
                             >
-                              {selectedTags.includes(tag) && (
+                              {pendingTags.includes(tag) && (
                                 <Check className="h-2.5 w-2.5 text-white" />
                               )}
                             </span>
                             <span
                               className={
-                                selectedTags.includes(tag)
+                                pendingTags.includes(tag)
                                   ? 'font-semibold text-primary-700'
                                   : 'text-gray-700'
                               }
@@ -914,14 +920,17 @@ function TourismCategory() {
                       <div className="border-t border-gray-100 px-3 py-2.5 flex items-center gap-2 shrink-0 bg-white">
                         <button
                           type="button"
-                          onClick={() => setSelectedTags([])}
-                          className="flex-1 text-sm font-semibold text-gray-500 hover:text-gray-800 border border-gray-200 rounded-lg py-1.5 transition-colors"
+                          onClick={() => setPendingTags([])}
+                          className="flex-1 text-sm font-semibold text-gray-700 hover:text-gray-900 bg-white hover:bg-gray-50 border border-gray-300 hover:border-gray-400 rounded-lg py-1.5 transition-colors"
                         >
                           {isFil ? 'I-clear' : 'Clear'}
                         </button>
                         <button
                           type="button"
-                          onClick={() => setFilterOpen(false)}
+                          onClick={() => {
+                            setSelectedTags(pendingTags);
+                            setFilterOpen(false);
+                          }}
                           className="flex-1 text-sm font-semibold text-white bg-primary-700 hover:bg-primary-800 rounded-lg py-1.5 transition-colors"
                         >
                           {isFil ? 'Ilapat' : 'Apply'}

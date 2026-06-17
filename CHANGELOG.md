@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.2] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown — deferred apply** — checkboxes now update a draft/pending selection only; the active filter does not change until **Apply** is clicked. Closing the dropdown without applying discards the draft.
+- **Clear button** — resets the draft selection without closing the dropdown; restyled as a proper secondary button (white bg, visible border, dark text) rather than a muted ghost.
+
 ## [0.7.1] - 2026-06-17
 
 ### Changed
