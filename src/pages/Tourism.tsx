@@ -16,6 +16,12 @@ import {
   Droplets,
   Star,
   ChevronRight,
+  Church,
+  BookOpen,
+  Scissors,
+  Leaf,
+  Calendar,
+  ArrowRight,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -373,7 +379,7 @@ function TourismIndex() {
       </section>
 
       {/* Category Cards */}
-      <section className="bg-gray-50 py-12">
+      <section className="bg-gray-50 py-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div ref={catsRef} className="reveal mb-8">
             <h2 className="text-2xl font-black text-gray-900">
@@ -451,6 +457,308 @@ function TourismIndex() {
                 </span>
               </div>
             </Link>
+          </div>
+        </div>
+      </section>
+      {/* Heritage Landmarks */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Landmark className="h-4 w-4 text-primary-600" />
+            <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">
+              {isFil ? 'Mga Heritage Site' : 'Heritage Sites'}
+            </span>
+          </div>
+          <div className="flex items-end justify-between gap-4 mb-6">
+            <h2 className="text-2xl font-black text-gray-900">
+              {isFil ? 'Mga Makasaysayang Lugar' : 'Historical Landmarks'}
+            </h2>
+            <Link
+              to="/tourism/history"
+              className="shrink-0 inline-flex items-center gap-1 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors"
+            >
+              {isFil ? 'Buong kasaysayan' : 'Full history'}
+              <ArrowRight className="h-3.5 w-3.5" />
+            </Link>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            {[
+              {
+                icon: MapPin,
+                name: 'Bonifacio Shrine',
+                location: 'Barangay Limbon',
+                tag: 'National Landmark',
+                tagColor: 'bg-amber-100 text-amber-700',
+                desc: isFil
+                  ? 'Ang eksaktong lugar kung saan inaresto si Andres Bonifacio noong Abril 1897. Isang pambansang pangkasaysayang marker ang nakatayo dito ngayon.'
+                  : 'The exact site where Andres Bonifacio was arrested in April 1897. A national historical marker stands here today.',
+              },
+              {
+                icon: Church,
+                name: 'Saint Gregory the Great Parish',
+                location: 'Poblacion III',
+                tag: 'Est. 1611',
+                tagColor: 'bg-amber-100 text-amber-700',
+                desc: isFil
+                  ? 'Itinatag noong 1611, isa sa pinakamatandang simbahan sa Cavite. Kilala sa distinctibong rose-colored na bato at papel nito bilang kanlungan noong rebolusyon.'
+                  : 'Established in 1611, one of the oldest churches in Cavite. Known for its rose-colored stone facade and sanctuary role during the revolution.',
+              },
+              {
+                icon: Church,
+                name: 'Saint Vincent Ferrer Parish',
+                location: 'Lumampong Halayhay',
+                tag: 'Heritage Church',
+                tagColor: 'bg-stone-100 text-stone-700',
+                desc: isFil
+                  ? 'Isang pangunahing espirituwal na monumento na nagsisilbi sa mga komunidad ng bundok ng Indang.'
+                  : 'A key spiritual landmark serving the upland barangay communities of Indang.',
+              },
+              {
+                icon: BookOpen,
+                name: 'Indang Community Museum',
+                location: 'Poblacion',
+                tag: 'Museum',
+                tagColor: 'bg-blue-100 text-blue-700',
+                desc: isFil
+                  ? 'Nagpapanatili ng mga artifact, dokumento, at kuwento ng rebolusyonaryong at agrikultural na nakaraan ng Indang. Bukas Lun–Biy 8AM–5PM, Sab 8AM–4PM.'
+                  : "Preserves artifacts, documents, and stories of Indang's revolutionary and agricultural past. Open Mon–Fri 8AM–5PM, Sat 8AM–4PM.",
+              },
+            ].map(site => {
+              const Icon = site.icon;
+              return (
+                <div
+                  key={site.name}
+                  className="bg-white border border-gray-100 rounded-xl p-5 hover:shadow-md transition-shadow"
+                >
+                  <div className="flex items-start gap-4">
+                    <div className="shrink-0 w-10 h-10 bg-primary-50 text-primary-700 rounded-lg flex items-center justify-center">
+                      <Icon className="h-5 w-5" />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2 flex-wrap mb-1">
+                        <h3 className="font-bold text-gray-900 text-sm">
+                          {site.name}
+                        </h3>
+                        <span
+                          className={`text-xs font-semibold px-2 py-0.5 rounded-full ${site.tagColor}`}
+                        >
+                          {site.tag}
+                        </span>
+                      </div>
+                      <p className="text-xs text-primary-600 font-semibold mb-2 flex items-center gap-1">
+                        <MapPin className="h-3 w-3" />
+                        {site.location}
+                      </p>
+                      <p className="text-sm text-gray-500 leading-relaxed">
+                        {site.desc}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Culture & Traditions */}
+      <section className="bg-gray-50 py-12 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Scissors className="h-4 w-4 text-primary-600" />
+            <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">
+              {isFil ? 'Kultura at Tradisyon' : 'Culture & Traditions'}
+            </span>
+          </div>
+          <h2 className="text-2xl font-black text-gray-900 mb-6">
+            {isFil ? 'Mga Lokal na Tradisyon' : 'Living Traditions'}
+          </h2>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="bg-rose-50 border border-rose-100 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 bg-rose-100 rounded-lg flex items-center justify-center">
+                  <Scissors className="h-4 w-4 text-rose-700" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-rose-600 uppercase tracking-widest block">
+                    {isFil ? 'Tradisyonal na Gawain' : 'Traditional Craft'}
+                  </span>
+                  <h3 className="font-black text-gray-900 text-lg leading-tight">
+                    {isFil ? 'Sining ng Paghahabi' : 'The Art of Weaving'}
+                  </h3>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed mb-4">
+                {isFil
+                  ? 'Ang Indang ay tahanan ng mga bihasang mananahi na gumagamit ng tradisyonal na habihan. Pinapanatili ng MKC Weavers Association at ginawang makabago ng Yndan — isang brand na pinagsama ang pamana at modernong disenyo.'
+                  : 'Indang is home to skilled weavers who use traditional looms to create intricate fabrics. Preserved by the MKC Weavers Association and modernized by Yndan — blending heritage weaving with contemporary design.'}
+              </p>
+              <a
+                href="https://www.yndan.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 text-sm font-semibold text-rose-700 hover:text-rose-900 transition-colors"
+              >
+                {isFil ? 'Bisitahin ang Yndan' : 'Visit Yndan'}
+                <ChevronRight className="h-3.5 w-3.5" />
+              </a>
+            </div>
+            <div className="bg-orange-50 border border-orange-100 rounded-2xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-9 h-9 bg-orange-100 rounded-lg flex items-center justify-center">
+                  <Calendar className="h-4 w-4 text-orange-700" />
+                </div>
+                <div>
+                  <span className="text-xs font-bold text-orange-600 uppercase tracking-widest block">
+                    {isFil ? 'Taunang Pagdiriwang' : 'Annual Festival'}
+                  </span>
+                  <h3 className="font-black text-gray-900 text-lg leading-tight">
+                    Irok Festival
+                  </h3>
+                </div>
+              </div>
+              <p className="text-sm text-gray-600 leading-relaxed mb-3">
+                {isFil
+                  ? 'Ipinagdiriwang tuwing Disyembre 1 — Araw ng Indang. Pinagpaparangalan ang puno ng Irok (Sugar Palm) sa pamamagitan ng street dancing na may mga kostumeng gawa sa hibla at dahon ng irok.'
+                  : 'Celebrated every December 1st — Indang Day. Honors the Sugar Palm (Irok) tree with street dancing in costumes crafted from irok fibers and leaves.'}
+              </p>
+              <div className="inline-flex items-center gap-1.5 bg-orange-100 text-orange-700 text-xs font-bold px-3 py-1 rounded-full">
+                <Calendar className="h-3 w-3" />
+                {isFil ? 'Bawat Disyembre 1' : 'Every December 1st'}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Signature Products */}
+      <section className="bg-white py-12 border-b border-gray-100">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="flex items-center gap-2 mb-2">
+            <Wheat className="h-4 w-4 text-primary-600" />
+            <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">
+              {isFil ? 'Mga Lokal na Produkto' : 'Local Produce'}
+            </span>
+          </div>
+          <h2 className="text-2xl font-black text-gray-900 mb-2">
+            {isFil
+              ? 'Mga Piling Produkto ng Indang'
+              : "Indang's Signature Products"}
+          </h2>
+          <p className="text-sm text-gray-500 mb-6">
+            {isFil
+              ? 'Ang mayamang bulkanikong lupa at malamig na klima ng bundok ay nagdudulot ng mataas na kalidad na mga produktong pangkultura at pangsaka.'
+              : 'Fertile volcanic soil and a cool highland climate yield high-value agricultural and artisanal goods.'}
+          </p>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {[
+              {
+                icon: Wheat,
+                name: 'Kalamay Indang',
+                desc: isFil
+                  ? 'Piling matamis na suman ng bayan — makinis na texture, mayamang lasa ng gatas ng niyog.'
+                  : "The town's signature sweet sticky rice cake — smooth texture, rich coconut milk flavor.",
+              },
+              {
+                icon: Leaf,
+                name: isFil ? 'Kape' : 'Coffee',
+                desc: isFil
+                  ? 'Nangungunang prodyuser ng Robusta, Arabica, at Barako beans sa Cavite mula sa mga malamig na kabundukan.'
+                  : 'Top Cavite producer of Robusta, Arabica, and Barako beans from cool highland farms.',
+              },
+              {
+                icon: Leaf,
+                name: 'Dragon Fruit',
+                desc: isFil
+                  ? 'Malalaking taniman sa Brgy. Calumpang at Buna Lejos ang nagpapakilala sa Indang bilang sentro ng dragon fruit sa rehiyon.'
+                  : 'Major plantations in Brgy. Calumpang and Buna Lejos make Indang a regional dragon fruit hub.',
+              },
+              {
+                icon: Droplets,
+                name: 'Kaong & Sasa',
+                desc: isFil
+                  ? 'Pangunahing pinagkukunan ng prutas ng kaong at organikong suka ng palma (sasa).'
+                  : 'A major source of sugar palm fruit (kaong) and organic palm vinegar (sasa).',
+              },
+            ].map(item => {
+              const Icon = item.icon;
+              return (
+                <div
+                  key={item.name}
+                  className="bg-green-50 border border-green-100 rounded-xl p-5"
+                >
+                  <div className="w-9 h-9 bg-green-100 text-green-700 rounded-lg flex items-center justify-center mb-3">
+                    <Icon className="h-4 w-4" />
+                  </div>
+                  <h3 className="font-bold text-gray-900 text-sm mb-1">
+                    {item.name}
+                  </h3>
+                  <p className="text-xs text-gray-500 leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
+
+      {/* Rivers & Springs */}
+      <section className="bg-gray-50 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6">
+          <div className="bg-blue-50 border border-blue-100 rounded-2xl p-6 sm:p-8">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-9 h-9 bg-blue-100 rounded-lg flex items-center justify-center">
+                <Droplets className="h-4 w-4 text-blue-700" />
+              </div>
+              <div>
+                <span className="text-xs font-bold text-blue-600 uppercase tracking-widest block">
+                  {isFil ? 'Likas na Kagandahan' : 'Natural Beauty'}
+                </span>
+                <h2 className="font-black text-gray-900 text-xl leading-tight">
+                  {isFil ? 'Mga Ilog at Bukal' : 'Rivers & Springs'}
+                </h2>
+              </div>
+            </div>
+            <p className="text-sm text-gray-600 leading-relaxed mb-5">
+              {isFil
+                ? 'Totoo sa palayaw nito, ang Indang ay nailalarawan sa kasaganaan ng dumadaloy na tubig. Ang bayan ay napalilibutan ng mga Ilog na Ik-ik, Banaba, at Labac, na nagbigay ng natural na depensa sa buong kasaysayan.'
+                : 'True to its nickname, Indang is characterized by an abundance of flowing water. The town is bounded by the Ik-ik, Banaba, and Labac Rivers — natural defenses throughout its history.'}
+            </p>
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
+              <div className="bg-white rounded-xl border border-blue-100 p-4">
+                <h3 className="font-bold text-gray-900 text-sm mb-1">
+                  {isFil
+                    ? 'Mga Natural Spring Resort'
+                    : 'Natural Spring Resorts'}
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {isFil
+                    ? 'Kilala sa mga malamig at natural na resort (Villa Colmenar, Rio Villa) na tumatanggap ng tubig direkta mula sa lupa.'
+                    : 'Cold, chemical-free spring resorts (Villa Colmenar, Rio Villa) fed directly from natural ground springs.'}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl border border-blue-100 p-4">
+                <h3 className="font-bold text-gray-900 text-sm mb-1">
+                  Pantihan Falls
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {isFil
+                    ? 'Nasa Barangay Pantihan — isa sa mga huling ligaw na talon sa Cavite, nagbubuhos sa natural na bato ng bulkan.'
+                    : 'Located in Barangay Pantihan — one of the last wild waterfalls in Cavite, cascading over natural volcanic rock.'}
+                </p>
+              </div>
+              <div className="bg-white rounded-xl border border-blue-100 p-4">
+                <h3 className="font-bold text-gray-900 text-sm mb-1">
+                  {isFil ? '299.5m Taas' : '299.5m Elevation'}
+                </h3>
+                <p className="text-xs text-gray-500 leading-relaxed">
+                  {isFil
+                    ? 'Mas malamig na klima at mayamang kabundukan — perpekto para sa agrikultura at pagbuo ng mga bukal.'
+                    : 'Cooler climate and fertile highland terrain — ideal for diverse agriculture and natural spring formation.'}
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </section>

@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.3] - 2026-06-17
+
+### Changed
+
+- **`/tourism/history`** — stripped to timeline + stat cards only (hero, 7-event animated timeline, four key date cards). Removed Heritage Sites, Culture, Agriculture, and Springs sections.
+- **`/tourism`** — added four new content sections below the category grid: Historical Landmarks, Culture & Traditions (weaving + Irok Festival), Signature Products, and Rivers & Springs. All sections are fully bilingual (EN/FIL).
+
 ## [0.6.2] - 2026-06-17
 
 ### Fixed
