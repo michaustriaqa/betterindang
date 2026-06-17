@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.6] - 2026-06-17
+
+### Added
+
+- `scripts/generate-sitemap.js` — build-time script that reads `services.yaml`, `government.yaml`, and `content/tourism/establishments.json` to emit `public/sitemap.xml` with 69 URLs, correct priorities, and `lastmod` dates. Runs automatically at the end of `npm run build`; also available standalone via `npm run generate-sitemap`.
+- `sitemap.xml` is now served at `https://betterindang.org/sitemap.xml` and ready for submission in Google Search Console.
+
 ## [0.5.5] - 2026-06-17
 
 ### Fixed
