@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.1] - 2026-06-17
+
+### Added
+
+- **`/tourism/history`** — dedicated History of Indang page covering: full 7-event timeline, key stat cards (1655, 1897, 1906, 299m elevation), heritage landmarks (Bonifacio Shrine, St. Gregory Parish, Community Museum), culture & traditions (weaving, Irok Festival), signature agricultural products, and natural springs & rivers. Route declared before `/tourism/:category` so it takes precedence.
+- History & Culture tile added to the Tourism index category grid, linking to `/tourism/history`.
+
+### Changed
+
+- Home `HistorySection` "Full history" link updated from `/statistics` to `/tourism/history`.
+
 ## [0.6.0] - 2026-06-17
 
 ### Changed

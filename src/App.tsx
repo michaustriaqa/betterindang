@@ -15,6 +15,7 @@ const Statistics = lazy(() => import('./pages/Statistics'));
 const Legislative = lazy(() => import('./pages/Legislative'));
 const Transparency = lazy(() => import('./pages/Transparency'));
 const Tourism = lazy(() => import('./pages/Tourism'));
+const IndangHistory = lazy(() => import('./pages/IndangHistory'));
 const ExecutiveDirectory = lazy(() => import('./pages/ExecutiveDirectory'));
 const SangguniangBayan = lazy(() => import('./pages/SangguniangBayan'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
@@ -62,6 +63,7 @@ function App() {
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/legislative" element={<Legislative />} />
                 <Route path="/transparency" element={<Transparency />} />
+                <Route path="/tourism/history" element={<IndangHistory />} />
                 <Route path="/tourism/:category" element={<Tourism />} />
                 <Route path="/tourism" element={<Tourism />} />
                 <Route path="/sitemap" element={<Sitemap />} />

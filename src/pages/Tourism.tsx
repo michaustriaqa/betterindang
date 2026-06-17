@@ -425,6 +425,32 @@ function TourismIndex() {
                 </Link>
               );
             })}
+
+            {/* History & Culture — dedicated page */}
+            <Link
+              to="/tourism/history"
+              className="group bg-amber-700 rounded-xl border border-amber-600 hover:bg-amber-800 hover:shadow-md transition-all duration-200 p-6 flex items-start gap-4 sm:col-span-2 lg:col-span-1"
+            >
+              <div className="shrink-0 w-12 h-12 rounded-xl bg-amber-600 text-amber-100 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
+                <Landmark className="h-6 w-6" />
+              </div>
+              <div className="flex-1 min-w-0">
+                <div className="flex items-center justify-between gap-2">
+                  <h3 className="font-black text-base text-white">
+                    {isFil ? 'Kasaysayan at Kultura' : 'History & Culture'}
+                  </h3>
+                  <ChevronRight className="h-4 w-4 shrink-0 text-amber-200 group-hover:translate-x-0.5 transition-all" />
+                </div>
+                <p className="text-xs text-amber-200 mt-1 leading-relaxed">
+                  {isFil
+                    ? '"Walang Tinag" — Ang buong kasaysayan, pamana, kultura, at mga likas na yaman ng Indang.'
+                    : '"Walang Tinag" — Full history, heritage, culture, and natural identity of Indang.'}
+                </p>
+                <span className="inline-block mt-3 text-xs font-bold px-2 py-0.5 rounded-full bg-amber-600 text-amber-100">
+                  {isFil ? 'Dedicated na pahina' : 'Dedicated page'}
+                </span>
+              </div>
+            </Link>
           </div>
         </div>
       </section>

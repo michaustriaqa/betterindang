@@ -85,7 +85,7 @@ export default function HistorySection() {
                 {t('history.title')}
               </h2>
               <Link
-                to="/statistics"
+                to="/tourism/history"
                 className="inline-flex items-center gap-1 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors"
               >
                 Full history
