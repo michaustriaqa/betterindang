@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.2] - 2026-06-17
+
+### Fixed
+
+- Corrected historical name of the agricultural school: "Indang Agricultural School" → **Don Severino Agricultural College** (est. 1906), which was later renamed Cavite State University. Updated in `en/common.json`, `fil/common.json`, and `Indang-culture.md` bibliography.
+
 ## [0.6.1] - 2026-06-17
 
 ### Added

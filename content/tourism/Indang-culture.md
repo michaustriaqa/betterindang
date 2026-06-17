@@ -77,6 +77,6 @@ True to its nickname, **"The Town of Many Springs,"** Indang is characterized by
 ### Bibliography
 
 1.  **National Historical Commission of the Philippines.** _Historical Markers of the Philippines_.
-2.  **Cavite State University.** _The Heritage of Indang: From Intermediate School to University_.
+2.  **Cavite State University.** _The Heritage of Indang: From Don Severino Agricultural College to University_.
 3.  **Local Government Unit of Indang.** _Comprehensive Land Use Plan (CLUP) – Environmental & Cultural Profiles_.
 4.  **Yndan.** _Empowering Craft: Celebrating the Women Weavers of Indang_. [yndan.com](https://www.yndan.com/blogs/news-articles/empowering-craft-celebrating-the-women-weavers-of-indang-cavite)
