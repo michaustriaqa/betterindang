@@ -30,7 +30,7 @@
       "address": "Poblacion, Indang, Cavite",
       "contact": "",
       "facebook": "",
-      "image": "/tourism/st-gregory-parish.jpg",
+      "image": "/tourism/st-gregory-parish.webp",
       "description": "Built in 1611 and completed in stone by 1655, it is one of the oldest churches in Cavite. Known for its rose-colored stone facade and the historic convent that served as a revolutionary headquarters.",
       "tags": ["church", "1611", "colonial", "Augustinian", "architecture"]
     },
@@ -41,7 +41,7 @@
       "contact": "(046) 415-0010",
       "facebook": "https://www.facebook.com/CaviteStateU",
       "website": "https://www.cvsu.edu.ph",
-      "image": "/tourism/CvSU.jpg",
+      "image": "/tourism/CvSU.webp",
       "description": "Founded in 1906 as the Indang Intermediate School, this 70-hectare campus is a landmark of academic excellence and agricultural research. Open for campus tours and the Agri-Eco Tourism Park.",
       "tags": ["university", "1906", "landmark", "academic"]
     },
@@ -395,7 +395,7 @@
       "address": "Cavite State University, Indang, Cavite",
       "contact": "0908-230-2860",
       "facebook": "https://www.facebook.com/CvSUOfficial",
-      "image": "/tourism/CvSU.jpg",
+      "image": "/tourism/CvSU.webp",
       "description": "Agri-eco tourism park inside the CvSU main campus featuring demonstration farms, organic gardens, and agricultural research exhibits.",
       "tags": ["agri-tourism", "eco", "CvSU", "educational"]
     },

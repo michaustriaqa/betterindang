@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.9] - 2026-06-17
+
+### Changed
+
+- **Route lazy loading** — all page components in `App.tsx` converted to `React.lazy()` with a `<Suspense>` fallback. Initial JS bundle reduced from 404 KB → 281 KB gzipped (~30%).
+- **Self-hosted fonts** — removed all three Google Fonts external requests (Figtree, Inter, Roboto Mono). Replaced with `@fontsource-variable/figtree`, `@fontsource-variable/inter`, and `@fontsource/roboto-mono`, served from the same domain with `font-display: swap`. Latin + Latin-ext subsets only — eliminates the Cyrillic/Greek/Vietnamese font files that were previously bundled unnecessarily.
+- **WebP images** — converted `CvSU.jpg` (1.1 MB → 834 KB) and `st-gregory-parish.jpg` (364 KB → 262 KB) to WebP. Updated references in `establishments.json`.
+
 ## [0.5.8] - 2026-06-17
 
 ### Added
