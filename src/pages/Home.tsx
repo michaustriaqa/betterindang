@@ -20,12 +20,12 @@ const Home: React.FC = () => {
       />
       <main className="flex-grow">
         <Hero />
+        <StatsSection />
         <YakapPromoBanner />
         <ServicesSection />
-        <StatsSection />
+        <TourismSection />
         <WeatherMapSection />
         <GovernmentActivitySection />
-        <TourismSection />
         <HistorySection />
         <LeadershipSection />
         <ContactSection />

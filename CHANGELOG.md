@@ -11,6 +11,116 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.4] - 2026-06-17
+
+### Changed
+
+- **Category hero** — description text and count badge are now pure white across all categories, replacing the per-category accent tint colors.
+
+## [0.7.3] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown — Clear behavior** — tapping Clear now immediately removes all applied filters from the listing (sets both draft and committed selection to empty) without requiring an Apply click. Dropdown stays open so new tags can be selected.
+
+## [0.7.2] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown — deferred apply** — checkboxes now update a draft/pending selection only; the active filter does not change until **Apply** is clicked. Closing the dropdown without applying discards the draft.
+- **Clear button** — resets the draft selection without closing the dropdown; restyled as a proper secondary button (white bg, visible border, dark text) rather than a muted ghost.
+
+## [0.7.1] - 2026-06-17
+
+### Changed
+
+- **Filter dropdown** — tag list is now scrollable (`max-h-[360px] overflow-y-auto`) for categories with many tags. Added a pinned footer with **Clear** (resets selection) and **Apply** (confirms and closes the dropdown) CTAs.
+
+## [0.7.0] - 2026-06-17
+
+### Changed
+
+- **`/tourism/:category` filter bar** — replaced tag chip row and sort select with two dropdown controls styled as a joined pill group: **Filters** (multi-select checklist with count badge, click-outside to close) and **Sort** ("Alphabetically (A–Z)" / "Alphabetically (Z–A)"). Matches the Filters | Sort button group layout pattern.
+- Removed "Photos first" sort option — two clean alphabetical options only.
+
+## [0.6.9] - 2026-06-17
+
+### Changed
+
+- **`/tourism/:category` header** — replaced flat white header with a full-width blue hero band (matching site pattern). Each category shows its own color accent, a one-line description, and the establishment count.
+- **Establishment card pill** — removed redundant category label pill; each card now shows its most specific tag (first tag from the `tags` array) instead.
+- **Tag filter chips** — added a horizontal scrollable row of clickable tag chips below the search bar. Chips are derived from the actual `tags` data per category. Multiple tags can be selected simultaneously (AND logic); a "Clear" button appears when tags are active.
+- **Sort control** — added a sort dropdown next to the search input with three options: A → Z (default), Z → A, Photos first (establishments with images surface before placeholders, then A–Z within each group).
+
+## [0.6.8] - 2026-06-17
+
+### Fixed
+
+- **`/tourism` category grid** — removed "Coming soon" dim logic; all categories are now fully clickable regardless of listing count.
+- **`/tourism` → `/tourism/history`** — added a footer link inside the Browse by Category section so the history timeline page is reachable from the tourism index again (was orphaned after the amber tile was removed).
+
+## [0.6.7] - 2026-06-17
+
+### Changed
+
+- **`/tourism` Browse by Category** — removed the Tiles/Cards toggle; settled on Cards view only (sorted by count desc, sparse categories dimmed). Removed unused `CAT_TILES` constant and `LayoutGrid`/`List` icon imports.
+
+## [0.6.6] - 2026-06-17
+
+### Changed
+
+- **`/tourism` Browse by Category** — removed the orphaned "History & Culture" amber tile from the category grid (it mixed a content page into a listings grid).
+- Added a **Tiles / Cards view toggle** to the Browse by Category section:
+  - **Tiles** (default): gradient color tiles sorted by listing count descending — all categories shown, visually rich.
+  - **Cards**: white card list sorted by listing count descending; categories with fewer than 3 listings are dimmed and non-interactive with a "Coming soon" label (currently: Cafés & Dining = 2, Adventure & Eco = 1).
+
+## [0.6.5] - 2026-06-17
+
+### Changed
+
+- **`/tourism`** — removed the Heritage Landmarks section (4 landmark cards). Those sites are already reachable via the Heritage category tile (`/tourism/heritage`) and the History & Culture tile (`/tourism/history`), making the inline section redundant. Also dropped `Church`, `BookOpen`, and `ArrowRight` icon imports that were only used by that section.
+
+## [0.6.4] - 2026-06-17
+
+### Changed
+
+- **`/tourism`** — removed the redundant "What Makes Indang Unique" / Culture & Identity summary cards section. All five points (Historical Identity, Heritage & Architecture, Culture & Weaving, Local Produce, Natural Springs) are now covered in full detail by the four dedicated sections below the category grid (Heritage Landmarks, Culture & Traditions, Signature Products, Rivers & Springs). Also removed unused `CULTURE_HIGHLIGHTS` constant, `translatedHighlights` derivation, two scroll-reveal refs, and the `Star`/`Tent` icon imports.
+
+## [0.6.3] - 2026-06-17
+
+### Changed
+
+- **`/tourism/history`** — stripped to timeline + stat cards only (hero, 7-event animated timeline, four key date cards). Removed Heritage Sites, Culture, Agriculture, and Springs sections.
+- **`/tourism`** — added four new content sections below the category grid: Historical Landmarks, Culture & Traditions (weaving + Irok Festival), Signature Products, and Rivers & Springs. All sections are fully bilingual (EN/FIL).
+
+## [0.6.2] - 2026-06-17
+
+### Fixed
+
+- Corrected historical name of the agricultural school: "Indang Agricultural School" → **Don Severino Agricultural College** (est. 1906), which was later renamed Cavite State University. Updated in `en/common.json`, `fil/common.json`, and `Indang-culture.md` bibliography.
+
+## [0.6.1] - 2026-06-17
+
+### Added
+
+- **`/tourism/history`** — dedicated History of Indang page covering: full 7-event timeline, key stat cards (1655, 1897, 1906, 299m elevation), heritage landmarks (Bonifacio Shrine, St. Gregory Parish, Community Museum), culture & traditions (weaving, Irok Festival), signature agricultural products, and natural springs & rivers. Route declared before `/tourism/:category` so it takes precedence.
+- History & Culture tile added to the Tourism index category grid, linking to `/tourism/history`.
+
+### Changed
+
+- Home `HistorySection` "Full history" link updated from `/statistics` to `/tourism/history`.
+
+## [0.6.0] - 2026-06-17
+
+### Changed
+
+- **Home page layout** — reordered sections for a shorter, more intentional scroll: Hero → Stats → Featured Carousel → Services → Tourism → Plan Your Visit → Government → History → Leadership → Contact.
+- **Featured Carousel** (`YakapPromoBanner`) — replaced the single YAKAP promo banner with a 2-slide auto-rotating carousel (6 s interval, pauses on hover). Slide 1: PhilHealth YAKAP; Slide 2: Discover Indang / Tourism. Includes prev/next chevrons and dot indicators.
+- **TourismSection** — replaced the 4 detail highlight cards with a clean 2×3 category tile grid (icon + label + count badge per category). Less text, more visual, directly navigates to each category.
+- **HistorySection** — reduced from 7 timeline events to 3 key milestones (Precolonial, Revolution, Present). Event text truncated to ~110 chars. Added "Full history →" link pointing to `/statistics`.
+- **WeatherMapSection** → **"Plan Your Visit"** — reframed with driving times from Manila (1 hr 15 min), Tagaytay (25 min), and Cavite City (30 min) alongside the live weather widget. Added "Open in Google Maps" link.
+- **StatsSection** — moved from position 4 to position 2 (directly below Hero) so visitors get at-a-glance municipality facts before any other content.
+
 ## [0.5.9] - 2026-06-17
 
 ### Changed

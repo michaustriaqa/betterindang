@@ -102,7 +102,7 @@
   },
   "history": {
     "title": "History of Indang",
-    "charteredYear": "Year of CvSU Founding",
+    "charteredYear": "Don Severino Agricultural College Founded",
     "charteredDesc": "Cavite State University (CvSU), the largest state university in Cavite, has its main campus in Indang — a cornerstone of the municipality's identity as an agricultural and educational hub.",
     "elevationLabel": "299.5m Elevation",
     "elevationDesc": "Indang sits at 299.5 meters above sea level at coordinates 14°12'N, 120°53'E, giving it a cooler climate and fertile highlands ideal for diverse agriculture.",
@@ -129,8 +129,8 @@
       },
       "cvsu": {
         "year": "1906",
-        "title": "Agricultural College Founded",
-        "text": "The Indang Agricultural School was established, which would grow into Cavite State University (CvSU) — now the largest state university in Cavite with its main campus in Indang."
+        "title": "Don Severino Agricultural College",
+        "text": "Don Severino Agricultural College was established in 1906, later renamed Cavite State University (CvSU) — now the largest state university in Cavite, with its main campus in Indang."
       },
       "republic": {
         "year": "Post-1946",
