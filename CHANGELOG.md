@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.0] - 2026-06-17
+
+### Changed
+
+- **Home page layout** — reordered sections for a shorter, more intentional scroll: Hero → Stats → Featured Carousel → Services → Tourism → Plan Your Visit → Government → History → Leadership → Contact.
+- **Featured Carousel** (`YakapPromoBanner`) — replaced the single YAKAP promo banner with a 2-slide auto-rotating carousel (6 s interval, pauses on hover). Slide 1: PhilHealth YAKAP; Slide 2: Discover Indang / Tourism. Includes prev/next chevrons and dot indicators.
+- **TourismSection** — replaced the 4 detail highlight cards with a clean 2×3 category tile grid (icon + label + count badge per category). Less text, more visual, directly navigates to each category.
+- **HistorySection** — reduced from 7 timeline events to 3 key milestones (Precolonial, Revolution, Present). Event text truncated to ~110 chars. Added "Full history →" link pointing to `/statistics`.
+- **WeatherMapSection** → **"Plan Your Visit"** — reframed with driving times from Manila (1 hr 15 min), Tagaytay (25 min), and Cavite City (30 min) alongside the live weather widget. Added "Open in Google Maps" link.
+- **StatsSection** — moved from position 4 to position 2 (directly below Hero) so visitors get at-a-glance municipality facts before any other content.
+
 ## [0.5.9] - 2026-06-17
 
 ### Changed

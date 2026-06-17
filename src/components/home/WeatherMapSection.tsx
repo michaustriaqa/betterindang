@@ -1,5 +1,11 @@
 import { useState, useEffect } from 'react';
-import { Wind, Droplets, Thermometer, Cloud } from 'lucide-react';
+import {
+  Wind,
+  Thermometer,
+  Cloud,
+  Navigation,
+  ExternalLink,
+} from 'lucide-react';
 import { useTranslation } from '../../hooks/useTranslation';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 
@@ -18,6 +24,12 @@ function getWeatherLabel(code: number, t: (k: string) => string): string {
   if (code <= 99) return t('weatherMap.thunderstorm') || 'Thunderstorm';
   return t('weatherMap.defaultCondition');
 }
+
+const DRIVING_ROUTES = [
+  { from: 'Manila', duration: '1 hr 15 min', via: 'SLEX–Aguinaldo Hwy' },
+  { from: 'Tagaytay', duration: '25 min', via: 'Tagaytay–Indang Rd' },
+  { from: 'Cavite City', duration: '30 min', via: 'Gen. Trias–Indang Rd' },
+];
 
 export default function WeatherMapSection() {
   const { t } = useTranslation('common');
@@ -60,63 +72,103 @@ export default function WeatherMapSection() {
   return (
     <section
       ref={ref}
-      className="reveal bg-gray-50 py-12 border-b border-gray-100"
+      className="reveal bg-white py-12 border-b border-gray-100"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        <h2 className="text-xl font-black text-gray-900 mb-6">
-          {t('weatherMap.title')}
-        </h2>
+        <div className="flex flex-col sm:flex-row sm:items-end justify-between gap-2 mb-6">
+          <div>
+            <div className="flex items-center gap-2 mb-1">
+              <Navigation className="h-4 w-4 text-primary-600" />
+              <span className="text-xs font-bold text-primary-600 uppercase tracking-widest">
+                Plan Your Visit
+              </span>
+            </div>
+            <h2 className="text-xl font-black text-gray-900">
+              Getting to Indang
+            </h2>
+          </div>
+          <a
+            href="https://maps.google.com/?q=Indang,Cavite,Philippines"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary-700 hover:text-primary-900 transition-colors shrink-0"
+          >
+            Open in Google Maps
+            <ExternalLink className="h-3.5 w-3.5" />
+          </a>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {/* Weather widget */}
-          <div className="bg-primary-700 rounded-2xl p-6 text-white flex flex-col justify-between min-h-[220px]">
-            <div>
-              <p className="text-blue-200 text-sm font-semibold mb-1">
-                {t('weatherMap.location')}
+          {/* Left: weather + driving times */}
+          <div className="flex flex-col gap-4">
+            {/* Weather widget */}
+            <div className="bg-primary-700 rounded-2xl p-5 text-white">
+              <p className="text-blue-200 text-xs font-semibold mb-1 uppercase tracking-wide">
+                Current conditions · Indang, Cavite
               </p>
-              <div className="flex items-end gap-3 mb-2">
-                <span className="text-6xl font-black leading-none">
+              <div className="flex items-end gap-3 mb-1">
+                <span className="text-5xl font-black leading-none">
                   {weather ? `${weather.temp}°` : '27°'}
                 </span>
-                <span className="text-2xl font-semibold text-blue-200 pb-1">
+                <span className="text-xl font-semibold text-blue-200 pb-1">
                   C
                 </span>
               </div>
-              <p className="text-blue-100 text-base font-medium">
+              <p className="text-blue-100 text-sm font-medium mb-4">
                 {weather
                   ? getWeatherLabel(weather.weathercode, t)
                   : t('weatherMap.defaultCondition')}
               </p>
-            </div>
-            <div className="flex gap-6 mt-6 pt-4 border-t border-white/20">
-              <span className="flex items-center gap-1.5 text-sm text-blue-100">
-                <Wind className="h-4 w-4 opacity-70" />
-                {weather
-                  ? `${weather.windspeed} ${t('weatherMap.wind')}`
-                  : `-- ${t('weatherMap.wind')}`}
-              </span>
-              <span className="flex items-center gap-1.5 text-sm text-blue-100">
-                <Thermometer className="h-4 w-4 opacity-70" />
-                {t('weatherMap.climate')}
-              </span>
-              <span className="flex items-center gap-1.5 text-sm text-blue-100">
-                <Droplets className="h-4 w-4 opacity-70" />
-                {t('weatherMap.elevation')}
-              </span>
-            </div>
-            {!weather && (
-              <div className="mt-3 flex items-center gap-2 text-blue-200 text-xs">
-                <Cloud className="h-3.5 w-3.5 animate-pulse" />
-                {t('weatherMap.loading')}
+              <div className="flex gap-5 pt-3 border-t border-white/20">
+                <span className="flex items-center gap-1.5 text-xs text-blue-100">
+                  <Wind className="h-3.5 w-3.5 opacity-70" />
+                  {weather ? `${weather.windspeed} km/h wind` : '-- km/h wind'}
+                </span>
+                <span className="flex items-center gap-1.5 text-xs text-blue-100">
+                  <Thermometer className="h-3.5 w-3.5 opacity-70" />
+                  Tropical climate
+                </span>
               </div>
-            )}
+              {!weather && (
+                <div className="mt-2 flex items-center gap-1.5 text-blue-200 text-xs">
+                  <Cloud className="h-3 w-3 animate-pulse" />
+                  Fetching live data…
+                </div>
+              )}
+            </div>
+
+            {/* Driving distances */}
+            <div className="bg-gray-50 rounded-2xl border border-gray-100 p-5">
+              <p className="text-xs font-bold text-gray-500 uppercase tracking-widest mb-3">
+                Driving time to Indang
+              </p>
+              <ul className="space-y-3">
+                {DRIVING_ROUTES.map(route => (
+                  <li
+                    key={route.from}
+                    className="flex items-center justify-between gap-3"
+                  >
+                    <div>
+                      <span className="text-sm font-bold text-gray-900">
+                        From {route.from}
+                      </span>
+                      <p className="text-xs text-gray-400">{route.via}</p>
+                    </div>
+                    <span className="shrink-0 text-sm font-black text-primary-700 bg-primary-50 px-3 py-1 rounded-full border border-primary-100">
+                      {route.duration}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
 
-          {/* OpenStreetMap — centered on Indang, Cavite */}
-          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm min-h-[220px]">
+          {/* Map */}
+          <div className="rounded-2xl overflow-hidden border border-gray-200 shadow-sm min-h-[300px]">
             <iframe
-              title={t('weatherMap.mapTitle')}
+              title="Map of Indang, Cavite"
               src="https://www.openstreetmap.org/export/embed.html?bbox=120.833%2C14.15%2C120.933%2C14.25&layer=mapnik&marker=14.2%2C120.883"
-              className="w-full h-full min-h-[220px]"
+              className="w-full h-full min-h-[300px]"
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
             />

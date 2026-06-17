@@ -2,104 +2,95 @@ import { Link } from 'react-router-dom';
 import {
   MapPin,
   Landmark,
-  Church,
   Waves,
   Tractor,
   BedDouble,
   Utensils,
   Zap,
-  ChevronRight,
-  Facebook,
   ArrowRight,
+  Facebook,
 } from 'lucide-react';
 import { useScrollReveal } from '../../hooks/useScrollReveal';
 import establishmentsData from '../../../content/tourism/establishments.json';
 
-const CATEGORY_NAV = [
+const CATEGORIES = [
   {
     id: 'heritage',
     label: 'Heritage & History',
     icon: Landmark,
-    pill: 'bg-amber-100 text-amber-700',
+    bg: 'bg-amber-50',
+    border: 'border-amber-200',
+    iconBg: 'bg-amber-100',
+    iconColor: 'text-amber-700',
+    countBg: 'bg-amber-100 text-amber-700',
+    hoverBorder: 'hover:border-amber-300',
   },
   {
     id: 'resorts',
     label: 'Resorts & Pools',
     icon: Waves,
-    pill: 'bg-blue-100 text-blue-700',
+    bg: 'bg-blue-50',
+    border: 'border-blue-200',
+    iconBg: 'bg-blue-100',
+    iconColor: 'text-blue-700',
+    countBg: 'bg-blue-100 text-blue-700',
+    hoverBorder: 'hover:border-blue-300',
   },
   {
     id: 'farms',
     label: 'Farms & Agri-Tour',
     icon: Tractor,
-    pill: 'bg-green-100 text-green-700',
+    bg: 'bg-green-50',
+    border: 'border-green-200',
+    iconBg: 'bg-green-100',
+    iconColor: 'text-green-700',
+    countBg: 'bg-green-100 text-green-700',
+    hoverBorder: 'hover:border-green-300',
   },
   {
     id: 'events',
     label: 'Events & Glamping',
     icon: BedDouble,
-    pill: 'bg-purple-100 text-purple-700',
+    bg: 'bg-purple-50',
+    border: 'border-purple-200',
+    iconBg: 'bg-purple-100',
+    iconColor: 'text-purple-700',
+    countBg: 'bg-purple-100 text-purple-700',
+    hoverBorder: 'hover:border-purple-300',
   },
   {
     id: 'restaurants',
     label: 'Cafés & Dining',
     icon: Utensils,
-    pill: 'bg-orange-100 text-orange-700',
+    bg: 'bg-orange-50',
+    border: 'border-orange-200',
+    iconBg: 'bg-orange-100',
+    iconColor: 'text-orange-700',
+    countBg: 'bg-orange-100 text-orange-700',
+    hoverBorder: 'hover:border-orange-300',
   },
   {
     id: 'adventure',
     label: 'Adventure & Eco',
     icon: Zap,
-    pill: 'bg-red-100 text-red-700',
-  },
-];
-
-const HIGHLIGHTS = [
-  {
-    icon: Church,
-    title: 'St. Gregory the Great Parish',
-    desc: 'Built in 1611 — one of the oldest churches in Cavite with a rose-colored stone facade.',
-    tag: 'Heritage',
-    tagColor: 'bg-amber-100 text-amber-700',
-    href: '/tourism/heritage',
-  },
-  {
-    icon: Landmark,
-    title: 'Bonifacio Shrine',
-    desc: 'The exact site where Andres Bonifacio was arrested in April 1897, now a national historical marker.',
-    tag: 'History',
-    tagColor: 'bg-amber-100 text-amber-700',
-    href: '/tourism/heritage',
-  },
-  {
-    icon: Waves,
-    title: 'Natural Spring Resorts',
-    desc: 'Cold, chemical-free flowing spring water resorts — the signature experience of the Town of Many Springs.',
-    tag: 'Resorts',
-    tagColor: 'bg-blue-100 text-blue-700',
-    href: '/tourism/resorts',
-  },
-  {
-    icon: Tractor,
-    title: 'Agri-Eco Tourism',
-    desc: 'Farm stays, orchards, and the CvSU Agri-Eco Tourism Park — unique farm-to-table experiences.',
-    tag: 'Farms',
-    tagColor: 'bg-green-100 text-green-700',
-    href: '/tourism/farms',
+    bg: 'bg-red-50',
+    border: 'border-red-200',
+    iconBg: 'bg-red-100',
+    iconColor: 'text-red-700',
+    countBg: 'bg-red-100 text-red-700',
+    hoverBorder: 'hover:border-red-300',
   },
 ];
 
 export default function TourismSection() {
   const headingRef = useScrollReveal<HTMLDivElement>();
-  const highlightRef = useScrollReveal<HTMLDivElement>();
-  const navRef = useScrollReveal<HTMLDivElement>();
+  const gridRef = useScrollReveal<HTMLDivElement>();
 
   const total = establishmentsData.establishments.length;
 
   return (
-    <section className="bg-gray-50 border-b border-gray-100 py-12">
+    <section className="bg-white border-b border-gray-100 py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
-        {/* Header */}
         <div
           ref={headingRef}
           className="reveal flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8"
@@ -115,8 +106,8 @@ export default function TourismSection() {
               Discover Indang
             </h2>
             <p className="text-sm text-gray-500 mt-1">
-              "Ang Bayan ng Maraming Bukal" · {total} registered tourism
-              establishments
+              "Ang Bayan ng Maraming Bukal" &middot; {total} registered
+              establishments across {CATEGORIES.length} categories
             </p>
           </div>
           <Link
@@ -128,84 +119,40 @@ export default function TourismSection() {
           </Link>
         </div>
 
-        {/* Highlight cards */}
         <div
-          ref={highlightRef}
-          className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"
+          ref={gridRef}
+          className="reveal-stagger grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-3"
         >
-          {HIGHLIGHTS.map(h => {
-            const Icon = h.icon;
+          {CATEGORIES.map(cat => {
+            const Icon = cat.icon;
+            const count = establishmentsData.establishments.filter(
+              e => e.category === cat.id
+            ).length;
             return (
               <Link
-                key={h.title}
-                to={h.href}
-                className="group bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-5 flex flex-col gap-3"
+                key={cat.id}
+                to={`/tourism/${cat.id}`}
+                className={`group flex flex-col items-center text-center gap-3 rounded-2xl border p-5 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 ${cat.bg} ${cat.border} ${cat.hoverBorder}`}
               >
-                <Icon className="h-7 w-7 text-primary-600" />
-                <div>
-                  <span
-                    className={`inline-block text-xs font-semibold px-2 py-0.5 rounded-full mb-2 ${h.tagColor}`}
-                  >
-                    {h.tag}
-                  </span>
-                  <h3 className="font-black text-sm text-gray-900 leading-snug">
-                    {h.title}
-                  </h3>
+                <div
+                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${cat.iconBg} ${cat.iconColor} group-hover:scale-110 transition-transform duration-200`}
+                >
+                  <Icon className="h-6 w-6" />
                 </div>
-                <p className="text-xs text-gray-500 leading-relaxed flex-1">
-                  {h.desc}
+                <p className="text-xs font-bold text-gray-800 leading-snug">
+                  {cat.label}
                 </p>
-                <span className="inline-flex items-center gap-1 text-xs font-bold text-primary-600 group-hover:text-primary-800 transition-colors">
-                  Explore <ChevronRight className="h-3.5 w-3.5" />
+                <span
+                  className={`text-xs font-black px-2.5 py-0.5 rounded-full ${cat.countBg}`}
+                >
+                  {count} places
                 </span>
               </Link>
             );
           })}
         </div>
 
-        {/* Category navigation row */}
-        <div ref={navRef} className="reveal">
-          <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">
-            Browse by category
-          </p>
-          <div className="flex flex-wrap gap-2">
-            {CATEGORY_NAV.map(({ id, label, icon: Icon, pill }) => {
-              const count = establishmentsData.establishments.filter(
-                e => e.category === id
-              ).length;
-              return (
-                <Link
-                  key={id}
-                  to={`/tourism/${id}`}
-                  className="group inline-flex items-center gap-2 bg-white border border-gray-100 hover:border-primary-200 hover:shadow-sm rounded-lg px-4 py-2.5 transition-all duration-200"
-                >
-                  <div className="bg-primary-50 text-primary-700 w-6 h-6 rounded-md flex items-center justify-center group-hover:bg-primary-100 transition-colors">
-                    <Icon className="h-3.5 w-3.5" />
-                  </div>
-                  <span className="text-sm font-semibold text-gray-800">
-                    {label}
-                  </span>
-                  <span
-                    className={`text-xs font-bold px-1.5 py-0.5 rounded-full ${pill}`}
-                  >
-                    {count}
-                  </span>
-                </Link>
-              );
-            })}
-            <Link
-              to="/tourism"
-              className="inline-flex items-center gap-2 bg-primary-700 hover:bg-primary-800 text-white rounded-lg px-4 py-2.5 text-sm font-bold transition-colors"
-            >
-              <MapPin className="h-3.5 w-3.5" />
-              All {total}
-              <ChevronRight className="h-3.5 w-3.5" />
-            </Link>
-          </div>
-        </div>
-
-        {/* Tourism Office link */}
-        <div className="mt-6 pt-5 border-t border-gray-200 flex items-center justify-between">
+        <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between">
           <p className="text-xs text-gray-400">
             Source: Indang Tourism Office — 2026 Official List
           </p>
