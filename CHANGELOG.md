@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.0] - 2026-06-17
+
+### Changed
+
+- **`/tourism/:category` filter bar** — replaced tag chip row and sort select with two dropdown controls styled as a joined pill group: **Filters** (multi-select checklist with count badge, click-outside to close) and **Sort** ("Alphabetically (A–Z)" / "Alphabetically (Z–A)"). Matches the Filters | Sort button group layout pattern.
+- Removed "Photos first" sort option — two clean alphabetical options only.
+
 ## [0.6.9] - 2026-06-17
 
 ### Changed
