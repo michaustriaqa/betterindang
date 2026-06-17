@@ -284,7 +284,6 @@ function TourismIndex() {
                 const count = establishments.filter(
                   e => e.category === cat.id
                 ).length;
-                const sparse = count < 3;
                 const colors =
                   CATEGORY_COLORS[cat.id] ?? CATEGORY_COLORS.others;
                 const IconComp = ICON_MAP[cat.icon] ?? MapPin;
@@ -292,7 +291,7 @@ function TourismIndex() {
                   <Link
                     key={cat.id}
                     to={`/tourism/${cat.id}`}
-                    className={`group bg-white rounded-xl border transition-all duration-200 p-6 flex items-start gap-4 ${sparse ? 'border-gray-100 opacity-40 pointer-events-none select-none' : 'border-gray-100 hover:border-primary-200 hover:shadow-md'}`}
+                    className="group bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-6 flex items-start gap-4"
                   >
                     <div className="shrink-0 w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
                       <IconComp className="h-6 w-6" />
@@ -302,13 +301,7 @@ function TourismIndex() {
                         <h3 className="font-black text-base text-gray-900">
                           {translateCategoryLabel(cat.label, cat.id)}
                         </h3>
-                        {sparse ? (
-                          <span className="text-xs text-gray-400 font-semibold shrink-0">
-                            {isFil ? 'Paparating' : 'Coming soon'}
-                          </span>
-                        ) : (
-                          <ChevronRight className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
-                        )}
+                        <ChevronRight className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
                       </div>
                       <p className="text-xs text-gray-500 mt-1 leading-relaxed">
                         {CATEGORY_DESCS[cat.id] ?? ''}
@@ -324,6 +317,22 @@ function TourismIndex() {
                   </Link>
                 );
               })}
+          </div>
+
+          {/* History page link */}
+          <div className="mt-6 pt-5 border-t border-gray-200 flex items-center justify-between gap-4">
+            <p className="text-sm text-gray-500">
+              {isFil
+                ? 'Naghahanap ng kasaysayan, pamana, at kultura ng Indang?'
+                : "Looking for Indang's history, heritage, and culture?"}
+            </p>
+            <Link
+              to="/tourism/history"
+              className="shrink-0 inline-flex items-center gap-1.5 text-sm font-bold text-primary-700 hover:text-primary-900 transition-colors"
+            >
+              {isFil ? 'Kasaysayan ng Indang' : 'Indang History'}
+              <ChevronRight className="h-4 w-4" />
+            </Link>
           </div>
         </div>
       </section>

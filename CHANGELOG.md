@@ -11,6 +11,13 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.8] - 2026-06-17
+
+### Fixed
+
+- **`/tourism` category grid** — removed "Coming soon" dim logic; all categories are now fully clickable regardless of listing count.
+- **`/tourism` → `/tourism/history`** — added a footer link inside the Browse by Category section so the history timeline page is reachable from the tourism index again (was orphaned after the amber tile was removed).
+
 ## [0.6.7] - 2026-06-17
 
 ### Changed
