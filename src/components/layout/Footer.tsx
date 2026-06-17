@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Facebook,
   Github,
@@ -81,6 +81,16 @@ const RESOURCE_LINKS = [
 const Footer: React.FC = () => {
   const { t } = useTranslation('common');
   const currentYear = new Date().getFullYear();
+
+  useEffect(() => {
+    const script = document.createElement('script');
+    script.src = 'https://unpkg.com/website-carbon-badges@1/b.min.js';
+    script.defer = true;
+    document.body.appendChild(script);
+    return () => {
+      document.body.removeChild(script);
+    };
+  }, []);
 
   return (
     <footer className="bg-gray-900 text-white">
@@ -271,9 +281,10 @@ const Footer: React.FC = () => {
                 {t('footer.builtByCommunity', 'Built by the community')}
               </span>
             </div>
+            <div id="wcb" className="carbonbadge wcb-d" />
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.5.6</span>
+              <span className="font-mono">v0.5.7</span>
             </div>
           </div>
         </div>

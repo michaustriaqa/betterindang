@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.5.7] - 2026-06-17
+
+### Added
+
+- Website Carbon badge (`wcb-d` dark theme) in the footer bottom bar, showing the site's carbon rating. Script loaded dynamically via `useEffect` to avoid blocking render.
+
 ## [0.5.6] - 2026-06-17
 
 ### Added
