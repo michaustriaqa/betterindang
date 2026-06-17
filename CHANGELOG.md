@@ -11,6 +11,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.6.6] - 2026-06-17
+
+### Changed
+
+- **`/tourism` Browse by Category** — removed the orphaned "History & Culture" amber tile from the category grid (it mixed a content page into a listings grid).
+- Added a **Tiles / Cards view toggle** to the Browse by Category section:
+  - **Tiles** (default): gradient color tiles sorted by listing count descending — all categories shown, visually rich.
+  - **Cards**: white card list sorted by listing count descending; categories with fewer than 3 listings are dimmed and non-interactive with a "Coming soon" label (currently: Cafés & Dining = 2, Adventure & Eco = 1).
+
 ## [0.6.5] - 2026-06-17
 
 ### Changed

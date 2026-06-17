@@ -17,6 +17,8 @@ import {
   Scissors,
   Leaf,
   Calendar,
+  LayoutGrid,
+  List,
 } from 'lucide-react';
 import SEO from '../components/SEO';
 import { useScrollReveal } from '../hooks/useScrollReveal';
@@ -47,6 +49,42 @@ const ICON_MAP: Record<string, React.ComponentType<{ className?: string }>> = {
   Tractor,
   BedDouble,
   MapPin,
+};
+
+const CAT_TILES: Record<
+  string,
+  { grad: string; accent: string; text: string }
+> = {
+  resorts: {
+    grad: 'from-blue-500 to-blue-900',
+    accent: 'bg-blue-400/20',
+    text: 'bg-blue-900/60',
+  },
+  events: {
+    grad: 'from-purple-600 to-purple-900',
+    accent: 'bg-purple-400/20',
+    text: 'bg-purple-900/60',
+  },
+  farms: {
+    grad: 'from-green-600 to-green-900',
+    accent: 'bg-green-400/20',
+    text: 'bg-green-900/60',
+  },
+  heritage: {
+    grad: 'from-amber-600 to-amber-900',
+    accent: 'bg-amber-400/20',
+    text: 'bg-amber-900/60',
+  },
+  restaurants: {
+    grad: 'from-orange-500 to-orange-900',
+    accent: 'bg-orange-400/20',
+    text: 'bg-orange-900/60',
+  },
+  adventure: {
+    grad: 'from-red-600 to-red-900',
+    accent: 'bg-red-400/20',
+    text: 'bg-red-900/60',
+  },
 };
 
 const CATEGORY_COLORS: Record<
@@ -96,6 +134,7 @@ function TourismIndex() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
   const location = useLocation();
+  const [catView, setCatView] = useState<'photo' | 'card'>('photo');
   const catsRef = useScrollReveal<HTMLDivElement>();
   const catsGridRef = useScrollReveal<HTMLDivElement>();
 
@@ -256,83 +295,154 @@ function TourismIndex() {
       {/* Category Cards */}
       <section className="bg-gray-50 py-12 border-b border-gray-100">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
-          <div ref={catsRef} className="reveal mb-8">
-            <h2 className="text-2xl font-black text-gray-900">
-              {isFil ? 'Tingnan ayon sa Kategorya' : 'Browse by Category'}
-            </h2>
-            <p className="text-sm text-gray-500 mt-1">
-              {isFil
-                ? 'Pinagmulan: Tanggapan ng Turismo ng Indang — Opisyal na Listahan ng 2026'
-                : 'Source: Indang Tourism Office — 2026 Official List'}
-            </p>
-          </div>
           <div
-            ref={catsGridRef}
-            className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            ref={catsRef}
+            className="reveal mb-8 flex items-start justify-between gap-4 flex-wrap"
           >
-            {categories.map(cat => {
-              const count = establishments.filter(
-                e => e.category === cat.id
-              ).length;
-              const colors = CATEGORY_COLORS[cat.id] ?? CATEGORY_COLORS.others;
-              const IconComp = ICON_MAP[cat.icon] ?? MapPin;
-              return (
-                <Link
-                  key={cat.id}
-                  to={`/tourism/${cat.id}`}
-                  className="group bg-white rounded-xl border border-gray-100 hover:border-primary-200 hover:shadow-md transition-all duration-200 p-6 flex items-start gap-4"
-                >
-                  <div className="shrink-0 w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
-                    <IconComp className="h-6 w-6" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center justify-between gap-2">
-                      <h3 className="font-black text-base text-gray-900">
-                        {translateCategoryLabel(cat.label, cat.id)}
-                      </h3>
-                      <ChevronRight className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
-                    </div>
-                    <p className="text-xs text-gray-500 mt-1 leading-relaxed">
-                      {CATEGORY_DESCS[cat.id] ?? ''}
-                    </p>
-                    <span
-                      className={`inline-block mt-3 text-xs font-bold px-2 py-0.5 rounded-full ${colors.pill}`}
-                    >
-                      {isFil
-                        ? `${count} na establisimyento`
-                        : `${count} listing${count !== 1 ? 's' : ''}`}
-                    </span>
-                  </div>
-                </Link>
-              );
-            })}
-
-            {/* History & Culture — dedicated page */}
-            <Link
-              to="/tourism/history"
-              className="group bg-amber-700 rounded-xl border border-amber-600 hover:bg-amber-800 hover:shadow-md transition-all duration-200 p-6 flex items-start gap-4 sm:col-span-2 lg:col-span-1"
-            >
-              <div className="shrink-0 w-12 h-12 rounded-xl bg-amber-600 text-amber-100 flex items-center justify-center group-hover:bg-amber-500 transition-colors">
-                <Landmark className="h-6 w-6" />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="flex items-center justify-between gap-2">
-                  <h3 className="font-black text-base text-white">
-                    {isFil ? 'Kasaysayan at Kultura' : 'History & Culture'}
-                  </h3>
-                  <ChevronRight className="h-4 w-4 shrink-0 text-amber-200 group-hover:translate-x-0.5 transition-all" />
-                </div>
-                <p className="text-xs text-amber-200 mt-1 leading-relaxed">
-                  {isFil
-                    ? '"Walang Tinag" — Ang buong kasaysayan, pamana, kultura, at mga likas na yaman ng Indang.'
-                    : '"Walang Tinag" — Full history, heritage, culture, and natural identity of Indang.'}
-                </p>
-                <span className="inline-block mt-3 text-xs font-bold px-2 py-0.5 rounded-full bg-amber-600 text-amber-100">
-                  {isFil ? 'Dedicated na pahina' : 'Dedicated page'}
-                </span>
-              </div>
-            </Link>
+            <div>
+              <h2 className="text-2xl font-black text-gray-900">
+                {isFil ? 'Tingnan ayon sa Kategorya' : 'Browse by Category'}
+              </h2>
+              <p className="text-sm text-gray-500 mt-1">
+                {isFil
+                  ? 'Pinagmulan: Tanggapan ng Turismo ng Indang — Opisyal na Listahan ng 2026'
+                  : 'Source: Indang Tourism Office — 2026 Official List'}
+              </p>
+            </div>
+            <div className="shrink-0 flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-1">
+              <button
+                type="button"
+                onClick={() => setCatView('photo')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${catView === 'photo' ? 'bg-primary-700 text-white' : 'text-gray-500 hover:text-gray-800'}`}
+              >
+                <LayoutGrid className="h-3.5 w-3.5" />
+                {isFil ? 'Tiles' : 'Tiles'}
+              </button>
+              <button
+                type="button"
+                onClick={() => setCatView('card')}
+                className={`flex items-center gap-1.5 px-3 py-1.5 rounded-md text-xs font-bold transition-all ${catView === 'card' ? 'bg-primary-700 text-white' : 'text-gray-500 hover:text-gray-800'}`}
+              >
+                <List className="h-3.5 w-3.5" />
+                {isFil ? 'Cards' : 'Cards'}
+              </button>
+            </div>
           </div>
+
+          {catView === 'photo' ? (
+            /* ── Option A: Photo gradient tiles, sorted by count ── */
+            <div
+              ref={catsGridRef}
+              className="reveal-stagger grid grid-cols-2 sm:grid-cols-3 gap-4"
+            >
+              {[...categories]
+                .sort((a, b) => {
+                  const ca = establishments.filter(
+                    e => e.category === a.id
+                  ).length;
+                  const cb = establishments.filter(
+                    e => e.category === b.id
+                  ).length;
+                  return cb - ca;
+                })
+                .map(cat => {
+                  const count = establishments.filter(
+                    e => e.category === cat.id
+                  ).length;
+                  const IconComp = ICON_MAP[cat.icon] ?? MapPin;
+                  const tile = CAT_TILES[cat.id] ?? {
+                    grad: 'from-gray-600 to-gray-900',
+                    accent: 'bg-gray-400/20',
+                    text: 'bg-gray-900/60',
+                  };
+                  return (
+                    <Link
+                      key={cat.id}
+                      to={`/tourism/${cat.id}`}
+                      className={`group relative rounded-2xl overflow-hidden flex flex-col justify-between p-5 aspect-[4/3] bg-linear-to-br ${tile.grad} hover:scale-[1.02] transition-transform duration-200`}
+                    >
+                      <div
+                        className={`w-12 h-12 rounded-xl ${tile.accent} flex items-center justify-center`}
+                      >
+                        <IconComp className="h-6 w-6 text-white" />
+                      </div>
+                      <div>
+                        <h3 className="font-black text-white text-base leading-tight mb-1">
+                          {translateCategoryLabel(cat.label, cat.id)}
+                        </h3>
+                        <span className="inline-block text-xs font-bold text-white/80">
+                          {isFil
+                            ? `${count} establisimyento`
+                            : `${count} listing${count !== 1 ? 's' : ''}`}
+                        </span>
+                      </div>
+                      <ChevronRight className="absolute top-4 right-4 h-4 w-4 text-white/50 group-hover:text-white group-hover:translate-x-0.5 transition-all" />
+                    </Link>
+                  );
+                })}
+            </div>
+          ) : (
+            /* ── Option B: Card list, sorted by count, sparse dimmed ── */
+            <div
+              ref={catsGridRef}
+              className="reveal-stagger grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5"
+            >
+              {[...categories]
+                .sort((a, b) => {
+                  const ca = establishments.filter(
+                    e => e.category === a.id
+                  ).length;
+                  const cb = establishments.filter(
+                    e => e.category === b.id
+                  ).length;
+                  return cb - ca;
+                })
+                .map(cat => {
+                  const count = establishments.filter(
+                    e => e.category === cat.id
+                  ).length;
+                  const sparse = count < 3;
+                  const colors =
+                    CATEGORY_COLORS[cat.id] ?? CATEGORY_COLORS.others;
+                  const IconComp = ICON_MAP[cat.icon] ?? MapPin;
+                  return (
+                    <Link
+                      key={cat.id}
+                      to={`/tourism/${cat.id}`}
+                      className={`group bg-white rounded-xl border transition-all duration-200 p-6 flex items-start gap-4 ${sparse ? 'border-gray-100 opacity-40 pointer-events-none select-none' : 'border-gray-100 hover:border-primary-200 hover:shadow-md'}`}
+                    >
+                      <div className="shrink-0 w-12 h-12 rounded-xl bg-primary-50 text-primary-700 flex items-center justify-center group-hover:bg-primary-100 transition-colors">
+                        <IconComp className="h-6 w-6" />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <div className="flex items-center justify-between gap-2">
+                          <h3 className="font-black text-base text-gray-900">
+                            {translateCategoryLabel(cat.label, cat.id)}
+                          </h3>
+                          {sparse ? (
+                            <span className="text-xs text-gray-400 font-semibold shrink-0">
+                              {isFil ? 'Paparating' : 'Coming soon'}
+                            </span>
+                          ) : (
+                            <ChevronRight className="h-4 w-4 shrink-0 text-gray-400 group-hover:text-primary-600 group-hover:translate-x-0.5 transition-all" />
+                          )}
+                        </div>
+                        <p className="text-xs text-gray-500 mt-1 leading-relaxed">
+                          {CATEGORY_DESCS[cat.id] ?? ''}
+                        </p>
+                        <span
+                          className={`inline-block mt-3 text-xs font-bold px-2 py-0.5 rounded-full ${colors.pill}`}
+                        >
+                          {isFil
+                            ? `${count} na establisimyento`
+                            : `${count} listing${count !== 1 ? 's' : ''}`}
+                        </span>
+                      </div>
+                    </Link>
+                  );
+                })}
+            </div>
+          )}
         </div>
       </section>
       {/* Culture & Traditions */}
