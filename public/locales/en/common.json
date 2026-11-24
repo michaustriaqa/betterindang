@@ -181,7 +181,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.10.0",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.11.0",
     "about": "About the Portal",
     "sitemap": "Sitemap",
     "accessibility": "Accessibility",
@@ -230,7 +230,9 @@
     "dataStats": "Data & Statistics",
     "news": "News & Announcements",
     "history": "History",
-    "calendar": "Events Calendar"
+    "calendar": "Events Calendar",
+    "tabExplore": "Explore",
+    "mobileNav": "Main navigation"
   },
   "joinUs": {
     "stripTitle": "Join the #CivicTech Revolution",

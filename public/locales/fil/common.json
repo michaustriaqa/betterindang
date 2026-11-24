@@ -181,7 +181,7 @@
     "title": "Pinakabagong Balita at Mga Update"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.10.0",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.11.0",
     "about": "Tungkol sa Portal",
     "sitemap": "Sitemap",
     "accessibility": "Aksesibilidad",
@@ -230,7 +230,9 @@
     "dataStats": "Datos at Estadistika",
     "news": "Balita at Anunsiyo",
     "history": "Kasaysayan",
-    "calendar": "Kalendaryo ng mga Kaganapan"
+    "calendar": "Kalendaryo ng mga Kaganapan",
+    "tabExplore": "Tuklasin",
+    "mobileNav": "Pangunahing nabigasyon"
   },
   "joinUs": {
     "stripTitle": "Sumali sa #CivicTech Revolution",

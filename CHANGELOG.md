@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.11.0] - 2026-11-25
+
+### Added
+
+- Mobile bottom tab bar (`src/components/layout/BottomTabBar.tsx`) for screens below `lg`: Home, Services, Government, Explore and Contact, with the active section highlighted in gold. Section matching covers related routes (for example Transparency and News under Government; Calendar and Statistics under Explore). Hidden on desktop.
+- `viewport-fit=cover` in `index.html` so the bar clears the iOS home indicator.
+- `navbar.tabExplore` and `navbar.mobileNav` strings (EN/FIL).
+
+### Changed
+
+- The page keeps bottom padding on mobile so the footer is not covered, and the scroll-to-top button sits above the bar.
+
+### Fixed
+
+- Events Calendar no longer makes the whole page scroll sideways on phones; only the month grid scrolls.
+
 ## [0.10.0] - 2026-11-25
 
 ### Changed

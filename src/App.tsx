@@ -4,6 +4,7 @@ import { HelmetProvider } from 'react-helmet-async';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import BottomTabBar from './components/layout/BottomTabBar';
 import ScrollToTop from './components/ui/ScrollToTop';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -29,7 +30,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <NuqsAdapter>
-          <div className="min-h-screen flex flex-col bg-ground">
+          <div className="min-h-screen flex flex-col bg-ground pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
             <Navbar />
             <ScrollToTop />
             <Suspense fallback={<div className="flex-grow" />}>
@@ -79,6 +80,7 @@ function App() {
               </Routes>
             </Suspense>
             <Footer />
+            <BottomTabBar />
           </div>
         </NuqsAdapter>
       </Router>

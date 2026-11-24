@@ -154,8 +154,8 @@ export default function EventsCalendar() {
           </div>
         </div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid gap-8 lg:grid-cols-[1fr_21rem] items-start">
-          <div>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid grid-cols-1 gap-8 lg:grid-cols-[1fr_21rem] items-start">
+          <div className="min-w-0">
             <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-semibold text-gray-600 mr-1">
                 {isFil ? 'Ipakita' : 'Show'}
