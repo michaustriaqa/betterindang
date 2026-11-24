@@ -99,11 +99,19 @@ const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Col 1 — Brand */}
           <div>
-            <img
-              src="/icons/logo-clear.svg"
-              alt={t('site_name')}
-              className="h-12 w-auto max-w-[180px] object-contain mb-4"
-            />
+            <div className="flex items-center gap-3 mb-4">
+              <span className="flex items-center justify-center rounded-xl bg-white p-1.5">
+                <img
+                  src="/icons/logo.webp"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-auto object-contain"
+                />
+              </span>
+              <span className="text-xl font-bold tracking-tight text-white">
+                BetterIndang.org
+              </span>
+            </div>
             <p className="text-gray-400 text-sm leading-relaxed mb-5">
               {t(
                 'hero.subtitle',
@@ -284,7 +292,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.7.4</span>
+              <span className="font-mono">v0.7.5</span>
             </div>
           </div>
         </div>

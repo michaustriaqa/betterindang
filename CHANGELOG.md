@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.7.5] - 2026-11-24
+
+### Changed
+
+- **New logo** — replaced the previous emblem with the new Indang map emblem (Katipunan sun, ancestral house, coffee, dragon fruit). The new artwork has no wordmark, so "BetterIndang.org" is now rendered as live text beside it in the navbar and footer. In the footer the emblem sits on a white tile for contrast on the dark background.
+- **Favicons** — added `favicon.png`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, and `apple-touch-icon.png` from the new emblem (previously referenced by `SEO.tsx` but missing).
+
+### Removed
+
+- Old `logo.svg`, `logo-clear.svg`, and `favicon.svg` from `public/icons/`.
+
 ## [0.7.4] - 2026-06-17
 
 ### Changed

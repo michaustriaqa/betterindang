@@ -301,12 +301,20 @@ const Navbar: React.FC = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="shrink-0 flex items-center">
+            <Link to="/" className="shrink-0 flex items-center gap-2.5">
               <img
-                src="/icons/logo.svg"
-                alt={import.meta.env.VITE_GOVERNMENT_NAME}
-                className="h-14 w-auto max-w-[200px] object-contain"
+                src="/icons/logo.webp"
+                alt=""
+                aria-hidden="true"
+                className="h-16 w-auto object-contain"
               />
+              <span className="text-xl font-bold tracking-tight text-gray-900">
+                Better<span className="text-primary-600">Indang</span>
+                <span className="text-sm font-medium text-gray-500">.org</span>
+              </span>
+              <span className="sr-only">
+                {import.meta.env.VITE_GOVERNMENT_NAME}
+              </span>
             </Link>
 
             {/* Desktop Nav */}
