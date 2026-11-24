@@ -11,6 +11,19 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.9.0] - 2026-11-25
+
+### Changed
+
+- **Visual restyle ("Civic Clear")** — softer, rounder, and calmer across the portal. New tokens in `src/index.css`: `ink` (dark navy), `sun` (gold), `ground` (page background), `line` (hairline borders). Cards are `rounded-3xl`, buttons and chips are pills, headings are `font-bold tracking-tight`.
+- **Top bars and navbar** — emergency hotlines and the info bar are dark navy with a gold label (was red). Nav items and the EN/FIL switch are pills; dropdowns are rounded panels.
+- **Footer** — dark navy with a rounded top, gold column headings, and pill buttons.
+- **Home hero** — light, with a large question headline, a pill search field, common-request chips, and an emergency card with hotlines and Municipal Hall hours. The YAKAP promo carousel is replaced by a single featured-service card.
+- **Page headers** — Transparency, Legislative, Statistics, Sangguniang Bayan and Tourism pages use a light header instead of the navy band with a dot pattern. Tourism category badges were recolored for the light header.
+- **Transparency** document cards share one color instead of six.
+- Home sections (stats, tourism, leadership) use white cards on the page background.
+- Branding skill updated with the new tokens and the retired navy band.
+
 ## [0.8.0] - 2026-11-25
 
 ### Added

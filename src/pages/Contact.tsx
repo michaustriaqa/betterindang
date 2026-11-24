@@ -56,8 +56,8 @@ export default function Contact() {
         }
         keywords="Indang contact, municipal hall, hotlines, office hours"
       />
-      <main className="flex-grow bg-gray-50">
-        <div className="bg-white border-b border-gray-100">
+      <main className="flex-grow bg-ground">
+        <div className="bg-white border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
             <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900">
               {title}
@@ -72,7 +72,7 @@ export default function Contact() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-8 grid gap-5 lg:grid-cols-[1.2fr_1fr] items-start">
           <div className="space-y-5">
-            <section className="rounded-3xl border border-gray-200 bg-white p-6 sm:p-8">
+            <section className="rounded-3xl border border-line bg-white p-6 sm:p-8">
               <p className="text-xs font-semibold text-gray-600">
                 {isFil ? 'Bumisita' : 'Visit'}
               </p>
@@ -120,7 +120,7 @@ export default function Contact() {
                   href={FACEBOOK_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center min-h-12 px-6 rounded-full border border-gray-200 bg-white text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                  className="inline-flex items-center min-h-12 px-6 rounded-full border border-line bg-white text-sm font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   {isFil
                     ? 'Opisyal na updates sa Facebook'
@@ -164,7 +164,7 @@ export default function Contact() {
                   href="https://github.com/michaustriaqa/betterindang"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center min-h-11 px-5 rounded-full bg-white border border-gray-200 text-sm font-semibold text-gray-900"
+                  className="inline-flex items-center min-h-11 px-5 rounded-full bg-white border border-line text-sm font-semibold text-gray-900"
                 >
                   GitHub
                 </a>

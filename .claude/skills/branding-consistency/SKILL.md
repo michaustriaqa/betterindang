@@ -25,7 +25,24 @@ Defined in `tailwind.config.js`. Always reference these via Tailwind classes (`b
 
 Each token has a full `50`–`900` scale — pick the shade from the scale instead of inventing a color.
 
-### Hero band blue — known token
+### Civic Clear tokens (v0.9.0 restyle)
+
+Defined in `src/index.css` `@theme`. Use these classes instead of raw hex:
+
+| Token    | Value     | Use                                                                                            |
+| -------- | --------- | ---------------------------------------------------------------------------------------------- |
+| `ink`    | `#0b1f4b` | Top bars, emergency card, footer (dark navy surfaces)                                          |
+| `sun`    | `#ffc20e` | Gold highlights on dark surfaces and the hero dot. Fill only, never text on a light background |
+| `ground` | `#f4f7fc` | Page background; white cards sit on it                                                         |
+| `line`   | `#dce4f2` | Hairline borders (`border-line`)                                                               |
+
+Shape and type: cards `rounded-3xl`, buttons/inputs/chips `rounded-full`, headings `font-bold tracking-tight` (not `font-black`), figures `font-semibold`. Page headers are a light band (`bg-white border-b border-line`), not a navy band.
+
+### Hero band blue — legacy (replaced)
+
+The deep navy `#003087` page bands were replaced by the light page header in v0.9.0. Do not add new navy bands.
+
+### Hero band blue — known token (legacy)
 
 Page hero/header bands use the deep brand blue **`#003087`**. This is currently hardcoded as an inline `style={{ backgroundColor: '#003087' }}` in 6 places (`Hero.tsx`, `Legislative.tsx`, `Transparency.tsx`, `Tourism.tsx`, `Statistics.tsx`, `SangguniangBayan.tsx`).
 

@@ -108,7 +108,7 @@ export default function EventsCalendar() {
       'inline-flex items-center gap-2 px-4 py-2.5 rounded-full text-sm font-medium transition-colors',
       active
         ? 'bg-primary-800 text-white'
-        : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
+        : 'bg-white border border-line text-gray-700 hover:bg-gray-50'
     );
 
   const title = isFil ? 'Kalendaryo ng mga Kaganapan' : 'Events Calendar';
@@ -125,8 +125,8 @@ export default function EventsCalendar() {
         }
         keywords="Indang events, calendar, festival, Irok Festival, Indang Day"
       />
-      <main className="flex-grow bg-gray-50">
-        <div className="bg-white border-b border-gray-100">
+      <main className="flex-grow bg-ground">
+        <div className="bg-white border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 flex flex-wrap items-end justify-between gap-4">
             <div className="max-w-2xl">
               <h1 className="text-3xl sm:text-5xl font-bold tracking-tight text-gray-900">
@@ -143,7 +143,7 @@ export default function EventsCalendar() {
                 type="button"
                 disabled={events.length === 0}
                 onClick={() => downloadIcs(events)}
-                className="inline-flex items-center min-h-12 px-6 rounded-full bg-white border border-gray-200 text-sm font-semibold text-gray-900 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="inline-flex items-center min-h-12 px-6 rounded-full bg-white border border-line text-sm font-semibold text-gray-900 hover:bg-gray-50 disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 {isFil
                   ? 'Idagdag sa aking kalendaryo (.ics)'
@@ -187,14 +187,14 @@ export default function EventsCalendar() {
                 ))}
             </div>
 
-            <div className="mt-5 rounded-3xl border border-gray-200 bg-white p-5">
+            <div className="mt-5 rounded-3xl border border-line bg-white p-5">
               <div className="flex flex-wrap items-center justify-between gap-3 pb-4">
                 <div className="flex items-center gap-2">
                   <button
                     type="button"
                     aria-label={isFil ? 'Nakaraang buwan' : 'Previous month'}
                     onClick={() => move(-1)}
-                    className="h-11 w-11 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50"
+                    className="h-11 w-11 rounded-full border border-line flex items-center justify-center hover:bg-gray-50"
                   >
                     <ChevronLeft className="h-4 w-4" aria-hidden />
                   </button>
@@ -205,7 +205,7 @@ export default function EventsCalendar() {
                     type="button"
                     aria-label={isFil ? 'Susunod na buwan' : 'Next month'}
                     onClick={() => move(1)}
-                    className="h-11 w-11 rounded-full border border-gray-200 flex items-center justify-center hover:bg-gray-50"
+                    className="h-11 w-11 rounded-full border border-line flex items-center justify-center hover:bg-gray-50"
                   >
                     <ChevronRight className="h-4 w-4" aria-hidden />
                   </button>
@@ -274,7 +274,7 @@ export default function EventsCalendar() {
                               'min-h-28 rounded-2xl border bg-white p-2 overflow-hidden',
                               isToday
                                 ? 'border-accent-300 ring-2 ring-accent-300'
-                                : 'border-gray-100'
+                                : 'border-line'
                             )}
                           >
                             <div
@@ -349,7 +349,7 @@ export default function EventsCalendar() {
           </div>
 
           <aside className="space-y-4">
-            <div className="rounded-3xl border border-gray-200 bg-white p-5">
+            <div className="rounded-3xl border border-line bg-white p-5">
               <h2 className="text-lg font-bold text-gray-900">
                 {isFil ? 'Susunod na mga kaganapan' : 'Coming up'}
               </h2>
@@ -397,7 +397,7 @@ export default function EventsCalendar() {
             </div>
             <Link
               to="/announcements"
-              className="block rounded-3xl border border-gray-200 bg-white p-5 text-sm font-semibold text-primary-700 hover:underline"
+              className="block rounded-3xl border border-line bg-white p-5 text-sm font-semibold text-primary-700 hover:underline"
             >
               {isFil
                 ? 'Tingnan ang mga balita at anunsiyo →'

@@ -89,7 +89,7 @@ export default function TourismSection() {
   const total = establishmentsData.establishments.length;
 
   return (
-    <section className="bg-white border-b border-gray-100 py-12">
+    <section className="bg-white border-b border-line py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div
           ref={headingRef}
@@ -102,7 +102,7 @@ export default function TourismSection() {
                 Tourism
               </span>
             </div>
-            <h2 className="text-2xl font-black text-gray-900">
+            <h2 className="text-2xl font-semibold text-gray-900">
               Discover Indang
             </h2>
             <p className="text-sm text-gray-500 mt-1">
@@ -135,7 +135,7 @@ export default function TourismSection() {
                 className={`group flex flex-col items-center text-center gap-3 rounded-2xl border p-5 transition-all duration-200 hover:shadow-md hover:-translate-y-0.5 ${cat.bg} ${cat.border} ${cat.hoverBorder}`}
               >
                 <div
-                  className={`w-12 h-12 rounded-xl flex items-center justify-center ${cat.iconBg} ${cat.iconColor} group-hover:scale-110 transition-transform duration-200`}
+                  className={`w-12 h-12 rounded-3xl flex items-center justify-center ${cat.iconBg} ${cat.iconColor} group-hover:scale-110 transition-transform duration-200`}
                 >
                   <Icon className="h-6 w-6" />
                 </div>
@@ -143,7 +143,7 @@ export default function TourismSection() {
                   {cat.label}
                 </p>
                 <span
-                  className={`text-xs font-black px-2.5 py-0.5 rounded-full ${cat.countBg}`}
+                  className={`text-xs font-semibold px-2.5 py-0.5 rounded-full ${cat.countBg}`}
                 >
                   {count} places
                 </span>
@@ -152,7 +152,7 @@ export default function TourismSection() {
           })}
         </div>
 
-        <div className="mt-6 pt-5 border-t border-gray-100 flex items-center justify-between">
+        <div className="mt-6 pt-5 border-t border-line flex items-center justify-between">
           <p className="text-xs text-gray-400">
             Source: Indang Tourism Office — 2026 Official List
           </p>

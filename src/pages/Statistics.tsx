@@ -110,26 +110,18 @@ export default function Statistics() {
       />
       <main className="flex-grow">
         {/* Page Header */}
-        <div
-          className="relative text-white py-16 overflow-hidden"
-          style={{
-            backgroundColor: '#003087',
-            backgroundImage:
-              'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        >
+        <div className="relative bg-white border-b border-line py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 mb-2">
-              <BarChart3 className="h-7 w-7 text-blue-200" />
-              <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
+              <BarChart3 className="h-7 w-7 text-primary-700" />
+              <span className="text-primary-700 text-sm font-medium uppercase tracking-widest">
                 {isFil ? 'Munisipalidad ng Indang' : 'Municipality of Indang'}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black mb-3">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-3">
               {isFil ? 'Mga Istatistika' : 'Statistics'}
             </h1>
-            <p className="text-blue-100 text-lg max-w-xl">
+            <p className="text-gray-600 text-lg max-w-xl">
               {isFil
                 ? 'Mga pangunahing numero at datos ng kakayahang makipagkumpitensya para sa Indang, Cavite batay sa mga opisyal na mapagkukunan ng pamahalaan.'
                 : 'Key figures and competitiveness data for Indang, Cavite based on official government sources.'}

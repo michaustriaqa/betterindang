@@ -42,7 +42,7 @@ export default function Announcements() {
       'px-4 py-2.5 rounded-full text-sm font-medium transition-colors',
       active
         ? 'bg-primary-800 text-white'
-        : 'bg-white border border-gray-200 text-gray-700 hover:bg-gray-50'
+        : 'bg-white border border-line text-gray-700 hover:bg-gray-50'
     );
 
   const title = isFil ? 'Balita at Anunsiyo' : 'News & Announcements';
@@ -58,8 +58,8 @@ export default function Announcements() {
         }
         keywords="Indang announcements, advisories, class suspension, MDRRMO, news"
       />
-      <main className="flex-grow bg-gray-50">
-        <div className="bg-white border-b border-gray-100">
+      <main className="flex-grow bg-ground">
+        <div className="bg-white border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10">
             <div className="flex flex-wrap items-end justify-between gap-4">
               <div className="max-w-2xl">
@@ -75,7 +75,7 @@ export default function Announcements() {
               <div className="flex flex-wrap gap-2.5">
                 <Link
                   to="/calendar"
-                  className="inline-flex items-center min-h-12 px-6 rounded-full bg-white border border-gray-200 text-sm font-semibold text-gray-900 hover:bg-gray-50"
+                  className="inline-flex items-center min-h-12 px-6 rounded-full bg-white border border-line text-sm font-semibold text-gray-900 hover:bg-gray-50"
                 >
                   {isFil ? 'Kalendaryo ng kaganapan' : 'Events calendar'}
                 </Link>
@@ -117,7 +117,7 @@ export default function Announcements() {
 
             <form
               onSubmit={e => e.preventDefault()}
-              className="flex items-center gap-2 rounded-full border border-gray-200 bg-white pl-5 pr-1.5 py-1.5"
+              className="flex items-center gap-2 rounded-full border border-line bg-white pl-5 pr-1.5 py-1.5"
             >
               <Search className="h-4 w-4 text-gray-400 shrink-0" aria-hidden />
               <label htmlFor="announce-q" className="sr-only">
@@ -191,7 +191,7 @@ export default function Announcements() {
                 return (
                   <article
                     key={a.id}
-                    className="rounded-3xl border border-gray-200 bg-white p-6"
+                    className="rounded-3xl border border-line bg-white p-6"
                   >
                     <div className="flex flex-wrap items-center gap-2 text-xs font-semibold">
                       <span className="inline-flex items-center gap-2 text-sm">
@@ -289,7 +289,7 @@ export default function Announcements() {
           </div>
 
           <aside className="space-y-4">
-            <div className="rounded-3xl border border-gray-200 bg-white p-5">
+            <div className="rounded-3xl border border-line bg-white p-5">
               <h2 className="text-lg font-bold text-gray-900">
                 {isFil ? 'Mga opisyal na page' : 'Official pages'}
               </h2>
@@ -302,7 +302,7 @@ export default function Announcements() {
                 href={FACEBOOK_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="mt-3 flex min-h-12 items-center justify-between border-t border-gray-100 text-sm font-medium text-gray-900 hover:underline"
+                className="mt-3 flex min-h-12 items-center justify-between border-t border-line text-sm font-medium text-gray-900 hover:underline"
               >
                 LGU Indang
                 <span className="text-xs text-gray-600">Facebook</span>
@@ -333,7 +333,7 @@ export default function Announcements() {
                 <AddViaEmail kind="announcement" />
               </div>
             </div>
-            <p className="rounded-3xl border border-gray-200 bg-white p-5 text-sm text-gray-600">
+            <p className="rounded-3xl border border-line bg-white p-5 text-sm text-gray-600">
               <strong className="font-semibold text-gray-900">
                 {isFil
                   ? 'Pinapatakbo ng komunidad ang BetterIndang.'

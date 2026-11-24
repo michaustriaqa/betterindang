@@ -16,54 +16,54 @@ const CATEGORIES = [
   {
     title: 'Budget & Finance',
     icon: DollarSign,
-    color: 'text-green-700',
-    bg: 'bg-green-50',
-    border: 'border-green-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Annual budgets, financial statements, and expenditure reports of the Municipality of Indang.',
     href: '/government/transparency-documents',
   },
   {
     title: 'Annual Reports',
     icon: FileText,
-    color: 'text-blue-700',
-    bg: 'bg-blue-50',
-    border: 'border-blue-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Accomplishment reports, state of the municipality addresses, and performance assessments.',
     href: '/government/reports-and-statistics',
   },
   {
     title: 'Procurement & Bids',
     icon: ShieldCheck,
-    color: 'text-indigo-700',
-    bg: 'bg-indigo-50',
-    border: 'border-indigo-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Notices of procurement, bid results, and PhilGEPS-related announcements.',
     href: '/government/transparency-documents',
   },
   {
     title: 'FOI Releases',
     icon: Eye,
-    color: 'text-purple-700',
-    bg: 'bg-purple-50',
-    border: 'border-purple-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Documents released under the Freedom of Information program for public accountability.',
     href: '/government/transparency-documents',
   },
   {
     title: 'DBM / BLGF Reports',
     icon: Download,
-    color: 'text-orange-700',
-    bg: 'bg-orange-50',
-    border: 'border-orange-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Submissions to the Department of Budget and Management and Bureau of Local Government Finance.',
     href: '/government/transparency-documents',
   },
   {
     title: 'DILG Compliance',
     icon: ShieldCheck,
-    color: 'text-teal-700',
-    bg: 'bg-teal-50',
-    border: 'border-teal-400',
+    color: 'text-primary-800',
+    bg: 'bg-primary-50',
+    border: 'border-line',
     desc: 'Full Disclosure Policy (FDP) submissions and DILG compliance documents.',
     href: '/government/transparency-documents',
   },
@@ -170,26 +170,18 @@ export default function Transparency() {
       />
       <main className="flex-grow">
         {/* Page Header */}
-        <div
-          className="relative text-white py-16 overflow-hidden"
-          style={{
-            backgroundColor: '#003087',
-            backgroundImage:
-              'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        >
+        <div className="relative bg-white border-b border-line py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 mb-2">
-              <Eye className="h-7 w-7 text-blue-200" />
-              <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
+              <Eye className="h-7 w-7 text-primary-700" />
+              <span className="text-primary-700 text-sm font-medium uppercase tracking-widest">
                 {isFil ? 'Bukas na Pamahalaan' : 'Open Government'}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black mb-3">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-3">
               {isFil ? 'Katapatan at Transparency' : 'Transparency'}
             </h1>
-            <p className="text-blue-100 text-lg max-w-xl">
+            <p className="text-gray-600 text-lg max-w-xl">
               {isFil
                 ? 'Mga pampublikong dokumento, pagsisiwalat ng badyet, at mga ulat ng pananagutan para sa Munisipalidad ng Indang, Cavite.'
                 : 'Public documents, budget disclosures, and accountability reports for the Municipality of Indang, Cavite.'}

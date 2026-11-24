@@ -29,7 +29,7 @@ function App() {
     <HelmetProvider>
       <Router>
         <NuqsAdapter>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-ground">
             <Navbar />
             <ScrollToTop />
             <Suspense fallback={<div className="flex-grow" />}>
