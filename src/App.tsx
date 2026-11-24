@@ -20,6 +20,9 @@ const ExecutiveDirectory = lazy(() => import('./pages/ExecutiveDirectory'));
 const SangguniangBayan = lazy(() => import('./pages/SangguniangBayan'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const Announcements = lazy(() => import('./pages/Announcements'));
+const EventsCalendar = lazy(() => import('./pages/EventsCalendar'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
@@ -67,6 +70,9 @@ function App() {
                 <Route path="/tourism/:category" element={<Tourism />} />
                 <Route path="/tourism" element={<Tourism />} />
                 <Route path="/sitemap" element={<Sitemap />} />
+                <Route path="/announcements" element={<Announcements />} />
+                <Route path="/calendar" element={<EventsCalendar />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/:lang/:documentSlug" element={<Document />} />
                 <Route path="/:documentSlug" element={<Document />} />
                 <Route path="*" element={<NotFound />} />

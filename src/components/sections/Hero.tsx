@@ -248,10 +248,10 @@ export default function Hero() {
           {/* Left — headline + CTAs */}
           <div>
             <p className="text-blue-100 text-sm font-medium uppercase tracking-widest mb-1">
-              {t('hero.welcome', 'WELCOME TO')}
+              {import.meta.env.VITE_GOVERNMENT_NAME}
             </p>
             <h1 className="text-4xl sm:text-5xl md:text-6xl font-black leading-tight mb-4">
-              {import.meta.env.VITE_GOVERNMENT_NAME}
+              {t('hero.findTitle', 'What do you need from the municipality?')}
             </h1>
             <p className="text-blue-100 text-base md:text-lg leading-relaxed mb-8 max-w-md">
               {t('hero.subtitle')}
@@ -264,13 +264,13 @@ export default function Hero() {
                 <ArrowRight className="h-4 w-4" />
                 {t('hero.browseServices', 'Browse Services')}
               </Link>
-              <a
-                href="#contact"
+              <Link
+                to="/contact"
                 className="inline-flex items-center gap-2 px-5 py-2.5 border-2 border-white text-white font-bold text-sm rounded-lg hover:bg-white/10 transition-colors"
               >
                 <Users className="h-4 w-4" />
                 {t('hero.contactUs', 'Contact Us')}
-              </a>
+              </Link>
             </div>
           </div>
 

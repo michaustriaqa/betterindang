@@ -1,34 +1,33 @@
 import Hero from '../components/sections/Hero';
 import YakapPromoBanner from '../components/home/YakapPromoBanner';
-import ServicesSection from '../components/home/ServicesSection';
-import GovernmentActivitySection from '../components/home/GovernmentActivitySection';
+import ServiceGroupsSection from '../components/home/ServiceGroupsSection';
+import LatestUpdatesSection from '../components/home/LatestUpdatesSection';
 import StatsSection from '../components/home/StatsSection';
-import WeatherMapSection from '../components/home/WeatherMapSection';
-import HistorySection from '../components/home/HistorySection';
-import LeadershipSection from '../components/home/LeadershipSection';
-import ContactSection from '../components/home/ContactSection';
 import TourismSection from '../components/home/TourismSection';
+import LeadershipSection from '../components/home/LeadershipSection';
 import SEO from '../components/SEO';
 
+/**
+ * Home is organised in five blocks: find, browse services, featured and
+ * latest, explore Indang, and government. History, weather and the old
+ * contact strip moved to their own pages (Explore, Contact).
+ */
 const Home: React.FC = () => {
   return (
     <>
       <SEO
         title="Home"
-        description="Official community portal of the Municipality of Indang, Cavite. Access government services, information, officials, and public resources."
+        description="Community-run portal for the Municipality of Indang, Cavite. Find government services, announcements, officials, events and public information."
         keywords="Indang, Cavite, government, local government, services, municipality of indang"
       />
       <main className="flex-grow">
         <Hero />
-        <StatsSection />
+        <ServiceGroupsSection />
         <YakapPromoBanner />
-        <ServicesSection />
+        <LatestUpdatesSection />
+        <StatsSection />
         <TourismSection />
-        <WeatherMapSection />
-        <GovernmentActivitySection />
-        <HistorySection />
         <LeadershipSection />
-        <ContactSection />
       </main>
     </>
   );

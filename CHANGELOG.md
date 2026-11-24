@@ -11,6 +11,26 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.8.0] - 2026-11-25
+
+### Added
+
+- **News & Announcements page** (`/announcements`) — advisories and updates from Indang offices (LGU, MDRRMO, Police, RHU, Water District), each with its source, posted date, and a link to the original Facebook post. Filters by source and type, search, an urgent strip that shows for 24 hours, and a warning on items older than 7 days. Content lives in `content/updates/announcements.yaml`; entries without a working link to the original are never shown.
+- **Events Calendar page** (`/calendar`) — month and list views, source filters, and an "Add to my calendar (.ics)" download. Content lives in `content/updates/events.yaml`.
+- **Contact page** (`/contact`) — Municipal Hall address, phone, email, office hours, hotlines, and a link to the official LGU Facebook page.
+- **Add by email pop-up** (`AddViaEmail`) — "Add an event" and "Add an announcement" open a dialog (staff of an office or resident); "Send an email" opens a pre-filled template in English or Filipino. Recipient is `VITE_SUBMISSIONS_EMAIL` (see `env.example`).
+- Service groups (`src/data/serviceGroups.ts`): health & welfare, business & livelihood, home & community, safety & emergencies.
+
+### Changed
+
+- **Navigation restructured from six menus to four** — Services (ordered by group), Government (now includes Budget & Transparency, Data & Statistics, and News & Announcements), Explore Indang (Tourism, History, Municipal Profile, Events Calendar), and Contact. The separate Transparency and Statistics menus are gone; their pages are unchanged and reachable under Government.
+- **Home page reorganized into five blocks** — find, browse services by group, featured service and latest announcements, Explore Indang, and leadership. The hero now asks "What do you need from the municipality?". The old History, weather/map, government-activity and contact strips are no longer on Home.
+- Navbar hotlines moved to `src/data/hotlines.ts` so the Contact page shares them.
+
+### Removed
+
+- The footer's "Official Indang Website" link, which pointed to `indang.gov.ph` (not reachable). The LGU Facebook link remains.
+
 ## [0.7.5] - 2026-11-24
 
 ### Changed

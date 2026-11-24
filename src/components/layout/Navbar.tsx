@@ -4,6 +4,7 @@ import { mainNavigation } from '../../data/navigation';
 import type { LanguageType } from '../../types/index';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import { HOTLINES } from '../../data/hotlines';
 
 function formatDatetime(): string {
   const now = new Date();
@@ -21,13 +22,6 @@ function formatDatetime(): string {
   });
   return `${date} · ${time} PHT`;
 }
-
-const HOTLINES = [
-  { labelKey: 'hotlines.mdrrmo', number: '0961-992-1998', tel: '09619921998' },
-  { labelKey: 'hotlines.fire', number: '046-415-1217', tel: '0464151217' },
-  { labelKey: 'hotlines.police', number: '0949-184-9145', tel: '09491849145' },
-  { labelKey: 'hotlines.hospital', number: '046-840-1705', tel: '0468401705' },
-];
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);

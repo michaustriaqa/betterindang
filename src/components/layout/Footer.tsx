@@ -25,15 +25,14 @@ const QUICK_LINKS = [
     href: 'https://discord.gg/',
     external: true,
   },
-  { label: 'Contact Us', labelKey: 'footer.contactUs', href: '/about' },
+  { label: 'Contact Us', labelKey: 'footer.contactUs', href: '/contact' },
 ];
 
 const RESOURCE_LINKS = [
   {
-    label: 'Official Indang Website',
-    labelKey: 'footer.officialWebsite',
-    href: 'https://indang.gov.ph',
-    external: true,
+    label: 'News & Announcements',
+    labelKey: 'navbar.news',
+    href: '/announcements',
   },
   {
     label: 'Open Data',
@@ -292,7 +291,7 @@ const Footer: React.FC = () => {
             </div>
             <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.7.5</span>
+              <span className="font-mono">v0.8.0</span>
             </div>
           </div>
         </div>
