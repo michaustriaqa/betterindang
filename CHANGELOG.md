@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.10.0] - 2026-11-25
+
+### Changed
+
+- `/services` index is now grouped by intent (Health & welfare, Business & livelihood, Home & community, Safety & emergencies) with a "Jump to" rail showing counts, a featured PhilHealth YAKAP strip, a "Need help now?" MDRRMO call card, a search field, and a "Can't find what you need?" contact strip. Group definitions are shared with the Home page via `src/data/serviceGroups.ts`.
+
+### Added
+
+- `src/components/services/ServicesHub.tsx`.
+
 ## [0.9.0] - 2026-11-25
 
 ### Changed
