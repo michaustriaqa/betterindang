@@ -11,6 +11,20 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.12.0] - 2026-11-25
+
+### Changed
+
+- `/government` is now a merged hub (`src/components/government/GovernmentHub.tsx`) in three groups: People & offices (local officials, office directory, Municipal Council), Money & accountability (budget & transparency, data & statistics) and Stay informed (news & announcements, events calendar, contact), plus a row of national resources (FOI, PhilGEPS, COA, DILG). It replaces the flat grid of seven categories, most of which had no content behind them.
+
+### Removed
+
+- Unused `GovernmentActivitySection` component.
+
+### Known issue
+
+- `/government/transparency-documents` (linked from the Transparency page and the footer) has no content and renders blank. Not linked from the new hub.
+
 ## [0.11.0] - 2026-11-25
 
 ### Added
