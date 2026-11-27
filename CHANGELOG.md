@@ -11,6 +11,21 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.13.1] - 2026-11-27
+
+### Changed
+
+- Visit counter is now a build-time snapshot instead of a serverless function, because the site is hosted on AWS Amplify, which does not run `api/` functions. `scripts/fetch-visitors.js` (run first by `npm run build`) reads the GA4 Data API and writes `public/visitors.json`; the footer reads that file. It never fails the build: without credentials or on an API error the counter is simply hidden.
+- Setup instructions in `docs/DEPLOYMENT-GUIDE.md` and `env.example` rewritten for build-time variables and Amplify.
+
+### Added
+
+- `.github/workflows/refresh-visitors.yml`: daily call to an Amplify incoming webhook so the figure refreshes; inert until the `AMPLIFY_BUILD_HOOK` secret is set.
+
+### Removed
+
+- `api/visitors.ts` and the `/api/*` exclusion added to `vercel.json` in 0.13.0.
+
 ## [0.13.0] - 2026-11-27
 
 ### Added

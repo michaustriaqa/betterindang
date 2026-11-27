@@ -1,11 +1,12 @@
 {
   "name": "betterlocalgov",
   "private": true,
-  "version": "0.13.0",
+  "version": "0.13.1",
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && node scripts/generate-sitemap.js",
+    "build": "node scripts/fetch-visitors.js && tsc -b && vite build && node scripts/generate-sitemap.js",
+    "fetch-visitors": "node scripts/fetch-visitors.js",
     "generate-sitemap": "node scripts/generate-sitemap.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",

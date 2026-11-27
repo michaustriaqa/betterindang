@@ -77,12 +77,14 @@ Once connected, Vercel will automatically deploy:
 - **Pull requests** → Preview deployments
 - **Branch pushes** → Preview deployments
 
-## 👁️ Public Visitor Counter (Optional)
+## 👁️ Public Visitor Counter (Optional, any static host)
 
 The footer can show total visits and visits in the last 30 days, read from your
-existing Google Analytics 4 property by the serverless function `api/visitors.ts`.
-Old data is included because it reads the same property. If the variables below
-are not set, the counter simply does not appear.
+existing Google Analytics 4 property. `scripts/fetch-visitors.js` runs at the
+start of `npm run build`, asks the GA4 Data API for the numbers and writes
+`public/visitors.json`. Old data is included because it reads the same property.
+If the variables below are not set, or Google returns an error, the build still
+succeeds and the counter simply does not appear.
 
 1. In **Google Cloud Console**, create a project (or reuse one), enable the
    **Google Analytics Data API**, then create a **service account** and download
@@ -91,13 +93,25 @@ are not set, the counter simply does not appear.
    account's email as a **Viewer**.
 3. In **Admin > Property details**, copy the numeric **Property ID** (not the
    `G-XXXX` measurement ID).
-4. In **Vercel > Project > Settings > Environment Variables**, add:
+4. In your host's **build environment variables** (AWS Amplify: App settings >
+   Environment variables), add:
    - `GA_PROPERTY_ID` = the numeric property ID
    - `GA_SERVICE_ACCOUNT_JSON` = the entire JSON key file contents
-5. Redeploy. Results are cached for 24 hours.
+5. Redeploy. The number is as fresh as the last build.
 
 Never commit the key and never prefix these variables with `VITE_`.
 The figure counts GA sessions, so visitors with ad blockers are not included.
+
+### Daily refresh (AWS Amplify)
+
+The number only updates when the site is rebuilt. To rebuild daily:
+
+1. In Amplify, go to **Hosting > Build settings > Incoming webhooks**, create a
+   webhook for the production branch and copy its URL.
+2. In GitHub, go to **Settings > Secrets and variables > Actions** and add a
+   repository secret named `AMPLIFY_BUILD_HOOK` with that URL.
+3. The workflow `.github/workflows/refresh-visitors.yml` posts to it once a day.
+   It does nothing while the secret is unset.
 
 ## 📊 Vercel Analytics (Optional)
 

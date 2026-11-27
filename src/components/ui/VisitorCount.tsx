@@ -8,7 +8,8 @@ interface Counts {
 }
 
 /**
- * Public visit counter read from /api/visitors (Google Analytics 4).
+ * Public visit counter read from /visitors.json, a snapshot written at build
+ * time from Google Analytics 4 (scripts/fetch-visitors.js).
  * Renders nothing until data arrives and stays hidden if the endpoint is
  * missing (local dev, unconfigured deploy) or fails.
  */
@@ -19,7 +20,7 @@ export default function VisitorCount() {
 
   useEffect(() => {
     const controller = new AbortController();
-    fetch('/api/visitors', { signal: controller.signal })
+    fetch('/visitors.json', { signal: controller.signal })
       .then(r => (r.ok ? r.json() : null))
       .then((data: Counts | null) => {
         if (data && typeof data.allTime?.visits === 'number') setCounts(data);
