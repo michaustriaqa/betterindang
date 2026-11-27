@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.13.0] - 2026-11-27
+
+### Added
+
+- Public visit counter in the footer (all-time visits and last 30 days) fed by the existing Google Analytics 4 property, so historical data is preserved. New serverless function `api/visitors.ts` calls the GA4 Data API with a service account and caches for 24 hours; `src/components/ui/VisitorCount.tsx` renders it and hides itself when the endpoint is missing or fails.
+- Setup steps in `docs/DEPLOYMENT-GUIDE.md`; `GA_PROPERTY_ID` and `GA_SERVICE_ACCOUNT_JSON` in `env.example`.
+
+### Changed
+
+- `vercel.json` SPA rewrite now excludes `/api/*` so serverless functions are reachable.
+
 ## [0.12.0] - 2026-11-25
 
 ### Changed

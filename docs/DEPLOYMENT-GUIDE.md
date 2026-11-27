@@ -77,6 +77,28 @@ Once connected, Vercel will automatically deploy:
 - **Pull requests** → Preview deployments
 - **Branch pushes** → Preview deployments
 
+## 👁️ Public Visitor Counter (Optional)
+
+The footer can show total visits and visits in the last 30 days, read from your
+existing Google Analytics 4 property by the serverless function `api/visitors.ts`.
+Old data is included because it reads the same property. If the variables below
+are not set, the counter simply does not appear.
+
+1. In **Google Cloud Console**, create a project (or reuse one), enable the
+   **Google Analytics Data API**, then create a **service account** and download
+   its **JSON key**.
+2. In **Google Analytics > Admin > Property access management**, add the service
+   account's email as a **Viewer**.
+3. In **Admin > Property details**, copy the numeric **Property ID** (not the
+   `G-XXXX` measurement ID).
+4. In **Vercel > Project > Settings > Environment Variables**, add:
+   - `GA_PROPERTY_ID` = the numeric property ID
+   - `GA_SERVICE_ACCOUNT_JSON` = the entire JSON key file contents
+5. Redeploy. Results are cached for 24 hours.
+
+Never commit the key and never prefix these variables with `VITE_`.
+The figure counts GA sessions, so visitors with ad blockers are not included.
+
 ## 📊 Vercel Analytics (Optional)
 
 1. **Go to Analytics tab** in your Vercel dashboard

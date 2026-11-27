@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import VisitorCount from '../ui/VisitorCount';
 
 const QUICK_LINKS = [
   { label: 'About the Portal', labelKey: 'footer.about', href: '/about' },
@@ -289,9 +290,10 @@ const Footer: React.FC = () => {
                 {t('footer.builtByCommunity', 'Built by the community')}
               </span>
             </div>
+            <VisitorCount />
             <div className="flex items-center gap-1.5 shrink-0 text-gray-400">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.12.0</span>
+              <span className="font-mono">v0.13.0</span>
             </div>
           </div>
         </div>
