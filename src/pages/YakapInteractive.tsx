@@ -21,6 +21,7 @@ import {
   FlaskConical,
   Pill,
   Ribbon,
+  Facebook,
   Globe,
   Scale,
   AlertTriangle,
@@ -1766,6 +1767,20 @@ export default function YakapInteractive() {
                             <Copy className="h-3 w-3" />
                           )}
                         </button>
+                      </div>
+
+                      <div className="flex items-center gap-2 text-gray-600 dark:text-gray-300">
+                        <Facebook className="h-4 w-4 text-gray-400 shrink-0" />
+                        <a
+                          href="https://www.facebook.com/IndangHealthCenter"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="hover:underline font-medium hover:text-blue-600"
+                        >
+                          {isFil
+                            ? 'Indang Health Center sa Facebook'
+                            : 'Indang Health Center on Facebook'}
+                        </a>
                       </div>
                     </div>
                   </div>
