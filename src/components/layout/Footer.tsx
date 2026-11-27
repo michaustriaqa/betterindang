@@ -10,6 +10,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import VisitorCount from '../ui/VisitorCount';
 
 const QUICK_LINKS = [
   { label: 'About the Portal', labelKey: 'footer.about', href: '/about' },
@@ -25,15 +26,14 @@ const QUICK_LINKS = [
     href: 'https://discord.gg/',
     external: true,
   },
-  { label: 'Contact Us', labelKey: 'footer.contactUs', href: '/about' },
+  { label: 'Contact Us', labelKey: 'footer.contactUs', href: '/contact' },
 ];
 
 const RESOURCE_LINKS = [
   {
-    label: 'Official Indang Website',
-    labelKey: 'footer.officialWebsite',
-    href: 'https://indang.gov.ph',
-    external: true,
+    label: 'News & Announcements',
+    labelKey: 'navbar.news',
+    href: '/announcements',
   },
   {
     label: 'Open Data',
@@ -93,18 +93,26 @@ const Footer: React.FC = () => {
   }, []);
 
   return (
-    <footer className="bg-gray-900 text-white">
+    <footer className="bg-ink text-white rounded-t-[2.5rem]">
       <div className="container mx-auto px-4 pt-12 pb-8">
         {/* 4-column grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* Col 1 — Brand */}
           <div>
-            <img
-              src="/icons/logo-clear.svg"
-              alt={t('site_name')}
-              className="h-12 w-auto max-w-[180px] object-contain mb-4"
-            />
-            <p className="text-gray-400 text-sm leading-relaxed mb-5">
+            <div className="flex items-center gap-3 mb-4">
+              <span className="flex items-center justify-center rounded-xl bg-white p-1.5">
+                <img
+                  src="/icons/logo.webp"
+                  alt=""
+                  aria-hidden="true"
+                  className="h-12 w-auto object-contain"
+                />
+              </span>
+              <span className="text-xl font-bold tracking-tight text-white">
+                BetterIndang.org
+              </span>
+            </div>
+            <p className="text-gray-300 text-sm leading-relaxed mb-5">
               {t(
                 'hero.subtitle',
                 'A community-run portal to find information and services of the Municipality of Indang, Cavite.'
@@ -116,7 +124,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-gray-800 text-gray-400 hover:bg-blue-600 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:bg-blue-600 hover:text-white transition-colors"
               >
                 <Facebook className="h-4 w-4" />
               </a>
@@ -125,7 +133,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="GitHub"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-gray-800 text-gray-400 hover:bg-gray-600 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:bg-gray-600 hover:text-white transition-colors"
               >
                 <Github className="h-4 w-4" />
               </a>
@@ -134,7 +142,7 @@ const Footer: React.FC = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Discord"
-                className="inline-flex items-center justify-center w-9 h-9 rounded-lg bg-gray-800 text-gray-400 hover:bg-indigo-600 hover:text-white transition-colors"
+                className="inline-flex items-center justify-center w-9 h-9 rounded-full bg-white/10 text-gray-300 hover:bg-indigo-600 hover:text-white transition-colors"
               >
                 <MessageCircle className="h-4 w-4" />
               </a>
@@ -143,7 +151,7 @@ const Footer: React.FC = () => {
 
           {/* Col 2 — Quick Links */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">
+            <h4 className="text-sm font-semibold text-sun mb-4">
               {t('footer.quickLinks', 'Quick Links')}
             </h4>
             <ul className="space-y-2.5">
@@ -154,7 +162,7 @@ const Footer: React.FC = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-gray-400 hover:text-white text-sm transition-colors"
+                      className="flex items-center gap-1.5 text-gray-300 hover:text-white text-sm transition-colors"
                     >
                       {t(link.labelKey, link.label)}
                       <ExternalLink className="h-3 w-3 opacity-50" />
@@ -164,7 +172,7 @@ const Footer: React.FC = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white text-sm transition-colors"
+                      className="text-gray-300 hover:text-white text-sm transition-colors"
                     >
                       {t(link.labelKey, link.label)}
                     </Link>
@@ -176,7 +184,7 @@ const Footer: React.FC = () => {
 
           {/* Col 3 — Resources */}
           <div>
-            <h4 className="text-sm font-bold uppercase tracking-widest text-gray-300 mb-4">
+            <h4 className="text-sm font-semibold text-sun mb-4">
               {t('footer.resources', 'Resources')}
             </h4>
             <ul className="space-y-2.5">
@@ -187,7 +195,7 @@ const Footer: React.FC = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-1.5 text-gray-400 hover:text-white text-sm transition-colors"
+                      className="flex items-center gap-1.5 text-gray-300 hover:text-white text-sm transition-colors"
                     >
                       {t(link.labelKey, link.label)}
                       <ExternalLink className="h-3 w-3 opacity-50" />
@@ -197,7 +205,7 @@ const Footer: React.FC = () => {
                   <li key={link.label}>
                     <Link
                       to={link.href}
-                      className="text-gray-400 hover:text-white text-sm transition-colors"
+                      className="text-gray-300 hover:text-white text-sm transition-colors"
                     >
                       {t(link.labelKey, link.label)}
                     </Link>
@@ -210,7 +218,7 @@ const Footer: React.FC = () => {
           {/* Col 4 — Cost / Contribute */}
           <div>
             <div
-              className="inline-flex items-baseline gap-2 bg-green-900/40 border border-green-700/50 rounded-xl px-4 py-3 mb-5"
+              className="inline-flex items-baseline gap-2 bg-green-900/40 border border-green-700/50 rounded-2xl px-4 py-3 mb-5"
               role="status"
               aria-label={t('footer.costTitle', 'Cost to the People of Indang')}
             >
@@ -225,7 +233,7 @@ const Footer: React.FC = () => {
                 href="https://github.com/michaustriaqa/betterindang"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gray-800 text-gray-300 hover:bg-primary-700 hover:text-white text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 text-gray-200 hover:bg-primary-700 hover:text-white text-sm font-semibold transition-colors"
               >
                 <Mail className="h-4 w-4 shrink-0" />
                 {t('footer.volunteer', 'Volunteer with Us')}
@@ -234,7 +242,7 @@ const Footer: React.FC = () => {
                 href="https://github.com/michaustriaqa/betterindang"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-gray-800 text-gray-300 hover:bg-gray-700 hover:text-white text-sm font-semibold transition-colors"
+                className="inline-flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/10 text-gray-200 hover:bg-white/20 hover:text-white text-sm font-semibold transition-colors"
               >
                 <Github className="h-4 w-4 shrink-0" />
                 {t('footer.contribute', 'Contribute at GitHub')}
@@ -245,8 +253,8 @@ const Footer: React.FC = () => {
         </div>
 
         {/* Bottom bar */}
-        <div className="border-t border-gray-800 mt-10 pt-6">
-          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-gray-500">
+        <div className="border-t border-white/10 mt-10 pt-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 text-xs text-gray-400">
             <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
               <a
                 href="https://bettergov.ph"
@@ -272,19 +280,20 @@ const Footer: React.FC = () => {
                 </a>
               </span>
               <span className="hidden sm:inline text-gray-700">·</span> */}
-              <span className="text-gray-600">
+              <span className="text-gray-400">
                 {t('footer.notOfficial', 'Not an official government website.')}
               </span>
             </div>
-            <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
+            <div className="flex items-center gap-1.5 shrink-0 text-gray-400">
               <Heart className="h-3.5 w-3.5" />
               <span className="font-mono">
                 {t('footer.builtByCommunity', 'Built by the community')}
               </span>
             </div>
-            <div className="flex items-center gap-1.5 shrink-0 text-gray-600">
+            <VisitorCount />
+            <div className="flex items-center gap-1.5 shrink-0 text-gray-400">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.7.4</span>
+              <span className="font-mono">v0.15.2</span>
             </div>
           </div>
         </div>

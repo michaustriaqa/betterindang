@@ -17,7 +17,7 @@ export default function Section({
   return (
     <section
       ref={reveal ? ref : undefined}
-      className={cn(reveal && 'reveal', 'py-12 bg-white', className)}
+      className={cn(reveal && 'reveal', 'py-12', className)}
       id={id}
     >
       <div className={cn('container mx-auto px-4', className)}>{children}</div>

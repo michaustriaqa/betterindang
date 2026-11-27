@@ -92,26 +92,18 @@ export default function SangguniangBayan() {
       />
       <main className="flex-grow">
         {/* Page Header */}
-        <div
-          className="relative text-white py-16 overflow-hidden"
-          style={{
-            backgroundColor: '#003087',
-            backgroundImage:
-              'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        >
+        <div className="relative bg-white border-b border-line py-16">
           <div className="max-w-7xl mx-auto px-4 sm:px-6">
             <div className="flex items-center gap-3 mb-2">
-              <Landmark className="h-7 w-7 text-blue-200" />
-              <span className="text-blue-200 text-sm font-medium uppercase tracking-widest">
+              <Landmark className="h-7 w-7 text-primary-700" />
+              <span className="text-primary-700 text-sm font-medium uppercase tracking-widest">
                 {isFil ? 'Munisipalidad ng Indang' : data.GOVERNMENT_NAME}
               </span>
             </div>
-            <h1 className="text-4xl sm:text-5xl font-black mb-3">
+            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-3">
               Sangguniang Bayan
             </h1>
-            <p className="text-blue-100 text-lg max-w-xl">
+            <p className="text-gray-600 text-lg max-w-xl">
               {isFil
                 ? `Ipinapakita sa pahinang ito ang lahat ng halal na miyembro ng Konseho ng Munisipyo ng Indang para sa terminong ${data.TERM}.`
                 : `This page lists all elected members of the Municipal Council of ${data.GOVERNMENT_NAME} for the ${data.TERM} term.`}

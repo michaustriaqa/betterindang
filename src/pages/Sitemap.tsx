@@ -88,7 +88,7 @@ export default function Sitemap() {
           label: isFil
             ? 'Mga Dokumento ng Transparency'
             : 'Transparency Documents',
-          href: '/government/transparency-documents',
+          href: '/transparency',
         },
         {
           label: isFil ? 'Mga Ulat at Estadistika' : 'Reports & Statistics',
@@ -113,8 +113,8 @@ export default function Sitemap() {
     },
     {
       icon: MapPin,
-      label: isFil ? 'Turismo' : 'Tourism',
-      href: '/tourism',
+      label: isFil ? 'Tuklasin ang Indang' : 'Explore Indang',
+      href: '/explore',
       children: [
         {
           label: isFil ? 'Mga Makasaysayang Lugar' : 'Heritage Sites',

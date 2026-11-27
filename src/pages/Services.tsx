@@ -12,6 +12,7 @@ import {
 import * as LucideIcons from 'lucide-react';
 import Breadcrumbs from '../components/ui/Breadcrumbs';
 import ServicesSection from '../components/home/ServicesSection';
+import ServicesHub from '../components/services/ServicesHub';
 import SEO from '../components/SEO';
 import { Card, CardContent } from '@bettergov/kapwa/card';
 import { Banner } from '@bettergov/kapwa/banner';
@@ -314,18 +315,7 @@ const Services: React.FC = () => {
           }
           keywords="government services, public services, local government, civic services"
         />
-        <ServicesSection
-          title={
-            isFil
-              ? 'Lahat ng Serbisyong Pambayan'
-              : `All local government services`
-          }
-          description={
-            isFil
-              ? `Lahat ng mga serbisyong inihahatid ng pamahalaan ng ${import.meta.env.VITE_GOVERNMENT_NAME}. Hanapin ang kailangan mo para sa pagkamamamayan, negosyo, edukasyon, at iba pa.`
-              : `All services provided by the ${import.meta.env.VITE_GOVERNMENT_NAME} government. Find what you need for citizenship, business, education, and more.`
-          }
-        />
+        <ServicesHub />
       </>
     );
   }

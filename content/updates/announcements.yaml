@@ -1,0 +1,23 @@
+# Announcements and advisories from Indang's offices.
+#
+# Add one entry per post under `items:`, newest first or in any order (the
+# site sorts by `postedAt`). Every entry needs a link to the ORIGINAL post.
+# Copy only the key facts. Do not copy photos, comments or private details.
+#
+# Example (remove the leading # to use):
+#
+# items:
+#   - id: lgu-2026-12-01-class-suspension
+#     source: lgu            # lgu | mdrrmo | police | rhu | water | other
+#     category: advisory     # advisory | traffic | health | water-power | safety | program
+#     urgent: true           # optional. Urgent items show on top for 24 hours
+#     relayedBy: office      # office | volunteer
+#     postedAt: 2026-11-30   # date of the original post
+#     addedAt: 2026-11-30    # date it was added here
+#     url: https://www.facebook.com/LGUIndangCavite/posts/...
+#     title: Short, specific title
+#     titleFil: Maikli at tiyak na pamagat      # optional
+#     summary: What, where, when, and who is affected.
+#     summaryFil: Ano, saan, kailan, at sino ang apektado.   # optional
+
+items: []

@@ -1,0 +1,22 @@
+# Events, programs and service interruptions in Indang.
+#
+# Add one entry per event under `items:`. Every entry needs a link to the
+# ORIGINAL post. Dates use YYYY-MM-DD. `end` is optional.
+#
+# Example (remove the leading # to use):
+#
+# items:
+#   - id: indang-day-2026
+#     source: lgu            # lgu | mdrrmo | police | rhu | water | other
+#     category: festival     # festival | health | program | safety | water-power | traffic
+#     relayedBy: office      # office | volunteer
+#     start: 2026-12-01
+#     end: 2026-12-01
+#     place: Poblacion
+#     url: https://www.facebook.com/LGUIndangCavite/posts/...
+#     title: Indang Day
+#     titleFil: Araw ng Indang
+#     summary: Key facts only.
+#     summaryFil: Mga pangunahing detalye lamang.
+
+items: []

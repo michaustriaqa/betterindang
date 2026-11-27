@@ -1,9 +1,15 @@
 import { lazy, Suspense } from 'react';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
+import BottomTabBar from './components/layout/BottomTabBar';
 import ScrollToTop from './components/ui/ScrollToTop';
 
 const Home = lazy(() => import('./pages/Home'));
@@ -14,19 +20,23 @@ const Government = lazy(() => import('./pages/Government'));
 const Statistics = lazy(() => import('./pages/Statistics'));
 const Legislative = lazy(() => import('./pages/Legislative'));
 const Transparency = lazy(() => import('./pages/Transparency'));
+const Explore = lazy(() => import('./pages/Explore'));
 const Tourism = lazy(() => import('./pages/Tourism'));
 const IndangHistory = lazy(() => import('./pages/IndangHistory'));
 const ExecutiveDirectory = lazy(() => import('./pages/ExecutiveDirectory'));
 const SangguniangBayan = lazy(() => import('./pages/SangguniangBayan'));
 const Sitemap = lazy(() => import('./pages/Sitemap'));
 const NotFound = lazy(() => import('./pages/NotFound'));
+const Announcements = lazy(() => import('./pages/Announcements'));
+const EventsCalendar = lazy(() => import('./pages/EventsCalendar'));
+const Contact = lazy(() => import('./pages/Contact'));
 
 function App() {
   return (
     <HelmetProvider>
       <Router>
         <NuqsAdapter>
-          <div className="min-h-screen flex flex-col">
+          <div className="min-h-screen flex flex-col bg-ground pb-[calc(4rem+env(safe-area-inset-bottom))] lg:pb-0">
             <Navbar />
             <ScrollToTop />
             <Suspense fallback={<div className="flex-grow" />}>
@@ -54,6 +64,11 @@ function App() {
                   path="/government/legislative"
                   element={<Legislative />}
                 />
+                {/* Old links: this page never had content; see /transparency */}
+                <Route
+                  path="/government/transparency-documents"
+                  element={<Navigate to="/transparency" replace />}
+                />
                 <Route path="/government/:category" element={<Government />} />
                 <Route path="/government" element={<Government />} />
                 <Route
@@ -63,16 +78,21 @@ function App() {
                 <Route path="/statistics" element={<Statistics />} />
                 <Route path="/legislative" element={<Legislative />} />
                 <Route path="/transparency" element={<Transparency />} />
+                <Route path="/explore" element={<Explore />} />
                 <Route path="/tourism/history" element={<IndangHistory />} />
                 <Route path="/tourism/:category" element={<Tourism />} />
                 <Route path="/tourism" element={<Tourism />} />
                 <Route path="/sitemap" element={<Sitemap />} />
+                <Route path="/announcements" element={<Announcements />} />
+                <Route path="/calendar" element={<EventsCalendar />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/:lang/:documentSlug" element={<Document />} />
                 <Route path="/:documentSlug" element={<Document />} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
             </Suspense>
             <Footer />
+            <BottomTabBar />
           </div>
         </NuqsAdapter>
       </Router>

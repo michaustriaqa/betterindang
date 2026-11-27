@@ -2,6 +2,7 @@
   "site_name": "Munisipyo ng Indang",
   "site_description": "Isang portal para sa Munisipyo ng Indang",
   "hero": {
+    "findTitle": "Ano ang kailangan mo sa munisipyo?",
     "title": "Maligayang pagdating sa BetterGov.ph",
     "subtitle": "Isang portal ng komunidad para mahanap ang impormasyon at serbisyo ng Munisipyo ng Indang, Cavite.",
     "welcome": "MALIGAYANG PAGDATING SA",
@@ -58,6 +59,12 @@
       "environment": { "name": "Kalikasan" },
       "housing-land-use": { "name": "Pabahay at Paggamit ng Lupa" },
       "disaster-preparedness": { "name": "Kahandaan sa Sakuna" }
+    },
+    "groups": {
+      "health-welfare": "Kalusugan at kapakanan",
+      "business-livelihood": "Negosyo at kabuhayan",
+      "home-community": "Tahanan at komunidad",
+      "safety": "Kaligtasan at emerhensiya"
     }
   },
   "governmentActivity": {
@@ -174,7 +181,7 @@
     "title": "Pinakabagong Balita at Mga Update"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.5.5",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.15.2",
     "about": "Tungkol sa Portal",
     "sitemap": "Sitemap",
     "accessibility": "Aksesibilidad",
@@ -217,7 +224,15 @@
     "profile": "Profile ng Munisipyo",
     "dtiProfile": "DTI CMCI Profile",
     "barangayData": "Datos ng Barangay",
-    "openData": "Open Data PH"
+    "openData": "Open Data PH",
+    "explore": "Tuklasin ang Indang",
+    "budgetTransparency": "Badyet at Transparency",
+    "dataStats": "Datos at Estadistika",
+    "news": "Balita at Anunsiyo",
+    "history": "Kasaysayan",
+    "calendar": "Kalendaryo ng mga Kaganapan",
+    "tabExplore": "Tuklasin",
+    "mobileNav": "Pangunahing nabigasyon"
   },
   "joinUs": {
     "stripTitle": "Sumali sa #CivicTech Revolution",

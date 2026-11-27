@@ -1,5 +1,6 @@
 import type { NavigationItem } from '../types';
 import { serviceCategories as servicesData } from './yamlLoader';
+import { groupedCategorySlugs } from './serviceGroups';
 
 interface Subcategory {
   name: string;
@@ -18,20 +19,28 @@ export const mainNavigation: NavigationItem[] = [
     label: 'Services',
     labelKey: 'navbar.services',
     href: '/services',
-    children: [
-      ...(servicesData.categories as Category[]).map(category => ({
+    // Categories in group order (see serviceGroups.ts).
+    children: groupedCategorySlugs
+      .map(slug =>
+        (servicesData.categories as Category[]).find(c => c.slug === slug)
+      )
+      .filter((c): c is Category => Boolean(c))
+      .map(category => ({
         label: category.category,
         labelKey: `services.categories.${category.slug}.name`,
         href: `/services/${category.slug}`,
       })),
-      { label: 'Tourism', labelKey: 'navbar.tourism', href: '/tourism' },
-    ],
   },
   {
     label: 'Government',
     labelKey: 'navbar.government',
     href: '/government',
     children: [
+      {
+        label: 'Local Officials Directory',
+        labelKey: 'navbar.officials',
+        href: '/government/departments/officials',
+      },
       {
         label: 'Departments & Officials',
         labelKey: 'navbar.departments',
@@ -43,72 +52,46 @@ export const mainNavigation: NavigationItem[] = [
         href: '/government/legislative',
       },
       {
-        label: 'Local Officials Directory',
-        labelKey: 'navbar.officials',
-        href: '/government/departments/officials',
-      },
-    ],
-  },
-  {
-    label: 'Transparency',
-    labelKey: 'navbar.transparency',
-    href: '/transparency',
-    children: [
-      {
-        label: 'Full Disclosure Policy',
-        labelKey: 'navbar.fullDisclosure',
+        label: 'Budget & Transparency',
+        labelKey: 'navbar.budgetTransparency',
         href: '/transparency',
       },
       {
-        label: 'Transparency Documents',
-        labelKey: 'navbar.transparencyDocs',
-        href: '/government/transparency-documents',
+        label: 'Data & Statistics',
+        labelKey: 'navbar.dataStats',
+        href: '/statistics',
       },
       {
-        label: 'Reports & Statistics',
-        labelKey: 'navbar.reportsStats',
-        href: '/government/reports-and-statistics',
-      },
-      {
-        label: 'Annual Budget',
-        labelKey: 'navbar.budget',
-        href: '/government/transparency-documents',
-      },
-      {
-        label: 'Freedom of Information',
-        labelKey: 'navbar.foi',
-        href: 'https://www.foi.gov.ph',
+        label: 'News & Announcements',
+        labelKey: 'navbar.news',
+        href: '/announcements',
       },
     ],
   },
   {
-    label: 'Statistics',
-    labelKey: 'navbar.statistics',
-    href: '/statistics',
+    label: 'Explore Indang',
+    labelKey: 'navbar.explore',
+    href: '/explore',
     children: [
+      { label: 'Tourism', labelKey: 'navbar.tourism', href: '/tourism' },
+      {
+        label: 'History',
+        labelKey: 'navbar.history',
+        href: '/tourism/history',
+      },
       {
         label: 'Municipal Profile',
         labelKey: 'navbar.profile',
         href: '/statistics',
       },
       {
-        label: 'DTI CMCI Profile',
-        labelKey: 'navbar.dtiProfile',
-        href: 'https://cmci.dti.gov.ph/lgu-profile.php?lgu=Indang',
-      },
-      {
-        label: 'Barangay Data',
-        labelKey: 'navbar.barangayData',
-        href: '/statistics',
-      },
-      {
-        label: 'Open Data PH',
-        labelKey: 'navbar.openData',
-        href: 'https://data.gov.ph',
+        label: 'Events Calendar',
+        labelKey: 'navbar.calendar',
+        href: '/calendar',
       },
     ],
   },
-  { label: 'Contact', labelKey: 'navbar.contact', href: '/#contact' },
+  { label: 'Contact', labelKey: 'navbar.contact', href: '/contact' },
 ];
 
 export const footerNavigation = {
@@ -120,7 +103,7 @@ export const footerNavigation = {
         // { label: 'Privacy Policy', href: '/privacy' },
         // { label: 'Terms of Use', href: '/terms' },
         { label: 'Accessibility', href: '/accessibility' },
-        { label: 'Contact Us', href: '/about' },
+        { label: 'Contact Us', href: '/contact' },
         { label: 'Community Discord', href: '/discord' },
       ],
     },
@@ -172,7 +155,7 @@ export const footerNavigation = {
         {
           label: 'Transparency Documents',
           labelKey: 'navbar.transparencyDocs',
-          href: '/government/transparency-documents',
+          href: '/transparency',
         },
         {
           label: 'Freedom of Information',

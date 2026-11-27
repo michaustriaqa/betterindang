@@ -204,41 +204,33 @@ function TourismIndex() {
       />
 
       {/* Hero */}
-      <div
-        className="relative text-white py-20 overflow-hidden"
-        style={{
-          backgroundColor: '#003087',
-          backgroundImage:
-            'radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px)',
-          backgroundSize: '24px 24px',
-        }}
-      >
+      <div className="relative bg-white border-b border-line py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center gap-3 mb-3">
-            <MapPin className="h-6 w-6 text-blue-300" />
-            <span className="text-blue-300 text-sm font-semibold uppercase tracking-widest">
+            <MapPin className="h-6 w-6 text-primary-700" />
+            <span className="text-primary-700 text-sm font-semibold uppercase tracking-widest">
               {isFil ? 'Indang, Cavite' : 'Indang, Cavite'}
             </span>
           </div>
-          <h1 className="text-5xl sm:text-6xl font-black mb-2 leading-tight">
+          <h1 className="text-5xl sm:text-6xl font-bold tracking-tight text-gray-900 mb-2 leading-tight">
             {isFil ? 'Turismo' : 'Tourism'}
           </h1>
-          <p className="text-2xl font-bold text-blue-200 mb-2 italic">
+          <p className="text-2xl font-bold text-primary-700 mb-2 italic">
             "Ang Bayan ng Maraming Bukal"
           </p>
-          <p className="text-blue-100 text-lg max-w-2xl mb-4">
+          <p className="text-gray-600 text-lg max-w-2xl mb-4">
             {isFil
               ? 'Ang Bayan ng Maraming Bukal — kilala sa mga natural spring resort, makasaysayang himagsikan, mga pamanang simbahan, sakahang pang-agrikultura, at ang Irok Festival.'
               : 'The Town of Many Springs — known for natural spring resorts, revolutionary history, heritage churches, agri-tourism farms, and the Irok Festival.'}
           </p>
           <div className="flex flex-wrap items-center gap-2 mb-6">
-            <span className="bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-primary-50 border border-primary-100 text-primary-800 text-xs font-bold px-3 py-1 rounded-full">
               "Walang Tinag" — Immovable
             </span>
-            <span className="bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-primary-50 border border-primary-100 text-primary-800 text-xs font-bold px-3 py-1 rounded-full">
               Est. 1655
             </span>
-            <span className="bg-white/10 border border-white/20 text-white text-xs font-bold px-3 py-1 rounded-full">
+            <span className="bg-primary-50 border border-primary-100 text-primary-800 text-xs font-bold px-3 py-1 rounded-full">
               {isFil
                 ? `${establishments.length} na Establisimyento`
                 : `${establishments.length} Establishments`}
@@ -248,7 +240,7 @@ function TourismIndex() {
             href="https://www.facebook.com/TourismIndang"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 px-5 py-2.5 bg-white text-primary-700 font-bold text-sm rounded-lg hover:bg-blue-50 transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-5 py-2.5 bg-primary-800 text-white font-bold text-sm rounded-full hover:bg-primary-700 transition-colors cursor-pointer"
           >
             <Facebook className="h-4 w-4" />
             {isFil ? 'Sundan ang @TourismIndang' : 'Follow @TourismIndang'}
@@ -547,27 +539,27 @@ function TourismIndex() {
 const CAT_HERO: Record<string, { accent: string; badge: string }> = {
   heritage: {
     accent: 'text-amber-200',
-    badge: 'bg-amber-500/20 border border-amber-400/30 text-amber-100',
+    badge: 'bg-amber-100 border border-amber-200 text-amber-900',
   },
   resorts: {
     accent: 'text-blue-200',
-    badge: 'bg-blue-400/20 border border-blue-300/30 text-blue-100',
+    badge: 'bg-blue-100 border border-blue-200 text-blue-900',
   },
   farms: {
     accent: 'text-green-200',
-    badge: 'bg-green-500/20 border border-green-400/30 text-green-100',
+    badge: 'bg-green-100 border border-green-200 text-green-900',
   },
   events: {
     accent: 'text-purple-200',
-    badge: 'bg-purple-400/20 border border-purple-300/30 text-purple-100',
+    badge: 'bg-purple-100 border border-purple-200 text-purple-900',
   },
   restaurants: {
     accent: 'text-orange-200',
-    badge: 'bg-orange-400/20 border border-orange-300/30 text-orange-100',
+    badge: 'bg-orange-100 border border-orange-200 text-orange-900',
   },
   adventure: {
     accent: 'text-red-200',
-    badge: 'bg-red-400/20 border border-red-300/30 text-red-100',
+    badge: 'bg-red-100 border border-red-200 text-red-900',
   },
 };
 
@@ -650,7 +642,7 @@ function TourismCategory() {
   const colors = CATEGORY_COLORS[category ?? ''] ?? CATEGORY_COLORS.others;
   const heroStyle = CAT_HERO[category ?? ''] ?? {
     accent: 'text-blue-200',
-    badge: 'bg-white/10 border border-white/20 text-white',
+    badge: 'bg-primary-50 border border-primary-100 text-primary-800',
   };
   const IconComp = cat ? (ICON_MAP[cat.icon] ?? MapPin) : MapPin;
 
@@ -787,44 +779,36 @@ function TourismCategory() {
       />
       <main className="flex-grow">
         {/* Hero header */}
-        <div
-          className="relative text-white overflow-hidden"
-          style={{
-            backgroundColor: '#003087',
-            backgroundImage:
-              'radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px)',
-            backgroundSize: '24px 24px',
-          }}
-        >
+        <div className="relative bg-white border-b border-line">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 md:py-14">
-            <nav className="flex items-center gap-1.5 text-xs text-blue-200 mb-6">
-              <Link to="/" className="hover:text-white transition-colors">
+            <nav className="flex items-center gap-1.5 text-xs text-gray-600 mb-6">
+              <Link to="/" className="hover:text-primary-800 transition-colors">
                 {isFil ? 'Tahanan' : 'Home'}
               </Link>
               <ChevronRight className="h-3 w-3 opacity-50" />
               <Link
                 to="/tourism"
-                className="hover:text-white transition-colors"
+                className="hover:text-primary-800 transition-colors"
               >
                 {isFil ? 'Turismo' : 'Tourism'}
               </Link>
               <ChevronRight className="h-3 w-3 opacity-50" />
-              <span className="text-white">{catLabel}</span>
+              <span className="font-medium text-gray-900">{catLabel}</span>
             </nav>
             <div
               className={`inline-flex items-center justify-center w-12 h-12 rounded-xl mb-4 ${heroStyle.badge}`}
             >
               <IconComp className="h-6 w-6" />
             </div>
-            <h1 className="text-3xl sm:text-4xl font-black leading-tight mb-2">
+            <h1 className="text-3xl sm:text-4xl font-bold tracking-tight text-gray-900 leading-tight mb-2">
               {catLabel}
             </h1>
-            <p className="text-sm sm:text-base mb-4 max-w-xl leading-relaxed text-white">
+            <p className="text-sm sm:text-base mb-4 max-w-xl leading-relaxed text-gray-600">
               {isFil
                 ? (CATEGORY_DESCS_FIL[category ?? ''] ?? '')
                 : (CATEGORY_DESCS_EN[category ?? ''] ?? '')}
             </p>
-            <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-white/15 border border-white/30 text-white">
+            <span className="inline-block text-xs font-bold px-3 py-1 rounded-full bg-primary-50 border border-primary-100 text-primary-800">
               {isFil
                 ? `${catEstablishments.length} na establisimyento · Indang, Cavite`
                 : `${catEstablishments.length} establishment${catEstablishments.length !== 1 ? 's' : ''} · Indang, Cavite`}

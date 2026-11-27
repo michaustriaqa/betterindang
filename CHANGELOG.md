@@ -11,6 +11,171 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.15.2] - 2026-11-28
+
+### Changed
+
+- Legislative page (`/legislative`, `/government/legislative`) restyled in the Civic Clear look with breadcrumbs, quick facts (8 councilors, 36 barangays) and an action list.
+- The three "Ordinances / Resolutions / Committee Reports" cards all led to an empty "details coming soon" page, so they are replaced by working links: councilors and committees, the Local Government Code (RA 7160) on LawPhil, an FOI request, and announcements. A notice states that ordinances and resolutions are not published on this portal yet and how to request copies.
+
+### Removed
+
+- The "Official Gazette - Local Legislation" link, which does not publish local ordinances.
+
+## [0.15.1] - 2026-11-28
+
+### Added
+
+- Indang Health Center Facebook page link on the YAKAP page contact card and in its guide.
+
+### Removed
+
+- Dead `health@indang.gov.ph` email from the YAKAP page and its guide. The Indang Rural Health Unit has no email address; the mobile hotline 0977-766-6707 (already listed, with a tap-to-call link) is the contact to use.
+
+## [0.15.0] - 2026-11-28
+
+### Added
+
+- `/explore`: Explore Indang hub (`src/components/explore/ExploreHub.tsx`) with the six tourism categories and live place counts, three featured places with photos, and a "Know Indang" group (history, municipal profile and data, events calendar, news and announcements). Linked from the Explore Indang menu, the mobile tab bar, the sitemap page and `sitemap.xml`.
+
+### Changed
+
+- The Explore Indang menu item and the mobile Explore tab now open `/explore` instead of going straight to `/tourism`; `/tourism` and its category pages are unchanged and reachable from the hub.
+
+## [0.14.1] - 2026-11-28
+
+### Fixed
+
+- `/government/transparency-documents` rendered a blank page because no content exists for it, yet the Transparency page, footer menu and sitemap all linked to it. It now redirects to `/transparency`, and those links point there directly.
+- Transparency page rewritten to point to where documents actually live (DILG Full Disclosure Policy portal, PhilGEPS, FOI, BLGF, COA, DBM, Open Data PH, plus this portal's statistics and announcements) instead of six cards that all led to the empty page. Removed the claim that Indang is committed to full disclosure; the banner now states what the policy requires and that this portal does not host Indang's own document library yet.
+- Government hub description for Budget & transparency no longer promises documents the portal does not host.
+
+## [0.14.0] - 2026-11-28
+
+### Changed
+
+- Document pages (service and government markdown guides) restyled in the Civic Clear look: a light header with category chip, title, lead paragraph and reading time; a "On this page" contents list (sticky on desktop, collapsible on phones) with the current section highlighted; the guide in a rounded card with a comfortable reading width; gold bullets, soft callouts for tips and notes, rounded tables and code blocks; and a "Back to category" button. Typography themes now use the ink, gold and line tokens.
+- Markdown loader now returns the lead paragraph and a body without the title and lead. The previous description regex only matched files ending in a blank line, so most pages had no description for the page header or SEO.
+- Task-list checklist items no longer use flex layout, which pushed the page wider than the screen on phones when an item ended in long bold text.
+
+### Added
+
+- Friendly "This page is still being written" state for markdown files with no content (currently `rent-stalls-in-public-markets`).
+
+### Removed
+
+- Debug `console.log` calls in the markdown list renderer.
+
+## [0.13.1] - 2026-11-27
+
+### Changed
+
+- Visit counter is now a build-time snapshot instead of a serverless function, because the site is hosted on AWS Amplify, which does not run `api/` functions. `scripts/fetch-visitors.js` (run first by `npm run build`) reads the GA4 Data API and writes `public/visitors.json`; the footer reads that file. It never fails the build: without credentials or on an API error the counter is simply hidden.
+- Setup instructions in `docs/DEPLOYMENT-GUIDE.md` and `env.example` rewritten for build-time variables and Amplify.
+
+### Added
+
+- `.github/workflows/refresh-visitors.yml`: daily call to an Amplify incoming webhook so the figure refreshes; inert until the `AMPLIFY_BUILD_HOOK` secret is set.
+
+### Removed
+
+- `api/visitors.ts` and the `/api/*` exclusion added to `vercel.json` in 0.13.0.
+
+## [0.13.0] - 2026-11-27
+
+### Added
+
+- Public visit counter in the footer (all-time visits and last 30 days) fed by the existing Google Analytics 4 property, so historical data is preserved. New serverless function `api/visitors.ts` calls the GA4 Data API with a service account and caches for 24 hours; `src/components/ui/VisitorCount.tsx` renders it and hides itself when the endpoint is missing or fails.
+- Setup steps in `docs/DEPLOYMENT-GUIDE.md`; `GA_PROPERTY_ID` and `GA_SERVICE_ACCOUNT_JSON` in `env.example`.
+
+### Changed
+
+- `vercel.json` SPA rewrite now excludes `/api/*` so serverless functions are reachable.
+
+## [0.12.0] - 2026-11-25
+
+### Changed
+
+- `/government` is now a merged hub (`src/components/government/GovernmentHub.tsx`) in three groups: People & offices (local officials, office directory, Municipal Council), Money & accountability (budget & transparency, data & statistics) and Stay informed (news & announcements, events calendar, contact), plus a row of national resources (FOI, PhilGEPS, COA, DILG). It replaces the flat grid of seven categories, most of which had no content behind them.
+
+### Removed
+
+- Unused `GovernmentActivitySection` component.
+
+### Known issue
+
+- `/government/transparency-documents` (linked from the Transparency page and the footer) has no content and renders blank. Not linked from the new hub.
+
+## [0.11.0] - 2026-11-25
+
+### Added
+
+- Mobile bottom tab bar (`src/components/layout/BottomTabBar.tsx`) for screens below `lg`: Home, Services, Government, Explore and Contact, with the active section highlighted in gold. Section matching covers related routes (for example Transparency and News under Government; Calendar and Statistics under Explore). Hidden on desktop.
+- `viewport-fit=cover` in `index.html` so the bar clears the iOS home indicator.
+- `navbar.tabExplore` and `navbar.mobileNav` strings (EN/FIL).
+
+### Changed
+
+- The page keeps bottom padding on mobile so the footer is not covered, and the scroll-to-top button sits above the bar.
+
+### Fixed
+
+- Events Calendar no longer makes the whole page scroll sideways on phones; only the month grid scrolls.
+
+## [0.10.0] - 2026-11-25
+
+### Changed
+
+- `/services` index is now grouped by intent (Health & welfare, Business & livelihood, Home & community, Safety & emergencies) with a "Jump to" rail showing counts, a featured PhilHealth YAKAP strip, a "Need help now?" MDRRMO call card, a search field, and a "Can't find what you need?" contact strip. Group definitions are shared with the Home page via `src/data/serviceGroups.ts`.
+
+### Added
+
+- `src/components/services/ServicesHub.tsx`.
+
+## [0.9.0] - 2026-11-25
+
+### Changed
+
+- **Visual restyle ("Civic Clear")** — softer, rounder, and calmer across the portal. New tokens in `src/index.css`: `ink` (dark navy), `sun` (gold), `ground` (page background), `line` (hairline borders). Cards are `rounded-3xl`, buttons and chips are pills, headings are `font-bold tracking-tight`.
+- **Top bars and navbar** — emergency hotlines and the info bar are dark navy with a gold label (was red). Nav items and the EN/FIL switch are pills; dropdowns are rounded panels.
+- **Footer** — dark navy with a rounded top, gold column headings, and pill buttons.
+- **Home hero** — light, with a large question headline, a pill search field, common-request chips, and an emergency card with hotlines and Municipal Hall hours. The YAKAP promo carousel is replaced by a single featured-service card.
+- **Page headers** — Transparency, Legislative, Statistics, Sangguniang Bayan and Tourism pages use a light header instead of the navy band with a dot pattern. Tourism category badges were recolored for the light header.
+- **Transparency** document cards share one color instead of six.
+- Home sections (stats, tourism, leadership) use white cards on the page background.
+- Branding skill updated with the new tokens and the retired navy band.
+
+## [0.8.0] - 2026-11-25
+
+### Added
+
+- **News & Announcements page** (`/announcements`) — advisories and updates from Indang offices (LGU, MDRRMO, Police, RHU, Water District), each with its source, posted date, and a link to the original Facebook post. Filters by source and type, search, an urgent strip that shows for 24 hours, and a warning on items older than 7 days. Content lives in `content/updates/announcements.yaml`; entries without a working link to the original are never shown.
+- **Events Calendar page** (`/calendar`) — month and list views, source filters, and an "Add to my calendar (.ics)" download. Content lives in `content/updates/events.yaml`.
+- **Contact page** (`/contact`) — Municipal Hall address, phone, email, office hours, hotlines, and a link to the official LGU Facebook page.
+- **Add by email pop-up** (`AddViaEmail`) — "Add an event" and "Add an announcement" open a dialog (staff of an office or resident); "Send an email" opens a pre-filled template in English or Filipino. Recipient is `VITE_SUBMISSIONS_EMAIL` (see `env.example`).
+- Service groups (`src/data/serviceGroups.ts`): health & welfare, business & livelihood, home & community, safety & emergencies.
+
+### Changed
+
+- **Navigation restructured from six menus to four** — Services (ordered by group), Government (now includes Budget & Transparency, Data & Statistics, and News & Announcements), Explore Indang (Tourism, History, Municipal Profile, Events Calendar), and Contact. The separate Transparency and Statistics menus are gone; their pages are unchanged and reachable under Government.
+- **Home page reorganized into five blocks** — find, browse services by group, featured service and latest announcements, Explore Indang, and leadership. The hero now asks "What do you need from the municipality?". The old History, weather/map, government-activity and contact strips are no longer on Home.
+- Navbar hotlines moved to `src/data/hotlines.ts` so the Contact page shares them.
+
+### Removed
+
+- The footer's "Official Indang Website" link, which pointed to `indang.gov.ph` (not reachable). The LGU Facebook link remains.
+
+## [0.7.5] - 2026-11-24
+
+### Changed
+
+- **New logo** — replaced the previous emblem with the new Indang map emblem (Katipunan sun, ancestral house, coffee, dragon fruit). The new artwork has no wordmark, so "BetterIndang.org" is now rendered as live text beside it in the navbar and footer. In the footer the emblem sits on a white tile for contrast on the dark background.
+- **Favicons** — added `favicon.png`, `favicon.ico`, `favicon-16x16.png`, `favicon-32x32.png`, and `apple-touch-icon.png` from the new emblem (previously referenced by `SEO.tsx` but missing).
+
+### Removed
+
+- Old `logo.svg`, `logo-clear.svg`, and `favicon.svg` from `public/icons/`.
+
 ## [0.7.4] - 2026-06-17
 
 ### Changed

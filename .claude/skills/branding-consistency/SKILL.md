@@ -25,7 +25,24 @@ Defined in `tailwind.config.js`. Always reference these via Tailwind classes (`b
 
 Each token has a full `50`–`900` scale — pick the shade from the scale instead of inventing a color.
 
-### Hero band blue — known token
+### Civic Clear tokens (v0.9.0 restyle)
+
+Defined in `src/index.css` `@theme`. Use these classes instead of raw hex:
+
+| Token    | Value     | Use                                                                                            |
+| -------- | --------- | ---------------------------------------------------------------------------------------------- |
+| `ink`    | `#0b1f4b` | Top bars, emergency card, footer (dark navy surfaces)                                          |
+| `sun`    | `#ffc20e` | Gold highlights on dark surfaces and the hero dot. Fill only, never text on a light background |
+| `ground` | `#f4f7fc` | Page background; white cards sit on it                                                         |
+| `line`   | `#dce4f2` | Hairline borders (`border-line`)                                                               |
+
+Shape and type: cards `rounded-3xl`, buttons/inputs/chips `rounded-full`, headings `font-bold tracking-tight` (not `font-black`), figures `font-semibold`. Page headers are a light band (`bg-white border-b border-line`), not a navy band.
+
+### Hero band blue — legacy (replaced)
+
+The deep navy `#003087` page bands were replaced by the light page header in v0.9.0. Do not add new navy bands.
+
+### Hero band blue — known token (legacy)
 
 Page hero/header bands use the deep brand blue **`#003087`**. This is currently hardcoded as an inline `style={{ backgroundColor: '#003087' }}` in 6 places (`Hero.tsx`, `Legislative.tsx`, `Transparency.tsx`, `Tourism.tsx`, `Statistics.tsx`, `SangguniangBayan.tsx`).
 
@@ -46,14 +63,13 @@ Fonts come from `tailwind.config.js` + `src/fonts.css`. Do not introduce other f
 
 Stored in `public/icons/`. Reference by absolute path (`/icons/...`).
 
-| Asset                  | Use                                       |
-| ---------------------- | ----------------------------------------- |
-| `logo.svg`             | Navbar (on light backgrounds)             |
-| `logo-clear.svg`       | Footer / dark backgrounds (light-on-dark) |
-| `bettergov-footer.svg` | BetterGov attribution in the footer       |
-| `favicon.svg`          | Browser tab favicon                       |
+| Asset                  | Use                                                                                            |
+| ---------------------- | ---------------------------------------------------------------------------------------------- |
+| `logo.webp`            | Emblem (Indang map + Katipunan sun); no wordmark — render "BetterIndang.org" as text beside it |
+| `bettergov-footer.svg` | BetterGov attribution in the footer                                                            |
+| `favicon.png`          | Browser tab favicon (also `public/favicon.ico`, `favicon-*.png`, `apple-touch-icon.png`)       |
 
-Pick the variant that matches the background — never recolor a logo with CSS filters.
+The emblem is dark blue on transparent: on dark backgrounds (footer) place it on a white tile — never recolor a logo with CSS filters.
 
 ## Icons & emojis
 
@@ -96,7 +112,7 @@ Every page's hero and content sections fade/slide in as they scroll into view �
 | `style={{ color: '#0066eb' }}` or arbitrary `bg-[#1234ab]` | Use a palette class (`text-primary-500`)                   |
 | Introducing a new dark blue for a hero band                | Reuse `#003087` (or the shared token)                      |
 | Adding a Google Font / new family                          | Stick to Inter / Roboto Mono / Georgia                     |
-| Recoloring `logo.svg` for a dark background                | Use `logo-clear.svg`                                       |
+| Recoloring the emblem for a dark background                | Put `logo.webp` on a white rounded tile                    |
 | English-only user-facing text                              | Add the FIL string via `useTranslation`                    |
 | Raw `<h2>` / `<section>` with ad-hoc styles                | Use `Heading` / `Section` primitives                       |
 | Emoji in UI text or as an icon                             | Use a lucide icon (`<Check />`, `<Phone />`, `<Ribbon />`) |
@@ -111,6 +127,6 @@ Every page's hero and content sections fade/slide in as they scroll into view �
 - [ ] Fonts limited to Inter / Roboto Mono / Georgia
 - [ ] Icons are lucide-react components — no emojis, no second icon library
 - [ ] Sections reveal on scroll (via `<Reveal>` / `<Section>`, not a one-off observer)
-- [ ] Correct logo variant for the background
+- [ ] Emblem readable on its background (white tile on dark)
 - [ ] Bilingual EN + FIL copy
 - [ ] `SEO` + `ui/` primitives used

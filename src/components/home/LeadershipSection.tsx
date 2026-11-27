@@ -29,13 +29,10 @@ export default function LeadershipSection() {
   ];
 
   return (
-    <section
-      ref={ref}
-      className="reveal bg-white py-12 border-b border-gray-100"
-    >
+    <section ref={ref} className="reveal py-12">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="flex items-center justify-between mb-6">
-          <h2 className="text-xl font-black text-gray-900">
+          <h2 className="text-2xl font-bold tracking-tight text-gray-900">
             {t('leadership.title')}
           </h2>
           <Link
@@ -49,18 +46,17 @@ export default function LeadershipSection() {
           {OFFICIALS.map(official => (
             <div
               key={official.name}
-              className="bg-white rounded-xl border border-gray-100 shadow-sm overflow-hidden hover:shadow-md transition-shadow"
+              className="bg-white rounded-3xl border border-line overflow-hidden hover:border-primary-300 transition-colors"
             >
-              <div className="h-1.5 bg-primary-700" />
               <div className="p-5 flex gap-4">
-                <div className="shrink-0 w-14 h-14 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-black text-xs text-center leading-tight">
+                <div className="shrink-0 w-14 h-14 rounded-full bg-primary-100 text-primary-700 flex items-center justify-center font-semibold text-xs text-center leading-tight">
                   {official.initials}
                 </div>
                 <div className="flex-1 min-w-0">
                   <span className="inline-block text-xs font-semibold text-primary-700 bg-primary-50 px-2 py-0.5 rounded-full border border-primary-100 mb-1.5">
                     {t(official.badgeKey)}
                   </span>
-                  <h3 className="font-black text-gray-900 text-sm leading-snug mb-0.5 truncate">
+                  <h3 className="font-semibold text-gray-900 text-sm leading-snug mb-0.5 truncate">
                     {official.name}
                   </h3>
                   <p className="text-gray-500 text-xs mb-3">

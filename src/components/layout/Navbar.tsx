@@ -4,6 +4,7 @@ import { mainNavigation } from '../../data/navigation';
 import type { LanguageType } from '../../types/index';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useTranslation } from '../../hooks/useTranslation';
+import { HOTLINES } from '../../data/hotlines';
 
 function formatDatetime(): string {
   const now = new Date();
@@ -21,13 +22,6 @@ function formatDatetime(): string {
   });
   return `${date} · ${time} PHT`;
 }
-
-const HOTLINES = [
-  { labelKey: 'hotlines.mdrrmo', number: '0961-992-1998', tel: '09619921998' },
-  { labelKey: 'hotlines.fire', number: '046-415-1217', tel: '0464151217' },
-  { labelKey: 'hotlines.police', number: '0949-184-9145', tel: '09491849145' },
-  { labelKey: 'hotlines.hospital', number: '046-840-1705', tel: '0468401705' },
-];
 
 const Navbar: React.FC = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -248,10 +242,10 @@ const Navbar: React.FC = () => {
   return (
     <nav className="sticky top-0 z-50">
       {/* ── Emergency Hotlines Bar ─────────────────────────── */}
-      <div className="bg-red-600 text-white overflow-x-auto whitespace-nowrap">
+      <div className="bg-ink text-white overflow-x-auto whitespace-nowrap">
         <div className="flex items-center px-6 py-2.5 min-w-max mx-auto gap-1">
-          <Phone className="h-3.5 w-3.5 mr-3 shrink-0 opacity-90" />
-          <span className="text-xs font-bold uppercase tracking-wide opacity-80 mr-3">
+          <Phone className="h-3.5 w-3.5 mr-3 shrink-0 text-sun" />
+          <span className="text-xs font-bold uppercase tracking-wide text-sun mr-3">
             {t('navbar.emergencyHotlines', 'Emergency Hotlines')}
           </span>
           {HOTLINES.map((h, i) => (
@@ -272,7 +266,7 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* ── Info Bar ──────────────────────────────────────── */}
-      <div className="bg-primary-900 text-white text-xs">
+      <div className="bg-ink border-t border-white/10 text-white text-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 py-2 flex items-center justify-end gap-6">
           <span className="flex items-center gap-1.5 opacity-90">
             <span
@@ -297,16 +291,24 @@ const Navbar: React.FC = () => {
       </div>
 
       {/* ── Main Navbar ───────────────────────────────────── */}
-      <div className="bg-white shadow-sm border-b border-gray-100">
+      <div className="bg-white border-b border-line">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="flex items-center justify-between h-20">
             {/* Logo */}
-            <Link to="/" className="shrink-0 flex items-center">
+            <Link to="/" className="shrink-0 flex items-center gap-2.5">
               <img
-                src="/icons/logo.svg"
-                alt={import.meta.env.VITE_GOVERNMENT_NAME}
-                className="h-14 w-auto max-w-[200px] object-contain"
+                src="/icons/logo.webp"
+                alt=""
+                aria-hidden="true"
+                className="h-16 w-auto object-contain"
               />
+              <span className="text-xl font-bold tracking-tight text-gray-900">
+                Better<span className="text-primary-600">Indang</span>
+                <span className="text-sm font-medium text-gray-500">.org</span>
+              </span>
+              <span className="sr-only">
+                {import.meta.env.VITE_GOVERNMENT_NAME}
+              </span>
             </Link>
 
             {/* Desktop Nav */}
@@ -316,10 +318,10 @@ const Navbar: React.FC = () => {
                   {item.children ? (
                     <>
                       <button
-                        className={`flex items-center gap-1 px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                        className={`flex items-center gap-1 px-4 py-2.5 text-sm font-medium rounded-full transition-colors ${
                           isActive(item.href)
-                            ? 'text-primary-700 bg-primary-50'
-                            : 'text-gray-700 hover:text-primary-700 hover:bg-primary-50'
+                            ? 'text-primary-800 bg-primary-50 font-semibold'
+                            : 'text-gray-800 hover:text-primary-800 hover:bg-primary-50'
                         }`}
                         aria-haspopup="true"
                         aria-expanded={false}
@@ -330,8 +332,8 @@ const Navbar: React.FC = () => {
                         )}
                         <ChevronDown className="h-3.5 w-3.5 opacity-60 group-hover:rotate-180 transition-transform duration-200" />
                       </button>
-                      <div className="absolute top-full left-0 mt-1 w-56 bg-white rounded-lg shadow-lg border border-gray-100 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-                        <div className="py-1">
+                      <div className="absolute top-full left-0 mt-2 w-64 bg-white rounded-3xl shadow-xl border border-line opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+                        <div className="p-2">
                           {item.children.map(child =>
                             child.href.startsWith('http') ? (
                               <a
@@ -339,7 +341,7 @@ const Navbar: React.FC = () => {
                                 href={child.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                                className="block px-4 py-2.5 text-sm text-gray-800 rounded-2xl hover:bg-primary-50 hover:text-primary-800 transition-colors"
                               >
                                 {t(
                                   child.labelKey ||
@@ -351,7 +353,7 @@ const Navbar: React.FC = () => {
                               <Link
                                 key={child.label}
                                 to={child.href}
-                                className="block px-4 py-2 text-sm text-gray-700 hover:bg-primary-50 hover:text-primary-700 transition-colors"
+                                className="block px-4 py-2.5 text-sm text-gray-800 rounded-2xl hover:bg-primary-50 hover:text-primary-800 transition-colors"
                               >
                                 {t(
                                   child.labelKey ||
@@ -368,7 +370,7 @@ const Navbar: React.FC = () => {
                     <Link
                       to={item.href}
                       onClick={e => handleContactClick(e, item.href)}
-                      className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      className={`px-4 py-2.5 text-sm font-medium rounded-full transition-colors ${
                         isActive(item.href)
                           ? 'text-primary-700 bg-primary-50'
                           : 'text-gray-700 hover:text-primary-700 hover:bg-primary-50'
@@ -386,18 +388,18 @@ const Navbar: React.FC = () => {
 
             {/* Right: Language + hamburger */}
             <div className="flex items-center gap-2">
-              <div className="hidden sm:flex items-center border border-gray-200 rounded-md overflow-hidden">
-                {(['en', 'fil'] as LanguageType[]).map((lang, idx) => (
+              <div className="hidden sm:flex items-center border border-line rounded-full overflow-hidden p-0.5">
+                {(['en', 'fil'] as LanguageType[]).map(lang => (
                   <button
                     key={lang}
                     type="button"
                     onClick={() => changeLanguage(lang)}
                     aria-label={`Switch to ${lang === 'en' ? 'English' : 'Filipino'}`}
-                    className={`px-3 py-1.5 text-xs font-bold uppercase transition-colors ${
+                    className={`px-3.5 py-2 text-xs font-bold uppercase rounded-full transition-colors ${
                       i18n.language === lang
-                        ? 'bg-primary-700 text-white'
-                        : 'bg-white text-gray-600 hover:bg-gray-50'
-                    } ${idx === 0 ? '' : 'border-l border-gray-200'}`}
+                        ? 'bg-primary-800 text-white'
+                        : 'bg-white text-gray-800 hover:bg-primary-50'
+                    }`}
                   >
                     {lang === 'en' ? 'EN' : 'FIL'}
                   </button>
@@ -420,7 +422,7 @@ const Navbar: React.FC = () => {
                     }, 320);
                   }
                 }}
-                className="lg:hidden p-2 rounded-md text-gray-700 hover:bg-gray-100 transition-colors"
+                className="lg:hidden h-11 w-11 flex items-center justify-center rounded-full text-gray-800 hover:bg-primary-50 transition-colors"
                 aria-label="Toggle navigation"
                 aria-expanded={mobileMenuOpen}
               >
@@ -452,7 +454,7 @@ const Navbar: React.FC = () => {
                             prev === item.label ? null : item.label
                           )
                         }
-                        className="w-full flex justify-between items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-md"
+                        className="w-full flex justify-between items-center px-3 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 rounded-2xl"
                         aria-haspopup="true"
                         aria-expanded={openDropdown === item.label}
                       >
@@ -473,7 +475,7 @@ const Navbar: React.FC = () => {
                                 href={child.href}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
+                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-800 hover:bg-primary-50 rounded-2xl"
                               >
                                 {t(
                                   child.labelKey ||
@@ -485,7 +487,7 @@ const Navbar: React.FC = () => {
                               <Link
                                 key={child.label}
                                 to={child.href}
-                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-700 hover:bg-primary-50 rounded-md"
+                                className="block px-3 py-2 text-sm text-gray-600 hover:text-primary-800 hover:bg-primary-50 rounded-2xl"
                               >
                                 {t(
                                   child.labelKey ||
@@ -502,7 +504,7 @@ const Navbar: React.FC = () => {
                     <Link
                       to={item.href}
                       onClick={e => handleContactClick(e, item.href)}
-                      className={`block px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                      className={`block px-3 py-2.5 text-sm font-medium rounded-2xl transition-colors ${
                         isActive(item.href)
                           ? 'text-primary-700 bg-primary-50'
                           : 'text-gray-700 hover:bg-gray-50'
@@ -525,10 +527,10 @@ const Navbar: React.FC = () => {
                     type="button"
                     onClick={() => changeLanguage(lang)}
                     aria-label={`Switch to ${lang === 'en' ? 'English' : 'Filipino'}`}
-                    className={`px-4 py-1.5 text-xs font-bold uppercase rounded border transition-colors ${
+                    className={`px-4 py-2 text-xs font-bold uppercase rounded-full border transition-colors ${
                       i18n.language === lang
-                        ? 'bg-primary-700 text-white border-primary-700'
-                        : 'bg-white text-gray-600 border-gray-300'
+                        ? 'bg-primary-800 text-white border-primary-800'
+                        : 'bg-white text-gray-800 border-gray-300'
                     }`}
                   >
                     {lang === 'en' ? 'EN' : 'FIL'}

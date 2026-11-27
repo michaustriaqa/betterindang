@@ -2,6 +2,7 @@
   "site_name": "BetterIndang.org",
   "site_description": "A community-run portal for the Municipality of Indang",
   "hero": {
+    "findTitle": "What do you need from the municipality?",
     "title": "Welcome to BetterGov.ph",
     "subtitle": "A community-run portal to find information and services of the Municipality of Indang, Cavite.",
     "welcome": "WELCOME TO",
@@ -58,6 +59,12 @@
       "environment": { "name": "Environment" },
       "housing-land-use": { "name": "Housing & Land Use" },
       "disaster-preparedness": { "name": "Disaster Preparedness" }
+    },
+    "groups": {
+      "health-welfare": "Health & welfare",
+      "business-livelihood": "Business & livelihood",
+      "home-community": "Home & community",
+      "safety": "Safety & emergencies"
     }
   },
   "governmentActivity": {
@@ -174,7 +181,7 @@
     "title": "Latest News & Updates"
   },
   "footer": {
-    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.5.5",
+    "copyright": "© 2026 BetterIndang.org · CC0 1.0 Universal · v0.15.2",
     "about": "About the Portal",
     "sitemap": "Sitemap",
     "accessibility": "Accessibility",
@@ -217,7 +224,15 @@
     "profile": "Municipal Profile",
     "dtiProfile": "DTI CMCI Profile",
     "barangayData": "Barangay Data",
-    "openData": "Open Data PH"
+    "openData": "Open Data PH",
+    "explore": "Explore Indang",
+    "budgetTransparency": "Budget & Transparency",
+    "dataStats": "Data & Statistics",
+    "news": "News & Announcements",
+    "history": "History",
+    "calendar": "Events Calendar",
+    "tabExplore": "Explore",
+    "mobileNav": "Main navigation"
   },
   "joinUs": {
     "stripTitle": "Join the #CivicTech Revolution",
