@@ -113,8 +113,8 @@ export default function Sitemap() {
     },
     {
       icon: MapPin,
-      label: isFil ? 'Turismo' : 'Tourism',
-      href: '/tourism',
+      label: isFil ? 'Tuklasin ang Indang' : 'Explore Indang',
+      href: '/explore',
       children: [
         {
           label: isFil ? 'Mga Makasaysayang Lugar' : 'Heritage Sites',

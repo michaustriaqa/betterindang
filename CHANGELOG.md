@@ -11,6 +11,16 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.15.0] - 2026-11-28
+
+### Added
+
+- `/explore`: Explore Indang hub (`src/components/explore/ExploreHub.tsx`) with the six tourism categories and live place counts, three featured places with photos, and a "Know Indang" group (history, municipal profile and data, events calendar, news and announcements). Linked from the Explore Indang menu, the mobile tab bar, the sitemap page and `sitemap.xml`.
+
+### Changed
+
+- The Explore Indang menu item and the mobile Explore tab now open `/explore` instead of going straight to `/tourism`; `/tourism` and its category pages are unchanged and reachable from the hub.
+
 ## [0.14.1] - 2026-11-28
 
 ### Fixed

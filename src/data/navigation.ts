@@ -71,7 +71,7 @@ export const mainNavigation: NavigationItem[] = [
   {
     label: 'Explore Indang',
     labelKey: 'navbar.explore',
-    href: '/tourism',
+    href: '/explore',
     children: [
       { label: 'Tourism', labelKey: 'navbar.tourism', href: '/tourism' },
       {

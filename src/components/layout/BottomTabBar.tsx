@@ -28,11 +28,11 @@ const TABS: Tab[] = [
     match: ['/government', '/transparency', '/legislative', '/announcements'],
   },
   {
-    to: '/tourism',
+    to: '/explore',
     labelKey: 'navbar.tabExplore',
     label: 'Explore',
     icon: Compass,
-    match: ['/tourism', '/calendar', '/statistics'],
+    match: ['/explore', '/tourism', '/calendar', '/statistics'],
   },
   {
     to: '/contact',

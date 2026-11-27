@@ -27,6 +27,7 @@ const urls = [];
 urls.push(url('/', '1.0', 'weekly'));
 urls.push(url('/services', '0.9', 'weekly'));
 urls.push(url('/government', '0.9', 'weekly'));
+urls.push(url('/explore', '0.9', 'weekly'));
 urls.push(url('/tourism', '0.9', 'weekly'));
 urls.push(url('/statistics', '0.7', 'monthly'));
 urls.push(url('/transparency', '0.7', 'monthly'));
