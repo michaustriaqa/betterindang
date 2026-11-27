@@ -155,7 +155,7 @@ export const footerNavigation = {
         {
           label: 'Transparency Documents',
           labelKey: 'navbar.transparencyDocs',
-          href: '/government/transparency-documents',
+          href: '/transparency',
         },
         {
           label: 'Freedom of Information',

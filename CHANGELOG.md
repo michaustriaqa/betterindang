@@ -11,6 +11,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.14.1] - 2026-11-28
+
+### Fixed
+
+- `/government/transparency-documents` rendered a blank page because no content exists for it, yet the Transparency page, footer menu and sitemap all linked to it. It now redirects to `/transparency`, and those links point there directly.
+- Transparency page rewritten to point to where documents actually live (DILG Full Disclosure Policy portal, PhilGEPS, FOI, BLGF, COA, DBM, Open Data PH, plus this portal's statistics and announcements) instead of six cards that all led to the empty page. Removed the claim that Indang is committed to full disclosure; the banner now states what the policy requires and that this portal does not host Indang's own document library yet.
+- Government hub description for Budget & transparency no longer promises documents the portal does not host.
+
 ## [0.14.0] - 2026-11-28
 
 ### Changed

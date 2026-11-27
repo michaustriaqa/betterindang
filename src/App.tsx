@@ -1,7 +1,12 @@
 import { lazy, Suspense } from 'react';
 import { NuqsAdapter } from 'nuqs/adapters/react';
 import { HelmetProvider } from 'react-helmet-async';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import {
+  BrowserRouter as Router,
+  Navigate,
+  Routes,
+  Route,
+} from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import BottomTabBar from './components/layout/BottomTabBar';
@@ -57,6 +62,11 @@ function App() {
                 <Route
                   path="/government/legislative"
                   element={<Legislative />}
+                />
+                {/* Old links: this page never had content; see /transparency */}
+                <Route
+                  path="/government/transparency-documents"
+                  element={<Navigate to="/transparency" replace />}
                 />
                 <Route path="/government/:category" element={<Government />} />
                 <Route path="/government" element={<Government />} />

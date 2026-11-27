@@ -88,7 +88,7 @@ export default function Sitemap() {
           label: isFil
             ? 'Mga Dokumento ng Transparency'
             : 'Transparency Documents',
-          href: '/government/transparency-documents',
+          href: '/transparency',
         },
         {
           label: isFil ? 'Mga Ulat at Estadistika' : 'Reports & Statistics',

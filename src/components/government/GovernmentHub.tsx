@@ -73,8 +73,8 @@ const GROUPS: Group[] = [
         icon: Wallet,
         title: ['Budget & transparency', 'Badyet at transparency'],
         desc: [
-          'Budget reports, FOI releases and Full Disclosure Policy documents.',
-          'Mga ulat sa badyet, FOI release at dokumento ng Full Disclosure Policy.',
+          'Where to find budget disclosures, procurement notices, audit reports and how to file an FOI request.',
+          'Saan makikita ang badyet, abiso sa pagkuha, ulat ng awdit at kung paano maghain ng FOI request.',
         ],
       },
       {
