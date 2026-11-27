@@ -293,7 +293,7 @@ const Footer: React.FC = () => {
             <VisitorCount />
             <div className="flex items-center gap-1.5 shrink-0 text-gray-400">
               <Box className="h-3.5 w-3.5" />
-              <span className="font-mono">v0.15.0</span>
+              <span className="font-mono">v0.15.1</span>
             </div>
           </div>
         </div>

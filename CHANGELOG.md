@@ -11,6 +11,12 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.15.1] - 2026-11-28
+
+### Removed
+
+- Dead `health@indang.gov.ph` email from the YAKAP page and its guide. The Indang Rural Health Unit has no email address; the mobile hotline 0977-766-6707 (already listed, with a tap-to-call link) is the contact to use.
+
 ## [0.15.0] - 2026-11-28
 
 ### Added

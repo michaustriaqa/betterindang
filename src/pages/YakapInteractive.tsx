@@ -1767,31 +1767,6 @@ export default function YakapInteractive() {
                           )}
                         </button>
                       </div>
-
-                      <div className="flex items-center justify-between text-gray-600 dark:text-gray-300 group">
-                        <div className="flex items-center gap-2">
-                          <Mail className="h-4 w-4 text-gray-400 shrink-0" />
-                          <a
-                            href="mailto:health@indang.gov.ph"
-                            className="hover:underline font-medium hover:text-blue-600"
-                          >
-                            health@indang.gov.ph
-                          </a>
-                        </div>
-                        <button
-                          type="button"
-                          onClick={() =>
-                            handleCopy('health@indang.gov.ph', 'mail1')
-                          }
-                          className="p-1 hover:bg-gray-200 dark:hover:bg-gray-700 rounded text-gray-400 hover:text-gray-600 transition-colors pointer-events-auto cursor-pointer"
-                        >
-                          {copiedText === 'mail1' ? (
-                            <Check className="h-3 w-3 text-emerald-500" />
-                          ) : (
-                            <Copy className="h-3 w-3" />
-                          )}
-                        </button>
-                      </div>
                     </div>
                   </div>
 

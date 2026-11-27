@@ -361,7 +361,6 @@ For inquiries, registration assistance, or feedback regarding PhilHealth YAKAP i
 - **Physical Address**: Indang Municipal Hall Compound, Poblacion 1, Indang, Cavite (Geographical Landmark: Near the Municipal Plaza and Church)
 - **Landline Telephone**: (046) 840-1705
 - **Local Mobile Hotlines**: 0977-766-6707 / 0928-123-4567
-- **Official LGU Email Address**: health@indang.gov.ph
 - **PhilHealth Cavite Local Health Office (Trece Martires)**: (046) 419-0740 / cavite.lho@philhealth.gov.ph
 - **PhilHealth 24/7 Action Hotline**: (02) 866-225-88
 - **SMS Smart Callbacks**: 0998-857-2957, 0968-865-4670
