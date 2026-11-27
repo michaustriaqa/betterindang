@@ -1,80 +1,84 @@
 import {
-  Scale,
-  FileText,
   BookOpen,
   ExternalLink,
-  ChevronRight,
+  FileSearch,
+  Megaphone,
+  Scale,
+  Users,
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import SEO from '../components/SEO';
+import Breadcrumbs from '../components/ui/Breadcrumbs';
 import Reveal from '../components/ui/Reveal';
+import SEO from '../components/SEO';
 import { useTranslation } from '../hooks/useTranslation';
 
+type Pair = [en: string, fil: string];
+
+interface Action {
+  to: string;
+  external: boolean;
+  icon: React.ComponentType<{ className?: string }>;
+  title: Pair;
+  desc: Pair;
+}
+
+const ACTIONS: Action[] = [
+  {
+    to: '/government/departments/officials',
+    external: false,
+    icon: Users,
+    title: ['Councilors & committees', 'Mga konsehal at komite'],
+    desc: [
+      'Who sits in the council and which committees each councilor serves on.',
+      'Sino ang nasa konseho at sa anong mga komite naglilingkod ang bawat konsehal.',
+    ],
+  },
+  {
+    to: 'https://lawphil.net/statutes/repacts/ra1991/ra_7160_1991.html',
+    external: true,
+    icon: BookOpen,
+    title: [
+      'Local Government Code (RA 7160)',
+      'Local Government Code (RA 7160)',
+    ],
+    desc: [
+      'The law that sets the council’s powers, from ordinances to the budget.',
+      'Ang batas na nagtatakda ng kapangyarihan ng konseho, mula sa ordinansa hanggang sa badyet.',
+    ],
+  },
+  {
+    to: 'https://www.foi.gov.ph',
+    external: true,
+    icon: FileSearch,
+    title: ['File an FOI request', 'Maghain ng FOI request'],
+    desc: [
+      'Ask for copies of ordinances, resolutions and session records.',
+      'Humingi ng kopya ng ordinansa, resolusyon at tala ng sesyon.',
+    ],
+  },
+  {
+    to: '/announcements',
+    external: false,
+    icon: Megaphone,
+    title: ['News & announcements', 'Balita at anunsyo'],
+    desc: [
+      'Notices from the LGU and local offices, linked to the original post.',
+      'Mga abiso mula sa LGU at mga lokal na tanggapan, may link sa orihinal.',
+    ],
+  },
+];
+
+/** Sangguniang Bayan overview: who sits on it, what it does, how to get documents. */
 export default function Legislative() {
   const { currentLanguage } = useTranslation();
   const isFil = currentLanguage === 'fil';
+  const i = isFil ? 1 : 0;
 
-  const SECTIONS = [
+  const facts: { value: string; label: Pair }[] = [
+    { value: '8', label: ['Elected councilors', 'Inihalal na konsehal'] },
     {
-      title: isFil ? 'Mga Ordinansa' : 'Ordinances',
-      icon: Scale,
-      color: 'text-indigo-600',
-      bg: 'bg-indigo-50',
-      border: 'border-indigo-200',
-      desc: isFil
-        ? 'Mga ordinansa ng munisipyo na ipinasa ng Sangguniang Bayan ng Indang, Cavite.'
-        : 'Municipal ordinances enacted by the Sangguniang Bayan of Indang, Cavite.',
-      href: '/government/departments/legislative',
-    },
-    {
-      title: isFil ? 'Mga Resolusyon' : 'Resolutions',
-      icon: FileText,
-      color: 'text-blue-600',
-      bg: 'bg-blue-50',
-      border: 'border-blue-200',
-      desc: isFil
-        ? 'Mga resolusyong ipinasa ng Sangguniang Bayan upang ipahayag ang kaisipan at pasya ng konseho.'
-        : 'Resolutions passed by the Sangguniang Bayan expressing the sense of the council.',
-      href: '/government/departments/legislative',
-    },
-    {
-      title: isFil ? 'Mga Ulat ng Komite' : 'Committee Reports',
-      icon: BookOpen,
-      color: 'text-teal-600',
-      bg: 'bg-teal-50',
-      border: 'border-teal-200',
-      desc: isFil
-        ? 'Mga ulat na isinumite ng mga nakatayong komite (standing committees) ng Sangguniang Bayan.'
-        : 'Reports submitted by standing committees of the Sangguniang Bayan.',
-      href: '/government/departments/legislative',
-    },
-  ];
-
-  const EXTERNAL = [
-    {
-      label: isFil
-        ? 'DILG – Mga Alituntunin para sa Sangguniang Bayan'
-        : 'DILG – Sangguniang Bayan Guidelines',
-      href: 'https://dilg.gov.ph',
-      desc: isFil
-        ? 'Kagawaran ng Interyor at Pamahalaang Lokal'
-        : 'Department of the Interior and Local Government',
-    },
-    {
-      label: isFil
-        ? 'Opisyal na Pahayagan – Lokal na Pagbabatas'
-        : 'Official Gazette – Local Legislation',
-      href: 'https://www.officialgazette.gov.ph',
-      desc: isFil
-        ? 'Opisyal na Pahayagan ng Pilipinas (Official Gazette)'
-        : 'Philippine Official Gazette',
-    },
-    {
-      label: isFil ? 'Kalayaan sa Impormasyon (FOI)' : 'Freedom of Information',
-      href: 'https://www.foi.gov.ph',
-      desc: isFil
-        ? 'Humingi ng mga pambatasang dokumento sa pamamagitan ng FOI'
-        : 'Request legislative documents via FOI',
+      value: '36',
+      label: ['Barangays represented', 'Barangay na kinakatawan'],
     },
   ];
 
@@ -82,122 +86,144 @@ export default function Legislative() {
     <>
       <SEO
         title={isFil ? 'Pambatas — Sangguniang Bayan' : 'Legislative'}
-        description="Sangguniang Bayan ordinances, resolutions, and legislative documents for the Municipality of Indang, Cavite."
+        description="The Sangguniang Bayan of Indang, Cavite: who sits on the council, what it does, and how to get ordinances and resolutions."
         keywords="Indang Sangguniang Bayan, ordinances, resolutions, legislative, municipal council"
       />
       <main className="flex-grow">
-        {/* Page Header */}
-        <div className="relative bg-white border-b border-line py-16">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="flex items-center gap-3 mb-2">
-              <Scale className="h-7 w-7 text-primary-700" />
-              <span className="text-primary-700 text-sm font-medium uppercase tracking-widest">
-                Sangguniang Bayan ng Indang
-              </span>
-            </div>
-            <h1 className="text-4xl sm:text-5xl font-bold tracking-tight text-gray-900 mb-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 pt-8">
+          <Breadcrumbs />
+          <div className="mt-6 max-w-2xl">
+            <span className="inline-flex items-center gap-2 rounded-full bg-primary-50 px-3.5 py-1.5 text-xs font-semibold text-primary-800">
+              <Scale className="h-4 w-4" aria-hidden />
+              Sangguniang Bayan ng Indang
+            </span>
+            <h1 className="mt-4 text-3xl sm:text-5xl font-bold tracking-tight text-gray-900">
               {isFil ? 'Pambatas' : 'Legislative'}
             </h1>
-            <p className="text-gray-600 text-lg max-w-xl">
+            <p className="mt-3 text-lg text-gray-600">
               {isFil
-                ? 'Mga ordinansa, resolusyon, at pambatasang dokumento mula sa Konseho ng Munisipyo ng Indang, Cavite.'
-                : 'Ordinances, resolutions, and legislative documents from the Municipal Council of Indang, Cavite.'}
+                ? 'Ang Konseho ng Munisipyo ng Indang: sino ang bumubuo rito, ano ang ginagawa nito, at paano makakakuha ng mga ordinansa at resolusyon.'
+                : 'The Municipal Council of Indang: who sits on it, what it does, and how to get its ordinances and resolutions.'}
             </p>
+            <div className="mt-5 flex flex-wrap gap-2.5">
+              <Link
+                to="/government/departments/officials"
+                className="inline-flex min-h-12 items-center rounded-full bg-primary-800 px-7 text-sm font-semibold text-white hover:bg-primary-700"
+              >
+                {isFil ? 'Kilalanin ang mga konsehal' : 'Meet the councilors'}
+              </Link>
+              <Link
+                to="/contact"
+                className="inline-flex min-h-12 items-center rounded-full border border-line bg-white px-7 text-sm font-semibold text-gray-900 hover:bg-primary-50"
+              >
+                {isFil ? 'Humingi ng dokumento' : 'Request a document'}
+              </Link>
+            </div>
           </div>
         </div>
 
-        {/* About */}
-        <Reveal
-          as="section"
-          className="bg-white py-12 border-b border-gray-100"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <div className="max-w-3xl">
-              <h2 className="text-xl font-black text-gray-900 mb-3">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 py-10 space-y-12">
+          <section className="grid gap-5 lg:grid-cols-[1.4fr_1fr] items-start">
+            <div className="rounded-3xl border border-line bg-white p-6 sm:p-8">
+              <h2 className="text-2xl font-bold tracking-tight text-gray-900">
                 {isFil
                   ? 'Tungkol sa Sangguniang Bayan'
                   : 'About the Sangguniang Bayan'}
               </h2>
-              <p className="text-gray-600 leading-relaxed mb-3">
+              <p className="mt-3 text-[1.0625rem] leading-8 text-gray-700">
                 {isFil
-                  ? 'Ang Sangguniang Bayan ang pambatasang lupon ng Munisipalidad ng Indang. Ito ay nagpapatupad ng mga ordinansa, nagpapasya ng mga resolusyon, at nagsasagawa ng iba pang pambatasang kapangyarihan gaya ng itinatakda sa ilalim ng Local Government Code of 1991 (RA 7160).'
+                  ? 'Ang Sangguniang Bayan ang pambatasang lupon ng Munisipalidad ng Indang. Ito ay nagpapatupad ng mga ordinansa, nagpapasya ng mga resolusyon, at nagsasagawa ng iba pang pambatasang kapangyarihan gaya ng itinatakda ng Local Government Code of 1991 (RA 7160).'
                   : 'The Sangguniang Bayan is the legislative body of the Municipality of Indang. It enacts ordinances, approves resolutions, and exercises other legislative powers as provided under the Local Government Code of 1991 (RA 7160).'}
               </p>
-              <p className="text-gray-600 leading-relaxed">
+              <p className="mt-3 text-[1.0625rem] leading-8 text-gray-700">
                 {isFil
-                  ? 'Ang konseho ay binubuo ng mga inihalal na konsehal ng munisipyo na kumakatawan sa interes ng 36 na barangay ng Indang at sa mahigit 68,000 na residenteng naninirahan dito.'
-                  : "The council is composed of elected municipal councilors who represent the interests of Indang's 36 barangays and over 68,000 residents."}
+                  ? 'Binubuo ito ng mga inihalal na konsehal na kumakatawan sa 36 na barangay ng Indang at sa mahigit 68,000 residente nito (senso ng 2020).'
+                  : 'It is made up of elected councilors who represent Indang’s 36 barangays and its more than 68,000 residents (2020 census).'}
               </p>
             </div>
-          </div>
-        </Reveal>
-
-        {/* Document sections */}
-        <Reveal
-          as="section"
-          className="bg-gray-50 py-12 border-b border-gray-100"
-        >
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 className="text-xl font-black text-gray-900 mb-6">
-              {isFil ? 'Mga Pambatasang Dokumento' : 'Legislative Documents'}
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
-              {SECTIONS.map(
-                ({ title, icon: Icon, color, bg, border, desc, href }) => (
-                  <Link
-                    key={title}
-                    to={href}
-                    className={`group block bg-white rounded-xl border-t-4 ${border} border border-gray-100 p-6 hover:shadow-md transition-all`}
-                  >
-                    <div
-                      className={`${bg} ${color} w-11 h-11 rounded-lg flex items-center justify-center mb-4 group-hover:scale-110 transition-transform`}
-                    >
-                      <Icon className="h-5 w-5" />
-                    </div>
-                    <h3 className={`font-black text-base mb-2 ${color}`}>
-                      {title}
-                    </h3>
-                    <p className="text-sm text-gray-600 leading-relaxed mb-3">
-                      {desc}
-                    </p>
-                    <span className="inline-flex items-center gap-1 text-xs font-semibold text-primary-700 group-hover:gap-2 transition-all">
-                      {isFil ? 'Tingnan ang mga Dokumento' : 'View Documents'}{' '}
-                      <ChevronRight className="h-3.5 w-3.5" />
-                    </span>
-                  </Link>
-                )
-              )}
-            </div>
-          </div>
-        </Reveal>
-
-        {/* External resources */}
-        <Reveal as="section" className="bg-white py-12">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6">
-            <h2 className="text-xl font-black text-gray-900 mb-6">
-              {isFil ? 'Mga Panlabas na Sanggunian' : 'External Resources'}
-            </h2>
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-              {EXTERNAL.map(r => (
-                <a
-                  key={r.label}
-                  href={r.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-start gap-3 bg-gray-50 rounded-xl border border-gray-100 p-5 hover:shadow-md hover:border-primary-200 transition-all group"
+            <ul className="grid grid-cols-2 gap-3.5 lg:grid-cols-1">
+              {facts.map(f => (
+                <li
+                  key={f.label[0]}
+                  className="rounded-3xl border border-line bg-white p-5"
                 >
-                  <ExternalLink className="h-4 w-4 text-primary-500 shrink-0 mt-0.5" />
-                  <div>
-                    <div className="text-sm font-bold text-gray-900 group-hover:text-primary-700 transition-colors">
-                      {r.label}
-                    </div>
-                    <div className="text-xs text-gray-500 mt-0.5">{r.desc}</div>
-                  </div>
-                </a>
+                  <span className="block text-3xl font-bold tracking-tight text-primary-800">
+                    {f.value}
+                  </span>
+                  <span className="mt-1 block text-sm text-gray-600">
+                    {f.label[i]}
+                  </span>
+                </li>
               ))}
-            </div>
-          </div>
-        </Reveal>
+            </ul>
+          </section>
+
+          <section aria-labelledby="leg-actions">
+            <h2
+              id="leg-actions"
+              className="border-b border-line pb-3 text-2xl font-bold tracking-tight text-gray-900"
+            >
+              {isFil ? 'Ano ang magagawa mo rito' : 'What you can do here'}
+            </h2>
+            <Reveal stagger className="mt-4 grid gap-3.5 sm:grid-cols-2">
+              {ACTIONS.map(({ to, external, icon: Icon, title, desc }) => {
+                const body = (
+                  <>
+                    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-50 text-primary-800">
+                      <Icon className="h-5 w-5" />
+                    </span>
+                    <span className="min-w-0">
+                      <span className="flex items-center gap-1.5 text-lg font-semibold leading-snug text-gray-900">
+                        {title[i]}
+                        {external && (
+                          <ExternalLink
+                            className="h-3.5 w-3.5 text-gray-500"
+                            aria-label={
+                              isFil ? 'panlabas na link' : 'external link'
+                            }
+                          />
+                        )}
+                      </span>
+                      <span className="mt-1 block text-sm text-gray-600">
+                        {desc[i]}
+                      </span>
+                    </span>
+                  </>
+                );
+                const cls =
+                  'flex items-start gap-4 rounded-3xl border border-line bg-white p-5 transition-colors hover:border-primary-300';
+                return external ? (
+                  <a
+                    key={to}
+                    href={to}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={cls}
+                  >
+                    {body}
+                  </a>
+                ) : (
+                  <Link key={to} to={to} className={cls}>
+                    {body}
+                  </Link>
+                );
+              })}
+            </Reveal>
+          </section>
+
+          <section className="rounded-3xl bg-warning-50 p-6 sm:p-8">
+            <h2 className="text-xl font-bold tracking-tight text-gray-900">
+              {isFil
+                ? 'Wala pa rito ang mga ordinansa at resolusyon'
+                : 'Ordinances and resolutions are not published here yet'}
+            </h2>
+            <p className="mt-2 max-w-3xl text-gray-700">
+              {isFil
+                ? 'Hindi pa naglalathala ang portal na ito ng mga dokumento ng Sangguniang Bayan. Para humingi ng kopya, makipag-ugnayan sa Munisipyo o maghain ng FOI request.'
+                : 'This portal does not publish Sangguniang Bayan documents yet. To get a copy, contact the Municipal Hall or file an FOI request.'}
+            </p>
+          </section>
+        </div>
       </main>
     </>
   );

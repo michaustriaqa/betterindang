@@ -11,6 +11,17 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.15.2] - 2026-11-28
+
+### Changed
+
+- Legislative page (`/legislative`, `/government/legislative`) restyled in the Civic Clear look with breadcrumbs, quick facts (8 councilors, 36 barangays) and an action list.
+- The three "Ordinances / Resolutions / Committee Reports" cards all led to an empty "details coming soon" page, so they are replaced by working links: councilors and committees, the Local Government Code (RA 7160) on LawPhil, an FOI request, and announcements. A notice states that ordinances and resolutions are not published on this portal yet and how to request copies.
+
+### Removed
+
+- The "Official Gazette - Local Legislation" link, which does not publish local ordinances.
+
 ## [0.15.1] - 2026-11-28
 
 ### Added
