@@ -208,9 +208,9 @@ export const TableWithToggle = ({
       <div className="flex justify-end mb-4 gap-2 px-4 sm:px-0">
         <button
           onClick={() => setViewMode('table')}
-          className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
+          className={`px-3 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-2 ${
             viewMode === 'table'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-primary-800 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
@@ -219,9 +219,9 @@ export const TableWithToggle = ({
         </button>
         <button
           onClick={() => setViewMode('list')}
-          className={`px-3 py-2 text-sm font-medium rounded-md transition-colors flex items-center gap-2 ${
+          className={`px-3 py-2 text-sm font-medium rounded-full transition-colors flex items-center gap-2 ${
             viewMode === 'list'
-              ? 'bg-blue-600 text-white'
+              ? 'bg-primary-800 text-white'
               : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
           }`}
         >
@@ -250,7 +250,7 @@ export const TableWithToggle = ({
             tableData.rows.map((row, index) => (
               <div
                 key={index}
-                className="bg-white border border-gray-200 rounded-lg p-4 shadow-sm mx-2 sm:mx-0"
+                className="bg-white border border-line rounded-2xl p-4 mx-2 sm:mx-0"
               >
                 <div className="grid gap-3">
                   {tableData.headers.map((header, headerIndex) => (

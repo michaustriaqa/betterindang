@@ -176,7 +176,7 @@
 /* ── Checklist styling ─────────────────────────────────────────── */
 /* Checklist styling */
 .task-list-item {
-  @apply text-base text-gray-700 leading-relaxed relative flex items-start gap-3 font-sans rounded-md mb-5 transition-all duration-200 border border-transparent cursor-pointer items-center;
+  @apply text-[1.0625rem] text-gray-700 leading-8 relative block font-sans mb-3 list-none;
 }
 
 /* Sticky table styling */
@@ -192,11 +192,11 @@
   width: var(--first-col-width, 12rem);
   min-width: var(--first-col-width, 12rem);
   background-color: white;
-  border-right: 2px solid #9ca3af;
+  border-right: 1px solid var(--color-line);
 }
 
 .sticky-table thead th:first-child {
-  background-color: #f9fafb;
+  background-color: var(--color-primary-50);
 }
 
 .sticky-table tbody tr:hover td:first-child {

@@ -18,6 +18,8 @@ function interpolate(
 
 export interface MarkdownContent {
   content: string;
+  /** Content without the title and lead paragraph. */
+  body: string;
   title?: string;
   description?: string;
   data?: Record<string, unknown>;
@@ -82,17 +84,29 @@ export async function loadMarkdownContent(
         `../../content/${dir}/${categorySlug}/${documentSlug}.md?raw`
       );
     }
-    const content = interpolate(module.default, data);
+    const content = interpolate(module.default, data).replace(/\r\n/g, '\n');
 
     const titleMatch = content.match(/^#\s+(.+)$/m);
     const title = titleMatch ? titleMatch[1] : undefined;
 
-    const descriptionMatch = content.match(/^#\s+.+$\n\n(.+?)(?:\n\n|$)/s);
-    const description = descriptionMatch
-      ? descriptionMatch[1].replace(/^>\s*/, '').trim()
+    // Lead paragraph: the first block after the title, if it is plain prose.
+    const leadMatch = content.match(/^#[^\n]*\n+([^\n][\s\S]*?)(?:\n\s*\n|$)/);
+    const leadRaw = leadMatch?.[1] ?? '';
+    const isProse =
+      leadRaw !== '' && !/^(#|[-*+]\s|\d+\.\s|\||```)/.test(leadRaw);
+    const description = isProse
+      ? leadRaw
+          .replace(/^>\s*/, '')
+          .replace(/\s*\n\s*/g, ' ')
+          .trim()
       : undefined;
 
-    return { content, title, description, data };
+    // Body: everything after the title and lead, without a leading rule.
+    let body = content.replace(/^#[^\n]*\n+/, '');
+    if (isProse && leadMatch) body = body.slice(leadMatch[1].length);
+    body = body.replace(/^\s*---\s*\n/, '').trim();
+
+    return { content, body, title, description, data };
   } catch (error) {
     console.error(
       'Failed to load markdown content for document: %s (%s)',

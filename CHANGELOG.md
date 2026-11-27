@@ -11,6 +11,22 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 The displayed version in the footer (`src/components/layout/Footer.tsx`) must be kept in sync with the latest entry here.
 
+## [0.14.0] - 2026-11-28
+
+### Changed
+
+- Document pages (service and government markdown guides) restyled in the Civic Clear look: a light header with category chip, title, lead paragraph and reading time; a "On this page" contents list (sticky on desktop, collapsible on phones) with the current section highlighted; the guide in a rounded card with a comfortable reading width; gold bullets, soft callouts for tips and notes, rounded tables and code blocks; and a "Back to category" button. Typography themes now use the ink, gold and line tokens.
+- Markdown loader now returns the lead paragraph and a body without the title and lead. The previous description regex only matched files ending in a blank line, so most pages had no description for the page header or SEO.
+- Task-list checklist items no longer use flex layout, which pushed the page wider than the screen on phones when an item ended in long bold text.
+
+### Added
+
+- Friendly "This page is still being written" state for markdown files with no content (currently `rent-stalls-in-public-markets`).
+
+### Removed
+
+- Debug `console.log` calls in the markdown list renderer.
+
 ## [0.13.1] - 2026-11-27
 
 ### Changed
